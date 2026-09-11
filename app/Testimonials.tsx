@@ -8,31 +8,31 @@ const testimonials=[
     "location": "Illustrative portrait",
     "title": "A menu people can actually find.",
     "quote": "“I want guests to see our menu, find directions and book a table without having to call.”",
-    "image": "/assets/refresh/portraits/sample-0.webp"
+    "image": "https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=900&q=85"
   },
   {
-    "name": "Independent founder",
+    "name": "Restaurant owner",
     "role": "Sample review",
     "location": "Illustrative portrait",
     "title": "A website that feels like the brand.",
     "quote": "“I need an online shop that looks like us and makes choosing a product simple.”",
-    "image": "/assets/refresh/portraits/sample-1.webp"
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=85"
   },
   {
-    "name": "Software team",
+    "name": "Gym owner",
     "role": "Sample review",
     "location": "Illustrative portrait",
     "title": "Make the product easier to explain.",
     "quote": "“Our visitors should understand what the software does and know how to book a demo.”",
-    "image": "/assets/refresh/portraits/sample-2.webp"
+    "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=85"
   },
   {
-    "name": "Creative studio",
+    "name": "Boutique founder",
     "role": "Sample review",
     "location": "Illustrative portrait",
     "title": "Let the work do the talking.",
     "quote": "“Give our projects room to shine, with an easy way for the right clients to get in touch.”",
-    "image": "/assets/refresh/portraits/sample-3.webp"
+    "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=85"
   },
   {
     "name": "Travel business",
@@ -40,7 +40,7 @@ const testimonials=[
     "location": "Illustrative portrait",
     "title": "A better start to the journey.",
     "quote": "“We want travellers to explore our trips and send a useful enquiry, even on a phone.”",
-    "image": "/assets/refresh/portraits/sample-4.webp"
+    "image": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=85"
   }
 ];
 
