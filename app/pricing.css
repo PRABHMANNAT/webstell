@@ -1,7 +1,7 @@
 .pricing{background:#fff;color:#151515;overflow:hidden;padding-bottom:120px;scroll-margin-top:90px}
-.pricing-marquee{overflow:hidden;border-block:1px solid #dedede;background:#f4f4f4;padding:18px 0 25px}
+.pricing-marquee{overflow:hidden;border-block:1px solid #000;background:#000;padding:18px 0 25px}
 .pricing-track{display:flex;width:max-content;animation:pricing-scroll 20s linear infinite;will-change:transform}
-.pricing-track span{display:flex;align-items:center;gap:3.5vw;white-space:nowrap;padding-right:3.5vw;font-size:clamp(104px,16vw,250px);line-height:.78;letter-spacing:-.075em;font-weight:500}
+.pricing-track span{display:flex;align-items:center;gap:3.5vw;white-space:nowrap;padding-right:3.5vw;color:#fff;font-size:clamp(104px,16vw,250px);line-height:.78;letter-spacing:-.075em;font-weight:500}
 .pricing-track i{display:inline-grid;place-items:center;color:#d4ff37;font-style:normal;font-size:.62em;letter-spacing:0;animation:pricing-sun 9s linear infinite;text-shadow:0 0 0 #151515}
 @keyframes pricing-scroll{to{transform:translateX(-50%)}}
 @keyframes pricing-sun{to{transform:rotate(360deg)}}
