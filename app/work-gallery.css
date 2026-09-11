@@ -19,3 +19,7 @@
 .work-tile-copy small{font:500 11px/1.2 var(--mono,monospace);text-align:right;color:#ffffffb8}
 .work-tile:hover img,.work-tile:focus-visible img{transform:scale(1.045);filter:saturate(1.12)}
 .work-tile:focus-visible{outline:3px solid #171717;outline-offset:4px}
+@media(max-width:900px){.work-gallery{padding:90px 0}.work-gallery-heading{align-items:start;flex-direction:column;margin-bottom:36px}.work-gallery-heading h2{text-align:left}.work-masonry{columns:2}.work-filters{top:12px}}
+@media(max-width:560px){.work-gallery{padding:72px 0}.work-gallery-heading h2{font-size:46px}.work-masonry{columns:1}.work-tile{border-radius:14px}.work-tile-tall{aspect-ratio:.82}.work-tile-copy{left:18px;right:18px;bottom:17px}.work-tile-copy strong{font-size:22px}.work-filters{justify-content:flex-start;margin-bottom:24px}.work-filters button{padding:10px 15px;font-size:13px}}
+@media(prefers-reduced-motion:no-preference){.work-tile{animation:work-tile-in .55s cubic-bezier(.2,.8,.2,1) both}.work-tile:nth-child(3n+2){animation-delay:.08s}.work-tile:nth-child(3n){animation-delay:.16s}@keyframes work-tile-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}}
+@media(prefers-reduced-motion:reduce){.work-tile img{transition:none}}
