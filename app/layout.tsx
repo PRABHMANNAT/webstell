@@ -11,6 +11,7 @@ import './sections.css';
 import './work-gallery.css';
 import './curved-ticker.css';
 import './testimonials.css';
+import './pricing.css';
 import './contact-section.css';
 import './button-motion.css';
 export const metadata: Metadata = { title:'WEBSTELL | Website Design & Development Agency', description:'Websites that look exceptional and work for you. WEBSTELL creates websites, ecommerce experiences, brand identities and digital products.' };
