@@ -14,6 +14,12 @@ const services = [
  {title:'Web Apps & AI Automation',text:'Websites that do more for your business. Connect your tools, automate everyday tasks and build useful products, from customer portals to AI-powered assistants.',tags:['Dashboards & portals','SaaS / MVPs','AI chatbots','WhatsApp automation','API integration'],color:'#f4e2df'},
  {title:'Growth & Website Care',text:'Keep your website fast, secure and ready for what comes next. We support your launch with search-friendly foundations, clear analytics and ongoing website maintenance.',tags:['Technical SEO','Performance','Analytics & tracking','Maintenance','Content updates'],color:'#e3ebe1'},
 ];
+const offerServices = [
+ {title:'Branding Design',description:'Build a distinctive identity people recognize, trust and remember across every digital touchpoint.',tags:['Brand strategy','Visual identity','Design systems'],images:['/assets/projects/find/cover.jpg','/assets/projects/qvino/cover.jpg','/assets/projects/potion/cover.jpg']},
+ {title:'Website Development',description:'Turn strong ideas into responsive, high-performance websites engineered for clarity, speed and conversion.',tags:['Landing pages','Custom websites','Web platforms'],images:['/assets/projects/puntopago/cover.jpg','/assets/projects/sca/cover.jpg','/assets/projects/zelt/cover.jpg']},
+ {title:'UI/UX Design',description:'Create intuitive product experiences that make complex journeys feel focused, useful and effortless.',tags:['UX strategy','Interface design','Prototyping'],images:['/assets/projects/flipaclip/cover.jpg','/assets/projects/riyadh/cover.jpg','/assets/projects/cisco/cover.jpg']},
+ {title:'Software & AI',description:'Ship connected software, intelligent workflows and practical automation built around the way your business works.',tags:['Web applications','AI automation','API integrations'],images:['/assets/projects/cisco/cover.jpg','/assets/projects/daoway/cover.jpg','/assets/projects/puntopago/cover.jpg']},
+];
 const projects = [
  ['puntopago','Punto Pago','A connected digital experience for everyday payments.'],
  ['sca','SCA','A fresh digital presence for an industry leader.'],
