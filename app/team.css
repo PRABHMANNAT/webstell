@@ -324,6 +324,15 @@
   }
 }
 
+.team-story {
+  background: #fff;
+  color: #111;
+}
+
+.team-story span {
+  color: #fff;
+}
+
 @media (max-width: 520px) {
   .team-grid {
     grid-template-columns: 1fr;
