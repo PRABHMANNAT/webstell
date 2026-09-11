@@ -1,4 +1,5 @@
 'use client';
+import LostRunner from './LostRunner';
 
 export default function LostPage() {
  return <main className="lost-page">
@@ -9,6 +10,7 @@ export default function LostPage() {
    <p>We build websites that take you places. This link took a wrong turn.<br/>Head back to WEBSTELL, or jump a few obstacles while you’re here.</p>
    <div className="lost-links"><a href="/">↗ Back home</a><a href="/#projects">Explore our work →</a></div>
   </section>
+  <LostRunner/>
   <footer className="lost-footer"><span>LOST IN THE INTERNET. FOUND SOMETHING FUN.</span><a href="/">WEBSTELL © {new Date().getFullYear()}</a></footer>
  </main>;
 }
