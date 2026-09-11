@@ -2,22 +2,57 @@
 import { useEffect, useState } from 'react';
 
 const testimonials=[
- {name:'Aanya Rao',role:'Founder',location:'Bengaluru',image:'/assets/team/bhumi-kapoor.png',title:'They made the complicated feel clear.',quote:'WEBSTELL turned a loose idea into a focused product and a website our customers understood immediately.'},
- {name:'Kabir Sethi',role:'Product Director',location:'Singapore',image:'/assets/team/arnav-hooda.png',title:'Fast without ever feeling rushed.',quote:'Every decision had a reason. The team protected the details that mattered and kept the launch moving.'},
- {name:'Meera Shah',role:'Head of Growth',location:'Mumbai',image:'/assets/team/prabhmannat-singh.png',title:'Craft you can feel in the details.',quote:'The experience looks sharp, performs beautifully and finally gives our sales team a story they are proud to share.'},
- {name:'Jonas Müller',role:'Creative Lead',location:'Berlin',image:'/assets/team/adhiraj-dogra.png',title:'A true extension of our team.',quote:'They challenged the brief in all the right places, then shipped a system we can keep growing with.'},
- {name:'Leila Hassan',role:'Operations Lead',location:'Dubai',image:'/assets/team/bhumi-kapoor.png',title:'Built for the real world.',quote:'The final product feels effortless for our customers and refreshingly simple for our team to manage.'},
+  {
+    "name": "Café owner",
+    "role": "Sample review",
+    "location": "Illustrative portrait",
+    "title": "A menu people can actually find.",
+    "quote": "“I want guests to see our menu, find directions and book a table without having to call.”",
+    "image": "/assets/refresh/portraits/sample-0.webp"
+  },
+  {
+    "name": "Independent founder",
+    "role": "Sample review",
+    "location": "Illustrative portrait",
+    "title": "A website that feels like the brand.",
+    "quote": "“I need an online shop that looks like us and makes choosing a product simple.”",
+    "image": "/assets/refresh/portraits/sample-1.webp"
+  },
+  {
+    "name": "Software team",
+    "role": "Sample review",
+    "location": "Illustrative portrait",
+    "title": "Make the product easier to explain.",
+    "quote": "“Our visitors should understand what the software does and know how to book a demo.”",
+    "image": "/assets/refresh/portraits/sample-2.webp"
+  },
+  {
+    "name": "Creative studio",
+    "role": "Sample review",
+    "location": "Illustrative portrait",
+    "title": "Let the work do the talking.",
+    "quote": "“Give our projects room to shine, with an easy way for the right clients to get in touch.”",
+    "image": "/assets/refresh/portraits/sample-3.webp"
+  },
+  {
+    "name": "Travel business",
+    "role": "Sample review",
+    "location": "Illustrative portrait",
+    "title": "A better start to the journey.",
+    "quote": "“We want travellers to explore our trips and send a useful enquiry, even on a phone.”",
+    "image": "/assets/refresh/portraits/sample-4.webp"
+  }
 ];
 
 export default function Testimonials(){
  const [active,setActive]=useState(0);
  const [paused,setPaused]=useState(false);
  const move=(step:number)=>setActive(current=>(current+step+testimonials.length)%testimonials.length);
- useEffect(()=>{if(paused)return;const timer=window.setInterval(()=>move(1),5200);return()=>window.clearInterval(timer)},[paused]);
+ useEffect(()=>{if(paused||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;const timer=window.setInterval(()=>move(1),5200);return()=>window.clearInterval(timer)},[paused]);
  const slot=(index:number)=>{let distance=(index-active+testimonials.length)%testimonials.length;if(distance>2)distance-=testimonials.length;return distance};
  const current=testimonials[active];
  return <section className="testimonials" aria-labelledby="testimonials-title" onPointerEnter={()=>setPaused(true)} onPointerLeave={()=>setPaused(false)} onFocusCapture={()=>setPaused(true)} onBlurCapture={()=>setPaused(false)}>
-  <h2 id="testimonials-title" className="sr-only">What our clients say</h2>
+  <header className="testimonial-heading wrap"><span>CLIENT PERSPECTIVES / PREVIEW</span><h2 id="testimonials-title">Good websites solve real needs.</h2><p>Illustrative client briefs, not published endorsements. Sample copy and stock portraits will be replaced with approved client testimonials.</p></header>
   <div className="testimonial-stage">
    {testimonials.map((item,index)=><button type="button" key={item.name} className={'testimonial-person testimonial-slot-'+slot(index)+(index===active?' is-active':'')} onClick={()=>setActive(index)} aria-label={'Show testimonial from '+item.name} aria-current={index===active?'true':undefined}>
     <img src={item.image} alt="" loading="lazy"/>

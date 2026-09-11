@@ -7,6 +7,7 @@ import CurvedTicker from './CurvedTicker';
 import Testimonials from './Testimonials';
 import PricingSection from './PricingSection';
 import ContactSection from './ContactSection';
+import { industryProjects, recentProjects, type Project } from './portfolio-data';
 
 function SocialIcon({name}:{name:'linkedin'|'instagram'|'github'}) {
  if(name==='instagram') return <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" className="icon-fill"/></svg>;
@@ -22,24 +23,65 @@ const services = [
  {title:'Growth & Website Care',text:'Keep your website fast, secure and ready for what comes next. We support your launch with search-friendly foundations, clear analytics and ongoing website maintenance.',tags:['Technical SEO','Performance','Analytics & tracking','Maintenance','Content updates'],color:'#e3ebe1'},
 ];
 const offerServices = [
- {title:'Branding Design',description:'Build a distinctive identity people recognize, trust and remember across every digital touchpoint.',tags:['Brand strategy','Visual identity','Design systems'],images:['/assets/projects/find/cover.jpg','/assets/projects/qvino/cover.jpg','/assets/projects/potion/cover.jpg']},
- {title:'Website Development',description:'Turn strong ideas into responsive, high-performance websites engineered for clarity, speed and conversion.',tags:['Landing pages','Custom websites','Web platforms'],images:['/assets/projects/puntopago/cover.jpg','/assets/projects/sca/cover.jpg','/assets/projects/zelt/cover.jpg']},
- {title:'UI/UX Design',description:'Create intuitive product experiences that make complex journeys feel focused, useful and effortless.',tags:['UX strategy','Interface design','Prototyping'],images:['/assets/projects/flipaclip/cover.jpg','/assets/projects/riyadh/cover.jpg','/assets/projects/cisco/cover.jpg']},
- {title:'Software & AI',description:'Ship connected software, intelligent workflows and practical automation built around the way your business works.',tags:['Web applications','AI automation','API integrations'],images:['/assets/projects/cisco/cover.jpg','/assets/projects/daoway/cover.jpg','/assets/projects/puntopago/cover.jpg']},
+  {
+    "title": "Website Design & Development",
+    "description": "A website that makes your business easy to understand, easy to find and easy to contact. Built for your customers, in India or anywhere in the world.",
+    "tags": [
+      "Business websites",
+      "Mobile-first design",
+      "Search-ready foundations"
+    ],
+    "images": [
+      "/assets/refresh/local/coffee.webp",
+      "/assets/refresh/local/travel.webp",
+      "/assets/refresh/local/interiors.webp"
+    ]
+  },
+  {
+    "title": "Ecommerce & Online Stores",
+    "description": "Help customers discover your products, choose with confidence and check out smoothly. From independent shops to growing consumer brands.",
+    "tags": [
+      "Online stores",
+      "Payments & shipping",
+      "Product management"
+    ],
+    "images": [
+      "/assets/refresh/local/beauty.webp",
+      "/assets/refresh/local/fashion.webp",
+      "/assets/refresh/local/commerce.webp"
+    ]
+  },
+  {
+    "title": "Brand Identity & UI/UX",
+    "description": "Give your business a recognisable look and your customers a clear path. We connect visual identity with thoughtful, easy-to-use interfaces.",
+    "tags": [
+      "Visual identity",
+      "Website & app design",
+      "Interactive prototypes"
+    ],
+    "images": [
+      "/assets/refresh/local/branding.webp",
+      "/assets/refresh/local/agency.webp",
+      "/assets/refresh/local/portfolio.webp"
+    ]
+  },
+  {
+    "title": "Software & Automation",
+    "description": "Build the tools your business actually needs: customer portals, dashboards, web apps and automations that cut down repetitive work.",
+    "tags": [
+      "Custom software",
+      "AI & workflows",
+      "API integrations"
+    ],
+    "images": [
+      "/assets/refresh/local/software.webp",
+      "/assets/refresh/local/finance.webp",
+      "/assets/refresh/local/logistics.webp"
+    ]
+  }
 ];
-const projects = [
- ['puntopago','Punto Pago','A connected digital experience for everyday payments.'],
- ['sca','SCA','A fresh digital presence for an industry leader.'],
- ['flipaclip','FlipaClip','A playful world built around creativity.'],
- ['zelt','Zelt','People, payroll and technology in one place.'],
- ['cisco','Cisco','A scalable design language for a connected world.'],
- ['find','Find','An elevated real estate brand and digital platform.'],
- ['daoway','DaoWay','A mindful mobile experience, from idea to identity.'],
- ['riyadh','Riyadh','An immersive introduction to a city in motion.'],
- ['qvino','Qvino','Discovering, learning and buying wine, made effortless.'],
- ['potion','Potion','Branding, storytelling and motion for a digital product.'],
-];
-const industries = [['01','FOOD','Cafes · Restaurants · Bakeries'],['02','FASHION','Clothing · Jewellery · Streetwear'],['03','WELLNESS','Gyms · Salons · Spas'],['04','WEDDINGS','Photography · Films · Planners'],['05','PROFESSIONAL','Architects · Consultants · Clinics'],['06','STARTUPS','SaaS · AI · Fintech']];
+const projects = recentProjects;
+const industries = [["01","GET FOUND","Show customers what you do, where you are and why they should choose you."],["02","TAKE ENQUIRIES","Turn interest into a useful conversation with clear contact and booking flows."],["03","SELL ONLINE","Help shoppers browse, pay and order from a phone or a computer."],["04","BUILD TRUST","Present your work, expertise and business story with confidence."],["05","SAVE TIME","Connect forms, tools and routine tasks so your team can focus on customers."],["06","GROW FURTHER","Reach new markets with a digital presence ready for your next stage."]];
 const team = [
  {name:'Bhumi Kapoor',role:'Marketing & Brand Strategy',image:'/assets/team/bhumi-kapoor.png',bio:'Turns products into brands people remember through positioning, content, storytelling, and growth-focused execution.',note:'She combines creative storytelling with brand strategy and market understanding to make ideas clearer, more relevant, and more memorable.',linkedin:'https://www.linkedin.com/in/bhumikapoor/',instagram:'https://www.instagram.com/bhumikapoor16/'},
  {name:'Arnav Hooda',role:'Frontend Engineer',image:'/assets/team/arnav-hooda.png',bio:'Creates responsive, scalable digital experiences with a strong understanding of modern software and AI-driven products.',note:'He brings together frontend development, product thinking, and an understanding of intelligent systems to make complex products feel simple and effortless to use.',linkedin:'https://www.linkedin.com/in/arnav-hooda-87061486/',instagram:'https://www.instagram.com/arnavhooda_7777/'},
@@ -47,13 +89,70 @@ const team = [
  {name:'Adhiraj Dogra',role:'Senior AI/ML Engineer',image:'/assets/team/adhiraj-dogra.png',bio:'Designs intelligent systems spanning GenAI, RAG, multi-agent workflows, machine learning, and production software infrastructure.',note:'He builds AI systems that move beyond prototypes, combining model intelligence with strong software architecture for dependable real-world workflows.',linkedin:'https://www.linkedin.com/in/adhiraj-dogra/',instagram:'https://www.instagram.com/adirajdogra/',github:'https://github.com/AdiBoi007'},
 ];
 const faqs = [
- ['What kind of websites do you create?','We create business websites, portfolios, landing pages, ecommerce stores, booking websites, membership platforms and custom web applications. Every project starts with your audience and the job your website needs to do.'],
- ['What does the process look like?','We begin with your goals, content and audience. Then we plan the pages, design the experience, develop the website and check it across screen sizes before launch. You review the work at each key stage.'],
- ['Do you build with custom code or a website platform?','Both. We can work with React and Next.js, WordPress, Shopify or Webflow. The right approach depends on the features, content management needs and budget of your project.'],
- ['Can you help with branding and content?','Yes. Brand identity, interface design, graphics and content structure can be included alongside your website. We agree on the deliverables before the project starts.'],
- ['Can you add AI or WhatsApp automation?','Yes. We can scope website assistants, lead collection, appointment flows, WhatsApp integrations and connections to your existing business tools.'],
- ['Do you offer SEO and ongoing support?','Technical SEO, speed optimization and analytics can be included with your website. Ongoing care can cover updates, backups, content changes and new features.'],
- ['How much will my website cost?','Pricing depends on the pages, design, functionality and integrations you need. Share your project brief so we can define a clear scope, timeline and estimate.'],
+  [
+    "What can you build for my business?",
+    "We build business websites, online stores, portfolios, booking websites and custom software. Whether you run a café, clinic, creative studio or software company, we start with what your customers need to do."
+  ],
+  [
+    "How much does a website cost?",
+    "Our website packages start at ₹10,000–15,000. More involved projects are shown in the pricing section. We agree on the features, final price and any extra costs before starting. Custom software is quoted separately."
+  ],
+  [
+    "How long will it take?",
+    "A focused starter site usually takes 7–10 working days. Larger websites typically take 2–6 weeks. We confirm a schedule after reviewing your requirements; timely content and feedback help us keep it on track."
+  ],
+  [
+    "What do you need from me to get started?",
+    "Tell us about your business, customers, goals and budget. Share your logo, photos, text and any websites you like. If you do not have these ready, we can discuss help with content and design."
+  ],
+  [
+    "Can you redesign my existing website?",
+    "Yes. We can improve the look, structure, speed or features of your current website. First we check what should stay, what needs changing and how to protect important existing links."
+  ],
+  [
+    "Will it work well on mobile phones?",
+    "Yes. We design for phones, tablets and desktops and test the main journeys at different screen sizes before launch."
+  ],
+  [
+    "Are a domain and hosting included?",
+    "The packages include a standard, non-premium domain for the first year, subject to the extension and availability agreed in your quote. Renewals, hosting and paid services are separate. We explain those costs and help with setup."
+  ],
+  [
+    "Can customers pay or book through my website?",
+    "Yes. We can add booking tools, payment links or an online checkout depending on your package. You will need an approved account with the payment or booking provider. Their transaction fees and subscriptions are separate."
+  ],
+  [
+    "Can I change the text, images or products myself?",
+    "If your scope includes a content management system, yes. We show you how to make everyday updates. For a custom-coded site, we agree on how edits will be handled before development starts."
+  ],
+  [
+    "Will I own the website when it is finished?",
+    "We agree on ownership and handover in the project contract. This normally covers the completed custom work after final payment. Third-party fonts, photos, plugins and software remain subject to their own licences."
+  ],
+  [
+    "Will my website appear on Google?",
+    "We set up search-friendly foundations such as page titles, descriptions and indexable content. Search rankings take time and depend on your content, competition and ongoing work; no specific position is guaranteed."
+  ],
+  [
+    "Do you work with clients outside India?",
+    "Yes. We work remotely with Indian and international clients. We agree on a useful meeting time, clear milestones, currency and payment arrangements before starting."
+  ],
+  [
+    "How do reviews and payments work?",
+    "We split the project into agreed stages so you can review the direction before we move ahead. Your proposal explains the payment schedule, included feedback and how any new requests will be priced."
+  ],
+  [
+    "What happens after launch?",
+    "We hand over the agreed access and explain how to use your website. Launch fixes and ongoing support are defined in your quote. Maintenance, new features and regular content changes can be arranged separately."
+  ],
+  [
+    "Can you build software or connect AI tools?",
+    "Yes. We can scope dashboards, customer portals, internal tools, useful AI assistants and integrations. We first check your workflow, data needs and ongoing service costs."
+  ],
+  [
+    "How do I share my project idea?",
+    "Use “Get your Website Now” or the contact form to prepare your project brief. The current form downloads a copy for you to share; it does not send a message automatically."
+  ]
 ];
 const insights = [
  {eyebrow:'TRANSFORMATION',title:'Why a distinctive website is still your strongest digital advantage',text:'How focused design, clear positioning and thoughtful development turn a website into a dependable engine for growth.',author:'WEBSTELL Studio'},
@@ -61,14 +160,56 @@ const insights = [
  {eyebrow:'INTELLIGENCE',title:'Designing AI experiences that feel useful, clear and human',text:'Where assistants and smart workflows genuinely improve the customer journey—and where simpler interactions work better.',author:'WEBSTELL Labs'},
 ];
 const editorialCapabilities = [
- {title:'Websites & Digital Platforms',items:['Business websites','Ecommerce experiences','Landing pages','Portals & web apps','Performance & SEO'],images:['/assets/projects/puntopago/cover.jpg','/assets/projects/sca/cover.jpg','/assets/projects/zelt/cover.jpg']},
- {title:'Brand & Product Experiences',items:['Brand identity systems','UI/UX design','Interactive prototypes','Launch campaigns','Content direction'],images:['/assets/projects/find/cover.jpg','/assets/projects/qvino/cover.jpg','/assets/projects/potion/cover.jpg']},
- {title:'Software & AI Systems',items:['Custom applications','AI assistants','Workflow automation','API integrations','Ongoing support'],images:['/assets/projects/cisco/cover.jpg','/assets/projects/daoway/cover.jpg','/assets/projects/riyadh/cover.jpg']},
+  {
+    "title": "Your business, understood.",
+    "items": [
+      "We listen before we design",
+      "Clear scope and practical advice",
+      "A style that fits your audience",
+      "Content people can understand",
+      "A clear next step for visitors"
+    ],
+    "images": [
+      "/assets/refresh/local/coffee.webp",
+      "/assets/refresh/local/beauty.webp",
+      "/assets/refresh/local/travel.webp"
+    ]
+  },
+  {
+    "title": "Design and development, together.",
+    "items": [
+      "One team from first sketch to launch",
+      "Thoughtful desktop and mobile layouts",
+      "Useful features, not unnecessary extras",
+      "Regular previews and shared feedback",
+      "Careful checks before going live"
+    ],
+    "images": [
+      "/assets/refresh/local/portfolio.webp",
+      "/assets/refresh/local/interiors.webp",
+      "/assets/refresh/local/software.webp"
+    ]
+  },
+  {
+    "title": "Yours to own. Ready to grow.",
+    "items": [
+      "A straightforward handover",
+      "Tools your team can work with",
+      "Connections to your existing systems",
+      "Support options explained upfront",
+      "Built for local and global customers"
+    ],
+    "images": [
+      "/assets/refresh/local/commerce.webp",
+      "/assets/refresh/local/finance.webp",
+      "/assets/refresh/local/agency.webp"
+    ]
+  }
 ];
 export default function Home() {
  const [menu,setMenu]=useState(false);
  const [more,setMore]=useState(false);
- const [selected,setSelected]=useState<number|null>(null);
+ const [selected,setSelected]=useState<Project|null>(null);
  const [contact,setContact]=useState(false);
  const [saved,setSaved]=useState(false);
  const [subscribed,setSubscribed]=useState(false);
@@ -103,27 +244,27 @@ export default function Home() {
  <main>
 <section className="launch-hero" aria-labelledby="launch-title"><img className="launch-landscape" src="/assets/hero/webstell-landscape.avif" alt="Surreal digital landscape representing ideas coming to life"/><div className="launch-wash" aria-hidden="true"></div><div className="launch-copy"><span className="launch-kicker">WEBSTELL · WEBSITE & SOFTWARE STUDIO</span><h1 id="launch-title"><span>Build attention.</span><strong>Ship what matters.</strong></h1><p>WEBSTELL is a website and software development agency turning ambitious ideas into fast, memorable digital products built to win customers.</p><button ref={heroCta} onClick={()=>setContact(true)}><span className="cta-eyes" aria-hidden="true"><i><b></b></i><i><b></b></i></span> Get your website today</button></div><article className="launch-console" aria-label="WEBSTELL launch console preview"><div className="console-screen"><div className="console-top"><i></i><i></i><i></i><span>WEBSTELL / LIVE</span></div><div className="console-stage"><div className="console-orbit" aria-hidden="true"><span></span><span></span><span></span></div><small>LAUNCH CONSOLE</small><strong>Built to perform.</strong><div className="console-status"><span><i></i> Experience online</span><b>99.9%</b></div></div></div><footer><div><strong>Digital Launchpad</strong><span>// Websites · Software · AI</span></div><span aria-hidden="true">↗</span></footer></article><div className="launch-capabilities"><p>One focused team, from first sketch to every release after.</p><div><span>Websites</span><span>Software</span><span>AI Automations</span><span>Brand Systems</span><span>Digital Products</span></div></div></section>
  <section className="hero"><h1>Digital design &<br/>development agency</h1><p>We design and build websites, brands and digital experiences for businesses<br className="desktop-break"/> ready to move beyond the ordinary.</p></section>
- <section className="offer-showcase" id="services" aria-labelledby="offer-title"><div className="offer-heading wrap"><span className="offer-badge"><span aria-hidden="true">◫</span> Services</span><h2 id="offer-title">What We Offer</h2><p>Designing bold, functional solutions that turn your ideas into digital experiences built to perform.</p></div><div className="offer-panel wrap"><div className="offer-list" role="tablist" aria-label="WEBSTELL services">{offerServices.map((service,index)=><button key={service.title} className={activeOffer===index?'is-active':''} onClick={()=>setActiveOffer(index)} onPointerEnter={()=>setActiveOffer(index)} role="tab" aria-selected={activeOffer===index} aria-controls="offer-detail"><span>0{index+1}</span>{service.title}<i aria-hidden="true">↗</i></button>)}</div><article className="offer-detail" id="offer-detail" role="tabpanel" aria-live="polite" key={activeOffer}><div className="offer-detail-top"><span>WEBSTELL / 0{activeOffer+1}</span><button onClick={()=>setContact(true)}>Start a project <i aria-hidden="true">↗</i></button></div><h3>{offerServices[activeOffer].title}</h3><p>{offerServices[activeOffer].description}</p><div className="offer-gallery">{offerServices[activeOffer].images.map((image,index)=><div key={image}><img src={image} alt="" loading="lazy"/><span>0{index+1}</span></div>)}</div><div className="offer-tags">{offerServices[activeOffer].tags.map(tag=><span key={tag}>{tag}</span>)}</div></article></div></section>
+ <section className="offer-showcase" id="services" aria-labelledby="offer-title"><div className="offer-heading wrap"><span className="offer-badge"><span aria-hidden="true">◫</span> Services</span><h2 id="offer-title">What can we build for you?</h2><p>Websites, online stores and software for businesses across India and around the world. One team to connect the design, the technology and your goals.</p></div><div className="offer-panel wrap"><div className="offer-list" role="tablist" aria-label="WEBSTELL services">{offerServices.map((service,index)=><button key={service.title} className={activeOffer===index?'is-active':''} onClick={()=>setActiveOffer(index)} onPointerEnter={()=>setActiveOffer(index)} role="tab" aria-selected={activeOffer===index} aria-controls="offer-detail"><span>0{index+1}</span>{service.title}<i aria-hidden="true">↗</i></button>)}</div><article className="offer-detail" id="offer-detail" role="tabpanel" aria-live="polite" key={activeOffer}><div className="offer-detail-top"><span>WEBSTELL / 0{activeOffer+1}</span><button onClick={()=>setContact(true)}>Start a project <i aria-hidden="true">↗</i></button></div><h3>{offerServices[activeOffer].title}</h3><p>{offerServices[activeOffer].description}</p><div className="offer-gallery">{offerServices[activeOffer].images.map((image,index)=><div key={image}><img src={image} alt="" loading="lazy"/><span>0{index+1}</span></div>)}</div><div className="offer-tags">{offerServices[activeOffer].tags.map(tag=><span key={tag}>{tag}</span>)}</div></article></div></section>
  <WorksMarquee/>
- <SocialWorkGallery onOpen={setSelected}/>
  <WorkGallery onOpen={setSelected}/>
+ <section className="work wrap" id="projects"><div className="section-heading"><div><span className="refresh-eyebrow">WEBSTELL / RECENT WORK</span><h2>Local roots.<br/>Global reach.</h2></div><p className="recent-intro">Coffee shops, consumer brands and software teams. Explore recent website work for businesses with their own point of view.</p></div><div className="project-grid">{projects.slice(0,more?projects.length:6).map(project=><article className="project" key={project.id}><button className="project-preview" onClick={()=>setSelected(project)} aria-label={'Preview '+project.title}><div className="project-image"><img src={project.image} alt={project.title+' live website screenshot'} loading="lazy"/><span className="project-arrow">↗</span></div></button><div className="project-title-row"><h3>{project.title}</h3><a href={project.url} target="_blank" rel="noreferrer" aria-label={'Visit '+project.title+' website (opens in a new tab)'}>Visit website ↗</a></div><p className="project-category">{project.category}</p><p className="project-description">{project.description}</p></article>)}</div><div className="center"><button className="outline-pill" onClick={()=>setMore(!more)} aria-expanded={more}>{more?'Show fewer websites':'Explore all 18 websites'} <span>{more?'−':'↗'}</span></button></div></section>
+ <SocialWorkGallery onOpen={setSelected}/>
+ <CurvedTicker/>
+ <section className="case-studies" aria-labelledby="case-studies-title"><div className="case-studies-heading wrap"><span className="case-badge"><span aria-hidden="true">▦</span> Projects</span><h2 id="case-studies-title">Project spotlights</h2><p>A closer look at digital experiences for coffee, beauty and growing businesses. Explore the design, then visit the live website.</p></div><div className="case-grid wrap">{projects.slice(0,3).map((project,i)=><button className={'case-card case-card-'+(i+1)} key={project.id} onClick={()=>setSelected(project)} aria-label={'View '+project.title+' project'}><div className="case-copy"><span className="case-index">0{i+1}</span><h3>{project.title}</h3><p>{project.description}</p><ul>{(i===0?['Specialty coffee','Online store','India']:i===1?['Beauty & grooming','Product storytelling','Online store']:['Specialty coffee','Product discovery','India']).map(item=><li key={item}>{item}</li>)}</ul></div><div className="case-visual"><img src={project.image} alt={project.title+' website preview'} loading="lazy"/><span aria-hidden="true">↗</span></div></button>)}</div><div className="case-action"><a href="#projects">Explore all projects <span aria-hidden="true">↗</span></a></div></section>
+ <section className="intro wrap" id="about"><h2>Based in India.<br/>Built for everywhere.</h2><p>We are WEBSTELL, a website and software agency working with local businesses and international teams. From your first online presence to a custom platform, we build around the people who use it.</p></section>
+ <section className="editorial-showcase" aria-labelledby="editorial-title"><div className="editorial-intro wrap"><div><span className="editorial-kicker">WHY CHOOSE WEBSTELL</span><h2 id="editorial-title">Good people.<br/>Better websites.</h2></div><div className="editorial-statement"><p>You know your business. We bring the design and development expertise to turn it into a clear, useful digital experience—with straightforward communication along the way.</p><div><span>INDIA · WORKING WORLDWIDE</span><button onClick={()=>setContact(true)}>Get your Website Now</button></div></div></div><div className="editorial-filmstrip wrap" aria-label="Design directions for different businesses">{[industryProjects[0],industryProjects[3],industryProjects[9],industryProjects[7]].map((project,index)=><button key={project.id} onClick={()=>setSelected(project)} aria-label={'View '+project.title}><img src={project.image} alt="" loading="lazy"/><span>0{index+1} / {project.category}</span></button>)}</div><div className="editorial-services wrap">{editorialCapabilities.map((capability,index)=><article className="editorial-row" key={capability.title}><div className="editorial-row-copy"><span>0{index+1}</span><h3>{capability.title}</h3><ol>{capability.items.map((item,itemIndex)=><li key={item}><span>0{itemIndex+1}.</span>{item}</li>)}</ol></div><div className="editorial-stack">{capability.images.map((image,imageIndex)=><img key={image} src={image} alt={imageIndex===capability.images.length-1?capability.title+' project work':''} loading="lazy"/>)}</div></article>)}</div></section>
+ <section className="industries wrap"><h2>What should your website do for you?</h2><div className="industry-grid">{industries.map(([n,title,desc])=><div key={n}><span>{n}</span><h3>{title}</h3><p>{desc}</p></div>)}</div></section>
+ <section className="studio-systems wrap" aria-labelledby="systems-title"><div className="systems-card systems-tools"><span className="systems-label">TOOLS & PROCESS</span><h2 id="systems-title">A modern stack for ambitious builds.</h2><div className="systems-logos" aria-label="Tools we work with"><span>Figma</span><span>Next.js</span><span>React</span><span>Shopify</span><span>WordPress</span><span>Cloudflare</span></div></div><article className="systems-card systems-dark"><strong>01</strong><h3>One connected team</h3><p>Design, development and practical advice in the same conversation, from your first brief to launch.</p></article><article className="systems-card systems-signal"><span className="systems-label">Built to scale</span><div className="signal-field" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><h3>Connected everywhere</h3><p>Responsive experiences made for customers across devices, locations and platforms.</p></article><article className="systems-card systems-dark"><strong>QA</strong><h3>Checked before launch</h3><p>Every interface is reviewed across real breakpoints before it reaches your customers.</p></article><article className="systems-card systems-process"><span className="systems-label">Our process</span><ol><li><span>01</span>Discovery & strategy</li><li><span>02</span>Research & structure</li><li><span>03</span>Design & development</li><li><span>04</span>Quality assurance</li><li><span>05</span>Launch & support</li></ol></article><article className="systems-card systems-dark"><strong>24/7</strong><h3>Digital presence</h3><p>Fast, clear and always ready to turn the next visitor into a real opportunity.</p></article></section>
+ <section className="showreel wrap"><video src="/assets/short.mp4" autoPlay muted playsInline loop controls aria-label="WEBSTELL opening showreel"/></section>
+ <section className="team" id="team"><div className="team-inner"><div className="team-heading"><div><span className="team-kicker">The people behind the work</span><h2>Meet our team</h2></div><button className="team-story" onClick={()=>setContact(true)}><span aria-hidden="true">↗</span> Work with us</button></div><div className="team-grid">{team.map((member,index)=><article className={'team-card '+(flippedTeam===index?'is-flipped':'')} key={member.name}><div className="team-card-inner"><div className="team-face team-front"><button className="team-front-button" onClick={()=>setFlippedTeam(index)} aria-label={'Read more about '+member.name}><div className="team-photo"><img src={member.image} alt={member.name} loading="lazy"/></div><div className="team-meta"><span>{member.name}</span><p>{member.role}</p><span className="team-toggle" aria-hidden="true">+</span></div></button></div><div className="team-face team-back"><div className="team-socials" aria-label={'Social profiles for '+member.name}><a href={member.linkedin} target="_blank" rel="noreferrer" aria-label={member.name+' on LinkedIn'}><SocialIcon name="linkedin"/></a><a href={member.instagram} target="_blank" rel="noreferrer" aria-label={member.name+' on Instagram'}><SocialIcon name="instagram"/></a>{member.github&&<a href={member.github} target="_blank" rel="noreferrer" aria-label={member.name+' on GitHub'}><SocialIcon name="github"/></a>}</div><button className="team-close" onClick={()=>setFlippedTeam(null)} aria-label={'Close '+member.name+' profile'}><span aria-hidden="true"></span></button><div className="team-bio"><p>{member.bio}</p><p>{member.note}</p></div><div className="team-meta"><span>{member.name}</span><p>{member.role}</p></div></div></div></article>)}</div></div></section>
  <Testimonials/>
  <PricingSection onContact={()=>setContact(true)}/>
- <CurvedTicker/>
- <section className="case-studies" aria-labelledby="case-studies-title"><div className="case-studies-heading wrap"><span className="case-badge"><span aria-hidden="true">▦</span> Projects</span><h2 id="case-studies-title">Case Studies</h2><p>Bold, purposeful digital work—shaped to turn ambitious ideas into experiences people remember.</p></div><div className="case-grid wrap">{projects.slice(0,3).map(([id,name,description],i)=><button className={'case-card case-card-'+(i+1)} key={id} onClick={()=>setSelected(i)} aria-label={'View '+name+' case study'}><div className="case-copy"><span className="case-index">0{i+1}</span><h3>{name}</h3><p>{description}</p><ul>{(i===0?['Product strategy','UX & interface','Web development']:i===1?['Brand system','Digital experience','Motion design']:['Creative direction','Launch platform','Interactive design']).map(item=><li key={item}>{item}</li>)}</ul></div><div className="case-visual"><img src={'/assets/projects/'+id+'/cover.jpg'} alt={name+' project preview'} loading="lazy"/><span aria-hidden="true">↗</span></div></button>)}</div><div className="case-action"><a href="#projects">Explore all projects <span aria-hidden="true">↗</span></a></div></section>
- <section className="editorial-showcase" aria-labelledby="editorial-title"><div className="editorial-intro wrap"><div><span className="editorial-kicker">WEBSTELL / INDEPENDENT DIGITAL STUDIO</span><h2 id="editorial-title">Ideas, engineered<br/>into impact.</h2></div><div className="editorial-statement"><p>We pair sharp creative thinking with dependable engineering to build brands, websites and software that earn attention—and keep it.</p><div><span>INDIA · WORKING WORLDWIDE</span><button onClick={()=>setContact(true)}>Start a project</button></div></div></div><div className="editorial-filmstrip wrap" aria-label="Selected WEBSTELL project imagery">{['flipaclip','cisco','riyadh','find'].map((id,index)=><button key={id} onClick={()=>setSelected([2,4,7,5][index])} aria-label={'View '+projects[[2,4,7,5][index]][1]}><img src={'/assets/projects/'+id+'/cover.jpg'} alt="" loading="lazy"/><span>0{index+1}</span></button>)}</div><div className="editorial-services wrap">{editorialCapabilities.map((capability,index)=><article className="editorial-row" key={capability.title}><div className="editorial-row-copy"><span>0{index+1}</span><h3>{capability.title}</h3><ol>{capability.items.map((item,itemIndex)=><li key={item}><span>0{itemIndex+1}.</span>{item}</li>)}</ol></div><div className="editorial-stack">{capability.images.map((image,imageIndex)=><img key={image} src={image} alt={imageIndex===capability.images.length-1?capability.title+' project work':''} loading="lazy"/>)}</div></article>)}</div></section>
- <section className="studio-systems wrap" aria-labelledby="systems-title"><div className="systems-card systems-tools"><span className="systems-label">Our software</span><h2 id="systems-title">A modern stack for ambitious builds.</h2><div className="systems-logos" aria-label="Tools we work with"><span>Figma</span><span>Next.js</span><span>React</span><span>Shopify</span><span>WordPress</span><span>Cloudflare</span></div></div><article className="systems-card systems-dark"><strong>55+</strong><h3>Project launches</h3><p>Digital experiences delivered with focus, craft and a dependable technical foundation.</p></article><article className="systems-card systems-signal"><span className="systems-label">Built to scale</span><div className="signal-field" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><h3>Connected everywhere</h3><p>Responsive experiences made for customers across devices, locations and platforms.</p></article><article className="systems-card systems-dark"><strong>99%</strong><h3>Detail obsessed</h3><p>Every interface is reviewed across real breakpoints before it reaches your customers.</p></article><article className="systems-card systems-process"><span className="systems-label">Our process</span><ol><li><span>01</span>Discovery & strategy</li><li><span>02</span>Research & structure</li><li><span>03</span>Design & development</li><li><span>04</span>Quality assurance</li><li><span>05</span>Launch & support</li></ol></article><article className="systems-card systems-dark"><strong>24/7</strong><h3>Digital presence</h3><p>Fast, clear and always ready to turn the next visitor into a real opportunity.</p></article></section>
- <section className="showreel wrap"><video src="/assets/short.mp4" autoPlay muted playsInline loop controls aria-label="WEBSTELL opening showreel"/></section>
- <section className="intro wrap" id="about"><h2>What we do</h2><p>Websites first. From an ambitious first idea to a business ready to grow, we create distinctive websites that look exceptional and work for you.</p></section>
- <section className="industries wrap"><h2>Built for your kind of business</h2><div className="industry-grid">{industries.map(([n,title,desc])=><div key={n}><span>{n}</span><h3>{title}</h3><p>{desc}</p></div>)}</div></section>
- <section className="work wrap" id="projects"><div className="section-heading"><h2>Selected work</h2><span className="muted">Visual reference gallery · Cuberto</span></div><div className="project-grid">{projects.slice(0,more?10:6).map(([id,name,description],i)=><button className="project" key={id} onClick={()=>setSelected(i)} aria-label={'View '+name+' reference'}><div className="project-image"><img src={'/assets/projects/'+id+'/cover.jpg'} alt={name+' website design'} loading="lazy"/><span className="project-arrow">↗</span></div><h3>{description}</h3><p>{name} <span>Design & development reference</span></p></button>)}</div><div className="center"><button className="outline-pill" onClick={()=>setMore(!more)}>{more?'Show fewer projects':'View all projects'} <span>{more?'−':'↗'}</span></button></div></section>
- <section className="team" id="team"><div className="team-inner"><div className="team-heading"><div><span className="team-kicker">The people behind the work</span><h2>Meet our team</h2></div><button className="team-story" onClick={()=>setContact(true)}><span aria-hidden="true">↗</span> Work with us</button></div><div className="team-grid">{team.map((member,index)=><article className={'team-card '+(flippedTeam===index?'is-flipped':'')} key={member.name}><div className="team-card-inner"><div className="team-face team-front"><button className="team-front-button" onClick={()=>setFlippedTeam(index)} aria-label={'Read more about '+member.name}><div className="team-photo"><img src={member.image} alt={member.name} loading="lazy"/></div><div className="team-meta"><span>{member.name}</span><p>{member.role}</p><span className="team-toggle" aria-hidden="true">+</span></div></button></div><div className="team-face team-back"><div className="team-socials" aria-label={'Social profiles for '+member.name}><a href={member.linkedin} target="_blank" rel="noreferrer" aria-label={member.name+' on LinkedIn'}><SocialIcon name="linkedin"/></a><a href={member.instagram} target="_blank" rel="noreferrer" aria-label={member.name+' on Instagram'}><SocialIcon name="instagram"/></a>{member.github&&<a href={member.github} target="_blank" rel="noreferrer" aria-label={member.name+' on GitHub'}><SocialIcon name="github"/></a>}</div><button className="team-close" onClick={()=>setFlippedTeam(null)} aria-label={'Close '+member.name+' profile'}><span aria-hidden="true"></span></button><div className="team-bio"><p>{member.bio}</p><p>{member.note}</p></div><div className="team-meta"><span>{member.name}</span><p>{member.role}</p></div></div></div></article>)}</div></div></section>
- <section className="queries wrap" id="faq"><div className="section-rule"><span className="section-mark" aria-hidden="true"></span><span className="rule-line"></span><span>COMMON QUERIES</span></div><div className="queries-intro"><p>Clear answers about scope, timelines, technology and working together.</p><h2>Everything you need to know about WEBSTELL.</h2><button className="support-pill" onClick={()=>setContact(true)}><span aria-hidden="true">↗</span> Contact Support</button></div><div className="query-list">{faqs.map(([q,a])=><details key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></section>
- <section className="insights" id="insights"><div className="insights-marquee" aria-label="Insights"><div className="insights-track"><span>Insights <i aria-hidden="true">✳</i> Insights <i aria-hidden="true">✳</i></span><span aria-hidden="true">Insights <i>✳</i> Insights <i>✳</i></span></div></div><div className="insights-inner wrap"><div className="insights-lead"><p>A curated collection of practical ideas on websites, brand systems and intelligent digital products for teams building what comes next.</p><a className="all-articles" href="#insight-grid"><span aria-hidden="true">↗</span> All articles</a></div><div className="insight-grid" id="insight-grid"><div className="insight-image insight-image-red"><img src="https://framerusercontent.com/images/kTrlBtbYEhj5t3kiNx7FPJ2asdI.png?height=1200&width=1600" alt="Abstract red and black digital form" loading="lazy"/></div><article className="insight-card featured"><span>{insights[1].eyebrow}</span><h3>{insights[1].title}</h3><p>{insights[1].text}</p><footer><small>Written by<br/><b>{insights[1].author}</b></small><button onClick={()=>setContact(true)} aria-label="Discuss this insight">↗</button></footer></article><article className="insight-card"><span>{insights[0].eyebrow}</span><h3>{insights[0].title}</h3><p>{insights[0].text}</p><footer><small>Written by<br/><b>{insights[0].author}</b></small><button onClick={()=>setContact(true)} aria-label="Discuss this insight">↗</button></footer></article><div className="insight-image insight-image-blue"><img src="https://framerusercontent.com/images/a8YZ5Hb58fP2ODvU1kud7JYuD4s.png?height=1200&width=1600" alt="Abstract blue spiral form" loading="lazy"/></div><article className="insight-card wide"><span>{insights[2].eyebrow}</span><h3>{insights[2].title}</h3><p>{insights[2].text}</p><footer><small>Written by<br/><b>{insights[2].author}</b></small><button onClick={()=>setContact(true)} aria-label="Discuss this insight">↗</button></footer></article></div></div></section>
+ <section className="queries wrap" id="faq"><div className="section-rule"><span className="section-mark" aria-hidden="true"></span><span className="rule-line"></span><span>YOUR QUESTIONS, ANSWERED</span></div><div className="queries-intro"><p>Starting a website project should feel simple. Here are the things clients usually ask us first.</p><h2>A few things you might be wondering.</h2><button className="support-pill" onClick={()=>setContact(true)}><span aria-hidden="true">↗</span> Ask us about your project</button></div><div className="query-list">{faqs.map(([q,a])=><details key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></section>
+ <section className="insights" id="insights"><div className="insights-marquee" aria-label="Insights"><div className="insights-track"><span>Insights <i aria-hidden="true">✳</i> Insights <i aria-hidden="true">✳</i></span><span aria-hidden="true">Insights <i>✳</i> Insights <i>✳</i></span></div></div><div className="insights-inner wrap"><div className="insights-lead"><p>A curated collection of practical ideas on websites, brand systems and intelligent digital products for teams building what comes next.</p><a className="all-articles" href="#insight-grid"><span aria-hidden="true">↗</span> All articles</a></div><div className="insight-grid" id="insight-grid"><div className="insight-image insight-image-red"><img src="/assets/refresh/local/branding.webp" alt="Brand strategy website design" loading="lazy"/></div><article className="insight-card featured"><span>{insights[1].eyebrow}</span><h3>{insights[1].title}</h3><p>{insights[1].text}</p><footer><small>Written by<br/><b>{insights[1].author}</b></small><button onClick={()=>setContact(true)} aria-label="Discuss this insight">↗</button></footer></article><article className="insight-card"><span>{insights[0].eyebrow}</span><h3>{insights[0].title}</h3><p>{insights[0].text}</p><footer><small>Written by<br/><b>{insights[0].author}</b></small><button onClick={()=>setContact(true)} aria-label="Discuss this insight">↗</button></footer></article><div className="insight-image insight-image-blue"><img src="/assets/refresh/local/software.webp" alt="Software product website design" loading="lazy"/></div><article className="insight-card wide"><span>{insights[2].eyebrow}</span><h3>{insights[2].title}</h3><p>{insights[2].text}</p><footer><small>Written by<br/><b>{insights[2].author}</b></small><button onClick={()=>setContact(true)} aria-label="Discuss this insight">↗</button></footer></article></div></div></section>
  <ContactSection onSubmit={saveBrief} saved={saved}/>
  </main>
  <footer className="site-footer"><img className="site-footer-bg" src="/assets/footer/webstell-footer.avif" alt="Luminous cube in a landscaped garden" loading="lazy"/><div className="site-footer-shade" aria-hidden="true"></div><div className="footer-panel wrap"><div className="footer-brand"><a className="footer-logo" href="#">WEBSTELL</a><p>We create distinctive websites, brands and digital products for ambitious businesses.</p><form className="subscribe-form" onSubmit={e=>{e.preventDefault();setSubscribed(true)}}><label className="sr-only" htmlFor="footer-email">Email address</label><input id="footer-email" type="email" required placeholder="you@company.com" aria-describedby="subscribe-status"/><button type="submit"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4 18-7Z"/></svg></span>{subscribed?'Subscribed':'Subscribe'}</button></form><p className="subscribe-status" id="subscribe-status" aria-live="polite">{subscribed?'Thanks — you’re on the WEBSTELL list.':'Fresh thinking on design, digital products and growth—sent occasionally.'}</p><span className="footer-social-label">FOLLOW THE TEAM:</span><div className="footer-socials"><a href="https://www.linkedin.com/in/prabhmannat/" target="_blank" rel="noreferrer" aria-label="WEBSTELL team on LinkedIn"><SocialIcon name="linkedin"/></a><a href="https://www.instagram.com/young.elonmusk/" target="_blank" rel="noreferrer" aria-label="WEBSTELL team on Instagram"><SocialIcon name="instagram"/></a><a href="https://github.com/PRABHMANNAT/webstell" target="_blank" rel="noreferrer" aria-label="WEBSTELL on GitHub"><SocialIcon name="github"/></a></div></div><nav className="footer-links" aria-label="Footer navigation"><div><a href="#">Home</a><a href="#services">Services</a><a href="#projects">Works</a><a href="#insights">Insights</a></div><div><a href="#about">About us</a><a href="#team">Meet the team</a><button onClick={()=>setContact(true)}>Start a project</button><a href="#faq">FAQs</a></div><div className="footer-policies"><strong>Explore</strong><a href="#" onClick={e=>{e.preventDefault();setContact(true)}}>Contact</a><a href="#services">Our services</a><a href="#projects">Selected work</a><a href="#team">Our team</a><a href="#insights">Latest insights</a><a href="#faq">Common questions</a><a href="#" onClick={e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})}}>Back to top</a></div></nav></div><div className="footer-wordmark" aria-hidden="true">WEBSTELL</div></footer>
  <dialog ref={dialog} onCancel={()=>setContact(false)} onClick={e=>{if(e.target===e.currentTarget)setContact(false)}}><button className="close" onClick={()=>setContact(false)} aria-label="Close contact form">×</button><h2>Let’s make<br/>something great.</h2><p className="dialog-description">Start with a few details. Save your brief, ready to share with WEBSTELL.</p><form onSubmit={saveBrief}><div className="form-row"><label>Your name<input name="name" required autoComplete="name" placeholder="Alex Smith"/></label><label>Your email<input name="email" required type="email" autoComplete="email" placeholder="alex@company.com"/></label></div><label>What do you need?<select name="service">{services.map(s=><option key={s.title}>{s.title}</option>)}</select></label><label>Tell us about your project<textarea name="details" required rows={4} placeholder="Your business, goals, timeline and anything else we should know…"/></label><button className="pill" type="submit">Save project brief ↗</button>{saved&&<p className="success" role="status">Your brief has been downloaded. No message has been sent.</p>}</form></dialog>
- <dialog ref={projectDialog} className="project-dialog" onCancel={()=>setSelected(null)} onClick={e=>{if(e.target===e.currentTarget)setSelected(null)}}><button className="close" onClick={()=>setSelected(null)} aria-label="Close project">×</button>{selected!==null&&<><img src={'/assets/projects/'+projects[selected][0]+'/cover.jpg'} alt={projects[selected][1]+' reference'}/><h2>{projects[selected][1]}</h2><p>{projects[selected][2]}</p><p className="muted">Original work by Cuberto. Included as a visual reference for this WEBSTELL website.</p><a className="text-link" href={'https://cuberto.com/projects/'+projects[selected][0]+'/'} target="_blank" rel="noreferrer">View original project ↗</a></>}</dialog>
+ <dialog ref={projectDialog} className="project-dialog" onCancel={()=>setSelected(null)} onClick={e=>{if(e.target===e.currentTarget)setSelected(null)}} aria-labelledby="project-preview-title"><button className="close" onClick={()=>setSelected(null)} aria-label="Close project">×</button>{selected!==null&&<><img src={selected.image} alt={selected.title+' preview'}/><span className="refresh-eyebrow">{selected.kind} / {selected.category}</span><h2 id="project-preview-title">{selected.title}</h2><p>{selected.description}</p>{selected.url?<a className="text-link" href={selected.url} target="_blank" rel="noreferrer">Visit {selected.kind==='Featured design'?'image source':'live website'} ↗</a>:<p className="muted">A design direction from our visual collection. Let’s adapt the right ideas to your business, content and goals.</p>}</>}</dialog>
  </>;
 }

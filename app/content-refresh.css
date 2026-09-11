@@ -1,0 +1,64 @@
+/* Content-led refinements; original component structures and motion remain intact. */
+.refresh-eyebrow{display:block;font:500 11px/1.5 monospace;letter-spacing:.13em;color:#626a74;margin-bottom:20px;text-transform:uppercase}
+.animated-heading span{display:block}
+.gallery-intro{max-width:760px;margin:0 auto 32px;text-align:center;color:#626b78;font-size:18px;line-height:1.55;text-wrap:balance}
+.work-filters{position:relative;top:auto;flex-wrap:wrap;justify-content:center;width:1100px;max-width:calc(100% - 40px);border-radius:24px;padding:10px;gap:4px;margin-bottom:36px}
+.work-filters button{font-size:12px;padding:12px 15px;line-height:1.2;min-height:40px}
+.work-tile img{object-position:top;object-fit:cover}
+.work-masonry{padding:0;list-style:none}.work-masonry>li{break-inside:avoid}
+.work-tile-copy{flex-direction:column;align-items:flex-start;gap:8px}
+.work-tile-copy strong{max-width:100%;font-size:24px;line-height:1.1}
+.work-tile-copy small{text-align:left}
+.work-tile:after{inset:50% 0 0}
+.work{padding-top:110px}
+.recent-intro{max-width:400px;font-size:19px;line-height:1.5;color:#5d6570}
+.project-preview{display:block;width:100%;border:0;padding:0;background:transparent;color:inherit;cursor:pointer;text-align:left;border-radius:20px}
+.project-image{aspect-ratio:1.44}
+.project-image>img{object-position:top}
+.project-title-row{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-top:22px}
+.project-title-row h3{margin:0;font-size:28px}
+.project-title-row a{flex-shrink:0;font-size:12px;border-bottom:1px solid #aaa;padding-bottom:5px}
+.project .project-category{font:500 11px/1.4 monospace;text-transform:uppercase;letter-spacing:.08em;color:#646b73;margin:14px 0 8px}
+.project .project-description{font-size:17px;line-height:1.5;color:#515963;max-width:500px}
+.featured-design-heading{text-align:center;padding:42px 0 54px;max-width:900px}
+.featured-design-heading>span,.testimonial-heading>span{font:500 11px/1.4 monospace;letter-spacing:.16em;text-transform:uppercase;color:#b4bbc6}
+.featured-design-heading h2{font-size:clamp(48px,6.5vw,94px);font-weight:500;letter-spacing:-.065em;line-height:1.1;margin:18px 0}
+.featured-design-heading p{max-width:520px;margin:0 auto;color:#b4bbc6;line-height:1.55;font-size:16px}
+.featured-design-heading button{margin-top:24px;border:1px solid #454c55;border-radius:99px;color:#eee;background:transparent;padding:10px 20px;font-size:12px;cursor:pointer}
+.social-post>header button{min-height:44px;min-width:44px}
+.social-post>footer p{min-height:42px}
+.social-work-stage{min-height:610px}
+.case-visual img{object-position:top}
+.editorial-filmstrip img,.editorial-stack img,.offer-gallery img{object-position:top}
+.editorial-filmstrip span{left:0;bottom:0;padding:15px 12px;width:100%;background:linear-gradient(transparent,#000b);line-height:1.4}
+.editorial-statement button{background:#000;color:#fff;padding:17px 23px;line-height:1.25;min-height:52px;flex-shrink:0;font-family:inherit}
+.editorial-statement>div{flex-wrap:wrap}
+.industries{padding-top:90px}
+.industries>h2{font-size:clamp(30px,4vw,54px);margin-bottom:60px}
+.industry-grid p{line-height:1.5;color:#555f6a}
+.testimonial-heading{text-align:center;margin-bottom:64px;max-width:850px}
+.testimonial-heading>span{color:#68717e}
+.testimonial-heading h2{font-size:clamp(36px,4.6vw,66px);letter-spacing:-.055em;line-height:1.08;margin:18px 0}
+.testimonial-heading p{font-size:15px;line-height:1.6;color:#68717e;max-width:620px;margin:auto}
+.testimonial-person img{image-rendering:auto;object-position:center}
+.testimonial-person-copy b{font-size:10px;letter-spacing:.1em}
+.project-dialog>img{max-height:55vh;object-fit:contain;background:#f1f2f4}
+.project-dialog h2{margin-top:15px}
+.project-dialog .refresh-eyebrow{margin:0}
+@media(prefers-reduced-motion:no-preference){
+ .animated-heading span{animation:heading-arrive .9s cubic-bezier(.2,.7,.2,1) both}
+ .animated-heading span:nth-child(2){animation-delay:.15s}
+ @supports(animation-timeline:view()){.animated-heading span{animation-timeline:view();animation-range:entry 0% cover 35%}}
+ @keyframes heading-arrive{from{opacity:.2;transform:translateY(35px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+}
+@media(max-width:700px){
+ .work{padding-top:72px}.gallery-intro{text-align:left;padding:0 24px;font-size:16px}
+ .work-filters{border-radius:20px;gap:2px;max-width:calc(100% - 32px);padding:8px}
+ .work-filters button{font-size:11px;padding:9px 10px;min-height:36px}
+ .project-title-row{flex-wrap:wrap;gap:12px}.project-title-row h3{font-size:26px}
+ .recent-intro{margin-top:24px;font-size:17px}.project .project-description{font-size:16px}
+ .featured-design-heading{padding:32px 20px 40px}.social-work-stage{min-height:560px}
+ .testimonial-heading{padding:0 24px;margin-bottom:48px}.testimonial-person-copy strong{font-size:22px}
+ .editorial-intro h2{font-size:clamp(38px,9.5vw,57px)}
+ .editorial-statement button{font-size:14px}.industries{padding-top:60px}
+}

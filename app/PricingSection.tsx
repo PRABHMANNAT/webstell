@@ -5,16 +5,8 @@ const plans = [
     name: 'Starter Site',
     price: '₹10K–15K',
     audience: 'Best for cafés, salons, freelancers and local services launching online.',
-    description: 'A sharp one-page website that helps people understand what you do, find you and enquire without friction.',
-    features: [
-      'One conversion-focused landing page',
-      'Up to 6 thoughtfully arranged sections',
-      'Mobile-first responsive development',
-      'WhatsApp, call and Google Maps actions',
-      'Contact or enquiry form',
-      'Basic search and social setup',
-      '1 focused revision round',
-    ],
+    description: 'A focused website that helps people understand what you do, find you and enquire without friction.',
+    features: ["Free standard domain for the first year*","Mobile-friendly design and SSL setup","WhatsApp, call and Google Maps links","Contact or enquiry form setup","Search titles and social sharing previews","Help connecting your hosting","Launch walkthrough and handover"],
     delivery: '7–10 working days',
     tone: 'starter',
   },
@@ -22,34 +14,18 @@ const plans = [
     name: 'Business Site',
     price: '₹25K–35K',
     audience: 'Best for restaurants, content creators, clinics, consultants and growing local brands.',
-    description: 'A complete multi-page presence for businesses ready to look established and generate steady enquiries.',
-    features: [
-      'Up to 5 custom-designed pages',
-      'Menu, services or portfolio structure',
-      'Easy-to-update CMS or blog',
-      'Forms, WhatsApp and social integrations',
-      'Analytics and on-page SEO',
-      'Subtle interactions that feel premium',
-      '2 revision rounds',
-    ],
+    description: 'A complete online presence for businesses ready to look established and generate steady enquiries.',
+    features: ["Everything in Starter Site","An easy-to-update blog, menu or portfolio","Appointment or reservation integration","Payment link or gateway setup*","Analytics and search engine tools","Branded forms and automated acknowledgements","Guidance for managing your own content"],
     delivery: '2–3 weeks',
     tone: 'popular',
-    badge: 'Most chosen',
+    badge: 'Recommended',
   },
   {
     name: 'Growth Platform',
     price: '₹50K–55K',
     audience: 'Best for D2C brands, startups, real-estate teams, education and service companies.',
     description: 'A strategic website built to explain a bigger offer, capture qualified leads and support the way your team sells.',
-    features: [
-      'Up to 8 custom-designed pages',
-      'Conversion strategy and user journeys',
-      'Advanced motion and interactions',
-      'CMS with reusable page sections',
-      'Booking, lead or email automation',
-      'Performance and technical SEO setup',
-      '3 revision rounds',
-    ],
+    features: ["Everything in Business Site","Product catalogue and online checkout","Payment gateway and shipping integration*","Booking or lead follow-up automation","CRM or email marketing connection","Performance and technical SEO review","Reusable layouts for future updates"],
     delivery: '3–4 weeks',
     tone: 'growth',
   },
@@ -58,15 +34,7 @@ const plans = [
     price: '₹70K–1L',
     audience: 'Best for funded startups, multi-location brands and businesses selling internationally.',
     description: 'A distinctive, scalable digital presence for teams that need global-level craft, complex journeys and room to grow.',
-    features: [
-      'Custom design system and art direction',
-      '10+ pages or complex user flows',
-      'Multilingual-ready site structure',
-      'Advanced motion and brand storytelling',
-      'Custom tools and third-party integrations',
-      'Accessibility and cross-browser QA',
-      'Priority launch support',
-    ],
+    features: ["Everything in Growth Platform","Custom visual system and art direction","Multi-language-ready content structure","International payment configuration*","Custom integrations agreed in your scope","Accessibility and cross-browser testing","Launch planning and team handover"],
     delivery: '4–6 weeks',
     tone: 'global',
   },
@@ -112,7 +80,7 @@ export default function PricingSection({onContact}:{onContact:()=>void}) {
             </article>
           ))}
         </div>
-        <p className="pricing-note"><strong>Good to know:</strong> Domain, hosting, paid plugins, photography and third-party subscriptions are quoted separately. Final pricing is confirmed after a short scope call.</p>
+        <p className="pricing-note"><strong>Good to know:</strong> *A standard, non-premium domain is included for one year; extension and availability are agreed in your quote. Renewal, hosting, taxes where applicable, paid tools and payment-provider fees are separate. Gateway setup requires your approved merchant account. Features and delivery are confirmed in the written scope; content readiness can affect timing.</p>
       </div>
     </section>
   );
