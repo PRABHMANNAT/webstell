@@ -9,6 +9,7 @@ import './editorial.css';
 import './team.css';
 import './sections.css';
 import './work-gallery.css';
+import './works-marquee.css';
 import './curved-ticker.css';
 import './testimonials.css';
 import './pricing.css';
