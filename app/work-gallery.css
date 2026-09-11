@@ -2,6 +2,10 @@
 .work-gallery-heading{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:54px}
 .work-gallery-heading>span{font:500 12px/1.2 var(--mono,monospace);letter-spacing:.13em;color:#68717e}
 .work-gallery-heading h2{font-size:clamp(48px,6vw,88px);line-height:.92;letter-spacing:-.06em;font-weight:500;text-align:right}
+.work-filters{position:sticky;z-index:3;top:22px;display:flex;width:max-content;max-width:calc(100% - 32px);padding:6px;margin:0 auto 34px;border-radius:999px;background:#17191e;box-shadow:0 18px 45px #11182722;overflow:auto}
+.work-filters button{flex:0 0 auto;border:0;border-radius:999px;background:transparent;color:#aeb3bd;padding:11px 19px;font:600 14px/1 var(--sans,sans-serif);cursor:pointer}
+.work-filters button.is-active{background:#fff;color:#17191e}
+.work-filters button:focus-visible{outline:2px solid #dfff62;outline-offset:2px}
 .work-masonry{columns:3;column-gap:16px}
 .work-tile{position:relative;display:block;width:100%;padding:0;margin:0 0 16px;border:0;border-radius:18px;background:#12151a;overflow:hidden;break-inside:avoid;cursor:pointer;text-align:left;color:#fff}
 .work-tile-square{aspect-ratio:1}
