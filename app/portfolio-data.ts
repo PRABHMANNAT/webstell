@@ -161,6 +161,97 @@ export const industryProjects:Project[] = [
     "kind": "Design concept"
   }
 ];
+export const recentWorkProjects:Project[] = [
+  {
+    id: 'nomia',
+    title: 'Nomia',
+    category: 'Travel & Lifestyle',
+    description: 'A conversational travel planner that turns one idea into a living itinerary.',
+    image: '/assets/recent-work/nomia.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'the-stay',
+    title: 'The Stay',
+    category: 'Travel & Stays',
+    description: 'A calming, destination-led experience for a stay worth planning around.',
+    image: '/assets/recent-work/the-stay.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'wedding',
+    title: 'W&R',
+    category: 'Weddings & Events',
+    description: 'A warm, personal space for a celebration, its story and every important detail.',
+    image: '/assets/recent-work/wedding.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'ferea',
+    title: 'Ferea',
+    category: 'Food & Drink',
+    description: 'A playful specialty coffee brand built around rich flavour and a direct order flow.',
+    image: '/assets/recent-work/ferea.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'fintechx',
+    title: 'FintechX',
+    category: 'Finance & Technology',
+    description: 'A clear financial platform that makes sophisticated tools feel welcoming.',
+    image: '/assets/recent-work/fintechx.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'noctra',
+    title: 'Noctra',
+    category: 'Culture & Hospitality',
+    description: 'An atmospheric digital experience for an observatory under the night sky.',
+    image: '/assets/recent-work/noctra.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'vantage',
+    title: 'Vantage',
+    category: 'Health & Fitness',
+    description: 'An energetic programme site for players ready to raise their baseline.',
+    image: '/assets/recent-work/vantage.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'gen-z',
+    title: 'GEN-Z',
+    category: 'Fashion & Accessories',
+    description: 'A bold editorial storefront where product, identity and attitude meet.',
+    image: '/assets/recent-work/genz.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'the-course',
+    title: 'The Course',
+    category: 'Leisure & Hospitality',
+    description: 'A refined course guide with an immersive view of the full landscape.',
+    image: '/assets/recent-work/course.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'above',
+    title: 'Above',
+    category: 'Property & Real Estate',
+    description: 'A cinematic residential showcase made to turn a home into a destination.',
+    image: '/assets/recent-work/above.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'aeronis',
+    title: 'Aeronis',
+    category: 'Clean Energy',
+    description: 'A focused introduction to modern wind technology, performance and impact.',
+    image: '/assets/recent-work/aeronis.png',
+    kind: 'Design concept'
+  }
+];
+
 export const recentProjects:Project[] = [
   {
     "id": "maverick",
