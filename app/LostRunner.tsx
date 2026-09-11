@@ -17,6 +17,16 @@ export default function LostRunner(){
  }
  function pause(){const game=run.current;if(game.state==='running'){game.state='paused';setStatus('paused');}else if(game.state==='paused'){game.state='running';setStatus('running');}}
  useEffect(()=>{
+  const key=(event:KeyboardEvent)=>{
+   if(event.target instanceof HTMLElement&&event.target.closest('button,a,input,textarea,select'))return;
+   if(event.code==='Space'||event.code==='ArrowUp'){event.preventDefault();if(!event.repeat)jump();}
+   if(event.code==='Escape'&&run.current.state==='running')pause();
+  };
+  const hide=()=>{if(document.hidden&&run.current.state==='running')pause();};
+  window.addEventListener('keydown',key);document.addEventListener('visibilitychange',hide);
+  return()=>{window.removeEventListener('keydown',key);document.removeEventListener('visibilitychange',hide);};
+ },[]);
+ useEffect(()=>{
   const surface=canvas.current!;const ctx=surface.getContext('2d');if(!ctx)return;
   let frame=0,last=0;
   const draw=(time:number)=>{
@@ -46,7 +56,7 @@ export default function LostRunner(){
  },[]);
  return <section className="lost-game" aria-label="Jump over obstacles game">
   <div className="lost-game-top"><span>THE DETOUR / ENDLESS RUNNER</span><strong>SCORE {String(score).padStart(4,'0')}</strong></div>
-  <canvas ref={canvas} aria-label="Runner game. Use the jump button or Space to jump over obstacles."/>
+  <canvas ref={canvas} onPointerDown={jump} aria-label="Runner game. Tap the field, or use Space, up arrow or the jump button to jump over obstacles."/>
   <div className="lost-game-controls"><button type="button" onClick={jump}>{status==='ready'?'Start game':status==='over'?'Try again':'Jump'} <span>↑</span></button><button type="button" onClick={pause} disabled={status==='ready'||status==='over'}>{status==='paused'?'Resume':'Pause'}</button><span role="status">{status==='over'?'Game over. Give it another jump.':status==='paused'?'Paused':status==='ready'?'A little game for your wrong turn.':'Clear the obstacles. Keep going.'}</span></div>
  </section>;
 }
