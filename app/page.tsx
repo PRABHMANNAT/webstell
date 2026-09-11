@@ -62,6 +62,7 @@ export default function Home() {
  const [saved,setSaved]=useState(false);
  const [subscribed,setSubscribed]=useState(false);
  const [flippedTeam,setFlippedTeam]=useState<number|null>(null);
+ const [activeOffer,setActiveOffer]=useState(0);
  const dialog=useRef<HTMLDialogElement>(null);
  const projectDialog=useRef<HTMLDialogElement>(null);
  useEffect(()=>{if(contact)dialog.current?.showModal();else dialog.current?.close()},[contact]);
