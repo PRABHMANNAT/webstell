@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import './hero.css';
 import './hero-motion.css';
+import './service-showcase.css';
 import './case-studies.css';
 import './team.css';
 import './sections.css';
