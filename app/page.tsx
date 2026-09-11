@@ -189,21 +189,6 @@ const editorialCapabilities = [
       "/assets/refresh/local/interiors.webp",
       "/assets/refresh/local/software.webp"
     ]
-  },
-  {
-    "title": "Yours to own. Ready to grow.",
-    "items": [
-      "A straightforward handover",
-      "Tools your team can work with",
-      "Connections to your existing systems",
-      "Support options explained upfront",
-      "Built for local and global customers"
-    ],
-    "images": [
-      "/assets/refresh/local/commerce.webp",
-      "/assets/refresh/local/finance.webp",
-      "/assets/refresh/local/agency.webp"
-    ]
   }
 ];
 export default function Home() {
