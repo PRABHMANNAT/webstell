@@ -1,0 +1,14 @@
+'use client';
+
+export default function LostPage() {
+ return <main className="lost-page">
+  <header className="lost-nav"><a href="/">WEBSTELL</a><span>ERROR / 404</span></header>
+  <section className="lost-copy">
+   <h1 aria-label="404 — Page not found"><span>4</span><span className="lost-orbit" aria-hidden="true">{Array.from({length:7},(_,i)=><i key={i} style={{transform:`rotate(${i*25}deg)`}}/>)}</span><span>4</span></h1>
+   <h2>A small detour. A little play.</h2>
+   <p>We build websites that take you places. This link took a wrong turn.<br/>Head back to WEBSTELL, or jump a few obstacles while you’re here.</p>
+   <div className="lost-links"><a href="/">↗ Back home</a><a href="/#projects">Explore our work →</a></div>
+  </section>
+  <footer className="lost-footer"><span>LOST IN THE INTERNET. FOUND SOMETHING FUN.</span><a href="/">WEBSTELL © {new Date().getFullYear()}</a></footer>
+ </main>;
+}
