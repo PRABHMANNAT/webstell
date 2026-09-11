@@ -1,0 +1,8 @@
+.curved-ticker{height:300px;background:#050607;overflow:hidden;display:flex;align-items:center;border-block:1px solid #202329}
+.curved-ticker-track{display:flex;width:max-content;will-change:transform;animation:curved-ticker-drift 26s linear infinite}
+.curved-ticker svg{display:block;flex:0 0 max(1600px,200vw);width:max(1600px,200vw);height:280px;overflow:visible}
+.ticker-band{fill:none;stroke:#202329;stroke-width:126;stroke-linecap:round}
+.ticker-copy{fill:#f4f6f8;font:500 54px/1 var(--sans,sans-serif);letter-spacing:-1.6px}
+@keyframes curved-ticker-drift{to{transform:translateX(-50%)}}
+@media(max-width:700px){.curved-ticker{height:210px}.curved-ticker svg{height:200px;flex-basis:max(1200px,260vw);width:max(1200px,260vw)}.ticker-band{stroke-width:104}.ticker-copy{font-size:44px}}
+@media(prefers-reduced-motion:reduce){.curved-ticker-track{animation-play-state:paused}}
