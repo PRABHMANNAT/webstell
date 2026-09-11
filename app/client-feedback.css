@@ -47,37 +47,13 @@
   aspect-ratio: 16 / 9;
 }
 
-#editorial-title {
+.editorial-intro,
+.editorial-filmstrip {
   display: none;
 }
 
-.editorial-intro {
-  display: block;
-}
-
-.editorial-statement {
-  width: 100%;
-  margin-top: 42px;
-}
-
-.editorial-statement > p {
-  max-width: none;
-  font-size: clamp(32px, 4.7vw, 74px);
-  font-weight: 500;
-  line-height: 0.98;
-  letter-spacing: -0.065em;
-  text-wrap: balance;
-}
-
-.editorial-statement > div {
-  justify-content: flex-start;
-  margin-top: 34px;
-}
-
-.editorial-statement button {
-  min-height: 58px;
-  padding: 16px 28px;
-  font-size: 16px;
+.editorial-services {
+  margin-top: 0;
 }
 
 @media (max-width: 700px) {
