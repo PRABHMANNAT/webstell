@@ -10,6 +10,7 @@ import './team.css';
 import './sections.css';
 import './work-gallery.css';
 import './works-marquee.css';
+import './social-work-gallery.css';
 import './curved-ticker.css';
 import './testimonials.css';
 import './pricing.css';

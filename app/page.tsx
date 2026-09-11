@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import WorkGallery from './WorkGallery';
 import WorksMarquee from './WorksMarquee';
+import SocialWorkGallery from './SocialWorkGallery';
 import CurvedTicker from './CurvedTicker';
 import Testimonials from './Testimonials';
 import PricingSection from './PricingSection';
@@ -104,6 +105,7 @@ export default function Home() {
  <section className="hero"><h1>Digital design &<br/>development agency</h1><p>We design and build websites, brands and digital experiences for businesses<br className="desktop-break"/> ready to move beyond the ordinary.</p></section>
  <section className="offer-showcase" id="services" aria-labelledby="offer-title"><div className="offer-heading wrap"><span className="offer-badge"><span aria-hidden="true">◫</span> Services</span><h2 id="offer-title">What We Offer</h2><p>Designing bold, functional solutions that turn your ideas into digital experiences built to perform.</p></div><div className="offer-panel wrap"><div className="offer-list" role="tablist" aria-label="WEBSTELL services">{offerServices.map((service,index)=><button key={service.title} className={activeOffer===index?'is-active':''} onClick={()=>setActiveOffer(index)} onPointerEnter={()=>setActiveOffer(index)} role="tab" aria-selected={activeOffer===index} aria-controls="offer-detail"><span>0{index+1}</span>{service.title}<i aria-hidden="true">↗</i></button>)}</div><article className="offer-detail" id="offer-detail" role="tabpanel" aria-live="polite" key={activeOffer}><div className="offer-detail-top"><span>WEBSTELL / 0{activeOffer+1}</span><button onClick={()=>setContact(true)}>Start a project <i aria-hidden="true">↗</i></button></div><h3>{offerServices[activeOffer].title}</h3><p>{offerServices[activeOffer].description}</p><div className="offer-gallery">{offerServices[activeOffer].images.map((image,index)=><div key={image}><img src={image} alt="" loading="lazy"/><span>0{index+1}</span></div>)}</div><div className="offer-tags">{offerServices[activeOffer].tags.map(tag=><span key={tag}>{tag}</span>)}</div></article></div></section>
  <WorksMarquee/>
+ <SocialWorkGallery onOpen={setSelected}/>
  <WorkGallery onOpen={setSelected}/>
  <Testimonials/>
  <PricingSection onContact={()=>setContact(true)}/>
