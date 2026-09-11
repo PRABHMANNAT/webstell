@@ -39,6 +39,14 @@
   display: none;
 }
 
+.work-tile,
+.work-tile-square,
+.work-tile-portrait,
+.work-tile-landscape,
+.work-tile-tall {
+  aspect-ratio: 16 / 9;
+}
+
 @media (max-width: 700px) {
   .work-filters {
     max-width: none;
