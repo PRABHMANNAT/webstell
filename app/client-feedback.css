@@ -47,6 +47,10 @@
   aspect-ratio: 16 / 9;
 }
 
+#editorial-title {
+  display: none;
+}
+
 @media (max-width: 700px) {
   .work-filters {
     max-width: none;
