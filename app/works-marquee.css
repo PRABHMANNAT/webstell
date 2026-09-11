@@ -1,5 +1,5 @@
 .works-marquee{overflow:hidden;background:#fff;color:#151515;border-block:1px solid #e8e8e8;padding:70px 0 58px}
-.works-marquee-track{display:flex;width:max-content;will-change:transform;animation:works-marquee-move 22s linear infinite}
+.works-marquee-track{display:flex;width:max-content;will-change:transform;animation:works-marquee-move 22s linear infinite;transform:translate3d(0,0,0)}
 .works-marquee-track span{display:flex;align-items:center;gap:4vw;padding-right:4vw;white-space:nowrap;font-size:clamp(118px,15vw,238px);font-weight:500;line-height:.78;letter-spacing:-.075em}
 .works-marquee-track i{display:inline-grid;place-items:center;color:#ececec;font-size:.66em;font-style:normal;letter-spacing:0;animation:works-marquee-spin 12s linear infinite}
 @keyframes works-marquee-move{to{transform:translateX(-50%)}}
