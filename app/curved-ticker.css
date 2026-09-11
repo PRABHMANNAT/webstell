@@ -1,8 +1,6 @@
-.curved-ticker{height:300px;background:#050607;overflow:hidden;display:flex;align-items:center;border-block:1px solid #202329}
-.curved-ticker-track{display:flex;width:max-content;will-change:transform;animation:curved-ticker-drift 26s linear infinite}
-.curved-ticker svg{display:block;flex:0 0 max(1600px,200vw);width:max(1600px,200vw);height:280px;overflow:visible}
-.ticker-band{fill:none;stroke:#202329;stroke-width:126;stroke-linecap:round}
-.ticker-copy{fill:#f4f6f8;font:500 54px/1 var(--sans,sans-serif);letter-spacing:-1.6px}
-@keyframes curved-ticker-drift{to{transform:translateX(-50%)}}
-@media(max-width:700px){.curved-ticker{height:210px}.curved-ticker svg{height:200px;flex-basis:max(1200px,260vw);width:max(1200px,260vw)}.ticker-band{stroke-width:104}.ticker-copy{font-size:44px}}
+.curved-ticker{display:flex;align-items:center;height:146px;padding:34px 0;background:#f3f6fb;color:#fff;overflow:hidden}
+.curved-ticker-track{display:flex;width:max-content;min-width:max-content;background:#090a0c;box-shadow:0 14px 35px #1118271c;transform:rotate(-1.5deg);animation:curved-ticker-drift 32s linear infinite;will-change:transform}
+.curved-ticker-track span{flex:0 0 auto;padding:22px 0;white-space:pre;font-size:clamp(25px,2.3vw,38px);font-weight:500;line-height:1;letter-spacing:-.035em}
+@keyframes curved-ticker-drift{from{transform:translateX(0) rotate(-1.5deg)}to{transform:translateX(-50%) rotate(-1.5deg)}}
+@media(max-width:700px){.curved-ticker{height:112px;padding:26px 0}.curved-ticker-track span{padding:17px 0;font-size:24px}}
 @media(prefers-reduced-motion:reduce){.curved-ticker-track{animation-play-state:paused}}
