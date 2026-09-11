@@ -60,6 +60,30 @@
   margin-top: 22px;
 }
 
+.social-work {
+  background-color: #101318;
+  background-image:
+    linear-gradient(135deg, rgba(5, 8, 14, 0.88), rgba(9, 13, 20, 0.64)),
+    url('/assets/insights-ai.avif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.project-view {
+  flex-shrink: 0;
+  padding: 0 0 5px;
+  border: 0;
+  border-bottom: 1px solid #aaa;
+  background: transparent;
+  color: inherit;
+  font-size: 12px;
+}
+
+.project-view:hover {
+  border-color: #111;
+}
+
 @media (max-width: 700px) {
   .work-filters {
     max-width: none;
