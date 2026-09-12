@@ -13,8 +13,8 @@
 .social-post{position:relative;z-index:5;width:var(--post-w);border:1px solid #292f38;border-radius:22px;background:#05070a;overflow:hidden;box-shadow:0 28px 70px #0008;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
 .social-work-stage:hover .social-post{transform:translateY(-4px);box-shadow:0 34px 85px #000a}
 .social-post>header{height:60px;padding:0 17px;display:flex;align-items:center;gap:12px;background:#07090d}
-.social-avatar{width:36px;height:36px;border:1px solid #303640;border-radius:50%;display:grid;place-items:center}
-.social-avatar i{width:18px;height:9px;border:3px solid #fff;border-radius:99px;transform:rotate(45deg)}
+.social-avatar{width:36px;height:36px;border:1px solid #303640;border-radius:50%;display:grid;place-items:center;background:#f6f2e9;overflow:hidden}
+.social-avatar img{width:30px;height:30px;object-fit:contain}
 .social-post>header strong{font-size:14px;font-weight:500}.social-post>header button{margin-left:auto;padding:8px;border:0;background:none;color:#fff;font-size:17px;letter-spacing:2px}
 .social-post-image{position:relative;aspect-ratio:1;background:#171b22;overflow:hidden}
 .social-post-image img{width:100%;height:100%;object-fit:cover;animation:social-image-in .5s cubic-bezier(.2,.8,.2,1) both}

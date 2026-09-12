@@ -29,7 +29,7 @@ export default function SocialWorkGallery({onOpen}:{onOpen:(project:Project)=>vo
     <img src={slide.image} alt="" loading={index===0?'eager':'lazy'}/>
    </button>)}
    <article className="social-post" aria-live="polite">
-    <header><span className="social-avatar" aria-hidden="true"><i></i></span><strong>WEBSTELL</strong><button type="button" aria-label={`Open ${current.title} project`} onClick={()=>onOpen(current)}>•••</button></header>
+    <header><span className="social-avatar" aria-hidden="true"><img src="/assets/brand/webstell-retro-mac.png" alt=""/></span><strong>WEBSTELL</strong><button type="button" aria-label={`Open ${current.title} project`} onClick={()=>onOpen(current)}>•••</button></header>
     <div className="social-post-image"><img key={current.image} src={current.image} alt={`${current.category} featured design`}/><button className="social-prev" type="button" aria-label="Previous image" onClick={()=>move(-1)}>‹</button><button className="social-next" type="button" aria-label="Next image" onClick={()=>move(1)}>›</button><div className="social-dots">{slides.map((slide,index)=><button type="button" className={index===active?'is-active':''} key={slide.title} aria-label={`Show image ${index+1}: ${slide.title}`} aria-current={index===active?'true':undefined} onClick={()=>setActive(index)}></button>)}</div></div>
     <footer>
      <div className="social-actions" aria-hidden="true"><span>♡</span><b>{active+1} / {slides.length}</b><span>◯</span><span>↻</span><span>▽</span><span className="social-save">▱</span></div>
