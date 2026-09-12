@@ -2,4 +2,7 @@
 .curved-ticker-track{display:flex;align-items:center;width:max-content;min-width:max-content;background:#090a0c;box-shadow:0 14px 35px #1118271c;transform:rotate(var(--ticker-angle));transform-origin:center;animation:curved-ticker-drift 32s linear infinite;will-change:transform}
 .curved-ticker-set{display:flex;flex:0 0 auto;align-items:center;white-space:nowrap}.curved-ticker-item{display:inline-flex;align-items:center;gap:18px;padding:21px 18px 21px 0;font-size:clamp(25px,2.3vw,38px);font-weight:500;line-height:1.08;letter-spacing:-.035em}.curved-ticker-item i{color:#fff;font-size:.68em;font-style:normal}
 @keyframes curved-ticker-drift{from{transform:translateX(0) rotate(var(--ticker-angle))}to{transform:translateX(-50%) rotate(var(--ticker-angle))}}
+@media(max-width:900px){.curved-ticker{min-height:128px;padding:29px 0}.curved-ticker-item{gap:15px;padding:18px 15px 18px 0;font-size:clamp(22px,3.3vw,30px)}}
+@media(max-width:600px){.curved-ticker{--ticker-angle:-.8deg;min-height:108px;padding:25px 0}.curved-ticker-item{gap:12px;padding:16px 12px 16px 0;font-size:clamp(19px,5.2vw,24px);line-height:1.14}.curved-ticker-track{animation-duration:27s}}
+@media(max-width:360px){.curved-ticker{min-height:98px;padding:22px 0}.curved-ticker-item{gap:10px;padding-block:14px;font-size:19px}}
 @media(prefers-reduced-motion:reduce){.curved-ticker-track{animation-play-state:paused}}
