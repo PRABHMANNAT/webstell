@@ -41,6 +41,13 @@ const offerServices: OfferService[] = [
     video: '/assets/service-software-automation.mp4',
     imageAlt: 'Software and automation showreel',
   },
+  {
+    title: 'Mobile Apps',
+    description: 'Reliable Android and iOS apps designed for the moments your customers and teams need them most.',
+    tags: ['iOS & Android', 'Cross-platform builds', 'App Store launches'],
+    video: '/assets/service-mobile-apps.mp4',
+    imageAlt: 'Mobile app development showreel',
+  },
 ];
 
 export default function ServiceShowcase({ onContact }: { onContact: () => void }) {
