@@ -38,8 +38,8 @@ const offerServices: OfferService[] = [
     title: 'Software & Automation',
     description: 'Useful digital products, customer portals and automations that simplify complex work for your team.',
     tags: ['Custom software', 'AI & workflows', 'API integrations'],
-    image: '/assets/service-parley.png',
-    imageAlt: 'Warm editorial AI software interface system',
+    video: '/assets/service-software-automation.mp4',
+    imageAlt: 'Software and automation showreel',
   },
 ];
 
