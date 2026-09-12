@@ -19,5 +19,5 @@ import './button-motion.css';
 import './content-refresh.css';
 import './client-feedback.css';
 import './service-showcase-glass.css';
-export const metadata: Metadata = { title:'WEBSTELL | Website Design & Development Agency', description:'Websites that look exceptional and work for you. WEBSTELL creates websites, ecommerce experiences, brand identities and digital products.' };
+export const metadata: Metadata = { title:'WEBSTELL | Website Design & Development Agency', description:'Websites that look exceptional and work for you. WEBSTELL creates websites, ecommerce experiences, brand identities and digital products.', icons:{icon:'/assets/brand/webstell-retro-mac.png'} };
 export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body>{children}</body></html>}
