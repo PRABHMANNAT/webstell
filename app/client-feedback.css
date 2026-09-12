@@ -99,7 +99,7 @@
   left: 24px;
   height: 270px;
   border-radius: 21px;
-  background: #bec5cd url('/assets/insight-featured-bottom.avif') center / cover no-repeat;
+  background: #bec5cd url('/assets/insights-architecture.jpg') center / cover no-repeat;
 }
 
 .insight-card.featured > * {
