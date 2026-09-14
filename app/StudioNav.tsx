@@ -91,7 +91,7 @@ export default function StudioNav({ current = '' }: { current?: string }) {
   const [menu, setMenu] = useState(false);
   const [open, setOpen] = useState(false);
   const links = [
-    ['Works', '/#projects'],
+    ['Works', '/projects'],
     ['Services', '/#services'],
     ['Pricing', '/pricing'],
     ['Insights', '/#insights'],

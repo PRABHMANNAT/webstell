@@ -11,7 +11,7 @@ export default function RecentWorkSection({ onOpen }: { onOpen: (project: Projec
           <h2 id="recent-work-title">Built for a<br />point of view.</h2>
         </div>
         <p className="recent-intro">
-          Travel, hospitality, culture, commerce and technology—eleven visual directions for brands that want to be remembered.
+          Travel, hospitality, culture, commerce and technology—twelve visual directions for brands that want to be remembered.
         </p>
       </div>
       <div className="project-grid">
@@ -31,6 +31,11 @@ export default function RecentWorkSection({ onOpen }: { onOpen: (project: Projec
             <p className="project-description">{project.description}</p>
           </article>
         ))}
+      </div>
+      <div className="center">
+        <a className="outline-pill" href="/projects">
+          Explore the full portfolio <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </section>
   );
