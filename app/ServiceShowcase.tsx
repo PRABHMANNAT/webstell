@@ -49,6 +49,13 @@ const offerServices: OfferService[] = [
     video: '/assets/service-mobile-apps.mp4',
     imageAlt: 'Mobile app development showreel',
   },
+  {
+    title: 'AI Chatbots & Assistants',
+    description: 'Helpful conversational experiences that answer questions, qualify enquiries and keep your business available around the clock.',
+    tags: ['Website chatbots', 'AI assistants', 'Lead qualification'],
+    video: '/assets/service-chatbot.mp4',
+    imageAlt: 'AI chatbot conversation animation',
+  },
 ];
 
 export default function ServiceShowcase({ onContact }: { onContact: () => void }) {
