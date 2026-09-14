@@ -7,6 +7,7 @@ type OfferService = {
   description: string;
   tags: string[];
   image?: string;
+  supportingImage?: string;
   video?: string;
   imageAlt: string;
   fit?: 'contain';

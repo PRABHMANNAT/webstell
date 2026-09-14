@@ -1,86 +1,152 @@
 'use client';
 
+import { calculateEstimate, money } from './pricing-data';
+
 const plans = [
   {
-    name: 'Starter Site',
-    price: '₹10K–15K',
-    audience: 'Best for cafés, salons, freelancers and local services launching online.',
-    description: 'A focused website that helps people understand what you do, find you and enquire without friction.',
-    features: ["Free standard domain for the first year*","Mobile-friendly design and SSL setup","WhatsApp, call and Google Maps links","Contact or enquiry form setup","Search titles and social sharing previews","Help connecting your hosting","Launch walkthrough and handover"],
-    delivery: '7–10 working days',
+    name: 'A strong first impression.',
+    audience: 'For a business, a service, or a point of view that deserves a clear home.',
+    description:
+      'A focused website designed to explain what you do and turn interest into a useful next step.',
+    features: [
+      'Five considered pages to start',
+      'A great experience on mobile',
+      'Contact form & WhatsApp link',
+      'Search foundations & launch handover',
+    ],
+    delivery: 'Usually 2–3 weeks',
+    type: 'website',
+    extras: [] as string[],
     tone: 'starter',
+    badge: undefined,
   },
   {
-    name: 'Business Site',
-    price: '₹25K–35K',
-    audience: 'Best for restaurants, content creators, clinics, consultants and growing local brands.',
-    description: 'A complete online presence for businesses ready to look established and generate steady enquiries.',
-    features: ["Everything in Starter Site","An easy-to-update blog, menu or portfolio","Appointment or reservation integration","Payment link or gateway setup*","Analytics and search engine tools","Branded forms and automated acknowledgements","Guidance for managing your own content"],
-    delivery: '2–3 weeks',
+    name: 'Yours to keep fresh.',
+    audience: 'For teams who want control of everyday updates without losing the craft.',
+    description:
+      'A business website with a tailored editing space and a proper walkthrough for your team.',
+    features: [
+      'Everything in a business website',
+      'Update text and imagery yourself',
+      'A clear content dashboard',
+      'Walkthrough with your team',
+    ],
+    delivery: 'Usually 3–4 weeks',
+    type: 'website',
+    extras: ['cms'],
     tone: 'popular',
-    badge: 'Recommended',
+    badge: 'Most flexible',
   },
   {
-    name: 'Growth Platform',
-    price: '₹50K–55K',
-    audience: 'Best for D2C brands, startups, real-estate teams, education and service companies.',
-    description: 'A strategic website built to explain a bigger offer, capture qualified leads and support the way your team sells.',
-    features: ["Everything in Business Site","Product catalogue and online checkout","Payment gateway and shipping integration*","Booking or lead follow-up automation","CRM or email marketing connection","Performance and technical SEO review","Reusable layouts for future updates"],
-    delivery: '3–4 weeks',
+    name: 'Open for business.',
+    audience: 'For products ready to find their people and make buying feel effortless.',
+    description:
+      'A considered store experience built around product discovery, checkout and a confident launch.',
+    features: [
+      'Product catalogue & shopping cart',
+      'Payment gateway integration',
+      'Product management essentials',
+      'Mobile shopping & launch handover',
+    ],
+    delivery: 'Usually 3–4 weeks',
+    type: 'store',
+    extras: ['payments'],
     tone: 'growth',
+    badge: undefined,
   },
   {
-    name: 'Global Standard',
-    price: '₹70K–1L',
-    audience: 'Best for funded startups, multi-location brands and businesses selling internationally.',
-    description: 'A distinctive, scalable digital presence for teams that need global-level craft, complex journeys and room to grow.',
-    features: ["Everything in Growth Platform","Custom visual system and art direction","Multi-language-ready content structure","International payment configuration*","Custom integrations agreed in your scope","Accessibility and cross-browser testing","Launch planning and team handover"],
-    delivery: '4–6 weeks',
+    name: 'Build the useful thing.',
+    audience: 'For teams ready to turn a workflow, service or idea into a digital product.',
+    description:
+      'A clear starting point for a focused dashboard, customer portal or custom web application.',
+    features: [
+      'A focused product journey',
+      'Responsive interface design',
+      'Thoughtful handover & support plan',
+      'Scope shaped around your workflow',
+    ],
+    delivery: 'Usually 4–6 weeks',
+    type: 'software',
+    extras: [] as string[],
     tone: 'global',
+    badge: undefined,
   },
-];
+] as const;
 
-export default function PricingSection({onContact}:{onContact:()=>void}) {
+export default function PricingSection({
+  onChoose,
+}: {
+  onChoose: (type: string, extras: string[]) => void;
+}) {
   return (
-    <section className="pricing" id="pricing" aria-labelledby="pricing-title">
-      <div className="pricing-marquee" aria-label="Pricing">
+    <section className="pricing pricing-showcase" aria-labelledby="pricing-title">
+      <div className="pricing-marquee" aria-hidden="true">
         <div className="pricing-track">
-          <span>Pricing <i aria-hidden="true">✳</i> Pricing <i aria-hidden="true">✳</i></span>
-          <span aria-hidden="true">Pricing <i>✳</i> Pricing <i>✳</i></span>
+          <span>
+            Clear starts <i>✳</i> Room to grow <i>✳</i>
+          </span>
+          <span>
+            Clear starts <i>✳</i> Room to grow <i>✳</i>
+          </span>
         </div>
       </div>
       <div className="pricing-inner wrap">
         <header className="pricing-intro">
-          <div>
-            <span className="pricing-kicker"><i aria-hidden="true"></i> Pricing · one-time projects</span>
-            <h2 id="pricing-title">Pick the website your next stage needs.</h2>
-          </div>
-          <p>No vague packages or monthly lock-ins. Choose the closest starting point and we’ll shape the final scope around your goals, content and customers.</p>
+          <h2 id="pricing-title">Choose a good place to begin.</h2>
+          <p>
+            The right starting point makes the rest of the project feel
+            simpler. Choose one, then shape the details in the calculator.
+          </p>
         </header>
 
         <div className="pricing-grid">
-          {plans.map((plan, index) => (
-            <article className={`pricing-card pricing-card-${plan.tone}`} key={plan.name}>
-              <div className="pricing-card-top">
-                <span className="pricing-index">0{index + 1}</span>
-                {plan.badge && <span className="pricing-badge">{plan.badge}</span>}
-              </div>
-              <h3>{plan.name}</h3>
-              <div className="pricing-price"><strong>{plan.price}</strong><span>INR · one-time</span></div>
-              <p className="pricing-audience">{plan.audience}</p>
-              <p className="pricing-description">{plan.description}</p>
-              <div className="pricing-includes">
-                <span>What’s included</span>
-                <ul>{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-              </div>
-              <div className="pricing-card-footer">
-                <p><span>Typical delivery</span><strong>{plan.delivery}</strong></p>
-                <button type="button" onClick={onContact}><span aria-hidden="true">↗</span> Connect with us</button>
-              </div>
-            </article>
-          ))}
+          {plans.map((plan, index) => {
+            const estimate = calculateEstimate(plan.type, [...plan.extras], false, 0);
+            return (
+              <article
+                className={'pricing-card pricing-card-' + plan.tone}
+                key={plan.name}
+              >
+                <div className="pricing-card-top">
+                  <span className="pricing-index">0{index + 1}</span>
+                  {plan.badge && (
+                    <span className="pricing-badge">{plan.badge}</span>
+                  )}
+                </div>
+                <h3>{plan.name}</h3>
+                <div className="pricing-price">
+                  <strong>{money(estimate.total)}</strong>
+                  <span>starting estimate · one-time</span>
+                </div>
+                <p className="pricing-audience">{plan.audience}</p>
+                <p className="pricing-description">{plan.description}</p>
+                <div className="pricing-includes">
+                  <span>What’s included</span>
+                  <ul>
+                    {plan.features.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="pricing-card-footer">
+                  <p>
+                    <span>Typical delivery</span>
+                    <strong>{plan.delivery}</strong>
+                  </p>
+                  <a
+                    href="#calculator"
+                    onClick={() => onChoose(plan.type, [...plan.extras])}
+                  >
+                    <span aria-hidden="true">↗</span> Make this yours
+                  </a>
+                </div>
+              </article>
+            );
+          })}
         </div>
-        <p className="pricing-note"><strong>Good to know:</strong> *A standard, non-premium domain is included for one year; extension and availability are agreed in your quote. Renewal, hosting, taxes where applicable, paid tools and payment-provider fees are separate. Gateway setup requires your approved merchant account. Features and delivery are confirmed in the written scope; content readiness can affect timing.</p>
+        <p className="pricing-note">
+          <strong>A note on estimates:</strong> these are one-time project starting points. Eligible website projects include a standard, non-premium domain allowance; hosting, taxes, third-party subscriptions and payment-provider fees are separate and confirmed in your final proposal.
+        </p>
       </div>
     </section>
   );
