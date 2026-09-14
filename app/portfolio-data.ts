@@ -163,6 +163,14 @@ export const industryProjects:Project[] = [
 ];
 export const recentWorkProjects:Project[] = [
   {
+    id: 'safario',
+    title: 'Safario',
+    category: 'Travel & Lifestyle',
+    description: 'A warm safari travel concept that puts remarkable African journeys and easy discovery at the centre.',
+    image: '/assets/recent-work/safario.png',
+    kind: 'Design concept'
+  },
+  {
     id: 'nomia',
     title: 'Nomia',
     category: 'Travel & Lifestyle',
