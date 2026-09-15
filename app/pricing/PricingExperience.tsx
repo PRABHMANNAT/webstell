@@ -13,7 +13,9 @@ import {
 } from 'lucide-react';
 import StudioNav, { StudioFooter } from '../StudioNav';
 import BriefForm from '../BriefForm';
+import FaqAccordion from '../FaqAccordion';
 import PricingSection from '../PricingSection';
+import { fullFaqs } from '../faq-data';
 import {
   calculateEstimate,
   getAvailableExtras,
@@ -382,6 +384,21 @@ export default function PricingExperience() {
         </section>
 
         <PricingSection onChoose={applyPlan} />
+
+        <section className="pricing-faq studio-width" aria-labelledby="pricing-faq-title">
+          <div className="pricing-faq-intro">
+            <span className="studio-eyebrow">FULL FAQ</span>
+            <h2 id="pricing-faq-title">
+              More questions,
+              <br />
+              <em>clear answers.</em>
+            </h2>
+            <p>
+              Everything else you may want to know before you begin.
+            </p>
+          </div>
+          <FaqAccordion items={fullFaqs} />
+        </section>
 
         <section className="pricing-custom studio-width">
           <h2>
