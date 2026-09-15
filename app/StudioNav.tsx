@@ -89,13 +89,11 @@ export function HireDialog({
 
 export default function StudioNav({ current = '' }: { current?: string }) {
   const [menu, setMenu] = useState(false);
-  const [open, setOpen] = useState(false);
   const links = [
-    ['Works', '/projects'],
-    ['Services', '/#services'],
+    ['Work', '/projects'],
+    ['Services', '/services'],
+    ['About', '/about'],
     ['Pricing', '/pricing'],
-    ['Insights', '/#insights'],
-    ['Team', '/#team'],
     ['Contact', '/contact'],
   ];
   return (
@@ -135,19 +133,17 @@ export default function StudioNav({ current = '' }: { current?: string }) {
             {menu ? 'Close' : 'Menu'}{' '}
             <span aria-hidden="true">{menu ? '−' : '☰'}</span>
           </button>
-          <button
+          <a
             className="hire-pill"
-            onClick={() => setOpen(true)}
-            aria-haspopup="dialog"
+            href="/contact"
           >
             <span aria-hidden="true">
               <ArrowUpRight size={22} />
             </span>{' '}
-            Hire Team
-          </button>
+            Discuss your project
+          </a>
         </div>
       </header>
-      <HireDialog open={open} onOpenChange={setOpen} />
     </>
   );
 }

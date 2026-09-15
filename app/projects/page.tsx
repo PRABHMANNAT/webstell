@@ -16,7 +16,7 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <StudioNav current="works" />
+      <StudioNav current="work" />
       <main>
         <section className="projects-hero">
           <div className="projects-hero-inner wrap">
