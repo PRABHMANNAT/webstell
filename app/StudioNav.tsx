@@ -17,6 +17,14 @@ import {
 } from '@/components/ui/dialog';
 import { whatsappUrl } from './contact-utils';
 
+const navigationLinks = [
+  ['Work', '/projects'],
+  ['Services', '/services'],
+  ['About', '/about'],
+  ['Pricing', '/pricing'],
+  ['Contact', '/contact'],
+] as const;
+
 export function HireDialog({
   open,
   onOpenChange,
@@ -89,15 +97,19 @@ export function HireDialog({
 
 export default function StudioNav({ current = '' }: { current?: string }) {
   const [menu, setMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
-  const links = [
-    ['Work', '/projects'],
-    ['Services', '/services'],
-    ['About', '/about'],
-    ['Pricing', '/pricing'],
-    ['Contact', '/contact'],
-  ];
+
+  useEffect(() => {
+    const updateHeader = () => setScrolled(window.scrollY > 24);
+    const initialFrame = window.requestAnimationFrame(updateHeader);
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    return () => {
+      window.cancelAnimationFrame(initialFrame);
+      window.removeEventListener('scroll', updateHeader);
+    };
+  }, []);
 
   useEffect(() => {
     if (!menu) return;
@@ -119,7 +131,7 @@ export default function StudioNav({ current = '' }: { current?: string }) {
 
   return (
     <>
-      <header className="site-header">
+      <header className={scrolled ? 'site-header is-scrolled' : 'site-header'}>
         <div className="header wrap">
           <div className="nav-capsule">
             <a className="nav-mark" href="/" aria-label="WEBSTELL home">
@@ -131,7 +143,7 @@ export default function StudioNav({ current = '' }: { current?: string }) {
               aria-label="Main navigation"
               className={menu ? 'open' : ''}
             >
-              {links.map(([label, href], index) => (
+              {navigationLinks.map(([label, href], index) => (
                 <a
                   key={href}
                   href={href}
