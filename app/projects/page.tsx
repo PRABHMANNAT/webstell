@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { recentWorkProjects, type Project } from '../portfolio-data';
 import StudioNav, { StudioFooter } from '../StudioNav';
 import InternationalReferences from '../InternationalReferences';
+import WorksMarquee from '../WorksMarquee';
 import './projects.css';
 
 export default function ProjectsPage() {
@@ -33,6 +34,7 @@ export default function ProjectsPage() {
         </section>
 
         <InternationalReferences />
+        <WorksMarquee />
 
         <section className="projects-list wrap" aria-labelledby="all-projects-title">
           <div className="projects-list-heading">
