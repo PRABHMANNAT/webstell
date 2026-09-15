@@ -1,0 +1,8 @@
+export const serviceOverview = [
+  { slug: 'website-design-development', title: 'Websites', description: 'Business websites, landing pages and portfolios that explain what you do and turn interest into enquiries.', detail: 'Responsive design · Clear content · Search foundations', video: '/assets/service-website-design-reel.mp4' },
+  { slug: 'ecommerce-online-stores', title: 'Online stores', description: 'Easy-to-shop storefronts with product catalogues, secure checkout and the tools to manage your orders.', detail: 'Product pages · Payments · Store management', video: '/assets/service-ecommerce.mp4' },
+  { slug: 'custom-software', title: 'Custom software', description: 'Dashboards, customer portals and internal tools built around your business and how your team works.', detail: 'Dashboards · Portals · Integrations', video: '/assets/service-software-automation.mp4' },
+  { slug: 'mobile-apps', title: 'Mobile apps', description: 'Thoughtful apps for iOS and Android, from the first screen to the everyday tasks that keep people coming back.', detail: 'Product planning · App design · Development', video: '/assets/service-mobile-apps.mp4' },
+  { slug: 'ai-chatbots-automation', title: 'Chatbots & automation', description: 'Assistants that answer customer questions and connected workflows that take repetitive tasks off your team.', detail: 'AI assistants · WhatsApp chat · Workflows', video: '/assets/service-chatbot.mp4' },
+  { slug: 'brand-identity-ui-ux', title: 'Branding & UI/UX', description: 'Distinctive identities and intuitive interfaces that make your business easy to recognise and your products easy to use.', detail: 'Brand identity · Interfaces · Prototypes', video: '/assets/service-brand-uiux.mp4' },
+];
