@@ -50,4 +50,5 @@
 .service-social-gallery .service-card-footer a{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border:1px solid #d4ff3766;border-radius:999px;background:#d4ff37;color:#111820;font-family:inherit;font-size:12px;font-weight:600;letter-spacing:-.015em;line-height:1.1;text-decoration:none}
 .service-social-gallery .service-card-footer a i{font-size:13px;font-style:normal}
 @media(hover:hover){.service-social-gallery .service-card-footer a:hover{background:#fff;border-color:#fff}}
+.service-carousel-hint{position:absolute;bottom:10px;left:50%;margin:0;color:#aeb9c8;font-size:13px;letter-spacing:.01em;transform:translateX(-50%)}
 @media(max-width:480px){.service-social-gallery .service-card-footer{padding:17px 14px;gap:10px}.service-social-gallery .service-card-footer h3{font-size:24px}.service-social-gallery .service-card-footer a{padding:9px 11px;font-size:11px}}

@@ -66,6 +66,7 @@ export default function SocialWorkGallery() {
             <a href={`/services#${current.slug}`}>Explore service <i aria-hidden="true">→</i></a>
           </footer>
         </article>
+        <p className="service-carousel-hint">Swipe or use arrows to explore.</p>
       </div>
     </section>
   );
