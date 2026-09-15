@@ -8,11 +8,11 @@ export default function RecentWorkSection() {
     <section className="work wrap" id="projects" aria-labelledby="recent-work-title">
       <div className="section-heading">
         <div>
-          <span className="refresh-eyebrow">WEBSTELL / SELECTED DIRECTIONS</span>
-          <h2 id="recent-work-title">Built for a<br />point of view.</h2>
+          <span className="refresh-eyebrow">SELECTED WORK</span>
+          <h2 id="recent-work-title">A few things we are proud<br />to put our name on.</h2>
         </div>
         <p className="recent-intro">
-          Travel, hospitality, culture, commerce and technology—twelve visual directions for brands that want to be remembered.
+          Websites and digital products built around a real audience, a clear goal and the details that earn trust.
         </p>
       </div>
       <div className="project-grid">
