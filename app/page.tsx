@@ -105,21 +105,6 @@ const insights = [
 ];
 const editorialCapabilities = [
   {
-    "title": "Your business, understood.",
-    "items": [
-      "We listen before we design",
-      "Clear scope and practical advice",
-      "A style that fits your audience",
-      "Content people can understand",
-      "A clear next step for visitors"
-    ],
-    "images": [
-      "/assets/refresh/local/coffee.webp",
-      "/assets/refresh/local/beauty.webp",
-      "/assets/refresh/local/travel.webp"
-    ]
-  },
-  {
     "title": "Design and development, together.",
     "items": [
       "One team from first sketch to launch",
