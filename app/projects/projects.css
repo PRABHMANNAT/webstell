@@ -141,6 +141,13 @@
   text-decoration: none;
 }
 
+.projects-list .project-preview:focus-visible,
+.projects-list .project-view:focus-visible,
+.concept-whatsapp:focus-visible {
+  outline: 3px solid #91a84d;
+  outline-offset: 4px;
+}
+
 @media (hover: hover) {
   .projects-list .project:hover .project-image img,
   .projects-list .project:focus-within .project-image img {

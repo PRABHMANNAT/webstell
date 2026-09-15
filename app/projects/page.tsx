@@ -51,7 +51,7 @@ export default function ProjectsPage() {
             {orderedWorkProjects.map((project) => {
               const editorial = getWorkEditorial(project);
               return <article className="project" id={`project-${project.id}`} key={project.id}>
-                <button className="project-preview" onClick={() => setSelected(project)} aria-label={`Preview ${project.title}`}>
+                <button type="button" className="project-preview" onClick={() => setSelected(project)} aria-label={`${editorial.cta}: ${project.title}`}>
                   <div className="project-image">
                     <Image src={project.image} alt={`${project.title} ${project.category} desktop concept preview`} fill sizes="(max-width: 700px) 92vw, 45vw" />
                     <span className="project-arrow" aria-hidden="true">↗</span>
@@ -60,7 +60,7 @@ export default function ProjectsPage() {
                 <span className="project-status">{editorial.status}</span>
                 <div className="project-title-row">
                   <h3>{project.title}</h3>
-                  <button className="project-view" onClick={() => setSelected(project)}>{editorial.cta} ↗</button>
+                  <button type="button" className="project-view" onClick={() => setSelected(project)}>{editorial.cta} ↗</button>
                 </div>
                 <p className="project-category">{project.category}</p>
                 <p className="project-description">{editorial.purpose}</p>
@@ -71,14 +71,14 @@ export default function ProjectsPage() {
         </section>
       </main>
       <StudioFooter />
-      <dialog ref={dialog} className="project-dialog concept-dialog" onCancel={() => setSelected(null)} aria-labelledby="project-preview-title">
+      <dialog ref={dialog} className="project-dialog concept-dialog" onCancel={() => setSelected(null)} aria-labelledby="project-preview-title" aria-describedby="concept-disclosure">
         <button type="button" className="close" onClick={() => setSelected(null)} aria-label="Close project">×</button>
         {selected && <>
           <Image src={selected.image} alt={`${selected.title} concept preview`} width={1200} height={760} />
           <span className="refresh-eyebrow">{getWorkEditorial(selected).status} / {selected.category}</span>
           <h2 id="project-preview-title">{selected.title}</h2>
           <p>{getWorkEditorial(selected).purpose}</p>
-          <p className="concept-disclosure">{conceptDisclosure}</p>
+          <p className="concept-disclosure" id="concept-disclosure">{conceptDisclosure}</p>
           <a className="concept-whatsapp" href={whatsappUrl(projectIntentMessage(selected))} target="_blank" rel="noreferrer">Discuss this direction on WhatsApp <span aria-hidden="true">↗</span></a>
         </>}
       </dialog>
