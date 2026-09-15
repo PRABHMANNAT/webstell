@@ -42,17 +42,6 @@ button {
   font: inherit;
   cursor: pointer;
 }
-@media (pointer: fine) {
-  body {
-    cursor: url('/assets/brand/webstell-cursor.png') 8 6, auto;
-  }
-  button,
-  a,
-  summary,
-  [role='button'] {
-    cursor: url('/assets/brand/webstell-cursor.png') 8 6, pointer;
-  }
-}
 button:focus-visible,
 a:focus-visible,
 summary:focus-visible {
