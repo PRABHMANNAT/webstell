@@ -1,6 +1,7 @@
 'use client';
 
 import { recentWorkProjects, type Project } from './portfolio-data';
+import Link from 'next/link';
 
 export default function RecentWorkSection({ onOpen }: { onOpen: (project: Project) => void }) {
   return (
@@ -34,9 +35,9 @@ export default function RecentWorkSection({ onOpen }: { onOpen: (project: Projec
         ))}
       </div>
       <div className="center">
-        <a className="outline-pill" href="/projects">
+        <Link className="outline-pill" href="/projects">
           Explore the full portfolio <span aria-hidden="true">↗</span>
-        </a>
+        </Link>
       </div>
     </section>
   );

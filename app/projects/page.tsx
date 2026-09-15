@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { recentWorkProjects, type Project } from '../portfolio-data';
 import StudioNav, { StudioFooter } from '../StudioNav';
 import './projects.css';
@@ -26,7 +27,7 @@ export default function ProjectsPage() {
               A growing collection of WEBSTELL studio concepts for brands with
               something worth saying. Open any direction to take a closer look.
             </p>
-            <a className="projects-back" href="/#projects">Back to home <span aria-hidden="true">↗</span></a>
+            <Link className="projects-back" href="/#projects">Back to home <span aria-hidden="true">↗</span></Link>
           </div>
         </section>
 

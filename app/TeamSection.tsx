@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import SocialIcon from './SocialIcon';
 import { team } from './team-data';
 
@@ -12,7 +13,7 @@ export default function TeamSection() {
       <div className="team-inner">
         <div className="team-heading">
           <div><span className="team-kicker">The people behind the work</span><h2 id="team-title">Meet our team</h2></div>
-          <a className="team-story" href="/contact"><span aria-hidden="true">↗</span> Discuss your project</a>
+          <Link className="team-story" href="/contact"><span aria-hidden="true">↗</span> Discuss your project</Link>
         </div>
         <div className="team-grid">
           {team.map((member, index) => (

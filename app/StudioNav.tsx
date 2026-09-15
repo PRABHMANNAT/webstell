@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowUpRight,
   CalendarDays,
@@ -66,7 +68,7 @@ export function HireDialog({
             </div>
             <ArrowUpRight />
           </a>
-          <a className="hire-option" href="/contact">
+          <Link className="hire-option" href="/contact">
             <span className="option-icon">
               <Send />
             </span>
@@ -75,8 +77,8 @@ export function HireDialog({
               <p>Give your idea a little more room.</p>
             </div>
             <ArrowUpRight />
-          </a>
-          <a className="hire-option" href="/schedule">
+          </Link>
+          <Link className="hire-option" href="/schedule">
             <span className="option-icon">
               <CalendarDays />
             </span>
@@ -85,7 +87,7 @@ export function HireDialog({
               <p>Pick a time for a 30-minute conversation.</p>
             </div>
             <ArrowUpRight />
-          </a>
+          </Link>
         </div>
         <p className="hire-footnote">
           Real people. Useful advice. No pressure.
@@ -134,17 +136,17 @@ export default function StudioNav({ current = '' }: { current?: string }) {
       <header className={scrolled ? 'site-header is-scrolled' : 'site-header'}>
         <div className="header wrap">
           <div className="nav-capsule">
-            <a className="nav-mark" href="/" aria-label="WEBSTELL home">
-              <img src="/assets/brand/webstell-retro-mac.png" alt="" />
+            <Link className="nav-mark" href="/" aria-label="WEBSTELL home">
+              <Image src="/assets/brand/webstell-retro-mac.png" alt="" width={29} height={29} priority />
               <span>WEBSTELL</span>
-            </a>
+            </Link>
             <nav
               id="navigation"
               aria-label="Main navigation"
               className={menu ? 'open' : ''}
             >
               {navigationLinks.map(([label, href], index) => (
-                <a
+                <Link
                   key={href}
                   href={href}
                   ref={index === 0 ? firstLinkRef : undefined}
@@ -154,23 +156,23 @@ export default function StudioNav({ current = '' }: { current?: string }) {
                   onClick={closeMenu}
                 >
                   {label}
-                </a>
+                </Link>
               ))}
             </nav>
+            <button
+              ref={menuButtonRef}
+              type="button"
+              className="menu-button"
+              onClick={toggleMenu}
+              aria-expanded={menu}
+              aria-controls="navigation"
+              aria-label={menu ? 'Close main navigation' : 'Open main navigation'}
+            >
+              {menu ? 'Close' : 'Menu'}{' '}
+              <span aria-hidden="true">{menu ? '−' : '☰'}</span>
+            </button>
           </div>
-          <button
-            ref={menuButtonRef}
-            type="button"
-            className="menu-button"
-            onClick={toggleMenu}
-            aria-expanded={menu}
-            aria-controls="navigation"
-            aria-label={menu ? 'Close main navigation' : 'Open main navigation'}
-          >
-            {menu ? 'Close' : 'Menu'}{' '}
-            <span aria-hidden="true">{menu ? '−' : '☰'}</span>
-          </button>
-          <a
+          <Link
             className="hire-pill"
             href="/contact"
           >
@@ -178,7 +180,7 @@ export default function StudioNav({ current = '' }: { current?: string }) {
               <ArrowUpRight size={22} />
             </span>{' '}
             Discuss your project
-          </a>
+          </Link>
         </div>
       </header>
     </>
@@ -188,36 +190,37 @@ export default function StudioNav({ current = '' }: { current?: string }) {
 export function StudioFooter() {
   return (
     <footer className="studio-footer studio-footer-rich">
-      <img
+      <Image
         className="studio-footer-image"
         src="/assets/footer/webstell-footer.avif"
         alt=""
-        loading="lazy"
+        fill
+        sizes="100vw"
       />
       <div className="studio-footer-shade" aria-hidden="true" />
       <div className="studio-footer-panel studio-width">
         <div className="studio-footer-intro">
-          <a href="/" className="studio-footer-brand">
+          <Link href="/" className="studio-footer-brand">
             WEBSTELL
-          </a>
+          </Link>
           <p>Ideas into things people use.</p>
-          <a className="studio-footer-call" href="/contact">
+          <Link className="studio-footer-call" href="/contact">
             <span>Have a project in mind?</span>
             Discuss your project <ArrowUpRight size={18} />
-          </a>
+          </Link>
         </div>
         <nav className="studio-footer-links" aria-label="Footer navigation">
           <div>
             <span>EXPLORE</span>
-            <a href="/">Home</a>
-            <a href="/projects">See our work</a>
-            <a href="/services">Services</a>
+            <Link href="/">Home</Link>
+            <Link href="/projects">See our work</Link>
+            <Link href="/services">Services</Link>
           </div>
           <div>
             <span>START HERE</span>
-            <a href="/pricing">Pricing</a>
-            <a href="/contact">Discuss your project</a>
-            <a href="/schedule">Book a call</a>
+            <Link href="/pricing">Pricing</Link>
+            <Link href="/contact">Discuss your project</Link>
+            <Link href="/schedule">Book a call</Link>
           </div>
         </nav>
         <div className="studio-footer-meta">

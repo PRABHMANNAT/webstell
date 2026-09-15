@@ -115,7 +115,7 @@ export default function HeroProjects() {
       </div>
       <div className="hero-project-caption" key={slide.title}>
         <span>
-          {slide.category} <small>DESIGN REFERENCE</small>
+          {slide.category} <small>INDEPENDENT REFERENCE · NOT CLIENT WORK</small>
         </span>
         <h2>{slide.title}</h2>
         <p>{slide.description}</p>

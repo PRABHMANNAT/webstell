@@ -58,7 +58,7 @@ export default function Testimonials(){
   <div className="testimonial-stage">
    {testimonials.map((item,index)=><button type="button" key={item.name} className={'testimonial-person testimonial-slot-'+slot(index)+(index===active?' is-active':'')} onClick={()=>setActive(index)} aria-label={'Show testimonial from '+item.name} aria-current={index===active?'true':undefined}>
     <img src={item.image} alt="" loading="lazy"/>
-    <span className="testimonial-person-copy"><b aria-hidden="true">★★★★★</b><strong>{item.name}</strong><small>{item.role}<br/>{item.location}</small></span>
+    <span className="testimonial-person-copy"><strong>{item.name}</strong><small>{item.role}<br/>{item.location}</small></span>
    </button>)}
    <span className="testimonial-quote-mark" aria-hidden="true">“</span>
   </div>

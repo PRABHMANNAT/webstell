@@ -199,6 +199,35 @@
   }
 }
 
+@media (max-width: 620px) {
+  .site-header .header.wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .site-header .nav-capsule {
+    width: 100%;
+  }
+
+  .site-header .header .menu-button {
+    position: static;
+    margin-left: auto;
+    background: #eef1e5;
+  }
+
+  .site-header .hire-pill {
+    grid-column: 1 / -1;
+    width: 100%;
+    justify-content: center;
+    font-size: 0;
+  }
+
+  .site-header .hire-pill::after {
+    content: 'Discuss';
+    font-size: 11px;
+  }
+}
+
 @media (max-width: 380px) {
   .site-header .header.wrap {
     gap: 5px;
@@ -216,6 +245,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .site-header,
   .site-header *,
   .site-header *::after {
