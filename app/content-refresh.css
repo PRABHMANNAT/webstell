@@ -20,6 +20,7 @@
 .project-title-row a{flex-shrink:0;font-size:12px;border-bottom:1px solid #aaa;padding-bottom:5px}
 .project .project-category{font:500 11px/1.4 monospace;text-transform:uppercase;letter-spacing:.08em;color:#646b73;margin:14px 0 8px}
 .project .project-description{font-size:17px;line-height:1.5;color:#515963;max-width:500px}
+@media(min-width:701px){.work .project-home-hide-desktop{display:none}}
 .portfolio-cta{position:relative;isolation:isolate;overflow:hidden;align-items:center;gap:20px;min-height:88px;padding:10px 29px 10px 10px;border-color:#171717;background:#171717;color:#fff}
 .portfolio-cta>*{position:relative;z-index:1}
 .portfolio-cta::after{position:absolute;z-index:0;top:-45%;left:-90%;width:42%;height:190%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),rgba(255,255,255,.34),rgba(255,255,255,.08),transparent);content:"";pointer-events:none;transform:rotate(18deg)}

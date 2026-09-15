@@ -141,15 +141,15 @@ export default function BriefForm({
     <form className={`studio-form ${compact ? 'studio-form-compact' : ''}`} onSubmit={submit} noValidate>
       <input className="studio-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <div className="studio-form-row">
-        <label>
+        <label className={compact ? 'studio-form-wide' : undefined}>
           Name <b aria-hidden="true">*</b>
           <input name="name" autoComplete="name" placeholder="What should we call you?" maxLength={100} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} />
           <FieldError id="name-error" message={errors.name} />
         </label>
-        <label>
-          Business name <span>(optional)</span>
-          <input name="businessName" autoComplete="organization" placeholder="Your company or brand" maxLength={150} />
-        </label>
+        {!compact && <label>
+            Business name <span>(optional)</span>
+            <input name="businessName" autoComplete="organization" placeholder="Your company or brand" maxLength={150} />
+          </label>}
       </div>
 
       <fieldset className="studio-contact-fields">
@@ -171,7 +171,7 @@ export default function BriefForm({
 
       {!booking && (
         <div className="studio-form-row">
-          <label>
+          <label className={compact ? 'studio-form-wide' : undefined}>
             What would you like us to build? <b aria-hidden="true">*</b>
             <select name="projectType" defaultValue={projectType} aria-invalid={Boolean(errors.projectType)} aria-describedby={errors.projectType ? 'project-type-error' : undefined}>
               <option value="" disabled>Choose the closest fit</option>
@@ -179,27 +179,27 @@ export default function BriefForm({
             </select>
             <FieldError id="project-type-error" message={errors.projectType} />
           </label>
-          <label>
-            Budget range <span>(optional)</span>
-            <select name="budgetRange" defaultValue="">
-              <option value="">Not sure yet</option>
-              <option>₹15,000 to ₹25,000</option>
-              <option>₹25,000 to ₹50,000</option>
-              <option>₹50,000 to ₹1,00,000</option>
-              <option>₹1,00,000+</option>
-              <option>I would like your advice</option>
-            </select>
-          </label>
+          {!compact && <label>
+              Budget range <span>(optional)</span>
+              <select name="budgetRange" defaultValue="">
+                <option value="">Not sure yet</option>
+                <option>₹15,000 to ₹25,000</option>
+                <option>₹25,000 to ₹50,000</option>
+                <option>₹50,000 to ₹1,00,000</option>
+                <option>₹1,00,000+</option>
+                <option>I would like your advice</option>
+              </select>
+            </label>}
         </div>
       )}
 
       <label>
         {booking ? 'What would make this call useful?' : 'What should this project achieve?'} <b aria-hidden="true">*</b>
-        <textarea name="projectGoal" rows={4} maxLength={4000} placeholder={booking ? 'Share the question, idea or decision you would like to talk through.' : 'Tell us the goal, what is not working now and what a good result would look like.'} aria-invalid={Boolean(errors.projectGoal)} aria-describedby={errors.projectGoal ? 'project-goal-error' : undefined} />
+        <textarea name="projectGoal" rows={compact ? 3 : 4} maxLength={4000} placeholder={booking ? 'Share the question, idea or decision you would like to talk through.' : 'Tell us the goal, what is not working now and what a good result would look like.'} aria-invalid={Boolean(errors.projectGoal)} aria-describedby={errors.projectGoal ? 'project-goal-error' : undefined} />
         <FieldError id="project-goal-error" message={errors.projectGoal} />
       </label>
 
-      <div className="studio-form-row">
+      {!compact && <div className="studio-form-row">
         {!booking && (
           <label>
             Ideal launch date <span>(optional)</span>
@@ -212,7 +212,7 @@ export default function BriefForm({
           <input name="referenceLinks" type="text" inputMode="url" placeholder="Your site, a brief or examples you like" maxLength={2000} aria-invalid={Boolean(errors.referenceLinks)} aria-describedby={errors.referenceLinks ? 'reference-links-error' : undefined} />
           <FieldError id="reference-links-error" message={errors.referenceLinks} />
         </label>
-      </div>
+      </div>}
 
       <p className="studio-privacy">We use your details only to respond to this enquiry. We do not add you to a marketing list without permission.</p>
       <button className="studio-button dark-button form-submit" type="submit" disabled={state === 'loading' || state === 'success'}>
