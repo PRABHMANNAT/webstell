@@ -166,7 +166,7 @@ export const recentWorkProjects:Project[] = [
     id: 'nomia',
     title: 'Nomia',
     category: 'Travel & Lifestyle',
-    description: 'A conversational travel planner that turns one idea into a living itinerary.',
+    description: 'A WEBSTELL travel-planning concept that turns one prompt into the beginning of a tailored journey.',
     image: '/assets/recent-work/nomia.png',
     kind: 'Design concept'
   },
@@ -174,7 +174,7 @@ export const recentWorkProjects:Project[] = [
     id: 'the-stay',
     title: 'The Stay',
     category: 'Travel & Stays',
-    description: 'A calming, destination-led experience for a stay worth planning around.',
+    description: 'A WEBSTELL stay concept that brings atmosphere, practical details and a clear booking path into one calm journey.',
     image: '/assets/recent-work/the-stay.png',
     kind: 'Design concept'
   },
@@ -182,7 +182,7 @@ export const recentWorkProjects:Project[] = [
     id: 'the-course',
     title: 'The Course',
     category: 'Leisure & Hospitality',
-    description: 'A refined course guide with an immersive view of the full landscape.',
+    description: 'A WEBSTELL course concept that makes a complete landscape easy to understand, explore and plan around.',
     image: '/assets/recent-work/course.png',
     kind: 'Design concept'
   },
@@ -190,7 +190,7 @@ export const recentWorkProjects:Project[] = [
     id: 'ferea',
     title: 'Ferea',
     category: 'Food & Drink',
-    description: 'A playful specialty coffee brand built around rich flavour and a direct order flow.',
+    description: 'A WEBSTELL coffee concept where rich flavour, distinct character and quick ordering meet in one memorable storefront.',
     image: '/assets/recent-work/ferea.png',
     kind: 'Design concept'
   },
@@ -198,7 +198,7 @@ export const recentWorkProjects:Project[] = [
     id: 'vantage',
     title: 'Vantage',
     category: 'Health & Fitness',
-    description: 'An energetic programme site for players ready to raise their baseline.',
+    description: 'A WEBSTELL performance concept that helps ambitious players find the right next step with energy and clarity.',
     image: '/assets/recent-work/vantage.png',
     kind: 'Design concept'
   },
@@ -206,7 +206,7 @@ export const recentWorkProjects:Project[] = [
     id: 'gen-z',
     title: 'GEN-Z',
     category: 'Fashion & Accessories',
-    description: 'A bold editorial storefront where product, identity and attitude meet.',
+    description: 'A WEBSTELL fashion concept where product, identity and attitude arrive with equal impact.',
     image: '/assets/recent-work/genz.png',
     kind: 'Design concept'
   },
@@ -214,7 +214,7 @@ export const recentWorkProjects:Project[] = [
     id: 'wedding',
     title: 'W&R',
     category: 'Weddings & Events',
-    description: 'A warm, personal space for a celebration, its story and every important detail.',
+    description: 'A WEBSTELL wedding concept designed to carry the feeling of a celebration from first glance to RSVP.',
     image: '/assets/recent-work/wedding.png',
     kind: 'Design concept'
   },
@@ -222,7 +222,7 @@ export const recentWorkProjects:Project[] = [
     id: 'fintechx',
     title: 'FintechX',
     category: 'Finance & Technology',
-    description: 'A clear financial platform that makes sophisticated tools feel welcoming.',
+    description: 'A WEBSTELL finance concept that gives sophisticated tools an approachable, confidence-building digital home.',
     image: '/assets/recent-work/fintechx.png',
     kind: 'Design concept'
   },
@@ -230,7 +230,7 @@ export const recentWorkProjects:Project[] = [
     id: 'noctra',
     title: 'Noctra',
     category: 'Culture & Hospitality',
-    description: 'An atmospheric digital experience for an observatory under the night sky.',
+    description: 'A WEBSTELL observatory concept that turns an after-dark visit into a sense of wonder and discovery.',
     image: '/assets/recent-work/noctra.png',
     kind: 'Design concept'
   },
@@ -238,7 +238,7 @@ export const recentWorkProjects:Project[] = [
     id: 'above',
     title: 'Above',
     category: 'Property & Real Estate',
-    description: 'A cinematic residential showcase made to turn a home into a destination.',
+    description: 'A WEBSTELL property concept designed to make a residence feel as considered online as it is in person.',
     image: '/assets/recent-work/above.png',
     kind: 'Design concept'
   },
@@ -246,7 +246,7 @@ export const recentWorkProjects:Project[] = [
     id: 'aeronis',
     title: 'Aeronis',
     category: 'Clean Energy',
-    description: 'A focused introduction to modern wind technology, performance and impact.',
+    description: 'A WEBSTELL clean-energy concept that gives innovation, performance and long-term impact a focused stage.',
     image: '/assets/recent-work/aeronis.png',
     kind: 'Design concept'
   },
@@ -254,7 +254,7 @@ export const recentWorkProjects:Project[] = [
     id: 'safario',
     title: 'Safario',
     category: 'Travel & Lifestyle',
-    description: 'A warm safari travel concept that puts remarkable African journeys and easy discovery at the centre.',
+    description: 'A WEBSTELL travel concept shaped to turn vivid safari inspiration into confident, considered itinerary enquiries.',
     image: '/assets/recent-work/safario.png',
     kind: 'Design concept'
   }

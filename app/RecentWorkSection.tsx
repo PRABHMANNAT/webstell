@@ -1,9 +1,9 @@
 'use client';
 
-import { recentWorkProjects, type Project } from './portfolio-data';
 import Link from 'next/link';
+import { recentWorkProjects } from './portfolio-data';
 
-export default function RecentWorkSection({ onOpen }: { onOpen: (project: Project) => void }) {
+export default function RecentWorkSection() {
   return (
     <section className="work wrap" id="projects" aria-labelledby="recent-work-title">
       <div className="section-heading">
@@ -18,16 +18,15 @@ export default function RecentWorkSection({ onOpen }: { onOpen: (project: Projec
       <div className="project-grid">
         {recentWorkProjects.map((project) => (
           <article className="project" key={project.id}>
-            <button className="project-preview" onClick={() => onOpen(project)} aria-label={`Preview ${project.title}`}>
+            <Link className="project-preview" href="/projects" aria-label={`View ${project.title} in all projects`}>
               <div className="project-image">
                 <img src={project.image} alt={`${project.title} website design direction`} loading="lazy" />
                 <span className="project-arrow" aria-hidden="true">↗</span>
               </div>
-            </button>
+            </Link>
             <span className="project-status">Studio concept</span>
             <div className="project-title-row">
               <h3>{project.title}</h3>
-              <button className="project-view" onClick={() => onOpen(project)}>View direction ↗</button>
             </div>
             <p className="project-category">{project.category}</p>
             <p className="project-description">{project.description}</p>
