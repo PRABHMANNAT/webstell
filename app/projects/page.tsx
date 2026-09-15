@@ -23,8 +23,8 @@ export default function ProjectsPage() {
             <span className="refresh-eyebrow">WEBSTELL / ALL PROJECTS</span>
             <h1>Directions made<br />to be explored.</h1>
             <p>
-              A growing collection of website directions for brands with something
-              worth saying. Open any project to take a closer look.
+              A growing collection of WEBSTELL studio concepts for brands with
+              something worth saying. Open any direction to take a closer look.
             </p>
             <a className="projects-back" href="/#projects">Back to home <span aria-hidden="true">↗</span></a>
           </div>
@@ -47,6 +47,7 @@ export default function ProjectsPage() {
                     <span className="project-arrow" aria-hidden="true">↗</span>
                   </div>
                 </button>
+                <span className="project-status">Studio concept</span>
                 <div className="project-title-row">
                   <h3>{project.title}</h3>
                   <button className="project-view" onClick={() => setSelected(project)}>View direction ↗</button>
@@ -63,7 +64,7 @@ export default function ProjectsPage() {
         <button className="close" onClick={() => setSelected(null)} aria-label="Close project">×</button>
         {selected && <>
           <img src={selected.image} alt={`${selected.title} preview`} />
-          <span className="refresh-eyebrow">{selected.kind} / {selected.category}</span>
+          <span className="refresh-eyebrow">Studio concept / {selected.category}</span>
           <h2 id="project-preview-title">{selected.title}</h2>
           <p>{selected.description}</p>
         </>}

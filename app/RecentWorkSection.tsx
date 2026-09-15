@@ -23,6 +23,7 @@ export default function RecentWorkSection({ onOpen }: { onOpen: (project: Projec
                 <span className="project-arrow" aria-hidden="true">↗</span>
               </div>
             </button>
+            <span className="project-status">Studio concept</span>
             <div className="project-title-row">
               <h3>{project.title}</h3>
               <button className="project-view" onClick={() => onOpen(project)}>View direction ↗</button>

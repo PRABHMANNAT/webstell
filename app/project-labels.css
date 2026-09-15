@@ -1,0 +1,2 @@
+.project-status{display:inline-flex;align-items:center;width:max-content;margin-top:1rem;padding:.38rem .66rem;border:1px solid currentColor;border-radius:999px;color:#59615a;font:600 .66rem/1 var(--mono,monospace);letter-spacing:.08em;text-transform:uppercase}
+.project-status::before{content:"";width:.4rem;height:.4rem;margin-right:.45rem;border-radius:50%;background:#b9d37b}
