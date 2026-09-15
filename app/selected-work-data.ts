@@ -29,6 +29,7 @@ export const selectedWorkProjects: SelectedWorkProject[] = selectedDetails.map((
 });
 
 const selectedIds = new Set(selectedDetails.map(({ id }) => id));
+const selectedProjectById = new Map(selectedWorkProjects.map((project) => [project.id, project]));
 
 export const orderedWorkProjects = [
   ...selectedWorkProjects,
@@ -37,4 +38,15 @@ export const orderedWorkProjects = [
 
 export function projectIntentMessage(project: Project) {
   return `Hi WEBSTELL! I would like to discuss the ${project.title} ${project.kind === 'Design concept' ? 'studio concept' : 'project'} and explore a direction for my business.`;
+}
+
+export function getWorkEditorial(project: Project): Pick<SelectedWorkProject, 'status' | 'purpose' | 'role' | 'cta'> {
+  const selectedProject = selectedProjectById.get(project.id);
+  if (selectedProject) return selectedProject;
+  return {
+    status: 'Studio Concept',
+    purpose: project.description,
+    role: 'Concept strategy, visual direction, UI/UX and responsive prototyping.',
+    cta: 'Explore the concept',
+  };
 }
