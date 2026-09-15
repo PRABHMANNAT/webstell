@@ -2,13 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import type { Project } from '../portfolio-data';
+import { recentWorkProjects, type Project } from '../portfolio-data';
 import StudioNav, { StudioFooter } from '../StudioNav';
-import InternationalReferences from '../InternationalReferences';
-import WorksMarquee from '../WorksMarquee';
-import { conceptDisclosure, getWorkEditorial, orderedWorkProjects, projectIntentMessage } from '../selected-work-data';
-import { whatsappUrl } from '../contact-utils';
 import './projects.css';
 
 export default function ProjectsPage() {
@@ -36,50 +31,43 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        <InternationalReferences />
-        <WorksMarquee />
-
         <section className="projects-list wrap" aria-labelledby="all-projects-title">
           <div className="projects-list-heading">
             <div>
-              <span className="refresh-eyebrow">{String(orderedWorkProjects.length).padStart(2, '0')} STUDIO CONCEPTS</span>
+              <span className="refresh-eyebrow">{String(recentWorkProjects.length).padStart(2, '0')} PROJECTS</span>
               <h2 id="all-projects-title">All projects.</h2>
             </div>
-            <p>Self-initiated directions across travel, hospitality, culture, commerce and technology. Every card is clearly marked as concept work.</p>
+            <p>Travel, hospitality, culture, commerce and technology, brought together in one visual collection.</p>
           </div>
           <div className="project-grid">
-            {orderedWorkProjects.map((project) => {
-              const editorial = getWorkEditorial(project);
-              return <article className="project" id={`project-${project.id}`} key={project.id}>
-                <button type="button" className="project-preview" onClick={() => setSelected(project)} aria-label={`${editorial.cta}: ${project.title}`}>
+            {recentWorkProjects.map((project) => (
+              <article className="project" key={project.id}>
+                <button className="project-preview" onClick={() => setSelected(project)} aria-label={`Preview ${project.title}`}>
                   <div className="project-image">
-                    <Image src={project.image} alt={`${project.title} ${project.category} desktop concept preview`} fill sizes="(max-width: 700px) 92vw, 45vw" />
+                    <img src={project.image} alt={`${project.title} website design direction`} loading="lazy" />
                     <span className="project-arrow" aria-hidden="true">↗</span>
                   </div>
                 </button>
-                <span className="project-status">{editorial.status}</span>
+                <span className="project-status">Studio concept</span>
                 <div className="project-title-row">
                   <h3>{project.title}</h3>
-                  <button type="button" className="project-view" onClick={() => setSelected(project)}>{editorial.cta} ↗</button>
+                  <button className="project-view" onClick={() => setSelected(project)}>View direction ↗</button>
                 </div>
                 <p className="project-category">{project.category}</p>
-                <p className="project-description">{editorial.purpose}</p>
-                <p className="project-role"><strong>Our role:</strong> {editorial.role}</p>
-              </article>;
-            })}
+                <p className="project-description">{project.description}</p>
+              </article>
+            ))}
           </div>
         </section>
       </main>
       <StudioFooter />
-      <dialog ref={dialog} className="project-dialog concept-dialog" onCancel={() => setSelected(null)} aria-labelledby="project-preview-title" aria-describedby="concept-disclosure">
-        <button type="button" className="close" onClick={() => setSelected(null)} aria-label="Close project">×</button>
+      <dialog ref={dialog} className="project-dialog" onCancel={() => setSelected(null)} onClick={(event) => { if (event.target === event.currentTarget) setSelected(null); }} aria-labelledby="project-preview-title">
+        <button className="close" onClick={() => setSelected(null)} aria-label="Close project">×</button>
         {selected && <>
-          <Image src={selected.image} alt={`${selected.title} concept preview`} width={1200} height={760} />
-          <span className="refresh-eyebrow">{getWorkEditorial(selected).status} / {selected.category}</span>
+          <img src={selected.image} alt={`${selected.title} preview`} />
+          <span className="refresh-eyebrow">Studio concept / {selected.category}</span>
           <h2 id="project-preview-title">{selected.title}</h2>
-          <p>{getWorkEditorial(selected).purpose}</p>
-          <p className="concept-disclosure" id="concept-disclosure">{conceptDisclosure}</p>
-          <a className="concept-whatsapp" href={whatsappUrl(projectIntentMessage(selected))} target="_blank" rel="noreferrer">Discuss this direction on WhatsApp <span aria-hidden="true">↗</span></a>
+          <p>{selected.description}</p>
         </>}
       </dialog>
     </>

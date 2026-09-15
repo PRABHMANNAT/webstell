@@ -80,82 +80,6 @@
   gap: clamp(48px, 7vw, 100px) 30px;
 }
 
-.projects-list .project {
-  scroll-margin-top: 7rem;
-}
-
-.projects-list .project-preview {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  border-radius: 1.6rem;
-  background: transparent;
-  text-align: left;
-}
-
-.projects-list .project-image {
-  min-height: 26rem;
-  border-radius: 1.6rem;
-  box-shadow: 0 16px 44px #1720160c;
-}
-
-.projects-list .project-image img {
-  object-fit: cover;
-  transition: transform .55s cubic-bezier(.2,.72,.2,1), filter .35s ease;
-}
-
-.project-role {
-  margin-top: .7rem !important;
-  color: #747b73 !important;
-  font-size: .9rem !important;
-  line-height: 1.5;
-}
-
-.project-role strong {
-  color: #343a33;
-}
-
-.concept-dialog .concept-disclosure {
-  margin-top: 1rem;
-  padding: 1rem;
-  border: 1px solid #d9ddd5;
-  border-radius: 1rem;
-  background: #f2f5ed;
-  color: #4f574e;
-  font-size: .9rem;
-  line-height: 1.5;
-}
-
-.concept-whatsapp {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 1rem;
-  padding: .9rem 1rem;
-  border-radius: 999px;
-  background: #171917;
-  color: #fff;
-  font-weight: 650;
-  text-decoration: none;
-}
-
-.projects-list .project-preview:focus-visible,
-.projects-list .project-view:focus-visible,
-.concept-whatsapp:focus-visible {
-  outline: 3px solid #91a84d;
-  outline-offset: 4px;
-}
-
-@media (hover: hover) {
-  .projects-list .project:hover .project-image img,
-  .projects-list .project:focus-within .project-image img {
-    transform: scale(1.025);
-    filter: saturate(1.04);
-  }
-}
-
 @media (max-width: 700px) {
   .projects-hero-inner {
     display: block;
@@ -171,28 +95,5 @@
 
   .projects-list-heading > p {
     margin-top: 26px;
-  }
-
-  .projects-list .project-image {
-    min-height: 0;
-    aspect-ratio: 1.03;
-    border-radius: 1.2rem;
-  }
-
-  .projects-list .project-view {
-    min-height: 2.75rem;
-    padding-inline: .8rem;
-  }
-
-  .concept-dialog {
-    width: calc(100% - 1rem);
-    max-height: calc(100dvh - 1rem);
-    padding: 1rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .projects-list .project-image img {
-    transition: none;
   }
 }
