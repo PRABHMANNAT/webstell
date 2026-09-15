@@ -20,7 +20,7 @@
 .project-title-row a{flex-shrink:0;font-size:12px;border-bottom:1px solid #aaa;padding-bottom:5px}
 .project .project-category{font:500 11px/1.4 monospace;text-transform:uppercase;letter-spacing:.08em;color:#646b73;margin:14px 0 8px}
 .project .project-description{font-size:17px;line-height:1.5;color:#515963;max-width:500px}
-.portfolio-cta{align-items:center;gap:16px;min-height:76px;padding:8px 24px 8px 8px;color:#151515}
+.portfolio-cta{align-items:center;gap:16px;min-height:76px;padding:8px 24px 8px 8px;border-color:#171717;background:#171717;color:#fff}
 .portfolio-cta-eyes{display:flex;align-items:center;justify-content:center;gap:3px;width:58px;height:58px;border-radius:16px;background:#171717;color:#f8f8f4;flex:0 0 auto}
 .portfolio-cta-eyes i{position:relative;display:block;width:18px;height:24px;overflow:hidden;border:1.75px solid currentColor;border-radius:50%;background:#f8f8f4}
 .portfolio-cta-eyes b{position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:#171717;transform:translate(-50%,-50%)}
@@ -32,7 +32,7 @@
  .portfolio-cta-eyes b{transition:transform .26s cubic-bezier(.2,.8,.2,1)}
  .portfolio-cta-arrow{transition:transform .36s cubic-bezier(.2,.8,.2,1)}
  @media(hover:hover){
-  .portfolio-cta:hover{background:#171717;color:#fff;box-shadow:0 14px 28px #1717171f;transform:translateY(-3px)}
+  .portfolio-cta:hover{background:#2a3024;color:#fff;box-shadow:0 16px 32px #1717172e;transform:translateY(-3px)}
   .portfolio-cta:hover .portfolio-cta-eyes{background:#dce7bd;transform:rotate(-4deg) scale(1.04)}
   .portfolio-cta:hover .portfolio-cta-eyes i{transform:scaleY(.92)}
   .portfolio-cta:hover .portfolio-cta-eyes i:first-child b{transform:translate(calc(-50% + 3px),calc(-50% - 1px))}
