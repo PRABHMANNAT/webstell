@@ -24,7 +24,6 @@ export default function RecentWorkSection() {
                 <span className="project-arrow" aria-hidden="true">↗</span>
               </div>
             </Link>
-            <span className="project-status">Studio concept</span>
             <div className="project-title-row">
               <h3>{project.title}</h3>
             </div>

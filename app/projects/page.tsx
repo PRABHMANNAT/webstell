@@ -48,7 +48,6 @@ export default function ProjectsPage() {
                     <span className="project-arrow" aria-hidden="true">↗</span>
                   </div>
                 </button>
-                <span className="project-status">Studio concept</span>
                 <div className="project-title-row">
                   <h3>{project.title}</h3>
                   <button className="project-view" onClick={() => setSelected(project)}>View direction ↗</button>
