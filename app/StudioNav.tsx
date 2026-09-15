@@ -201,22 +201,22 @@ export function StudioFooter() {
             WEBSTELL
           </a>
           <p>Ideas into things people use.</p>
-          <a className="studio-footer-call" href="/schedule">
+          <a className="studio-footer-call" href="/contact">
             <span>Have a project in mind?</span>
-            Book a call <ArrowUpRight size={18} />
+            Discuss your project <ArrowUpRight size={18} />
           </a>
         </div>
         <nav className="studio-footer-links" aria-label="Footer navigation">
           <div>
             <span>EXPLORE</span>
             <a href="/">Home</a>
-            <a href="/#projects">Selected work</a>
-            <a href="/#services">Services</a>
+            <a href="/projects">See our work</a>
+            <a href="/services">Services</a>
           </div>
           <div>
             <span>START HERE</span>
             <a href="/pricing">Pricing</a>
-            <a href="/contact">Send a brief</a>
+            <a href="/contact">Discuss your project</a>
             <a href="/schedule">Book a call</a>
           </div>
         </nav>

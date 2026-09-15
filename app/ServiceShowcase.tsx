@@ -150,7 +150,7 @@ export default function ServiceShowcase({ onContact }: { onContact: () => void }
 
             <div className="offer-detail-top">
               <span>WEBSTELL / 0{activeOffer + 1}</span>
-              <button onClick={onContact}>Start a project <i aria-hidden="true">↗</i></button>
+              <button onClick={onContact}>Discuss your project <i aria-hidden="true">↗</i></button>
             </div>
 
             <div className="offer-glass-copy">
