@@ -1739,33 +1739,78 @@ button:disabled {
   line-height: 1.8;
   margin-top: 20px;
 }
-.home-contact-invite {
-  padding: 90px 0;
-  background: #20261b;
-  color: #f6faef;
+.home-contact-form {
+  padding: clamp(68px, 9vw, 128px) 0;
+  background: #17201b;
+  color: #f5f8ef;
 }
-.home-contact-invite .studio-eyebrow {
-  color: #b5c49f;
+.home-contact-form .studio-width {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(440px, 1.14fr);
+  gap: clamp(38px, 7vw, 110px);
+  align-items: start;
 }
-.home-contact-invite h2 {
-  font-size: clamp(50px, 7.5vw, 100px);
-  letter-spacing: -0.06em;
-  line-height: 1.02;
-  margin: 32px 0;
+.home-contact-form-intro {
+  padding-top: 18px;
 }
-.home-contact-invite h2 > span {
-  color: #afc78c;
+.home-contact-form-intro .studio-eyebrow {
+  color: #b8ca9d;
 }
-.home-contact-invite .studio-width > div {
-  display: flex;
+.home-contact-form-intro h2 {
+  max-width: 520px;
+  margin: 22px 0 20px;
+  font-size: clamp(48px, 5.7vw, 82px);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 0.96;
+}
+.home-contact-form-intro p {
+  max-width: 440px;
+  margin: 0;
+  color: #c5d1b4;
+  font-size: 17px;
+  line-height: 1.62;
+}
+.home-contact-whatsapp {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 30px;
+  gap: 9px;
+  margin-top: 30px;
+  color: #d9ff53;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
 }
-.home-contact-invite p {
-  font-size: 18px;
-  color: #b7c6a1;
-  line-height: 1.7;
+.home-contact-whatsapp:hover {
+  color: #fff;
+}
+.home-contact-form-card {
+  padding: clamp(24px, 3vw, 42px);
+  border: 1px solid #dce6ce26;
+  border-radius: 26px;
+  background: #f4f7ef;
+  color: #20251f;
+}
+.home-contact-form-card > span {
+  display: block;
+  margin-bottom: 26px;
+  color: #68755f;
+  font: 11px/1 var(--mono, monospace);
+  letter-spacing: 0.13em;
+}
+.home-contact-form-card .studio-form {
+  gap: 17px;
+}
+.home-contact-form-card .studio-form input:not([type='checkbox']),
+.home-contact-form-card .studio-form textarea {
+  border-color: #d3dac8;
+  background: #fff;
+}
+.home-contact-form-card .form-preview-note {
+  color: #697662;
+}
+.home-contact-form-card .brief-ready {
+  background: #e8f2d7;
 }
 @media (max-width: 767px) {
   .hire-pill {
@@ -1786,15 +1831,15 @@ button:disabled {
   .starter-plans {
     padding-top: 55px;
   }
-  .home-contact-invite {
+  .home-contact-form {
     padding: 65px 0;
   }
-  .home-contact-invite .studio-width > div {
-    align-items: flex-start;
-    flex-direction: column;
+  .home-contact-form .studio-width {
+    grid-template-columns: 1fr;
+    gap: 38px;
   }
-  .home-contact-invite p {
-    font-size: 16px;
+  .home-contact-form-intro {
+    padding-top: 0;
   }
   .header .menu-button {
     margin-left: auto;

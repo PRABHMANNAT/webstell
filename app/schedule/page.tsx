@@ -1,8 +1,8 @@
 import ScheduleExperience from './ScheduleExperience';
 export const metadata = {
-  title: 'Book a Conversation | WEBSTELL',
+  title: 'Request a Project Call | WEBSTELL',
   description:
-    'Choose a preferred day and time to discuss your website, app or software project with WEBSTELL.',
+    'Request a preferred day and time for a 30-minute project call with WEBSTELL. Your time is confirmed after the team replies.',
 };
 export default function SchedulePage() {
   return <ScheduleExperience />;

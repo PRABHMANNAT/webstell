@@ -58,10 +58,12 @@ export default function SocialWorkGallery() {
           <header><span className="social-avatar" aria-hidden="true"><img src="/assets/brand/webstell-retro-mac.png" alt="" /></span><strong>WEBSTELL</strong><span className="service-post-count">{String(active + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}</span></header>
           <div className="social-post-image service-post-video">
             <ViewportVideo key={current.video} src={current.video} loop aria-label={`${current.title} service video`} />
+            <button className="social-prev" type="button" aria-label="Previous service" onPointerDown={(event) => event.stopPropagation()} onPointerUp={(event) => event.stopPropagation()} onClick={() => move(-1)}>‹</button>
+            <button className="social-next" type="button" aria-label="Next service" onPointerDown={(event) => event.stopPropagation()} onPointerUp={(event) => event.stopPropagation()} onClick={() => move(1)}>›</button>
           </div>
           <footer className="service-card-footer">
             <h3>{current.title}</h3>
-            <a href={`/services#${current.slug}`}>Explore service <i aria-hidden="true">↗</i></a>
+            <a href={`/services#${current.slug}`}>View details <i aria-hidden="true">↗</i></a>
           </footer>
         </article>
       </div>

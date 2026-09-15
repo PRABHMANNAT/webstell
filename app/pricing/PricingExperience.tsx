@@ -126,7 +126,7 @@ export default function PricingExperience() {
               <a className="pricing-call-button" href={callHref}>
                 <span>
                   Still figuring it out?
-                  <small>Book a 30-minute call</small>
+                  <small>Request a 30-minute call</small>
                 </span>
                 <ArrowUpRight size={20} />
               </a>
@@ -368,7 +368,7 @@ export default function PricingExperience() {
               </span>
             </a>
             <a href={callHref} className="receipt-call-link">
-              Still undecided? Book a 30-minute call <ArrowUpRight size={16} />
+              Still undecided? Request a 30-minute call <ArrowUpRight size={16} />
             </a>
             <p className="receipt-note">
               This is a working estimate, not a final quote. We’ll confirm the

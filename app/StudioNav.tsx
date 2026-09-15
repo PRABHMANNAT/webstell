@@ -83,7 +83,7 @@ export function HireDialog({
               <CalendarDays />
             </span>
             <div>
-              <strong>Book a call</strong>
+              <strong>Request a call</strong>
               <p>Pick a time for a 30-minute conversation.</p>
             </div>
             <ArrowUpRight />
@@ -228,7 +228,7 @@ export function StudioFooter() {
             <span>START HERE</span>
             <Link href="/pricing">Pricing</Link>
             <Link href="/contact">Discuss your project</Link>
-            <Link href="/schedule">Book a call</Link>
+            <Link href="/schedule">Request a call</Link>
           </div>
         </nav>
         <div className="studio-footer-meta">

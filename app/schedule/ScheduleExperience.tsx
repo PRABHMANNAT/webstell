@@ -98,14 +98,12 @@ export default function ScheduleExperience() {
       <StudioNav />
       <main className="studio-page schedule-page">
         <section className="schedule-intro studio-width">
-          <span className="studio-eyebrow">
-            LESS BACK-AND-FORTH. MORE GETTING STARTED.
-          </span>
+          <span className="studio-eyebrow">REQUEST A CALL</span>
           <h1>
-            Let’s put a little time
-            <br />
-            <span>behind your idea.</span>
+            Request a 30-minute
+            <br /><span>project call.</span>
           </h1>
+          <p>Choose a preferred time below. It becomes confirmed after the WEBSTELL team replies.</p>
         </section>
         <section className="schedule-card studio-width">
           <aside className="call-intro">
@@ -113,10 +111,10 @@ export default function ScheduleExperience() {
               W<span>↗</span>
             </div>
             <span className="studio-eyebrow">A CONVERSATION WITH WEBSTELL</span>
-            <h2>First, we listen.</h2>
+            <h2>Start with what you know.</h2>
             <p>
-              Walk us through your idea. We’ll talk about what’s possible, what
-              it might take, and the next sensible step.
+              Walk us through the goal or the problem. We will use the call to
+              clarify the scope and agree on a sensible next step.
             </p>
             {pricingHandoff && (
               <div className="call-pricing-context">
@@ -155,7 +153,7 @@ export default function ScheduleExperience() {
               <span>01 / DATE & TIME</span>
             </div>
             <p className="section-subtitle">
-              Select a date and a time that works for you.
+              Select a date and time that works for you. This is a request, not a confirmed booking yet.
             </p>
             {month && lowerBound && upperBound && (
               <>
@@ -294,7 +292,7 @@ export default function ScheduleExperience() {
                   ))}
                 </div>
                 <p className="calendar-note">
-                  These are preferred times, subject to team availability.
+                  We will confirm this time by email or WhatsApp after checking team availability.
                 </p>
               </>
             )}
@@ -302,15 +300,14 @@ export default function ScheduleExperience() {
         </section>
         <section className="enquiry-layout schedule-details studio-width">
           <div>
-            <span className="studio-eyebrow">02 / A LITTLE ABOUT YOU</span>
+            <span className="studio-eyebrow">02 / YOUR DETAILS</span>
             <h2>
               Who’s joining
               <br />
               <span>the conversation?</span>
             </h2>
             <p>
-              Your idea doesn’t need to be fully formed. A little context helps
-              us make the call useful.
+              Share enough context for us to prepare. You do not need a finished brief.
             </p>
             <div className="selected-call" aria-live="polite">
               <CalendarDays size={23} />

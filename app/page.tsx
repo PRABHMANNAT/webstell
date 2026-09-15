@@ -20,9 +20,9 @@ const featuredProjects = [
  {number:'03',title:'Eclipse Space',category:'Digital infrastructure',location:'United States / Global',description:'A clear, credible product experience that makes sophisticated space infrastructure easier for global partners to understand.',tags:['Product narrative','Technical clarity','Global systems'],image:'/assets/featured-projects/eclipse-space-orbit.png',url:'https://www.eclipse.space/',tone:'eclipse'},
 ];
 const insights = [
- {eyebrow:'TRANSFORMATION',title:'Why a distinctive website is still your strongest digital advantage',text:'How focused design, clear positioning and thoughtful development turn a website into a dependable engine for growth.',author:'WEBSTELL Studio'},
- {eyebrow:'ARCHITECTURE',title:'From website to workflow: building connected digital systems',text:'A practical look at connecting customer experiences, internal tools and automation without adding unnecessary complexity.',author:'WEBSTELL Engineering'},
- {eyebrow:'INTELLIGENCE',title:'Designing AI experiences that feel useful, clear and human',text:'Where assistants and smart workflows genuinely improve the customer journey—and where simpler interactions work better.',author:'WEBSTELL Labs'},
+ {eyebrow:'GROWTH',title:'Your website should bring in business.',text:'Clear messaging, a confident look and an easy way to get in touch help the right customers choose you.',author:'WEBSTELL Studio'},
+ {eyebrow:'CLARITY',title:'Make it easy for customers to choose you.',text:'When people quickly understand what you offer and why it matters, they are far more likely to take the next step.',author:'WEBSTELL Studio'},
+ {eyebrow:'SMARTER WORK',title:'Spend less time on repetitive work.',text:'Simple tools and thoughtful automation help your team reply faster, stay organised and focus on the work that matters.',author:'WEBSTELL Engineering'},
 ];
 export default function Home() {
  const [selected,setSelected]=useState<Project|null>(null);
