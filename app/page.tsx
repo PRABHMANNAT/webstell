@@ -1,19 +1,15 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import WorksMarquee from './WorksMarquee';
-import SocialWorkGallery from './SocialWorkGallery';
 import CurvedTicker from './CurvedTicker';
 import Testimonials from './Testimonials';
 import StudioNav, { HireDialog } from './StudioNav';
-import HeroProjects from './HeroProjects';
 import ContactSection from './ContactSection';
-import RecentWorkSection from './RecentWorkSection';
 import ServiceShowcase from './ServiceShowcase';
-import { type Project } from './portfolio-data';
 import SocialIcon from './SocialIcon';
 import TeamSection from './TeamSection';
 import { team } from './team-data';
 import ViewportVideo from './ViewportVideo';
+import SelectedWorkSection from './SelectedWorkSection';
 const serviceSpectrum = [
  {slug:'web',label:'Websites',title:'Website design & development',text:'Clear, fast websites that make your business memorable and easy to choose.',tags:['Strategy & content','Design & build','Search-ready launch'],video:'/assets/service-website-design-reel.mp4',image:'/assets/recent-work/safario.png'},
  {slug:'commerce',label:'Commerce',title:'Ecommerce & online stores',text:'Shopping experiences designed to turn discovery into confident orders.',tags:['Shopify & custom stores','Payments & shipping'],video:'/assets/service-ecommerce.mp4',image:'/assets/refresh/sites/maverick.jpg'},
@@ -107,12 +103,9 @@ const insights = [
  {eyebrow:'INTELLIGENCE',title:'Designing AI experiences that feel useful, clear and human',text:'Where assistants and smart workflows genuinely improve the customer journey—and where simpler interactions work better.',author:'WEBSTELL Labs'},
 ];
 export default function Home() {
- const [selected,setSelected]=useState<Project|null>(null);
  const [contact,setContact]=useState(false);
  const [subscribed,setSubscribed]=useState(false);
- const projectDialog=useRef<HTMLDialogElement>(null);
  const heroCta=useRef<HTMLButtonElement>(null);
- useEffect(()=>{if(selected!==null)projectDialog.current?.showModal();else projectDialog.current?.close()},[selected]);
  useEffect(()=>{
   const button=heroCta.current;
   const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -129,10 +122,8 @@ export default function Home() {
  return <>
  <StudioNav/>
  <main>
-<section className="launch-hero" aria-labelledby="launch-title"><img className="launch-landscape" src="/assets/hero/webstell-landscape.avif" alt="A retro computer in a sunlit green landscape"/><div className="launch-wash" aria-hidden="true"></div><div className="launch-copy"><span className="launch-kicker">INDEPENDENT MINDS. ONE CREATIVE STUDIO.</span><h1 id="launch-title"><span>Websites people</span><strong>remember<span className="hero-period">.</span></strong></h1><p>Websites, custom software, portfolios and mobile apps. We design and build the things your business needs—with a team you can actually talk to.</p><button ref={heroCta} onClick={()=>setContact(true)}><span className="cta-eyes" aria-hidden="true"><i><b></b></i><i><b></b></i></span> Discuss your project <span className="hero-cta-arrow" aria-hidden="true">↗</span></button><a className="hero-secondary" href="/projects">See our work <span aria-hidden="true">↗</span></a></div><HeroProjects/><div className="launch-capabilities"><p>We build what’s next.<br/><span>You take it further.</span></p><div>{['Websites','Software','Mobile Apps','Portfolios','Chatbots','AI Automations'].map(item=><a key={item} href="/services">{item}<span aria-hidden="true">↗</span></a>)}</div></div></section>
- <WorksMarquee/>
- <RecentWorkSection onOpen={setSelected}/>
- <SocialWorkGallery onOpen={setSelected}/>
+<section className="launch-hero launch-hero-focused" aria-labelledby="launch-title"><img className="launch-landscape" src="/assets/hero/webstell-landscape.avif" alt="A retro computer in a sunlit green landscape"/><div className="launch-wash" aria-hidden="true"></div><div className="launch-copy"><span className="launch-kicker">INDEPENDENT MINDS. ONE CREATIVE STUDIO.</span><h1 id="launch-title"><span>Websites people</span><strong>remember<span className="hero-period">.</span></strong></h1><p>Websites, custom software, portfolios and mobile apps. We design and build the things your business needs—with a team you can actually talk to.</p><button ref={heroCta} onClick={()=>setContact(true)}><span className="cta-eyes" aria-hidden="true"><i><b></b></i><i><b></b></i></span> Discuss your project <span className="hero-cta-arrow" aria-hidden="true">↗</span></button><a className="hero-secondary" href="/projects">See our work <span aria-hidden="true">↗</span></a></div><div className="launch-capabilities"><p>We build what’s next.<br/><span>You take it further.</span></p><div>{['Websites','Software','Mobile Apps','Portfolios','Chatbots','AI Automations'].map(item=><a key={item} href="/services">{item}<span aria-hidden="true">↗</span></a>)}</div></div></section>
+ <SelectedWorkSection />
  <ServiceShowcase onContact={()=>setContact(true)}/>
  <section className="service-spectrum wrap" aria-labelledby="service-spectrum-title">
    <div className="service-spectrum-intro"><span className="systems-label">OUR SERVICES</span><h2 id="service-spectrum-title">One studio, six ways to move your business forward.</h2><p>Start with the digital experience that will make the biggest difference now. Every service can stand alone—or connect into a system that grows with you.</p></div>
@@ -150,6 +141,5 @@ export default function Home() {
  </main>
  <footer className="site-footer"><img className="site-footer-bg" src="/assets/footer/webstell-footer.avif" alt="Luminous cube in a landscaped garden" loading="lazy"/><div className="site-footer-shade" aria-hidden="true"></div><div className="footer-panel wrap"><div className="footer-brand"><a className="footer-logo" href="#">WEBSTELL</a><p>We create distinctive websites, brands and digital products for ambitious businesses.</p><form className="subscribe-form" onSubmit={e=>{e.preventDefault();setSubscribed(true)}}><label className="sr-only" htmlFor="footer-email">Email address</label><input id="footer-email" type="email" required placeholder="you@company.com" aria-describedby="subscribe-status"/><button type="submit"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4 18-7Z"/></svg></span>{subscribed?'Subscribed':'Subscribe'}</button></form><p className="subscribe-status" id="subscribe-status" aria-live="polite">{subscribed?'Thanks — you’re on the WEBSTELL list.':'Fresh thinking on design, digital products and growth—sent occasionally.'}</p><span className="footer-social-label">FOLLOW THE TEAM:</span><div className="footer-socials"><a href="https://www.linkedin.com/in/prabhmannat/" target="_blank" rel="noreferrer" aria-label="WEBSTELL team on LinkedIn"><SocialIcon name="linkedin"/></a><a href="https://www.instagram.com/young.elonmusk/" target="_blank" rel="noreferrer" aria-label="WEBSTELL team on Instagram"><SocialIcon name="instagram"/></a><a href="https://github.com/PRABHMANNAT/webstell" target="_blank" rel="noreferrer" aria-label="WEBSTELL on GitHub"><SocialIcon name="github"/></a></div></div><nav className="footer-links" aria-label="Footer navigation"><div><a href="#">Home</a><a href="#services">Services</a><a href="/projects">Works</a><a href="#insights">Insights</a></div><div><a href="#team">About us</a><a href="#team">Meet the team</a><button onClick={()=>setContact(true)}>Start a project</button><a href="#faq">FAQs</a></div><div className="footer-policies"><strong>Explore</strong><a href="/contact">Contact</a><a href="/pricing">Pricing</a><a href="#services">Our services</a><a href="/projects">Selected work</a><a href="#team">Our team</a><a href="#insights">Latest insights</a><a href="#faq">Common questions</a><a href="#" onClick={e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})}}>Back to top</a></div></nav></div><div className="footer-wordmark" aria-hidden="true">WEBSTELL</div></footer>
  <HireDialog open={contact} onOpenChange={setContact}/>
- <dialog ref={projectDialog} className="project-dialog" onCancel={()=>setSelected(null)} onClick={e=>{if(e.target===e.currentTarget)setSelected(null)}} aria-labelledby="project-preview-title"><button className="close" onClick={()=>setSelected(null)} aria-label="Close project">×</button>{selected!==null&&<><img src={selected.image} alt={selected.title+' preview'}/><span className="refresh-eyebrow">{selected.kind==='Featured design'?'Independent reference · Not WEBSTELL work':selected.kind==='Design concept'?'Studio concept':selected.kind} / {selected.category}</span><h2 id="project-preview-title">{selected.title}</h2><p>{selected.description}</p>{selected.url?<a className="text-link" href={selected.url} target="_blank" rel="noreferrer">Visit source site ↗</a>:<p className="muted">A design direction from our visual collection. Let’s adapt the right ideas to your business, content and goals.</p>}</>}</dialog>
  </>;
 }
