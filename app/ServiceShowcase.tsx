@@ -108,7 +108,7 @@ export default function ServiceShowcase({ onContact }: { onContact: () => void }
       </div>
 
       <div className="showreel service-showreel wrap">
-        <ViewportVideo src="/assets/short.mp4" loop controls aria-label="WEBSTELL studio showreel" />
+        <ViewportVideo src="/assets/short.mp4" loop playOnHover aria-label="WEBSTELL studio showreel" />
       </div>
 
       <div className="offer-scroll-zone" ref={scrollZone}>
@@ -137,7 +137,7 @@ export default function ServiceShowcase({ onContact }: { onContact: () => void }
           <article className="offer-detail" id="offer-detail" role="tabpanel" aria-live="polite" key={activeOffer}>
             <div className={`offer-media${service.fit === 'contain' ? ' is-contain' : ''}`}>
               {service.video ? (
-                <ViewportVideo src={service.video} loop aria-label={service.imageAlt} />
+                <ViewportVideo src={service.video} loop playOnHover aria-label={service.imageAlt} />
               ) : (
                 <img src={service.image} alt={service.imageAlt} />
               )}

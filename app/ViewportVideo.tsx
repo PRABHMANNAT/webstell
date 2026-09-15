@@ -2,7 +2,11 @@
 
 import { useEffect, useRef, type VideoHTMLAttributes } from 'react';
 
-export default function ViewportVideo(props: VideoHTMLAttributes<HTMLVideoElement>) {
+type ViewportVideoProps = VideoHTMLAttributes<HTMLVideoElement> & {
+  playOnHover?: boolean;
+};
+
+export default function ViewportVideo({ playOnHover = false, ...props }: ViewportVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -11,8 +15,9 @@ export default function ViewportVideo(props: VideoHTMLAttributes<HTMLVideoElemen
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let visible = false;
+    let hovered = !playOnHover;
     const syncPlayback = () => {
-      if (visible && !reducedMotion.matches) void video.play().catch(() => undefined);
+      if (visible && hovered && !reducedMotion.matches) void video.play().catch(() => undefined);
       else video.pause();
     };
     const observer = new IntersectionObserver(([entry]) => {
@@ -22,12 +27,26 @@ export default function ViewportVideo(props: VideoHTMLAttributes<HTMLVideoElemen
 
     observer.observe(video);
     reducedMotion.addEventListener('change', syncPlayback);
+    const startOnHover = () => {
+      hovered = true;
+      syncPlayback();
+    };
+    const pauseOnLeave = () => {
+      hovered = false;
+      syncPlayback();
+    };
+    if (playOnHover) {
+      video.addEventListener('pointerenter', startOnHover);
+      video.addEventListener('pointerleave', pauseOnLeave);
+    }
     return () => {
       observer.disconnect();
       reducedMotion.removeEventListener('change', syncPlayback);
+      video.removeEventListener('pointerenter', startOnHover);
+      video.removeEventListener('pointerleave', pauseOnLeave);
       video.pause();
     };
-  }, []);
+  }, [playOnHover]);
 
   return <video ref={videoRef} muted playsInline preload="metadata" {...props} />;
 }
