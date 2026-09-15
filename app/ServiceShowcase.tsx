@@ -24,7 +24,10 @@ export default function ServiceShowcase() {
             </a>
           ))}
         </div>
-        <a className="quick-services-link" href="/contact">Have something in mind? Let’s talk <span aria-hidden="true">↗</span></a>
+        <div className="quick-services-actions">
+          <a className="quick-services-link" href="/contact">Have something in mind? Let’s talk <span aria-hidden="true">↗</span></a>
+          <a className="quick-services-link" href="#service-previews">See the service videos <span aria-hidden="true">↓</span></a>
+        </div>
       </div>
     </section>
   );

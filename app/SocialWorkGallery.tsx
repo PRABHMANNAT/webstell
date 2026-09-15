@@ -11,7 +11,7 @@ export default function SocialWorkGallery() {
   const move = (direction: number) => setActive(value => (value + direction + serviceOverview.length) % serviceOverview.length);
 
   return (
-    <section className="social-work service-gallery" aria-labelledby="social-work-title">
+    <section className="social-work service-gallery" id="service-previews" aria-labelledby="social-work-title">
       <header className="featured-design-heading wrap">
         <span>WEBSTELL / SERVICES IN MOTION</span>
         <h2 id="social-work-title">See what we can build.</h2>
