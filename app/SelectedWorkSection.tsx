@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { selectedWorkProjects } from './selected-work-data';
+import EyesLink from './EyesLink';
 
 export default function SelectedWorkSection() {
   return (
@@ -30,7 +31,7 @@ export default function SelectedWorkSection() {
           ))}
         </div>
 
-        <div className="selected-work-action"><Link href="/projects">Explore all work <span aria-hidden="true">↗</span></Link></div>
+        <div className="selected-work-action"><EyesLink href="/projects">Explore all work</EyesLink></div>
       </div>
     </section>
   );
