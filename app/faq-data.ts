@@ -35,3 +35,52 @@ export const homepageFaqs: FaqItem[] = [
       'The proposal explains ownership and handover clearly. After final payment, we normally hand over the completed custom work and agreed account access. Third-party fonts, media, plugins and software remain subject to their own licences.',
   },
 ];
+
+export const fullFaqs: FaqItem[] = [
+  ...homepageFaqs,
+  {
+    question: 'Can you redesign my existing website?',
+    answer:
+      'Yes. We can improve the design, structure, speed or features of an existing website. We first review what should stay, what needs changing and how to protect useful links and content.',
+  },
+  {
+    question: 'Will it work well on mobile phones?',
+    answer:
+      'Yes. We design for phones, tablets and desktops, then test the main journeys at different screen sizes before launch.',
+  },
+  {
+    question: 'Are a domain and hosting included?',
+    answer:
+      'A standard, non-premium domain can be included for the first year when it is part of your agreed package. Hosting, renewals and paid services are confirmed clearly in your proposal.',
+  },
+  {
+    question: 'Can customers pay or book through my website?',
+    answer:
+      'Yes. We can add online checkout, payment links or booking tools when they fit your project. You will need an approved account with the chosen payment or booking provider.',
+  },
+  {
+    question: 'Will my website appear on Google?',
+    answer:
+      'We set up search-friendly foundations such as clear content, page titles and descriptions. Rankings take time and depend on your market, content and ongoing work.',
+  },
+  {
+    question: 'Do you work with clients outside India?',
+    answer:
+      'Yes. We work remotely with teams in India and internationally, agreeing clear milestones, meeting times, currency and payment arrangements before work begins.',
+  },
+  {
+    question: 'How do reviews and payments work?',
+    answer:
+      'We split the project into agreed stages so you can review the direction before moving forward. Your proposal explains the payment schedule, included feedback and how new requests are priced.',
+  },
+  {
+    question: 'Can you build software or connect AI tools?',
+    answer:
+      'Yes. We can scope dashboards, customer portals, internal tools, useful AI assistants and integrations. We first review your workflow, data needs and ongoing service costs.',
+  },
+  {
+    question: 'How do I share my project idea?',
+    answer:
+      'You can send a project brief, message us on WhatsApp or book a call. We will use your goals, scope and budget to recommend a clear next step.',
+  },
+];
