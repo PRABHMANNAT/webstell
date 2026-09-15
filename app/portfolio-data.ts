@@ -163,14 +163,6 @@ export const industryProjects:Project[] = [
 ];
 export const recentWorkProjects:Project[] = [
   {
-    id: 'safario',
-    title: 'Safario',
-    category: 'Travel & Lifestyle',
-    description: 'A warm safari travel concept that puts remarkable African journeys and easy discovery at the centre.',
-    image: '/assets/recent-work/safario.png',
-    kind: 'Design concept'
-  },
-  {
     id: 'nomia',
     title: 'Nomia',
     category: 'Travel & Lifestyle',
@@ -187,11 +179,11 @@ export const recentWorkProjects:Project[] = [
     kind: 'Design concept'
   },
   {
-    id: 'wedding',
-    title: 'W&R',
-    category: 'Weddings & Events',
-    description: 'A warm, personal space for a celebration, its story and every important detail.',
-    image: '/assets/recent-work/wedding.png',
+    id: 'the-course',
+    title: 'The Course',
+    category: 'Leisure & Hospitality',
+    description: 'A refined course guide with an immersive view of the full landscape.',
+    image: '/assets/recent-work/course.png',
     kind: 'Design concept'
   },
   {
@@ -200,22 +192,6 @@ export const recentWorkProjects:Project[] = [
     category: 'Food & Drink',
     description: 'A playful specialty coffee brand built around rich flavour and a direct order flow.',
     image: '/assets/recent-work/ferea.png',
-    kind: 'Design concept'
-  },
-  {
-    id: 'fintechx',
-    title: 'FintechX',
-    category: 'Finance & Technology',
-    description: 'A clear financial platform that makes sophisticated tools feel welcoming.',
-    image: '/assets/recent-work/fintechx.png',
-    kind: 'Design concept'
-  },
-  {
-    id: 'noctra',
-    title: 'Noctra',
-    category: 'Culture & Hospitality',
-    description: 'An atmospheric digital experience for an observatory under the night sky.',
-    image: '/assets/recent-work/noctra.png',
     kind: 'Design concept'
   },
   {
@@ -235,11 +211,27 @@ export const recentWorkProjects:Project[] = [
     kind: 'Design concept'
   },
   {
-    id: 'the-course',
-    title: 'The Course',
-    category: 'Leisure & Hospitality',
-    description: 'A refined course guide with an immersive view of the full landscape.',
-    image: '/assets/recent-work/course.png',
+    id: 'wedding',
+    title: 'W&R',
+    category: 'Weddings & Events',
+    description: 'A warm, personal space for a celebration, its story and every important detail.',
+    image: '/assets/recent-work/wedding.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'fintechx',
+    title: 'FintechX',
+    category: 'Finance & Technology',
+    description: 'A clear financial platform that makes sophisticated tools feel welcoming.',
+    image: '/assets/recent-work/fintechx.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'noctra',
+    title: 'Noctra',
+    category: 'Culture & Hospitality',
+    description: 'An atmospheric digital experience for an observatory under the night sky.',
+    image: '/assets/recent-work/noctra.png',
     kind: 'Design concept'
   },
   {
@@ -256,6 +248,14 @@ export const recentWorkProjects:Project[] = [
     category: 'Clean Energy',
     description: 'A focused introduction to modern wind technology, performance and impact.',
     image: '/assets/recent-work/aeronis.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'safario',
+    title: 'Safario',
+    category: 'Travel & Lifestyle',
+    description: 'A warm safari travel concept that puts remarkable African journeys and easy discovery at the centre.',
+    image: '/assets/recent-work/safario.png',
     kind: 'Design concept'
   }
 ];
