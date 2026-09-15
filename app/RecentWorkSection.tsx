@@ -35,7 +35,7 @@ export default function RecentWorkSection() {
       </div>
       <div className="center">
         <Link className="outline-pill" href="/projects">
-          Explore the full portfolio <span aria-hidden="true">↗</span>
+          View all projects <span aria-hidden="true">↗</span>
         </Link>
       </div>
     </section>
