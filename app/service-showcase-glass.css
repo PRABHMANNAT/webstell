@@ -1,10 +1,60 @@
 .offer-showcase {
-  padding: 108px 0 96px;
+  padding: 0 0 96px;
   background:
     radial-gradient(circle at 10% 34%, rgba(88, 132, 255, 0.11), transparent 28%),
     radial-gradient(circle at 92% 72%, rgba(244, 153, 100, 0.13), transparent 30%),
     #f5f7fb;
   overflow: clip;
+}
+
+/* Mirrors the moving masthead used in the pricing section. */
+.services-marquee {
+  overflow: hidden;
+  border-block: 1px solid #000;
+  background: #000;
+  padding: 18px 0 25px;
+}
+
+.services-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: services-marquee-scroll 20s linear infinite;
+  will-change: transform;
+}
+
+.services-marquee-track span {
+  display: flex;
+  align-items: center;
+  gap: 3.5vw;
+  padding-right: 3.5vw;
+  color: #fff;
+  font-size: clamp(104px, 16vw, 250px);
+  font-weight: 500;
+  line-height: 0.78;
+  letter-spacing: -0.075em;
+  white-space: nowrap;
+}
+
+.services-marquee-track i {
+  display: inline-grid;
+  place-items: center;
+  color: #fff;
+  font-size: 0.62em;
+  font-style: normal;
+  letter-spacing: 0;
+  animation: services-marquee-sun 9s linear infinite;
+}
+
+@keyframes services-marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes services-marquee-sun {
+  to { transform: rotate(360deg); }
+}
+
+.offer-heading {
+  padding-top: 88px;
 }
 
 .offer-heading h2 {
@@ -291,7 +341,21 @@
 
 @media (max-width: 620px) {
   .offer-showcase {
-    padding: 76px 0 78px;
+    padding: 0 0 78px;
+  }
+
+  .services-marquee {
+    padding: 13px 0 18px;
+  }
+
+  .services-marquee-track span {
+    gap: 28px;
+    padding-right: 28px;
+    font-size: 88px;
+  }
+
+  .offer-heading {
+    padding-top: 60px;
   }
 
   .service-showreel {
@@ -351,6 +415,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .services-marquee-track,
+  .services-marquee-track i,
   .offer-progress i,
   .offer-detail,
   .offer-media > img {

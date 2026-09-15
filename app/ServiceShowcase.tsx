@@ -18,8 +18,8 @@ const offerServices: OfferService[] = [
     title: 'Website Design & Development',
     description: 'A distinctive, high-performing website that makes your business easy to understand, trust and contact.',
     tags: ['Business websites', 'Mobile-first design', 'Search-ready foundations'],
-    video: '/assets/service-website-design.mp4',
-    imageAlt: 'Website design and development showreel',
+    video: '/assets/service-website-design-reel.mp4',
+    imageAlt: 'Website design and development animation',
   },
   {
     title: 'Ecommerce & Online Stores',
@@ -94,6 +94,12 @@ export default function ServiceShowcase({ onContact }: { onContact: () => void }
 
   return (
     <section className="offer-showcase" id="services" aria-labelledby="offer-title">
+      <div className="services-marquee" aria-hidden="true">
+        <div className="services-marquee-track">
+          <span>Services <i>✳</i> Services <i>✳</i></span>
+          <span>Services <i>✳</i> Services <i>✳</i></span>
+        </div>
+      </div>
       <div className="offer-heading wrap">
         <span className="offer-badge"><span aria-hidden="true">◫</span> Services</span>
         <h2 id="offer-title">What can we build for you?</h2>
