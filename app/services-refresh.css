@@ -1,0 +1,16 @@
+.quick-services{background:#f7f7f2;color:#191919;scroll-margin-top:88px}
+.quick-services-inner{padding-top:64px;padding-bottom:54px}
+.quick-services-heading{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:end;margin-bottom:36px}
+.quick-services-heading>div>span{font:11px var(--mono,monospace);letter-spacing:.12em;color:#62685e}
+.quick-services-heading h2{font-size:clamp(36px,4.5vw,64px);line-height:1.03;letter-spacing:-.055em;font-weight:500;margin:18px 0 0}
+.quick-services-heading p{font-size:18px;line-height:1.6;max-width:460px;margin:0;color:#555b52}
+.quick-services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #d4d9ce;border-left:1px solid #d4d9ce}
+.quick-service{display:flex;flex-direction:column;padding:24px;min-width:0;text-decoration:none;color:inherit;border-right:1px solid #d4d9ce;border-bottom:1px solid #d4d9ce;transition:background .25s ease}
+.quick-service-index{display:flex;align-items:center;justify-content:space-between;font:12px var(--mono,monospace);color:#676e60}
+.quick-service-index>span{font:22px sans-serif;transition:transform .25s ease}
+.quick-service h3{font-size:25px;letter-spacing:-.035em;font-weight:500;margin:24px 0 12px}
+.quick-service p{font-size:16px;line-height:1.55;color:#52594d;margin:0 0 24px}
+.quick-service-detail{margin-top:auto;font-size:12px;line-height:1.6;color:#656e5e}
+.quick-services-link{display:inline-flex;align-items:center;gap:22px;color:inherit;font-size:16px;text-underline-offset:6px;margin-top:28px}
+@media(hover:hover){.quick-service:hover{background:#eaf0df}.quick-service:hover .quick-service-index>span{transform:translate(3px,-3px)}}
+.quick-service:focus-visible,.quick-services-link:focus-visible{outline:3px solid #7647ee;outline-offset:-3px}
