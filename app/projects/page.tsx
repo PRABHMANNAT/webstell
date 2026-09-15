@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { recentWorkProjects, type Project } from '../portfolio-data';
 import StudioNav, { StudioFooter } from '../StudioNav';
+import InternationalReferences from '../InternationalReferences';
 import './projects.css';
 
 export default function ProjectsPage() {
@@ -30,6 +31,8 @@ export default function ProjectsPage() {
             <Link className="projects-back" href="/#projects">Back to home <span aria-hidden="true">↗</span></Link>
           </div>
         </section>
+
+        <InternationalReferences />
 
         <section className="projects-list wrap" aria-labelledby="all-projects-title">
           <div className="projects-list-heading">
