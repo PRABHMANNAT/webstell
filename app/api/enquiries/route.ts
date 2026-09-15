@@ -1,5 +1,3 @@
-import { env } from 'cloudflare:workers';
-
 type RequestKind = 'project_enquiry' | 'call_request';
 
 type EnquiryInput = {
@@ -32,6 +30,20 @@ type Bindings = {
   CONTACT_FROM_EMAIL?: string;
   CONTACT_TEAM_EMAIL?: string;
 };
+
+async function getBindings(): Promise<Bindings> {
+  if (process.env.VERCEL === '1') {
+    return {
+      RESEND_API_KEY: process.env.RESEND_API_KEY,
+      CONTACT_FROM_EMAIL: process.env.CONTACT_FROM_EMAIL,
+      CONTACT_TEAM_EMAIL: process.env.CONTACT_TEAM_EMAIL,
+    };
+  }
+
+  const cloudflareWorkersModule = 'cloudflare:' + 'workers';
+  const { env } = await import(/* @vite-ignore */ cloudflareWorkersModule);
+  return env as Bindings;
+}
 
 const TEAM_EMAIL = 'contact@webstell-studio.com';
 const MAX_BODY_BYTES = 24_000;
@@ -139,7 +151,7 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, errors }, { status: 422 });
   }
 
-  const bindings = env as unknown as Bindings;
+  const bindings = await getBindings();
   if (!bindings.DB) {
     return Response.json({ ok: false, message: 'Enquiries are temporarily unavailable. Please use WhatsApp for now.' }, { status: 503 });
   }
