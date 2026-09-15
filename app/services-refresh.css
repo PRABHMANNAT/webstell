@@ -37,3 +37,7 @@
 .service-gallery-bottom>a{color:#d7ff46;text-decoration:none;font-size:14px;line-height:1.4}
 .service-gallery-arrows{display:flex;gap:8px;flex-shrink:0}
 .service-gallery-arrows button{display:grid;place-items:center;width:44px;height:44px;border:1px solid #ffffff40;border-radius:50%;background:transparent;color:white;font-size:22px;cursor:pointer}
+.service-gallery button:focus-visible,.service-gallery a:focus-visible,.service-gallery video:focus-visible{outline:3px solid #d7ff46;outline-offset:4px}
+.service-gallery-menu button[aria-pressed=true]:focus-visible{outline-color:#fff}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.service-gallery-menu button,.service-gallery-arrows button{transition:background .22s ease,transform .22s ease}.service-gallery-menu button:hover{transform:translateX(3px)}.service-gallery-arrows button:hover{background:#ffffff20;transform:translateY(-2px)}.service-gallery-bottom>a:hover{text-decoration:underline;text-underline-offset:5px}}
+@media(prefers-reduced-motion:reduce){.quick-service,.quick-service-index>span,.service-gallery-menu button,.service-gallery-arrows button{transition:none}.quick-service:hover .quick-service-index>span{transform:none}}

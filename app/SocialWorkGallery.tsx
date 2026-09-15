@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import ViewportVideo from './ViewportVideo';
 import { serviceOverview } from './service-overview-data';
 
 export default function SocialWorkGallery() {
   const [active, setActive] = useState(0);
+  const previewId = useId();
   const current = serviceOverview[active];
   const move = (direction: number) => setActive(value => (value + direction + serviceOverview.length) % serviceOverview.length);
 
@@ -19,12 +20,12 @@ export default function SocialWorkGallery() {
       <div className="service-gallery-layout wrap">
         <nav className="service-gallery-menu" aria-label="Choose a service preview">
           {serviceOverview.map((service, index) => (
-            <button type="button" key={service.slug} onClick={() => setActive(index)} aria-pressed={index === active}>
+            <button type="button" key={service.slug} onClick={() => setActive(index)} aria-pressed={index === active} aria-controls={previewId}>
               <span>0{index + 1}</span>{service.title}<span aria-hidden="true">↗</span>
             </button>
           ))}
         </nav>
-        <article className="social-post">
+        <article className="social-post" id={previewId} aria-label="Selected service preview">
           <header>
             <span className="social-avatar" aria-hidden="true"><img src="/assets/brand/webstell-retro-mac.png" alt="" /></span>
             <strong>WEBSTELL</strong>
