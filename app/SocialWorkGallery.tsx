@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { featuredDesigns, type Project } from './portfolio-data';
+import { useInViewport } from './useInViewport';
 
 const slides = featuredDesigns;
 
@@ -9,11 +10,12 @@ export default function SocialWorkGallery({onOpen}:{onOpen:(project:Project)=>vo
  const [paused,setPaused]=useState(false);
  const [interactionPaused,setInteractionPaused]=useState(false);
  const [focusPaused,setFocusPaused]=useState(false);
+ const {ref,isInViewport}=useInViewport<HTMLElement>();
  useEffect(()=>{
-  if(paused || interactionPaused || focusPaused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(!isInViewport || paused || interactionPaused || focusPaused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const timer=window.setInterval(()=>setActive(current=>(current+1)%slides.length),2000);
   return()=>window.clearInterval(timer);
- },[paused,interactionPaused,focusPaused]);
+ },[isInViewport,paused,interactionPaused,focusPaused]);
  const move=(direction:number)=>setActive(current=>(current+direction+slides.length)%slides.length);
  const positionFor=(index:number)=>{
   let distance=index-active;
@@ -22,7 +24,7 @@ export default function SocialWorkGallery({onOpen}:{onOpen:(project:Project)=>vo
   return Math.max(-2,Math.min(2,distance));
  };
  const current=slides[active];
- return <section className="social-work" aria-labelledby="social-work-title">
+ return <section ref={ref} className="social-work" aria-labelledby="social-work-title">
   <header className="featured-design-heading wrap"><span>INDEPENDENT REFERENCES / 05 IDEAS</span><h2 id="social-work-title" className="animated-heading"><span>Work we admire.</span></h2><p>Five independent brand references selected for their texture, colour and character. They are not WEBSTELL client work.</p><button type="button" onClick={()=>setPaused(value=>!value)} aria-pressed={paused}>{paused?'Play slideshow':'Pause slideshow'}</button></header>
   <div className="social-work-stage" onPointerEnter={()=>setInteractionPaused(true)} onPointerLeave={()=>setInteractionPaused(false)} onFocusCapture={()=>setFocusPaused(true)} onBlurCapture={event=>{if(!event.currentTarget.contains(event.relatedTarget as Node))setFocusPaused(false)}}>
    {slides.map((slide,index)=><button type="button" key={slide.title} className={`social-preview social-preview-${positionFor(index)}`} aria-label={`Show ${slide.title}`} onClick={()=>setActive(index)}>

@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { useInViewport } from './useInViewport';
 
 const testimonials=[
   {
@@ -47,11 +48,12 @@ const testimonials=[
 export default function Testimonials(){
  const [active,setActive]=useState(0);
  const [paused,setPaused]=useState(false);
+ const {ref,isInViewport}=useInViewport<HTMLElement>();
  const move=(step:number)=>setActive(current=>(current+step+testimonials.length)%testimonials.length);
- useEffect(()=>{if(paused||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;const timer=window.setInterval(()=>move(1),5200);return()=>window.clearInterval(timer)},[paused]);
+ useEffect(()=>{if(!isInViewport||paused||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;const timer=window.setInterval(()=>setActive(current=>(current+1)%testimonials.length),5200);return()=>window.clearInterval(timer)},[isInViewport,paused]);
  const slot=(index:number)=>{let distance=(index-active+testimonials.length)%testimonials.length;if(distance>2)distance-=testimonials.length;return distance};
  const current=testimonials[active];
- return <section className="testimonials" aria-labelledby="testimonials-title" onPointerEnter={()=>setPaused(true)} onPointerLeave={()=>setPaused(false)} onFocusCapture={()=>setPaused(true)} onBlurCapture={()=>setPaused(false)}>
+ return <section ref={ref} className="testimonials" aria-labelledby="testimonials-title" onPointerEnter={()=>setPaused(true)} onPointerLeave={()=>setPaused(false)} onFocusCapture={()=>setPaused(true)} onBlurCapture={()=>setPaused(false)}>
   <header className="testimonial-heading wrap"><span>CLIENT PERSPECTIVES / PREVIEW</span><h2 id="testimonials-title">Good websites solve real needs.</h2><p>Illustrative client briefs, not published endorsements. Sample copy and stock portraits will be replaced with approved client testimonials.</p></header>
   <div className="testimonial-stage">
    {testimonials.map((item,index)=><button type="button" key={item.name} className={'testimonial-person testimonial-slot-'+slot(index)+(index===active?' is-active':'')} onClick={()=>setActive(index)} aria-label={'Show testimonial from '+item.name} aria-current={index===active?'true':undefined}>

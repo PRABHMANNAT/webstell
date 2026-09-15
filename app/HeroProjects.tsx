@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, Pause, Play } from 'lucide-react';
+import { useInViewport } from './useInViewport';
 
 const slides = [
   {
@@ -59,6 +60,7 @@ export default function HeroProjects() {
   const [paused, setPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const { ref, isInViewport } = useInViewport<HTMLElement>();
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     const update = () => setReducedMotion(media.matches);
@@ -67,15 +69,16 @@ export default function HeroProjects() {
     return () => media.removeEventListener('change', update);
   }, []);
   useEffect(() => {
-    if (paused || hovered || reducedMotion) return;
+    if (!isInViewport || paused || hovered || reducedMotion) return;
     const timer = window.setInterval(() => {
       if (!document.hidden) setActive((index) => (index + 1) % slides.length);
     }, 2000);
     return () => window.clearInterval(timer);
-  }, [paused, hovered, reducedMotion]);
+  }, [isInViewport, paused, hovered, reducedMotion]);
   const slide = slides[active];
   return (
     <article
+      ref={ref}
       className="hero-projects"
       aria-label="Website design showcase"
       aria-roledescription="carousel"
