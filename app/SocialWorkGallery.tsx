@@ -46,9 +46,7 @@ export default function SocialWorkGallery() {
         <article className="social-post" aria-live="polite">
           <header><span className="social-avatar" aria-hidden="true"><img src="/assets/brand/webstell-retro-mac.png" alt="" /></span><strong>WEBSTELL</strong><span className="service-post-count">{String(active + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}</span></header>
           <div className="social-post-image service-post-video">
-            <ViewportVideo key={current.video} src={current.video} loop controls aria-label={`${current.title} service video`} />
-            <button className="social-prev" type="button" aria-label="Previous service" onClick={() => move(-1)}>‹</button><button className="social-next" type="button" aria-label="Next service" onClick={() => move(1)}>›</button>
-            <div className="social-dots">{services.map((service, index) => <button type="button" className={index === active ? 'is-active' : ''} key={service.slug} aria-label={`Show ${service.title}`} aria-current={index === active ? 'true' : undefined} onClick={() => setActive(index)} />)}</div>
+            <ViewportVideo key={current.video} src={current.video} loop aria-label={`${current.title} service video`} />
           </div>
           <footer>
             <div className="social-footer-meta"><span className="social-count"><i aria-hidden="true">✦</i> SERVICE {String(active + 1).padStart(2, '0')}</span></div>
