@@ -58,3 +58,9 @@
 @media(hover:hover){.service-social-gallery .social-footer-copy a:hover{background:#fff;border-color:#fff}}
 .service-social-gallery button:focus-visible,.service-social-gallery a:focus-visible,.service-social-gallery video:focus-visible{outline:3px solid #d4ff37;outline-offset:3px}
 @media(max-width:700px){.service-social-gallery .social-post-image{aspect-ratio:1}.service-social-gallery .social-footer-copy a{padding:8px 9px}.service-post-count{font-size:10px}}
+.service-social-gallery .service-card-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 18px}
+.service-social-gallery .service-card-footer h3{margin:0;min-width:0;color:#fff;font-size:clamp(24px,3.3vw,34px);font-weight:500;letter-spacing:-.055em;line-height:1.02}
+.service-social-gallery .service-card-footer a{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;padding:9px 11px;border:1px solid #d4ff3766;border-radius:999px;background:#d4ff37;color:#111820;font-size:11px;font-weight:600;text-decoration:none}
+.service-social-gallery .service-card-footer a i{font-size:13px;font-style:normal}
+@media(hover:hover){.service-social-gallery .service-card-footer a:hover{background:#fff;border-color:#fff}}
+@media(max-width:480px){.service-social-gallery .service-card-footer{padding:17px 14px;gap:10px}.service-social-gallery .service-card-footer h3{font-size:24px}.service-social-gallery .service-card-footer a{padding:8px 9px;font-size:10px}}

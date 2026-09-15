@@ -62,9 +62,9 @@ export default function SocialWorkGallery() {
           <div className="social-post-image service-post-video">
             <ViewportVideo key={current.video} src={current.video} loop aria-label={`${current.title} service video`} />
           </div>
-          <footer>
-            <div className="social-footer-meta"><span className="social-count"><i aria-hidden="true">✦</i> SERVICE {String(active + 1).padStart(2, '0')}</span></div>
-            <div className="social-footer-copy"><p><span>{current.detail}</span><strong>{current.title}</strong></p><a href={`/services#${current.slug}`}>Explore service <i aria-hidden="true">↗</i></a></div>
+          <footer className="service-card-footer">
+            <h3>{current.title}</h3>
+            <a href={`/services#${current.slug}`}>Explore service <i aria-hidden="true">↗</i></a>
           </footer>
         </article>
       </div>
