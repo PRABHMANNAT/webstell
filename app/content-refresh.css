@@ -62,3 +62,28 @@
  .editorial-intro h2{font-size:clamp(38px,9.5vw,57px)}
  .editorial-statement button{font-size:14px}.industries{padding-top:60px}
 }
+
+/* Outcome cards: articulate the business case as confidently as the craft. */
+.industries{padding:136px 0 150px}
+.industry-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.54fr);gap:56px;align-items:end;margin-bottom:62px}
+.industry-heading>div>span{display:block;color:#68717e;font-family:monospace;font-size:11px;letter-spacing:.11em}
+.industry-heading h2{margin:23px 0 0;text-align:left;font-size:clamp(47px,5.8vw,84px);line-height:.86;letter-spacing:-.075em}
+.industry-heading>p{max-width:390px;margin:0 0 5px;color:#58616d;font-size:18px;line-height:1.38}
+.industry-grid{gap:12px}
+.industry-card{--card-accent:#d7ff46;position:relative;display:flex;flex-direction:column;min-height:336px;padding:23px 24px 19px;overflow:hidden;border:1px solid #d7dce2;border-radius:4px;background:#f7f8fa;color:#111821;isolation:isolate;transition:border-color .45s,box-shadow .45s,transform .45s cubic-bezier(.2,.75,.25,1),color .45s}
+.industry-card:nth-child(2),.industry-card:nth-child(5){--card-accent:#9de8ff}
+.industry-card:nth-child(3),.industry-card:nth-child(6){--card-accent:#ffc5a6}
+.industry-card:before{position:absolute;z-index:-1;inset:auto -18% -58% auto;width:240px;height:240px;content:'';border-radius:50%;background:var(--card-accent);filter:blur(1px);opacity:.16;transform:scale(.24);transform-origin:center;transition:opacity .55s,transform .7s cubic-bezier(.16,.9,.27,1)}
+.industry-card-top{display:flex;align-items:center;justify-content:space-between}
+.industry-card-top>span{color:#647080;font-family:monospace;font-size:11px;letter-spacing:.08em}
+.industry-card-top>i{display:grid;place-items:center;width:31px;height:31px;border:1px solid #d2d8df;border-radius:50%;color:#111821;font-size:16px;font-style:normal;line-height:1;transition:background .35s,border-color .35s,color .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+.industry-card>small{display:block;margin-top:48px;color:#667386;font-family:monospace;font-size:10px;letter-spacing:.11em;text-transform:uppercase;transition:color .35s}
+.industry-card h3{max-width:360px;margin:12px 0 0;font-size:clamp(27px,2.3vw,37px);font-weight:500;line-height:.93;letter-spacing:-.06em;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.industry-card p{max-width:355px;margin:17px 0 0;color:#5e6875;font-size:15px;line-height:1.43;transition:color .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+.industry-card-signal{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:20px;border-top:1px solid #dce1e6;color:#697584;font-family:monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;transition:border-color .35s,color .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+.industry-card-signal b{display:grid;place-items:center;width:21px;height:21px;border-radius:50%;background:#dce1e6;color:#111821;font-size:15px;font-weight:400;line-height:1;transition:background .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+@media(hover:hover){.industry-card:hover{border-color:#151b25;background:#151b25;box-shadow:0 22px 42px #1119251f;color:#fff;transform:translateY(-8px)}.industry-card:hover:before{opacity:1;transform:scale(1.45)}.industry-card:hover .industry-card-top>span,.industry-card:hover>small,.industry-card:hover p,.industry-card:hover .industry-card-signal{color:#d7dde6}.industry-card:hover .industry-card-top>i{border-color:var(--card-accent);background:var(--card-accent);color:#101720;transform:rotate(45deg)}.industry-card:hover h3,.industry-card:hover p{transform:translateY(-4px)}.industry-card:hover .industry-card-signal{border-color:#ffffff38;transform:translateY(-2px)}.industry-card:hover .industry-card-signal b{background:var(--card-accent);transform:rotate(90deg)}}
+.industry-card:focus-within{outline:2px solid #151b25;outline-offset:3px}
+@media(max-width:700px){.industries{padding:84px 0 94px}.industry-heading{grid-template-columns:1fr;gap:25px;margin-bottom:40px}.industry-heading h2{font-size:clamp(44px,12vw,66px)}.industry-heading>p{max-width:500px;font-size:16px}.industry-grid{gap:10px}.industry-card{min-height:305px;padding:19px}.industry-card>small{margin-top:36px}.industry-card h3{font-size:30px}.industry-card p{font-size:14px}}
+@media(max-width:520px){.industry-grid{grid-template-columns:1fr}.industry-card{min-height:276px}.industry-card h3{font-size:31px}}
+@media(prefers-reduced-motion:reduce){.industry-card,.industry-card:before,.industry-card *{transition:none!important}}
