@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ArrowUpRight,
   CalendarDays,
@@ -89,6 +89,8 @@ export function HireDialog({
 
 export default function StudioNav({ current = '' }: { current?: string }) {
   const [menu, setMenu] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const links = [
     ['Work', '/projects'],
     ['Services', '/services'],
@@ -96,6 +98,25 @@ export default function StudioNav({ current = '' }: { current?: string }) {
     ['Pricing', '/pricing'],
     ['Contact', '/contact'],
   ];
+
+  useEffect(() => {
+    if (!menu) return;
+    const focusFrame = window.requestAnimationFrame(() => firstLinkRef.current?.focus());
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setMenu(false);
+      menuButtonRef.current?.focus();
+    };
+    document.addEventListener('keydown', closeOnEscape);
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      document.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [menu]);
+
+  const toggleMenu = () => setMenu((isOpen) => !isOpen);
+  const closeMenu = () => setMenu(false);
+
   return (
     <>
       <header className="site-header">
@@ -110,14 +131,15 @@ export default function StudioNav({ current = '' }: { current?: string }) {
               aria-label="Main navigation"
               className={menu ? 'open' : ''}
             >
-              {links.map(([label, href]) => (
+              {links.map(([label, href], index) => (
                 <a
                   key={href}
                   href={href}
+                  ref={index === 0 ? firstLinkRef : undefined}
                   aria-current={
                     current === label.toLowerCase() ? 'page' : undefined
                   }
-                  onClick={() => setMenu(false)}
+                  onClick={closeMenu}
                 >
                   {label}
                 </a>
@@ -125,10 +147,13 @@ export default function StudioNav({ current = '' }: { current?: string }) {
             </nav>
           </div>
           <button
+            ref={menuButtonRef}
+            type="button"
             className="menu-button"
-            onClick={() => setMenu(!menu)}
+            onClick={toggleMenu}
             aria-expanded={menu}
             aria-controls="navigation"
+            aria-label={menu ? 'Close main navigation' : 'Open main navigation'}
           >
             {menu ? 'Close' : 'Menu'}{' '}
             <span aria-hidden="true">{menu ? '−' : '☰'}</span>
