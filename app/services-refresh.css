@@ -45,3 +45,16 @@
 @media(max-width:480px){.quick-services-grid{grid-template-columns:1fr}.quick-service{padding:20px}.quick-service h3{margin:12px 0 10px}.quick-service p{max-width:36ch}.quick-service-detail{font-size:12px}.quick-services-link{font-size:14px}.service-gallery-menu button{gap:8px}.service-gallery .social-post{border-radius:16px}}
 @media(hover:hover) and (prefers-reduced-motion:no-preference){.service-gallery-menu button,.service-gallery-arrows button{transition:background .22s ease,transform .22s ease}.service-gallery-menu button:hover{transform:translateX(3px)}.service-gallery-arrows button:hover{background:#ffffff20;transform:translateY(-2px)}.service-gallery-bottom>a:hover{text-decoration:underline;text-underline-offset:5px}}
 @media(prefers-reduced-motion:reduce){.quick-service,.quick-service-index>span,.service-gallery-menu button,.service-gallery-arrows button{transition:none}.quick-service:hover .quick-service-index>span{transform:none}}
+
+/* Service videos keep the original social-card composition. */
+.service-social-gallery{scroll-margin-top:100px}
+.service-social-gallery .social-preview video{width:100%;height:100%;display:block;object-fit:cover}
+.service-social-gallery .service-post-video{background:#0b0f15}
+.service-social-gallery .service-post-video video{width:100%;height:100%;display:block;object-fit:cover}
+.service-post-count{margin-left:auto;color:#b4bfcc;font:11px var(--mono,monospace);letter-spacing:.08em}
+.service-social-gallery .social-footer-meta{margin-bottom:12px}
+.service-social-gallery .social-footer-copy a{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid #d4ff3766;border-radius:999px;background:#d4ff37;color:#111820;font-size:11px;font-weight:600;text-decoration:none}
+.service-social-gallery .social-footer-copy a i{font-size:13px;font-style:normal}
+@media(hover:hover){.service-social-gallery .social-footer-copy a:hover{background:#fff;border-color:#fff}}
+.service-social-gallery button:focus-visible,.service-social-gallery a:focus-visible,.service-social-gallery video:focus-visible{outline:3px solid #d4ff37;outline-offset:3px}
+@media(max-width:700px){.service-social-gallery .social-post-image{aspect-ratio:1}.service-social-gallery .social-footer-copy a{padding:8px 9px}.service-post-count{font-size:10px}}
