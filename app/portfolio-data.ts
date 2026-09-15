@@ -204,7 +204,7 @@ export const recentWorkProjects:Project[] = [
   },
   {
     id: 'gen-z',
-    title: 'GEN-Z',
+    title: 'GEN-Z Dash',
     category: 'Fashion & Accessories',
     description: 'A WEBSTELL fashion concept where product, identity and attitude arrive with equal impact.',
     image: '/assets/recent-work/genz.png',
