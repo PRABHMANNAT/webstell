@@ -10,7 +10,7 @@ export default function RecentWorkSection() {
     <section className="work wrap" id="projects" aria-labelledby="recent-work-title">
       <div className="section-heading">
         <div>
-          <h2 id="recent-work-title">Work that moves you forward.</h2>
+          <h2 id="recent-work-title">Work that works.</h2>
         </div>
         <p className="recent-intro">
           Clear strategy, sharp design and thoughtful technology—built to earn trust and turn interest into action.
