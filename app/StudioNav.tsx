@@ -137,7 +137,15 @@ export default function StudioNav({ current = '' }: { current?: string }) {
         <div className="header wrap">
           <div className="nav-capsule">
             <Link className="nav-mark" href="/" aria-label="WEBSTELL home">
-              <Image src="/assets/brand/webstell-retro-mac.png" alt="" width={29} height={29} priority />
+              <Image
+                src="/assets/brand/webstell-retro-mac.png"
+                alt=""
+                width={29}
+                height={29}
+                sizes="29px"
+                priority
+                unoptimized
+              />
               <span>WEBSTELL</span>
             </Link>
             <nav

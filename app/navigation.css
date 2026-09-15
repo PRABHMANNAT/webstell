@@ -30,8 +30,12 @@
 }
 
 .site-header .nav-mark img {
+  display: block;
+  flex: 0 0 auto;
   width: 29px;
   height: 29px;
+  aspect-ratio: 1;
+  object-fit: contain;
 }
 
 .site-header .header nav {
