@@ -14,3 +14,26 @@
 .quick-services-link{display:inline-flex;align-items:center;gap:22px;color:inherit;font-size:16px;text-underline-offset:6px;margin-top:28px}
 @media(hover:hover){.quick-service:hover{background:#eaf0df}.quick-service:hover .quick-service-index>span{transform:translate(3px,-3px)}}
 .quick-service:focus-visible,.quick-services-link:focus-visible{outline:3px solid #7647ee;outline-offset:-3px}
+.service-gallery{padding:58px 0 64px}
+.service-gallery .featured-design-heading{padding:0 0 32px;text-align:left}
+.service-gallery .featured-design-heading>span{font:11px var(--mono,monospace);letter-spacing:.12em;color:#b4bfcc}
+.service-gallery .featured-design-heading h2{font-size:clamp(34px,4.4vw,60px);font-weight:500;letter-spacing:-.045em;line-height:1.06;margin:18px 0 16px}
+.service-gallery .featured-design-heading p{max-width:610px;margin:0;font-size:17px;line-height:1.55;color:#c1c8d2}
+.service-gallery-layout{display:grid;grid-template-columns:minmax(220px,.65fr) minmax(0,1.35fr);gap:32px;align-items:start}
+.service-gallery-menu{display:grid;gap:8px}
+.service-gallery-menu button{display:flex;align-items:center;gap:14px;min-height:66px;padding:15px 18px;border:1px solid #ffffff24;border-radius:14px;background:#0c141a85;color:#fff;text-align:left;font:inherit;font-size:17px;cursor:pointer}
+.service-gallery-menu button>span:first-child{font:11px var(--mono,monospace);color:#b1bdc7}
+.service-gallery-menu button>span:last-child{margin-left:auto}
+.service-gallery-menu button[aria-pressed=true]{background:#d7ff46;border-color:#d7ff46;color:#171917}
+.service-gallery-menu button[aria-pressed=true]>span:first-child{color:#4a531f}
+.service-gallery .social-post{width:100%;max-width:none;border-radius:20px}
+.service-gallery-count{margin-left:auto;color:#b9c3cf;font:12px var(--mono,monospace)}
+.service-gallery-video{aspect-ratio:16/10;background:#101318}
+.service-gallery-video video{width:100%;height:100%;display:block;object-fit:contain}
+.service-gallery .social-post>footer{padding:22px}
+.service-gallery-copy h3{font-size:28px;line-height:1.15;letter-spacing:-.035em;font-weight:500;margin:0 0 10px}
+.service-gallery .social-post>footer p{display:block;min-height:0;margin:0;color:#bfc9d5;font-size:16px;line-height:1.55}
+.service-gallery-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px}
+.service-gallery-bottom>a{color:#d7ff46;text-decoration:none;font-size:14px;line-height:1.4}
+.service-gallery-arrows{display:flex;gap:8px;flex-shrink:0}
+.service-gallery-arrows button{display:grid;place-items:center;width:44px;height:44px;border:1px solid #ffffff40;border-radius:50%;background:transparent;color:white;font-size:22px;cursor:pointer}
