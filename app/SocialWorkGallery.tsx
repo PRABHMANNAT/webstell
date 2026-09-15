@@ -63,7 +63,7 @@ export default function SocialWorkGallery() {
           </div>
           <footer className="service-card-footer">
             <h3>{current.title}</h3>
-            <a href={`/services#${current.slug}`}>View details <i aria-hidden="true">↗</i></a>
+            <a href={`/services#${current.slug}`}>Explore service <i aria-hidden="true">→</i></a>
           </footer>
         </article>
       </div>
