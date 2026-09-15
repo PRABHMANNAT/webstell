@@ -5,39 +5,45 @@ import './services.css';
 const serviceList = [
   {
     number: '01',
+    id: 'website-design-development',
     title: 'Website design & development',
-    description: 'Distinctive, fast websites that make your value clear and give people a confident next step.',
-    details: ['Strategy & content', 'UX and visual design', 'Responsive development'],
+    description: 'Clear, fast websites that explain your value, build trust and turn visits into useful enquiries.',
+    details: ['Strategy', 'Content structure', 'UI/UX', 'Responsive development', 'Search foundations'],
   },
   {
     number: '02',
+    id: 'ecommerce-online-stores',
     title: 'Ecommerce & online stores',
-    description: 'Product-led storefronts designed to make discovery easy and purchasing feel effortless.',
-    details: ['Shopify & custom stores', 'Payments and shipping', 'Product storytelling'],
+    description: 'Shopping experiences that make products easy to discover and buying feel straightforward.',
+    details: ['Product catalogue', 'Cart and checkout', 'Payments', 'Shipping setup', 'Store management'],
   },
   {
     number: '03',
-    title: 'Brand identity & UI/UX',
-    description: 'A clear visual language and interface system that helps every interaction feel recognisably yours.',
-    details: ['Identity systems', 'Product interfaces', 'Design direction'],
+    id: 'custom-software',
+    title: 'Custom software',
+    description: 'Focused dashboards, portals and internal tools built around how your team actually works.',
+    details: ['Product planning', 'Interface design', 'Development', 'Integrations', 'Deployment'],
   },
   {
     number: '04',
-    title: 'Software & automation',
-    description: 'Practical digital tools and connected workflows that remove friction from everyday work.',
-    details: ['Dashboards & portals', 'API integrations', 'AI-assisted workflows'],
+    id: 'mobile-apps',
+    title: 'Mobile apps',
+    description: 'Practical mobile experiences designed for real daily use on Android and iOS.',
+    details: ['Product flow', 'UI/UX', 'Development', 'Testing', 'Launch support'],
   },
   {
     number: '05',
-    title: 'Mobile apps',
-    description: 'Focused iOS and Android experiences built around the actions people need most.',
-    details: ['Product planning', 'Interface design', 'Cross-platform delivery'],
+    id: 'ai-chatbots-automation',
+    title: 'AI chatbots & automation',
+    description: 'Useful AI systems that answer questions, qualify leads and reduce repetitive work without making the customer experience feel robotic.',
+    details: ['Knowledge assistants', 'Web and WhatsApp chat', 'Workflow automation', 'API integrations'],
   },
   {
     number: '06',
-    title: 'AI assistants & chatbots',
-    description: 'Helpful conversational experiences that guide customers and support teams without pretending to be human.',
-    details: ['Knowledge assistants', 'Website conversations', 'Workflow integration'],
+    id: 'brand-identity-ui-ux',
+    title: 'Brand identity & UI/UX',
+    description: 'A visual and interface system that makes your business easier to recognise, understand and trust.',
+    details: ['Visual direction', 'Design system', 'Web and app UI', 'Prototypes', 'Handover'],
   },
 ];
 
@@ -62,7 +68,7 @@ export default function ServicesPage() {
 
         <section className="services-page-list studio-width" aria-label="WEBSTELL services">
           {serviceList.map((service) => (
-            <article className="services-page-card" key={service.number}>
+            <article className="services-page-card" id={service.id} key={service.number}>
               <span>{service.number}</span>
               <h2>{service.title}</h2>
               <p>{service.description}</p>

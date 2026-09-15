@@ -1,9 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import ViewportVideo from './ViewportVideo';
 
 type OfferService = {
+  slug: string;
   title: string;
   description: string;
   tags: string[];
@@ -16,50 +18,56 @@ type OfferService = {
 
 const offerServices: OfferService[] = [
   {
+    slug: 'website-design-development',
     title: 'Website Design & Development',
-    description: 'A distinctive, high-performing website that makes your business easy to understand, trust and contact.',
-    tags: ['Business websites', 'Mobile-first design', 'Search-ready foundations'],
+    description: 'Clear, fast websites that explain your value, build trust and turn visits into useful enquiries.',
+    tags: ['Strategy', 'Content structure', 'UI/UX', 'Responsive development', 'Search foundations'],
     video: '/assets/service-website-design-reel.mp4',
     imageAlt: 'Website design and development animation',
   },
   {
+    slug: 'ecommerce-online-stores',
     title: 'Ecommerce & Online Stores',
-    description: 'Product-led storefronts that make discovery feel effortless and turn attention into confident purchases.',
-    tags: ['Online stores', 'Payments & shipping', 'Product management'],
+    description: 'Shopping experiences that make products easy to discover and buying feel straightforward.',
+    tags: ['Product catalogue', 'Cart and checkout', 'Payments', 'Shipping setup', 'Store management'],
     video: '/assets/service-ecommerce.mp4',
     imageAlt: 'Ecommerce and online stores showreel',
   },
   {
-    title: 'Brand Identity & UI/UX',
-    description: 'A recognisable visual language and an interface system designed to stay clear across every customer touchpoint.',
-    tags: ['Visual identity', 'Website & app design', 'Interactive prototypes'],
-    video: '/assets/service-brand-uiux.mp4',
-    imageAlt: 'Brand identity and UI UX motion showcase',
-  },
-  {
-    title: 'Software & Automation',
-    description: 'Useful digital products, customer portals and automations that simplify complex work for your team.',
-    tags: ['Custom software', 'AI & workflows', 'API integrations'],
+    slug: 'custom-software',
+    title: 'Custom Software',
+    description: 'Focused dashboards, portals and internal tools built around how your team actually works.',
+    tags: ['Product planning', 'Interface design', 'Development', 'Integrations', 'Deployment'],
     video: '/assets/service-software-automation.mp4',
-    imageAlt: 'Software and automation showreel',
+    imageAlt: 'Custom software dashboard showreel',
   },
   {
+    slug: 'mobile-apps',
     title: 'Mobile Apps',
-    description: 'Reliable Android and iOS apps designed for the moments your customers and teams need them most.',
-    tags: ['iOS & Android', 'Cross-platform builds', 'App Store launches'],
+    description: 'Practical mobile experiences designed for real daily use on Android and iOS.',
+    tags: ['Product flow', 'UI/UX', 'Development', 'Testing', 'Launch support'],
     video: '/assets/service-mobile-apps.mp4',
     imageAlt: 'Mobile app development showreel',
   },
   {
-    title: 'AI Chatbots & Assistants',
-    description: 'Helpful conversational experiences that answer questions, qualify enquiries and keep your business available around the clock.',
-    tags: ['Website chatbots', 'AI assistants', 'Lead qualification'],
+    slug: 'ai-chatbots-automation',
+    title: 'AI Chatbots & Automation',
+    description: 'Useful AI systems that answer questions, qualify leads and reduce repetitive work without making the customer experience feel robotic.',
+    tags: ['Knowledge assistants', 'Web & WhatsApp chat', 'Workflow automation', 'API integrations'],
     video: '/assets/service-chatbot.mp4',
-    imageAlt: 'AI chatbot conversation animation',
+    imageAlt: 'AI chatbot and workflow automation showreel',
+  },
+  {
+    slug: 'brand-identity-ui-ux',
+    title: 'Brand Identity & UI/UX',
+    description: 'A visual and interface system that makes your business easier to recognise, understand and trust.',
+    tags: ['Visual direction', 'Design system', 'Web and app UI', 'Prototypes', 'Handover'],
+    video: '/assets/service-brand-uiux.mp4',
+    imageAlt: 'Brand identity and UI UX motion showcase',
   },
 ];
 
-export default function ServiceShowcase({ onContact }: { onContact: () => void }) {
+export default function ServiceShowcase() {
   const [activeOffer, setActiveOffer] = useState(0);
   const scrollZone = useRef<HTMLDivElement>(null);
 
@@ -113,28 +121,28 @@ export default function ServiceShowcase({ onContact }: { onContact: () => void }
 
       <div className="offer-scroll-zone" ref={scrollZone}>
         <div className="offer-panel wrap">
-          <div className="offer-list" role="tablist" aria-label="WEBSTELL services">
+          <nav className="offer-list" aria-label="WEBSTELL services">
             <p className="offer-scroll-label">Scroll to explore <span aria-hidden="true">↓</span></p>
             {offerServices.map((item, index) => (
-              <button
+              <Link
                 key={item.title}
                 className={activeOffer === index ? 'is-active' : ''}
-                onClick={() => setActiveOffer(index)}
-                role="tab"
-                aria-selected={activeOffer === index}
-                aria-controls="offer-detail"
+                href={`/services#${item.slug}`}
+                onFocus={() => setActiveOffer(index)}
+                onPointerEnter={() => setActiveOffer(index)}
+                aria-current={activeOffer === index ? 'page' : undefined}
               >
                 <span>0{index + 1}</span>
                 {item.title}
                 <i aria-hidden="true">↗</i>
-              </button>
+              </Link>
             ))}
             <div className="offer-progress" aria-hidden="true">
               {offerServices.map((item, index) => <i key={item.title} className={activeOffer === index ? 'is-active' : ''} />)}
             </div>
-          </div>
+          </nav>
 
-          <article className="offer-detail" id="offer-detail" role="tabpanel" aria-live="polite" key={activeOffer}>
+          <article className="offer-detail" aria-live="polite" key={activeOffer}>
             <div className={`offer-media${service.fit === 'contain' ? ' is-contain' : ''}`}>
               {service.video ? (
                 <ViewportVideo src={service.video} loop playOnHover aria-label={service.imageAlt} />
@@ -151,7 +159,7 @@ export default function ServiceShowcase({ onContact }: { onContact: () => void }
 
             <div className="offer-detail-top">
               <span>WEBSTELL / 0{activeOffer + 1}</span>
-              <button onClick={onContact}>Discuss your project <i aria-hidden="true">↗</i></button>
+              <Link href="/services" className="offer-all-services">Explore all services <i aria-hidden="true">↗</i></Link>
             </div>
 
             <div className="offer-glass-copy">
@@ -161,6 +169,9 @@ export default function ServiceShowcase({ onContact }: { onContact: () => void }
               <div className="offer-tags">
                 {service.tags.map((tag) => <span key={tag}>{tag}</span>)}
               </div>
+              <Link className="offer-service-link" href={`/services#${service.slug}`}>
+                Explore this service <span aria-hidden="true">↗</span>
+              </Link>
             </div>
           </article>
         </div>
