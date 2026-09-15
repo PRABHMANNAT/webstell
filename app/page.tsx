@@ -12,76 +12,12 @@ import ServiceShowcase from './ServiceShowcase';
 import { type Project } from './portfolio-data';
 import SocialIcon from './SocialIcon';
 import TeamSection from './TeamSection';
+import FaqAccordion from './FaqAccordion';
+import { homepageFaqs } from './faq-data';
 const featuredProjects = [
  {number:'01',title:'Pear',category:'Growth platform',location:'Oslo, Norway',description:'A growth-focused digital platform that brings custom software, search and commercial clarity into one confident customer journey.',tags:['Custom software','Organic growth','Revenue share'],image:'/assets/featured-projects/pear.png',url:'https://pear.no/',tone:'pear'},
  {number:'02',title:'Araku Coffee',category:'Global commerce',location:'India / Global',description:'A richly layered store experience that connects premium products, regenerative farming and the people behind every cup.',tags:['Ecommerce','Brand storytelling','Product discovery'],image:'/assets/featured-projects/araku-coffee.png',url:'https://www.arakucoffee.in/',tone:'araku'},
  {number:'03',title:'Eclipse Space',category:'Digital infrastructure',location:'United States / Global',description:'A clear, credible product experience that makes sophisticated space infrastructure easier for global partners to understand.',tags:['Product narrative','Technical clarity','Global systems'],image:'/assets/featured-projects/eclipse-space-orbit.png',url:'https://www.eclipse.space/',tone:'eclipse'},
-];
-const faqs = [
-  [
-    "What can you build for my business?",
-    "We build business websites, online stores, portfolios, booking websites and custom software. Whether you run a café, clinic, creative studio or software company, we start with what your customers need to do."
-  ],
-  [
-    "How much does a website cost?",
-    "A business website starts at ₹20,000, or ₹16,500 if you supply the domain. Explore the pricing page to add features and see your estimate. Every quote is tailored to your requirements, with a minimum project value of ₹15,000."
-  ],
-  [
-    "How long will it take?",
-    "A focused starter site usually takes 7–10 working days. Larger websites typically take 2–6 weeks. We confirm a schedule after reviewing your requirements; timely content and feedback help us keep it on track."
-  ],
-  [
-    "What do you need from me to get started?",
-    "Tell us about your business, customers, goals and budget. Share your logo, photos, text and any websites you like. If you do not have these ready, we can discuss help with content and design."
-  ],
-  [
-    "Can you redesign my existing website?",
-    "Yes. We can improve the look, structure, speed or features of your current website. First we check what should stay, what needs changing and how to protect important existing links."
-  ],
-  [
-    "Will it work well on mobile phones?",
-    "Yes. We design for phones, tablets and desktops and test the main journeys at different screen sizes before launch."
-  ],
-  [
-    "Are a domain and hosting included?",
-    "The packages include a standard, non-premium domain for the first year, subject to the extension and availability agreed in your quote. Renewals, hosting and paid services are separate. We explain those costs and help with setup."
-  ],
-  [
-    "Can customers pay or book through my website?",
-    "Yes. We can add booking tools, payment links or an online checkout depending on your package. You will need an approved account with the payment or booking provider. Their transaction fees and subscriptions are separate."
-  ],
-  [
-    "Can I change the text, images or products myself?",
-    "If your scope includes a content management system, yes. We show you how to make everyday updates. For a custom-coded site, we agree on how edits will be handled before development starts."
-  ],
-  [
-    "Will I own the website when it is finished?",
-    "We agree on ownership and handover in the project contract. This normally covers the completed custom work after final payment. Third-party fonts, photos, plugins and software remain subject to their own licences."
-  ],
-  [
-    "Will my website appear on Google?",
-    "We set up search-friendly foundations such as page titles, descriptions and indexable content. Search rankings take time and depend on your content, competition and ongoing work; no specific position is guaranteed."
-  ],
-  [
-    "Do you work with clients outside India?",
-    "Yes. We work remotely with Indian and international clients. We agree on a useful meeting time, clear milestones, currency and payment arrangements before starting."
-  ],
-  [
-    "How do reviews and payments work?",
-    "We split the project into agreed stages so you can review the direction before we move ahead. Your proposal explains the payment schedule, included feedback and how any new requests will be priced."
-  ],
-  [
-    "What happens after launch?",
-    "We hand over the agreed access and explain how to use your website. Launch fixes and ongoing support are defined in your quote. Maintenance, new features and regular content changes can be arranged separately."
-  ],
-  [
-    "Can you build software or connect AI tools?",
-    "Yes. We can scope dashboards, customer portals, internal tools, useful AI assistants and integrations. We first check your workflow, data needs and ongoing service costs."
-  ],
-  [
-    "How do I share my project idea?",
-    "Choose Discuss your project to start on WhatsApp, write a project brief, or choose a time for a call. The contact and scheduling forms currently prepare a brief for you to share; they do not send emails or confirm bookings yet."
-  ]
 ];
 const insights = [
  {eyebrow:'TRANSFORMATION',title:'Why a distinctive website is still your strongest digital advantage',text:'How focused design, clear positioning and thoughtful development turn a website into a dependable engine for growth.',author:'WEBSTELL Studio'},
@@ -120,7 +56,7 @@ export default function Home() {
 <section className="case-studies case-studies-international" aria-labelledby="case-studies-title"><div className="case-studies-heading wrap"><span className="case-badge"><span aria-hidden="true">✦</span> International projects</span><h2 id="case-studies-title">Built with teams<br/>worldwide.</h2><p>We partner with ambitious teams across markets to design and develop websites, commerce experiences and digital products that make complex ideas clear—and ready to grow.</p></div><div className="case-grid wrap">{featuredProjects.map((project,i)=><article className={'case-card case-card-'+(i+1)+' case-tone-'+project.tone} key={project.title}><div className="case-copy"><div className="case-meta-row"><span className="case-index">{project.number}</span><span className="case-location">{project.location}</span></div><h3>{project.title}</h3><p>{project.description}</p><a className="case-project-link" href={project.url} target="_blank" rel="noreferrer">View project <span aria-hidden="true">↗</span></a></div><a className="case-visual" href={project.url} target="_blank" rel="noreferrer" aria-label={'View the '+project.title+' project'}><img src={project.image} alt={project.title+' project preview'} loading={i===0?'eager':'lazy'}/><span className="case-visual-open" aria-hidden="true"><b>View project</b><i>↗</i></span></a></article>)}</div><div className="case-action"><a href="/projects">See all projects <span aria-hidden="true">↗</span></a></div></section>
  <TeamSection />
  <Testimonials/>
- <section className="queries wrap" id="faq"><div className="section-rule"><span className="section-mark" aria-hidden="true"></span><span className="rule-line"></span><span>YOUR QUESTIONS, ANSWERED</span></div><div className="queries-intro"><p>Starting a website project should feel simple. Here are the things clients usually ask us first.</p><h2>A few things you might be wondering.</h2><button className="support-pill" onClick={()=>setContact(true)}><span aria-hidden="true">↗</span> Discuss your project</button></div><div className="query-list">{faqs.map(([q,a])=><details key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></section>
+ <section className="queries wrap" id="faq"><div className="section-rule"><span className="section-mark" aria-hidden="true"></span><span className="rule-line"></span><span>YOUR QUESTIONS, ANSWERED</span></div><div className="queries-intro"><p>Clear answers before we start.</p><h2>Questions, answered.</h2><button className="support-pill" onClick={()=>setContact(true)}><span aria-hidden="true">↗</span> Discuss your project</button></div><FaqAccordion items={homepageFaqs} className="query-list" /></section>
  <section className="insights" id="insights"><div className="insights-marquee" aria-label="Why WEBSTELL"><div className="insights-track"><span>Why WEBSTELL <i aria-hidden="true">✳</i> Why WEBSTELL <i aria-hidden="true">✳</i></span><span aria-hidden="true">Why WEBSTELL <i>✳</i> Why WEBSTELL <i>✳</i></span></div></div><div className="insights-inner wrap"><div className="insights-lead"><p>A curated collection of practical ideas on websites, brand systems and intelligent digital products for teams building what comes next.</p><a className="all-articles" href="#insight-grid"><span aria-hidden="true">↗</span> All articles</a></div><div className="insight-grid" id="insight-grid"><div className="insight-image insight-image-red"><img src="/assets/insights-red.avif" alt="Featured website design insight" loading="lazy"/></div><article className="insight-card featured"><span>{insights[1].eyebrow}</span><h3>{insights[1].title}</h3><p>{insights[1].text}</p><footer><small>Written by<br/><b>{insights[1].author}</b></small><button onClick={()=>setContact(true)} aria-label="Discuss this insight">↗</button></footer></article><article className="insight-card"><span>{insights[0].eyebrow}</span><h3>{insights[0].title}</h3><p>{insights[0].text}</p><footer><small>Written by<br/><b>{insights[0].author}</b></small><button onClick={()=>setContact(true)} aria-label="Discuss this insight">↗</button></footer></article><div className="insight-image insight-image-blue"><img src="/assets/insights-blue.avif" alt="Featured digital product insight" loading="lazy"/></div><article className="insight-card wide"><span>{insights[2].eyebrow}</span><h3>{insights[2].title}</h3><p>{insights[2].text}</p><footer><small>Written by<br/><b>{insights[2].author}</b></small><button onClick={()=>setContact(true)} aria-label="Discuss this insight">↗</button></footer></article></div></div></section>
  <ContactSection/>
  </main>
