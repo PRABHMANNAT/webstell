@@ -48,6 +48,7 @@
 
 /* Service videos keep the original social-card composition. */
 .service-social-gallery{scroll-margin-top:100px}
+.service-social-gallery .social-post{touch-action:pan-y;user-select:none}
 .service-social-gallery .social-preview video{width:100%;height:100%;display:block;object-fit:cover}
 .service-social-gallery .service-post-video{background:#0b0f15}
 .service-social-gallery .service-post-video video{width:100%;height:100%;display:block;object-fit:cover}

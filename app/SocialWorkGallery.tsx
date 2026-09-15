@@ -9,7 +9,6 @@ const services = serviceOverview;
 
 export default function SocialWorkGallery() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [interactionPaused, setInteractionPaused] = useState(false);
   const [focusPaused, setFocusPaused] = useState(false);
   const [isHolding, setIsHolding] = useState(false);
@@ -17,10 +16,10 @@ export default function SocialWorkGallery() {
   const { ref, isInViewport } = useInViewport<HTMLElement>();
 
   useEffect(() => {
-    if (!isInViewport || paused || interactionPaused || focusPaused || isHolding || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!isInViewport || interactionPaused || focusPaused || isHolding || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const timer = window.setInterval(() => setActive((current) => (current + 1) % services.length), 2000);
     return () => window.clearInterval(timer);
-  }, [isInViewport, paused, interactionPaused, focusPaused, isHolding]);
+  }, [isInViewport, interactionPaused, focusPaused, isHolding]);
 
   const move = (direction: number) => setActive((current) => (current + direction + services.length) % services.length);
   const positionFor = (index: number) => {
@@ -46,10 +45,8 @@ export default function SocialWorkGallery() {
   return (
     <section ref={ref} className="social-work service-social-gallery" id="service-previews" aria-labelledby="social-work-title">
       <header className="featured-design-heading wrap">
-        <span>WEBSTELL / 06 SERVICES</span>
         <h2 id="social-work-title" className="animated-heading"><span>See what we can build.</span></h2>
-        <p>Websites, online stores, software, apps, automation and brand systems—made to help your business move forward.</p>
-        <button type="button" onClick={() => setPaused((value) => !value)} aria-pressed={paused}>{paused ? 'Play showcase' : 'Pause showcase'}</button>
+        <p>Take a closer look at the services we create for growing businesses.</p>
       </header>
       <div className="social-work-stage" onPointerEnter={() => setInteractionPaused(true)} onPointerLeave={() => setInteractionPaused(false)} onFocusCapture={() => setFocusPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) setFocusPaused(false); }}>
         {services.map((service, index) => (
