@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, Pause, Play } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useInViewport } from './useInViewport';
 
 const slides = [
@@ -57,8 +57,6 @@ const slides = [
 
 export default function HeroProjects() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [hovered, setHovered] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const { ref, isInViewport } = useInViewport<HTMLElement>();
   useEffect(() => {
@@ -69,12 +67,12 @@ export default function HeroProjects() {
     return () => media.removeEventListener('change', update);
   }, []);
   useEffect(() => {
-    if (!isInViewport || paused || hovered || reducedMotion) return;
+    if (!isInViewport || reducedMotion) return;
     const timer = window.setInterval(() => {
       if (!document.hidden) setActive((index) => (index + 1) % slides.length);
-    }, 2000);
+    }, 1000);
     return () => window.clearInterval(timer);
-  }, [isInViewport, paused, hovered, reducedMotion]);
+  }, [isInViewport, reducedMotion]);
   const slide = slides[active];
   return (
     <article
@@ -82,13 +80,6 @@ export default function HeroProjects() {
       className="hero-projects"
       aria-label="Website design showcase"
       aria-roledescription="carousel"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocusCapture={() => setHovered(true)}
-      onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget))
-          setHovered(false);
-      }}
     >
       <div className="project-window-bar">
         <span>
@@ -96,7 +87,7 @@ export default function HeroProjects() {
           <i />
           <i />
         </span>
-        <small>THE POSSIBILITY EDIT</small>
+        <small>PREVIOUS DIRECTIONS</small>
         <ArrowUpRight size={16} />
       </div>
       <div className="hero-project-image">
@@ -119,36 +110,6 @@ export default function HeroProjects() {
         </span>
         <h2>{slide.title}</h2>
         <p>{slide.description}</p>
-      </div>
-      <div className="hero-project-controls">
-        <span className="slide-count">
-          0{active + 1}
-          <i> / 08</i>
-        </span>
-        <div className="slide-dots">
-          {slides.map((item, index) => (
-            <button
-              key={item.title}
-              aria-label={`Show ${item.title}`}
-              aria-pressed={index === active}
-              onClick={() => setActive(index)}
-            />
-          ))}
-        </div>
-        <button
-          className="slide-pause"
-          aria-label={
-            paused || reducedMotion
-              ? 'Play project slideshow'
-              : 'Pause project slideshow'
-          }
-          onClick={() => {
-            setPaused(!(paused || reducedMotion));
-            setReducedMotion(false);
-          }}
-        >
-          {paused || reducedMotion ? <Play size={14} /> : <Pause size={14} />}
-        </button>
       </div>
     </article>
   );
