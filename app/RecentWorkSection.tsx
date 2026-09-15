@@ -13,7 +13,7 @@ export default function RecentWorkSection() {
           <h2 id="recent-work-title">Work that moves you forward.</h2>
         </div>
         <p className="recent-intro">
-          Websites and digital products built around a real audience, a clear goal and the details that earn trust.
+          Clear strategy, sharp design and thoughtful technology—built to earn trust and turn interest into action.
         </p>
       </div>
       <div className="project-grid">
