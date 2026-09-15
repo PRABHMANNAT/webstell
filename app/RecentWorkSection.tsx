@@ -38,12 +38,12 @@ export default function RecentWorkSection() {
         ))}
       </div>
       <div className="center">
-        <Link className="outline-pill portfolio-cta" href="/projects">
+        <Link className="outline-pill portfolio-cta" href="/projects" aria-label="Explore our work">
           <span className="portfolio-cta-eyes" aria-hidden="true">
             <i><b /></i>
             <i><b /></i>
           </span>
-          <span>View all projects</span>
+          <span className="portfolio-cta-label">Explore our work</span>
           <span className="portfolio-cta-arrow" aria-hidden="true">↗</span>
         </Link>
       </div>

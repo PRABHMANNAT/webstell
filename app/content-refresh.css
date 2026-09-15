@@ -21,38 +21,50 @@
 .project .project-category{font:500 11px/1.4 monospace;text-transform:uppercase;letter-spacing:.08em;color:#646b73;margin:14px 0 8px}
 .project .project-description{font-size:17px;line-height:1.5;color:#515963;max-width:500px}
 @media(min-width:701px){.work .project-home-hide-desktop{display:none}}
-.portfolio-cta{position:relative;isolation:isolate;overflow:hidden;align-items:center;gap:20px;min-height:88px;padding:10px 29px 10px 10px;border-color:#171717;background:#171717;color:#fff}
+.portfolio-cta{--portfolio-accent:#d7ff70;position:relative;isolation:isolate;overflow:hidden;align-items:center;gap:20px;min-height:88px;padding:10px 29px 10px 10px;border-color:#171717;background:#171717;color:#fff}
 .portfolio-cta>*{position:relative;z-index:1}
-.portfolio-cta::after{position:absolute;z-index:0;top:-45%;left:-90%;width:42%;height:190%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),rgba(255,255,255,.34),rgba(255,255,255,.08),transparent);content:"";pointer-events:none;transform:rotate(18deg)}
+.portfolio-cta::before{position:absolute;z-index:0;top:0;bottom:0;left:0;width:44%;background:linear-gradient(90deg,transparent,#d7ff703d,transparent);content:"";opacity:0;pointer-events:none;transform:translateX(-125%)}
+.portfolio-cta::after{position:absolute;z-index:0;bottom:0;left:-30%;width:28%;height:2px;background:var(--portfolio-accent);box-shadow:0 0 10px #d7ff7080;content:"";pointer-events:none;transform:translateX(0)}
 .portfolio-cta-eyes{display:flex;align-items:center;justify-content:center;gap:3px;width:58px;height:58px;border-radius:16px;background:#171717;color:#f8f8f4;flex:0 0 auto}
 .portfolio-cta-eyes i{position:relative;display:block;width:18px;height:24px;overflow:hidden;border:1.75px solid currentColor;border-radius:50%;background:#f8f8f4}
 .portfolio-cta-eyes b{position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:#171717;transform:translate(-50%,-50%)}
-.portfolio-cta-arrow{margin-left:7px;font-size:22px;line-height:1}
+.portfolio-cta-label{min-width:116px;white-space:nowrap;transition:color .24s ease-out,transform .24s ease-out}
+.portfolio-cta-arrow{position:relative;margin-left:7px;font-size:22px;line-height:1;transition:transform .26s ease-out}
+.portfolio-cta-arrow::after{position:absolute;inset:0;content:"↗";color:var(--portfolio-accent);opacity:0;filter:blur(1.5px);transform:translate(-2px,2px);pointer-events:none}
 @media(prefers-reduced-motion:no-preference){
- .portfolio-cta{transition:box-shadow .36s ease,transform .36s cubic-bezier(.2,.8,.2,1)}
- .portfolio-cta::after{transition:transform .7s cubic-bezier(.2,.75,.25,1)}
- .portfolio-cta-eyes{transition:transform .36s cubic-bezier(.2,.8,.2,1)}
- .portfolio-cta-eyes i{transition:transform .36s cubic-bezier(.2,.8,.2,1)}
- .portfolio-cta-eyes b{transition:transform .26s cubic-bezier(.2,.8,.2,1)}
- .portfolio-cta-arrow{transition:transform .36s cubic-bezier(.2,.8,.2,1)}
+ .portfolio-cta{transition:box-shadow .24s ease-out}
+ .portfolio-cta::before{transition:opacity .08s linear,transform .26s ease-out}
+ .portfolio-cta::after{transition:transform .26s ease-out}
+ .portfolio-cta-eyes{transition:transform .26s cubic-bezier(.2,.8,.2,1)}
+ .portfolio-cta-eyes i{transition:transform .26s cubic-bezier(.2,.8,.2,1)}
+ .portfolio-cta-eyes b{transition:transform .22s ease-out}
  @media(hover:hover){
-  .portfolio-cta:hover{background:#171717;color:#fff;box-shadow:0 20px 38px #17171738;transform:translateY(-5px) scale(1.035)}
-  .portfolio-cta:hover::after{transform:rotate(18deg) translateX(470%)}
-  .portfolio-cta:hover .portfolio-cta-eyes{background:#171717;transform:rotate(-5deg) scale(1.08)}
+  .portfolio-cta:hover{background:#171717;color:#fff;box-shadow:0 12px 24px #1717172e}
+  .portfolio-cta:hover::before{opacity:1;transform:translateX(280%)}
+  .portfolio-cta:hover::after{transform:translateX(470%)}
+  .portfolio-cta:hover .portfolio-cta-eyes{transform:rotate(-5deg) scale(1.08)}
   .portfolio-cta:hover .portfolio-cta-eyes i{transform:scaleY(.92)}
   .portfolio-cta:hover .portfolio-cta-eyes i:first-child b{transform:translate(calc(-50% + 3px),calc(-50% - 1px))}
   .portfolio-cta:hover .portfolio-cta-eyes i:last-child b{transform:translate(calc(-50% + 2px),calc(-50% - 1px))}
-  .portfolio-cta:hover .portfolio-cta-arrow{transform:translate(3px,-3px)}
+  .portfolio-cta:hover .portfolio-cta-label{transform:translateX(2px)}
+  .portfolio-cta:hover .portfolio-cta-arrow{transform:translate(5px,-5px)}
+  .portfolio-cta:hover .portfolio-cta-arrow::after{animation:portfolio-arrow-trail .26s ease-out}
  }
- .portfolio-cta:focus-visible{outline:3px solid #171717;outline-offset:4px;background:#171717;color:#fff}
- .portfolio-cta:focus-visible .portfolio-cta-eyes{background:#171717}
+ .portfolio-cta:focus-visible{outline:3px solid #171717;outline-offset:4px;background:#171717;color:#fff;box-shadow:0 12px 24px #1717172e}
+ .portfolio-cta:focus-visible::before{opacity:1;transform:translateX(280%)}
+ .portfolio-cta:focus-visible::after{transform:translateX(480%)}
+ .portfolio-cta:focus-visible .portfolio-cta-eyes{transform:rotate(-5deg) scale(1.08)}
+ .portfolio-cta:focus-visible .portfolio-cta-eyes i{transform:scaleY(.92)}
  .portfolio-cta:focus-visible .portfolio-cta-eyes i:first-child b{transform:translate(calc(-50% + 3px),calc(-50% - 1px))}
  .portfolio-cta:focus-visible .portfolio-cta-eyes i:last-child b{transform:translate(calc(-50% + 2px),calc(-50% - 1px))}
- .portfolio-cta:focus-visible .portfolio-cta-arrow{transform:translate(3px,-3px)}
+ .portfolio-cta:focus-visible .portfolio-cta-label{transform:translateX(2px)}
+ .portfolio-cta:focus-visible .portfolio-cta-arrow{transform:translate(5px,-5px)}
+ .portfolio-cta:focus-visible .portfolio-cta-arrow::after{animation:portfolio-arrow-trail .26s ease-out}
+ @keyframes portfolio-arrow-trail{0%{opacity:0;transform:translate(-2px,2px)}35%{opacity:.32}100%{opacity:0;transform:translate(-5px,5px)}}
 }
 .portfolio-cta:active{background:#171717;color:#fff;transform:scale(.985)}
 .portfolio-cta:active .portfolio-cta-eyes{background:#171717}
-@media(prefers-reduced-motion:reduce){.portfolio-cta,.portfolio-cta::after,.portfolio-cta-eyes,.portfolio-cta-eyes i,.portfolio-cta-eyes b,.portfolio-cta-arrow{transition:none}}
+@media(prefers-reduced-motion:reduce){.portfolio-cta,.portfolio-cta::before,.portfolio-cta::after,.portfolio-cta-eyes,.portfolio-cta-eyes i,.portfolio-cta-eyes b,.portfolio-cta-label,.portfolio-cta-arrow{transition:none}}
 .featured-design-heading{text-align:center;padding:42px 0 54px;max-width:900px}
 .featured-design-heading>span,.testimonial-heading>span{font:500 11px/1.4 monospace;letter-spacing:.16em;text-transform:uppercase;color:#b4bbc6}
 .featured-design-heading h2{font-size:clamp(48px,6.5vw,94px);font-weight:500;letter-spacing:-.065em;line-height:1.1;margin:18px 0}
