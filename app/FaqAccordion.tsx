@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useId } from 'react';
 
 import type { FaqItem } from './faq-data';
 
@@ -10,18 +10,17 @@ type FaqAccordionProps = {
 };
 
 export default function FaqAccordion({ items, className = '' }: FaqAccordionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const groupName = useId();
 
   return (
     <div className={`faq-accordion ${className}`.trim()}>
-      {items.map((item, index) => (
+      {items.map((item) => (
         <details
           key={item.question}
-          open={openIndex === index}
-          onToggle={(event) => setOpenIndex(event.currentTarget.open ? index : null)}
+          name={groupName}
         >
           <summary>
-            <span>{item.question}</span>
+            <span className="faq-question">{item.question}</span>
             <i aria-hidden="true">+</i>
           </summary>
           <div className="faq-answer">

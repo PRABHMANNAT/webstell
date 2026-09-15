@@ -20,7 +20,7 @@ export const homepageFaqs: FaqItem[] = [
       'We begin with your business, audience, goals, budget and examples you like. If available, share your logo, text, photographs and brand material. If those are not ready, tell us—we can include content and visual support in the scope.',
   },
   {
-    question: 'Can I update the website myself?',
+    question: 'Can I change the text, images or products myself?',
     answer:
       'Yes, when a content-management system is included in the scope. We can give your team a simple editing dashboard and walkthrough. If a fully custom build is more suitable, we agree on how future updates will be handled before starting.',
   },
@@ -84,3 +84,12 @@ export const fullFaqs: FaqItem[] = [
       'You can send a project brief, message us on WhatsApp or book a call. We will use your goals, scope and budget to recommend a clear next step.',
   },
 ];
+
+// Include the additional questions explicitly selected for the homepage.
+export const selectedHomepageFaqs = fullFaqs.filter((item) =>
+  homepageFaqs.includes(item) || [
+    'Can you redesign my existing website?',
+    'Are a domain and hosting included?',
+    'Can customers pay or book through my website?',
+  ].includes(item.question),
+);
