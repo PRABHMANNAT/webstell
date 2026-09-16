@@ -23,6 +23,7 @@ type EnquiryInput = {
 const MAX_BODY_BYTES = 3_800_000;
 const MAX_ATTACHMENT_BASE64_CHARS = 3_300_000;
 const MAX_ATTACHMENT_BYTES = 2_400_000;
+const ALLOWED_ATTACHMENT_FILE = /\.(pdf|doc|docx|txt|rtf|png|jpe?g|webp)$/i;
 
 function value(input: unknown, maxLength: number) {
   return typeof input === 'string' ? input.trim().slice(0, maxLength) : '';
@@ -47,6 +48,9 @@ function parseAttachment(input: unknown) {
 
   if (!filename || !content || !/^[A-Za-z0-9+/]+={0,2}$/.test(content)) {
     return { attachment: null, error: 'Please choose a valid attachment.' };
+  }
+  if (!ALLOWED_ATTACHMENT_FILE.test(filename)) {
+    return { attachment: null, error: 'Upload a PDF, document, text file or image.' };
   }
   if (content.length > MAX_ATTACHMENT_BASE64_CHARS || encodedBytes > MAX_ATTACHMENT_BYTES) {
     return { attachment: null, error: 'Attachments must be smaller than 2.4 MB.' };

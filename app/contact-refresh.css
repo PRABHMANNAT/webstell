@@ -697,6 +697,97 @@
   100% { opacity: 0; transform: translate3d(calc(var(--contact-confetti-left) + 7vw), 108vh, 0) rotate(calc(var(--contact-confetti-rotation) + 680deg)); }
 }
 
+@media (max-width: 880px) {
+  .contact-page-form-card,
+  .contact-page-conversation {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-page-form-heading p,
+  .contact-page-intro > p {
+    max-width: 43rem;
+  }
+
+  .contact-page-intro h2 {
+    max-width: 13ch;
+  }
+
+  .contact-page-aside {
+    grid-template-columns: minmax(250px, .85fr) minmax(250px, 1.15fr);
+    align-items: stretch;
+  }
+
+  .contact-page-aside .home-contact-whatsapp {
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 620px) {
+  .contact-page-marquee-track span {
+    padding-block: 14px;
+    font-size: 14px;
+  }
+
+  .contact-page-section {
+    padding: 28px 0 64px;
+  }
+
+  .contact-page-section::before {
+    background-size: 42px 42px;
+  }
+
+  .contact-page-form-card {
+    gap: 30px;
+    padding: 25px 18px;
+    border-radius: 19px;
+    box-shadow: 7px 7px 0 #ffffff1a;
+  }
+
+  .contact-page-form-heading h1 {
+    font-size: clamp(2.8rem, 13vw, 4.4rem);
+  }
+
+  .contact-page-form-card .studio-form-row,
+  .contact-optional-details-body .studio-form-row,
+  .contact-page-aside {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-page-form-card .studio-form {
+    gap: 15px;
+  }
+
+  .contact-page-form-card .studio-form textarea {
+    min-height: 150px;
+  }
+
+  .contact-optional-details summary {
+    grid-template-columns: 1fr auto;
+  }
+
+  .contact-optional-details summary small {
+    grid-column: 1;
+  }
+
+  .contact-page-conversation {
+    gap: 34px;
+  }
+
+  .contact-page-intro h2 {
+    font-size: clamp(3.2rem, 14vw, 4.7rem);
+  }
+
+  .contact-page-aside .home-contact-whatsapp {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-page-marquee-track { animation: none; }
+  .contact-page-image-art { transition: none; }
+  .contact-success-confetti { display: none; }
+}
+
 .contact-page-conversation {
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(280px, .72fr);
@@ -761,6 +852,10 @@
   width: 100%;
 }
 
+.contact-page-aside .home-contact-whatsapp-icon {
+  background: #122018 url('/assets/contact/whatsapp-icon.png') center / cover no-repeat;
+}
+
 .contact-page-image {
   margin: 0;
   overflow: hidden;
@@ -769,15 +864,15 @@
   background: #000;
 }
 
-.contact-page-image img {
+.contact-page-image-art {
   display: block;
   width: 100%;
   aspect-ratio: 1.45 / 1;
-  object-fit: cover;
+  background: url('/assets/contact/webstell-contact-connection.png') 50% 64% / cover no-repeat;
   transition: transform .7s cubic-bezier(.2,.8,.2,1);
 }
 
-.contact-page-image:hover img {
+.contact-page-image:hover .contact-page-image-art {
   transform: scale(1.04);
 }
 
@@ -897,4 +992,23 @@
 
 @media (prefers-reduced-motion: reduce) {
   .contact-marquee-track { animation: none; }
+}
+
+@media (max-width: 880px) {
+  .contact-page-conversation {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-page-aside {
+    grid-template-columns: minmax(250px, .85fr) minmax(250px, 1.15fr);
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 620px) {
+  .contact-page-form-card .studio-form-row,
+  .contact-optional-details-body .studio-form-row,
+  .contact-page-aside {
+    grid-template-columns: 1fr;
+  }
 }

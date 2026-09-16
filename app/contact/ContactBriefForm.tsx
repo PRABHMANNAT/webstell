@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useRef, useState, type ChangeEvent, type SyntheticEvent } from 'react';
 import { ArrowUpRight, Check, LoaderCircle, MessageCircle } from 'lucide-react';
 import { whatsappUrl } from '../contact-utils';
 
@@ -12,7 +12,8 @@ const allowedFileExtensions = /\.(pdf|doc|docx|txt|rtf|png|jpe?g|webp)$/i;
 const confettiPieces = Array.from({ length: 22 }, (_, index) => index);
 
 function value(form: FormData, name: string) {
-  return String(form.get(name) || '').trim();
+  const input = form.get(name);
+  return typeof input === 'string' ? input.trim() : '';
 }
 
 function FieldError({ id, message }: { id: string; message?: string }) {
@@ -79,7 +80,7 @@ export default function ContactBriefForm() {
     setErrors((current) => ({ ...current, attachment: '' }));
   }
 
-  async function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
     if (state === 'loading' || state === 'success') return;
 

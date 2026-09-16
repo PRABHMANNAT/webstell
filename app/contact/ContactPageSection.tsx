@@ -34,12 +34,12 @@ export default function ContactPageSection() {
             </div>
             <div className="contact-page-aside">
               <a href={whatsappUrl('Hi WEBSTELL! I would like to discuss a project.')} target="_blank" rel="noreferrer" className="home-contact-whatsapp">
-                <span className="home-contact-whatsapp-icon"><img src="/assets/contact/whatsapp-icon.png" alt="" /></span>
+                <span className="home-contact-whatsapp-icon" aria-hidden="true" />
                 <span><small>Prefer WhatsApp?</small><strong>Message WEBSTELL directly</strong></span>
                 <ArrowUpRight size={19} />
               </a>
               <figure className="contact-page-image">
-                <img src="/assets/contact/webstell-contact-connection.png" alt="A retro computer and telephone on a flower-covered hill beneath a bright sky" />
+                <div className="contact-page-image-art" />
                 <figcaption>Clear brief. Good conversation. Better work.</figcaption>
               </figure>
             </div>
