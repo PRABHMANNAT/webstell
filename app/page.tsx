@@ -95,7 +95,7 @@ export default function Home() {
     <p className="insights-kicker">ABOUT WEBSTELL</p>
     <h2 id="why-webstell-title">Built for businesses that refuse to blend in.</h2>
     <p className="insights-summary">WEBSTELL is a new-generation design and technology studio for businesses ready to lead in an AI-shaped world. Founded in 2026, our team brings experience from international, production-grade projects to create standout websites, digital products and intelligent systems that earn attention, build trust and turn interest into action.</p>
-    <a className="all-articles" href="#contact"><span aria-hidden="true" data-hover-label="Get your website today">↗</span> Get your website today</a>
+    <button type="button" className="all-articles" onClick={()=>setContact(true)}><span aria-hidden="true" data-hover-label="Get your website today">↗</span> Get your website today</button>
     <div className="studio-email-row">
      <a className="studio-email" href="mailto:contact@webstell-studio.com">contact@webstell-studio.com</a>
      <button type="button" className="copy-email" onClick={copyStudioEmail} aria-live="polite">{emailCopied?'Copied':'Copy email'}</button>
