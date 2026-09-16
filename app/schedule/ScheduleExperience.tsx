@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import Image from 'next/image';
 import {
   ArrowUpRight,
   Check,
@@ -197,16 +196,7 @@ export default function ScheduleExperience() {
         </section>
         <section className="schedule-card studio-width">
           <aside className="call-intro">
-            <div className="call-monogram" aria-hidden="true">
-              <Image
-                src="/assets/brand/webstell-retro-mac.png"
-                alt=""
-                width={42}
-                height={42}
-                sizes="42px"
-                unoptimized
-              />
-            </div>
+            <div className="call-brand-name">Webstell Studio</div>
             <span className="studio-eyebrow">A CONVERSATION WITH WEBSTELL</span>
             <h2>Start with what you know.</h2>
             <p>

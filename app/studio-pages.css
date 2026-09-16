@@ -1548,19 +1548,12 @@ button:disabled {
   color: #fff;
   border-radius: 23px 0 0 23px;
 }
-.call-monogram {
-  display: grid;
-  place-items: center;
-  width: 65px;
-  height: 65px;
-  background: #080808;
-  border: 1px solid #4c4c4c;
-  border-radius: 18px;
-  box-shadow: 0 10px 18px #00000033;
+.call-brand-name {
   margin-bottom: 35px;
-}
-.call-monogram img {
-  object-fit: contain;
+  color: #fff;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
 }
 .call-intro > .studio-eyebrow {
   font-size: 10px;
@@ -2345,10 +2338,6 @@ button:disabled {
   .call-intro {
     padding: 30px;
     border-radius: 23px 23px 0 0;
-  }
-  .call-monogram {
-    float: right;
-    margin: 0 0 15px 20px;
   }
   .calendar-panel {
     padding: 35px;
