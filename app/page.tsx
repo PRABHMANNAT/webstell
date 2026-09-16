@@ -28,7 +28,7 @@ export default function Home() {
  const [selected,setSelected]=useState<Project|null>(null);
  const [contact,setContact]=useState(false);
  const [subscribeState,setSubscribeState]=useState<'idle'|'loading'|'success'|'error'>('idle');
- const [subscribeMessage,setSubscribeMessage]=useState('Occasional ideas and practical insights for a digital presence that works harder.');
+ const [subscribeMessage,setSubscribeMessage]=useState('Get website maintenance, development updates and customer insights—straight to your inbox.');
  const [emailCopied,setEmailCopied]=useState(false);
  const projectDialog=useRef<HTMLDialogElement>(null);
  const heroCta=useRef<HTMLButtonElement>(null);
