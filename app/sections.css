@@ -12,6 +12,10 @@
 .insight-image-red::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 45%,transparent 35%,rgba(24,9,39,.28) 100%);opacity:0;transition:opacity .7s ease}
 .insight-image-red:hover img{transform:scale(1.1);filter:saturate(1.12) brightness(1.04)}
 .insight-image-red:hover::after{opacity:1}
+.insight-image-blue{position:relative}
+.insight-image-blue::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(215,255,70,.2) 49%,transparent 63%);transform:translateX(-120%);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.insight-image-blue:hover img{transform:scale(1.09);filter:contrast(1.06) saturate(1.08)}
+.insight-image-blue:hover::after{transform:translateX(120%)}
 .insights-lead .insights-kicker{margin:0 0 18px;color:#5d5d5d;font-family:var(--mono,monospace);font-size:12px;font-weight:600;letter-spacing:.1em;line-height:1.2}
 .insights-lead h2{max-width:690px;margin:0 0 28px;font-size:clamp(44px,5.7vw,78px);font-weight:500;letter-spacing:-.07em;line-height:.95}
 .insights-lead .insights-summary{margin-bottom:38px}
@@ -23,7 +27,7 @@
 .copy-email:hover>span{background:#d7ff46;color:#171717;transform:rotate(-10deg)}
 .studio-email:focus-visible,.copy-email:focus-visible{outline:3px solid #7647ee;outline-offset:4px}
 @media(max-width:760px){.studio-email-row{gap:10px}.studio-email{font-size:14px}}
-@media(prefers-reduced-motion:reduce){.studio-email,.copy-email{transition:none}}
+@media(prefers-reduced-motion:reduce){.studio-email,.copy-email,.insight-image-red::after,.insight-image-blue::after{transition:none}}
 
 /* Homepage FAQ */
 .faq-accordion{display:grid;gap:10px}
