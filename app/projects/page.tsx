@@ -75,8 +75,8 @@ export default function ProjectsPage() {
           <div className="projects-hero-inner wrap">
             <h1>Built to make<br />your next move<br />impossible to ignore.</h1>
             <p>
-              A growing collection of WEBSTELL studio concepts for brands with
-              something worth saying. Open any direction to take a closer look.
+              Explore bold website directions—from distinctive storefronts to
+              smarter digital products—built to turn attention into action.
             </p>
           </div>
         </section>
