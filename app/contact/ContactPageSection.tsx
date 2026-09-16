@@ -1,5 +1,5 @@
 import { ArrowUpRight, Mail, Phone } from 'lucide-react';
-import BriefForm from '../BriefForm';
+import ContactBriefForm from './ContactBriefForm';
 import { whatsappUrl } from '../contact-utils';
 
 export default function ContactPageSection() {
@@ -19,7 +19,7 @@ export default function ContactPageSection() {
               <h1 id="contact-page-title">Tell us what you’re building.</h1>
               <p>Start with the essentials. You can add more detail whenever you’re ready.</p>
             </div>
-            <BriefForm compact context="Sent from the dedicated WEBSTELL contact page." />
+            <ContactBriefForm />
           </div>
 
           <div className="contact-page-conversation">
