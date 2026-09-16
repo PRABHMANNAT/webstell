@@ -1,11 +1,14 @@
 'use client';
 
-import { useRef, useState, type FormEvent } from 'react';
+import { useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { ArrowUpRight, Check, LoaderCircle, MessageCircle } from 'lucide-react';
 import { whatsappUrl } from '../contact-utils';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 type FieldErrors = Record<string, string>;
+
+const maxAttachmentBytes = 2_400_000;
+const allowedFileExtensions = /\.(pdf|doc|docx|txt|rtf|png|jpe?g|webp)$/i;
 
 function value(form: FormData, name: string) {
   return String(form.get(name) || '').trim();
@@ -31,11 +34,49 @@ function validate(form: FormData) {
   return errors;
 }
 
+function fileToBase64(file: File) {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = typeof reader.result === 'string' ? reader.result : '';
+      const content = result.split(',')[1];
+      if (!content) reject(new Error('The attachment could not be read.'));
+      else resolve(content);
+    };
+    reader.onerror = () => reject(new Error('The attachment could not be read.'));
+    reader.readAsDataURL(file);
+  });
+}
+
 export default function ContactBriefForm() {
   const [state, setState] = useState<FormState>('idle');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [attachment, setAttachment] = useState<File | null>(null);
   const submissionId = useRef('');
+
+  function chooseAttachment(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0] || null;
+    if (!file) {
+      setAttachment(null);
+      setErrors((current) => ({ ...current, attachment: '' }));
+      return;
+    }
+    if (file.size > maxAttachmentBytes) {
+      setAttachment(null);
+      setErrors((current) => ({ ...current, attachment: 'Choose a file smaller than 2.4 MB.' }));
+      event.target.value = '';
+      return;
+    }
+    if (!allowedFileExtensions.test(file.name)) {
+      setAttachment(null);
+      setErrors((current) => ({ ...current, attachment: 'Upload a PDF, document, text file or image.' }));
+      event.target.value = '';
+      return;
+    }
+    setAttachment(file);
+    setErrors((current) => ({ ...current, attachment: '' }));
+  }
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -55,6 +96,9 @@ export default function ContactBriefForm() {
     setMessage('Sending your project brief…');
 
     try {
+      const attachmentPayload = attachment
+        ? { filename: attachment.name, content: await fileToBase64(attachment) }
+        : undefined;
       const response = await fetch('/api/enquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -67,6 +111,10 @@ export default function ContactBriefForm() {
           businessName: value(form, 'businessName'),
           projectType: 'Contact page project brief',
           projectGoal: value(form, 'projectGoal'),
+          budgetRange: value(form, 'budgetRange'),
+          targetDate: value(form, 'targetDate'),
+          referenceLinks: value(form, 'referenceLinks'),
+          attachment: attachmentPayload,
           context: 'Sent from the dedicated WEBSTELL contact page.',
           website: value(form, 'website'),
         }),
@@ -83,7 +131,7 @@ export default function ContactBriefForm() {
       setMessage('');
     } catch {
       setState('error');
-      setMessage('We could not reach the studio. Please try again or use WhatsApp.');
+      setMessage(attachment ? 'We could not prepare that file. Please try another one or use WhatsApp.' : 'We could not reach the studio. Please try again or use WhatsApp.');
     }
   }
 
@@ -124,6 +172,42 @@ export default function ContactBriefForm() {
         <textarea name="projectGoal" rows={5} maxLength={4000} placeholder="What are you trying to achieve, and what would a strong outcome look like?" aria-invalid={Boolean(errors.projectGoal)} aria-describedby={errors.projectGoal ? 'contact-description-error' : undefined} />
         <FieldError id="contact-description-error" message={errors.projectGoal} />
       </label>
+
+      <details className="contact-optional-details">
+        <summary>
+          <span>Add optional project details</span>
+          <small>Budget, timing, a file or references</small>
+        </summary>
+        <div className="contact-optional-details-body">
+          <div className="studio-form-row">
+            <label>
+              Budget <span>(optional)</span>
+              <select name="budgetRange" defaultValue="">
+                <option value="">Not sure yet</option>
+                <option>₹15,000 to ₹25,000</option>
+                <option>₹25,000 to ₹50,000</option>
+                <option>₹50,000 to ₹1,00,000</option>
+                <option>₹1,00,000+</option>
+                <option>I would like your advice</option>
+              </select>
+            </label>
+            <label>
+              Target delivery date <span>(optional)</span>
+              <input name="targetDate" type="date" />
+            </label>
+          </div>
+          <label className="contact-file-field">
+            <span>Requirement file, PRD or brief <em>(optional · PDF, document or image · max 2.4 MB)</em></span>
+            <input name="projectFile" type="file" accept=".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg,.webp" onChange={chooseAttachment} aria-invalid={Boolean(errors.attachment)} aria-describedby={errors.attachment ? 'contact-attachment-error' : undefined} />
+            <strong>{attachment ? attachment.name : 'Choose a file'}</strong>
+            <FieldError id="contact-attachment-error" message={errors.attachment} />
+          </label>
+          <label>
+            Reference link <span>(optional)</span>
+            <input name="referenceLinks" type="url" inputMode="url" placeholder="A website, doc, Figma file or examples you like" maxLength={2000} />
+          </label>
+        </div>
+      </details>
 
       <button className={`studio-button dark-button form-submit ${state === 'loading' ? 'is-loading' : ''}`} type="submit" disabled={state === 'loading' || state === 'success'}>
         <span>{state === 'loading' ? 'Sending securely…' : state === 'success' ? 'Brief sent' : 'Send my project brief'}</span>

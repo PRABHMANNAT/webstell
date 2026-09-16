@@ -15,11 +15,14 @@ type EnquiryInput = {
   budgetRange?: unknown;
   targetDate?: unknown;
   referenceLinks?: unknown;
+  attachment?: unknown;
   context?: unknown;
   website?: unknown;
 };
 
-const MAX_BODY_BYTES = 24_000;
+const MAX_BODY_BYTES = 3_800_000;
+const MAX_ATTACHMENT_BASE64_CHARS = 3_300_000;
+const MAX_ATTACHMENT_BYTES = 2_400_000;
 
 function value(input: unknown, maxLength: number) {
   return typeof input === 'string' ? input.trim().slice(0, maxLength) : '';
@@ -34,9 +37,27 @@ function validWhatsApp(input: string) {
   return digits.length >= 7 && digits.length <= 15;
 }
 
+function parseAttachment(input: unknown) {
+  if (input === undefined || input === null) return { attachment: null, error: '' };
+  if (!input || typeof input !== 'object') return { attachment: null, error: 'Please choose a valid attachment.' };
+  const candidate = input as { filename?: unknown; content?: unknown };
+  const filename = value(candidate.filename, 180).replace(/[^a-zA-Z0-9._ -]/g, '_');
+  const content = typeof candidate.content === 'string' ? candidate.content.trim() : '';
+  const encodedBytes = Math.floor((content.length * 3) / 4) - (content.endsWith('==') ? 2 : content.endsWith('=') ? 1 : 0);
+
+  if (!filename || !content || !/^[A-Za-z0-9+/]+={0,2}$/.test(content)) {
+    return { attachment: null, error: 'Please choose a valid attachment.' };
+  }
+  if (content.length > MAX_ATTACHMENT_BASE64_CHARS || encodedBytes > MAX_ATTACHMENT_BYTES) {
+    return { attachment: null, error: 'Attachments must be smaller than 2.4 MB.' };
+  }
+  return { attachment: { filename, content }, error: '' };
+}
+
 function validate(raw: EnquiryInput) {
   const kind: RequestKind =
     raw.kind === 'call_request' ? 'call_request' : 'project_enquiry';
+  const parsedAttachment = parseAttachment(raw.attachment);
   const data = {
     submissionId: value(raw.submissionId, 100),
     kind,
@@ -49,6 +70,7 @@ function validate(raw: EnquiryInput) {
     budgetRange: value(raw.budgetRange, 100),
     targetDate: value(raw.targetDate, 20),
     referenceLinks: value(raw.referenceLinks, 2_000),
+    attachment: parsedAttachment.attachment,
     context: value(raw.context, 6_000),
   };
   const errors: Record<string, string> = {};
@@ -79,6 +101,7 @@ function validate(raw: EnquiryInput) {
     data.targetDate < new Date().toISOString().slice(0, 10)
   )
     errors.targetDate = 'Choose today or a future date.';
+  if (parsedAttachment.error) errors.attachment = parsedAttachment.error;
 
   return { data, errors };
 }
@@ -98,6 +121,7 @@ function labelledFields(data: ReturnType<typeof validate>['data']) {
     ['Budget', data.budgetRange || 'Not provided'],
     ['Target date', data.targetDate || 'Not provided'],
     ['Reference links', data.referenceLinks || 'Not provided'],
+    ['Attached file', data.attachment?.filename || 'Not provided'],
     ['Context', data.context || 'Not provided'],
   ] as const;
 }
@@ -156,6 +180,9 @@ export async function POST(request: Request) {
             ? `Call request from ${data.name}`
             : `New WEBSTELL brief from ${data.name}`,
         html: emailHtml(data),
+        attachments: data.attachment
+          ? [{ filename: data.attachment.filename, content: data.attachment.content }]
+          : undefined,
         text: labelledFields(data)
           .map(([label, content]) => `${label}: ${content}`)
           .join('\n\n'),
