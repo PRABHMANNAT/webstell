@@ -55,12 +55,14 @@ export default function BriefForm({
   projectType = '',
   compact = false,
   booking = false,
+  estimate,
   onValidate,
 }: {
   context?: string;
   projectType?: string;
   compact?: boolean;
   booking?: boolean;
+  estimate?: number;
   onValidate?: () => boolean;
 }) {
   const [state, setState] = useState<FormState>('idle');
@@ -107,7 +109,7 @@ export default function BriefForm({
       businessName: field(form, 'businessName'),
       projectType: booking ? '30-minute project call' : field(form, 'projectType'),
       projectGoal: field(form, 'projectGoal'),
-      budgetRange: booking ? '' : field(form, 'budgetRange'),
+      budgetRange: estimate !== undefined ? `INR ${estimate}` : booking ? '' : field(form, 'budgetRange'),
       targetDate: booking ? '' : field(form, 'targetDate'),
       referenceLinks: field(form, 'referenceLinks'),
       context: [context, pricingContext].filter(Boolean).join('\n\n'),
@@ -170,7 +172,8 @@ export default function BriefForm({
         <FieldError id="contact-error" message={errors.contact} />
       </fieldset>
 
-      {!booking && (
+      {estimate !== undefined && <><input type="hidden" name="projectType" value={projectType} /><label>Calculated budget<input readOnly value={`₹${estimate.toLocaleString('en-IN')}`} aria-label="Calculated budget" /></label></>}
+      {!booking && estimate === undefined && (
         <div className="studio-form-row">
           <label className={compact ? 'studio-form-wide' : undefined}>
             What would you like us to build? {!compact && <b aria-hidden="true">*</b>}

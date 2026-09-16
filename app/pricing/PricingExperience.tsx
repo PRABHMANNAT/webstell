@@ -340,7 +340,7 @@ export default function PricingExperience() {
                 </div>
               )}
             </dl>
-            <BriefForm context={context} projectType={project.name} compact />
+            <div className="estimate-enquiry"><h3>Send us your estimate</h3><p>Add your details and we’ll talk through the best next step.</p><BriefForm context={context} projectType={project.name} estimate={total} compact /></div>
             <a href={callHref} className="receipt-call-link">
               Still undecided? Request a 30-minute call <ArrowUpRight size={16} />
             </a>
