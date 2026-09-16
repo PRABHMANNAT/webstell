@@ -4,8 +4,6 @@ import Link from 'next/link';
 import { recentWorkProjects } from './portfolio-data';
 
 export default function RecentWorkSection() {
-  const desktopHiddenProjectIds = new Set(['wedding', 'fintechx', 'above', 'aeronis']);
-
   return (
     <section className="work wrap" id="projects" aria-labelledby="recent-work-title">
       <div className="section-heading">
@@ -17,11 +15,8 @@ export default function RecentWorkSection() {
         </p>
       </div>
       <div className="project-grid">
-        {recentWorkProjects.map((project) => (
-          <article
-            className={`project${desktopHiddenProjectIds.has(project.id) ? ' project-home-hide-desktop' : ''}`}
-            key={project.id}
-          >
+        {recentWorkProjects.slice(0, 6).map((project) => (
+          <article className="project" key={project.id}>
             <Link className="project-preview" href="/projects" aria-label={`View ${project.title} in all projects`}>
               <div className="project-image">
                 <img src={project.image} alt={`${project.title} website design direction`} loading="lazy" />
