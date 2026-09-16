@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { ArrowDown, ArrowUp } from 'lucide-react';
 import { recentWorkProjects, type Project } from '../portfolio-data';
 import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
@@ -31,9 +32,14 @@ export default function ProjectsPage() {
   const [selected, setSelected] = useState<Project | null>(null);
   const [filter, setFilter] = useState('');
   const [filterOpen, setFilterOpen] = useState(false);
+  const [showScrollShortcut, setShowScrollShortcut] = useState(false);
+  const [atInternationalEnd, setAtInternationalEnd] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
   const filterMenu = useRef<HTMLDivElement>(null);
   const filterTrigger = useRef<HTMLButtonElement>(null);
+  const allProjectsRef = useRef<HTMLElement>(null);
+  const internationalProjectsRef = useRef<HTMLDivElement>(null);
+  const internationalEndRef = useRef<HTMLDivElement>(null);
   const activeFilter = projectFilters.find((item) => item.value === filter);
   const visibleProjects = activeFilter?.matches
     ? recentWorkProjects.filter((project) => activeFilter.matches(project.category))
@@ -64,6 +70,30 @@ export default function ProjectsPage() {
     };
   }, [filterOpen]);
 
+  useEffect(() => {
+    const updateScrollShortcut = () => {
+      const allProjectsTop = allProjectsRef.current?.getBoundingClientRect().top;
+      const internationalEndTop = internationalEndRef.current?.getBoundingClientRect().top;
+      if (allProjectsTop === undefined || internationalEndTop === undefined) return;
+
+      setShowScrollShortcut(allProjectsTop <= window.innerHeight * .72);
+      setAtInternationalEnd(internationalEndTop <= window.innerHeight * .78);
+    };
+
+    updateScrollShortcut();
+    window.addEventListener('scroll', updateScrollShortcut, { passive: true });
+    window.addEventListener('resize', updateScrollShortcut);
+    return () => {
+      window.removeEventListener('scroll', updateScrollShortcut);
+      window.removeEventListener('resize', updateScrollShortcut);
+    };
+  }, []);
+
+  const navigateProjects = () => {
+    const destination = atInternationalEnd ? allProjectsRef.current : internationalProjectsRef.current;
+    destination?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <>
       <StudioNav current="work" />
@@ -81,7 +111,7 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        <section className="projects-list wrap" aria-labelledby="all-projects-title">
+        <section className="projects-list wrap" ref={allProjectsRef} aria-labelledby="all-projects-title">
           <div className="projects-list-heading">
             <div>
               <span className="refresh-eyebrow" aria-live="polite">{String(visibleProjects.length).padStart(2, '0')} PROJECTS</span>
@@ -122,8 +152,14 @@ export default function ProjectsPage() {
             ))}
           </div>
         </section>
-        <InternationalProjectsSection />
+        <div className="international-projects-anchor" ref={internationalProjectsRef}>
+          <InternationalProjectsSection />
+        </div>
+        <div ref={internationalEndRef} aria-hidden="true" />
       </main>
+      {showScrollShortcut && <button type="button" className={`project-scroll-shortcut${atInternationalEnd ? ' is-up' : ''}`} onClick={navigateProjects} aria-label={atInternationalEnd ? 'Back to the beginning of all projects' : 'Jump to international projects'} data-label={atInternationalEnd ? 'Back to all projects' : 'International projects'}>
+        {atInternationalEnd ? <ArrowUp aria-hidden="true" /> : <ArrowDown aria-hidden="true" />}
+      </button>}
       <SiteFooter />
       <dialog ref={dialog} className="project-dialog" onCancel={() => setSelected(null)} onClick={(event) => { if (event.target === event.currentTarget) setSelected(null); }} aria-labelledby="project-preview-title">
         <button className="close" onClick={() => setSelected(null)} aria-label="Close project">×</button>

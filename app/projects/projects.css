@@ -54,6 +54,7 @@
 .projects-list {
   padding-top: clamp(70px, 10vw, 150px);
   padding-bottom: clamp(80px, 12vw, 180px);
+  scroll-margin-top: 92px;
 }
 
 .projects-list-heading {
@@ -256,6 +257,87 @@
   gap: clamp(48px, 7vw, 100px) 30px;
 }
 
+.international-projects-anchor {
+  scroll-margin-top: 92px;
+}
+
+.project-scroll-shortcut {
+  position: fixed;
+  z-index: 20;
+  right: clamp(16px, 2.4vw, 34px);
+  bottom: clamp(18px, 3vw, 34px);
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(255, 255, 255, .42);
+  border-radius: 50%;
+  background: #111514;
+  box-shadow: 0 14px 32px rgba(4, 10, 7, .28);
+  color: #fff;
+  cursor: pointer;
+  animation: project-scroll-shortcut-in .3s cubic-bezier(.2, .8, .2, 1) both;
+  transition: background .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s cubic-bezier(.2, .8, .2, 1);
+}
+
+.project-scroll-shortcut svg {
+  width: 21px;
+  height: 21px;
+  stroke-width: 1.8;
+  transition: transform .25s cubic-bezier(.2, .8, .2, 1);
+}
+
+.project-scroll-shortcut::after {
+  content: attr(data-label);
+  position: absolute;
+  right: calc(100% + 12px);
+  width: max-content;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #111514;
+  box-shadow: 0 8px 22px rgba(4, 10, 7, .2);
+  color: #fff;
+  font-family: var(--mono, monospace);
+  font-size: 10px;
+  letter-spacing: .04em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(5px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.project-scroll-shortcut:hover,
+.project-scroll-shortcut:focus-visible {
+  border-color: #c8f35d;
+  background: #26352b;
+  box-shadow: 0 18px 38px rgba(4, 10, 7, .36);
+  transform: translateY(-3px);
+}
+
+.project-scroll-shortcut:hover svg {
+  transform: translateY(3px);
+}
+
+.project-scroll-shortcut.is-up:hover svg {
+  transform: translateY(-3px);
+}
+
+.project-scroll-shortcut:hover::after,
+.project-scroll-shortcut:focus-visible::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.project-scroll-shortcut:focus-visible {
+  outline: 3px solid rgba(200, 243, 93, .65);
+  outline-offset: 3px;
+}
+
+@keyframes project-scroll-shortcut-in {
+  from { opacity: 0; transform: translateY(10px) scale(.88); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 @media (max-width: 700px) {
   .projects-hero-inner {
     display: block;
@@ -286,5 +368,23 @@
 
   .project-filter-option:first-child {
     grid-column: auto;
+  }
+
+  .project-scroll-shortcut {
+    width: 48px;
+    height: 48px;
+  }
+
+  .project-scroll-shortcut::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-scroll-shortcut,
+  .project-scroll-shortcut svg,
+  .project-scroll-shortcut::after {
+    animation: none;
+    transition: none;
   }
 }
