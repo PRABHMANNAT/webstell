@@ -1777,30 +1777,45 @@ button:disabled {
   color: #171717;
 }
 .time-slots .custom-time-trigger {
-  border-style: dashed;
-  color: #d9ff91;
+  border-style: solid;
+  color: #fff;
 }
 .custom-time-picker {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: auto minmax(180px, 1fr);
+  grid-template-columns: minmax(125px, 0.7fr) minmax(180px, 1fr);
   align-items: center;
   gap: 12px;
-  padding: 10px 11px;
-  border: 1px solid #3f4937;
-  border-radius: 10px;
-  background: #20231e;
-  color: #f4f7ef;
-  font-size: 12px;
+  padding: 12px;
+  border: 1px solid #e1e5da;
+  border-radius: 11px;
+  background: #fff;
+  color: #171717;
+  box-shadow: 0 8px 20px #00000012;
+  font-size: 13px;
+  font-weight: 500;
+  animation: custom-time-picker-in 0.22s ease both;
 }
 .custom-time-picker select {
   width: 100%;
-  padding: 9px 34px 9px 11px;
-  border: 1px solid #606a58;
-  border-radius: 8px;
+  min-height: 42px;
+  padding: 9px 34px 9px 12px;
+  border: 1px solid #cfd6c5;
+  border-radius: 9px;
   background: #fff;
   color: #171717;
   font: inherit;
+  font-weight: 400;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.18s ease;
+}
+.custom-time-picker select:hover {
+  border-color: #9da892;
+}
+.custom-time-picker select:focus {
+  outline: 0;
+  border-color: #171717;
+  box-shadow: 0 0 0 3px #17171714;
+  transform: translateY(-1px);
 }
 .calendar-note {
   font-size: 12px;
@@ -1946,6 +1961,9 @@ button:disabled {
   0% { opacity: 0; transform: translate3d(0, -5vh, 0) rotate(var(--confetti-rotation)); }
   12% { opacity: 1; }
   100% { opacity: 0; transform: translate3d(35px, 105vh, 0) rotate(540deg); }
+}
+@keyframes custom-time-picker-in {
+  from { opacity: 0; transform: translateY(-5px); }
 }
 @keyframes calendar-label-next {
   from { opacity: 0; transform: translateX(12px); }
@@ -2720,6 +2738,9 @@ button:disabled {
   .call-intro > p {
     font-size: 15px;
   }
+  .call-note {
+    display: none;
+  }
   .calendar-panel {
     padding: 25px 20px;
   }
@@ -2752,6 +2773,10 @@ button:disabled {
   }
   .time-slots button {
     font-size: 12px;
+  }
+  .custom-time-picker {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
   .selected-call {
     padding: 17px;

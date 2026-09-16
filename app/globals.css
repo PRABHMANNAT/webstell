@@ -12,8 +12,12 @@
 }
 html {
   scroll-behavior: smooth;
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scroll-padding-top: 112px;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
 }
 body {
   margin: 0;
