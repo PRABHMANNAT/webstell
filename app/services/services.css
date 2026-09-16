@@ -18,62 +18,115 @@
   object-fit: cover;
 }
 
+.services-explorer {
+  margin-top: clamp(54px, 8vw, 118px);
+  background: #fff;
+  color: #101010;
+}
+
+.services-explorer-content {
+  padding-top: clamp(84px, 11vw, 154px);
+  padding-bottom: clamp(84px, 11vw, 154px);
+}
+
+.services-explorer-intro {
+  max-width: 780px;
+}
+
+.services-explorer-intro .studio-eyebrow {
+  color: #101010;
+}
+
+.services-explorer-intro h2 {
+  max-width: 730px;
+  margin: 24px 0 0;
+  font-size: clamp(48px, 7vw, 94px);
+  font-weight: 500;
+  line-height: .91;
+  letter-spacing: -.07em;
+}
+
+.services-explorer-intro p {
+  max-width: 610px;
+  margin: clamp(32px, 4.2vw, 56px) 0 0;
+  color: #494949;
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.4;
+  letter-spacing: -.026em;
+}
+
 .services-page-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid var(--studio-line);
-  border-left: 1px solid var(--studio-line);
+  gap: 14px;
+  margin-top: clamp(58px, 8vw, 108px);
 }
 
 .services-page-card {
-  min-height: 410px;
-  padding: 34px;
-  border-right: 1px solid var(--studio-line);
-  border-bottom: 1px solid var(--studio-line);
-  background: #fbfcf8;
+  position: relative;
+  display: flex;
+  min-height: 428px;
+  flex-direction: column;
+  padding: clamp(26px, 3.2vw, 42px);
+  border: 1px solid #101010;
+  border-radius: 18px;
+  background: #101010;
+  box-shadow: none;
   scroll-margin-top: 110px;
 }
 
+.services-page-card::before {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: inherit;
+  content: '';
+  pointer-events: none;
+}
+
 .services-page-card:target {
-  background: #f0f4e2;
-  box-shadow: inset 0 0 0 2px #171717;
+  outline: 3px solid #101010;
+  outline-offset: 4px;
 }
 
-.services-page-card > span {
-  color: #777d72;
-  font-family: monospace;
-  font-size: 11px;
-}
-
-.services-page-card h2 {
+.services-page-card h3 {
+  position: relative;
+  z-index: 1;
   max-width: 540px;
-  margin-top: 64px;
-  font-size: clamp(35px, 4vw, 58px);
-  line-height: .96;
-  letter-spacing: -.055em;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(34px, 3.75vw, 54px);
+  font-weight: 500;
+  line-height: .94;
+  letter-spacing: -.06em;
 }
 
 .services-page-card p {
+  position: relative;
+  z-index: 1;
   max-width: 500px;
-  margin-top: 22px;
-  color: var(--studio-muted);
+  margin: 22px 0 0;
+  color: #e1e1e1;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .services-page-card ul {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  margin: 42px 0 0;
-  padding: 0;
+  margin: auto 0 0;
+  padding: 32px 0 0;
   list-style: none;
 }
 
 .services-page-card li {
   padding: 8px 11px;
-  border: 1px solid var(--studio-line);
+  border: 1px solid rgb(255 255 255 / 28%);
   border-radius: 999px;
+  color: #fff;
   font-family: monospace;
   font-size: 10px;
 }
@@ -83,7 +136,7 @@
   grid-template-columns: 1fr auto;
   gap: 36px;
   align-items: end;
-  margin-top: 18px;
+  margin-top: clamp(56px, 8vw, 118px);
   padding: 72px;
   border-radius: 26px;
   background: #dfe9bd;
@@ -105,14 +158,15 @@
 
 @media (hover: hover) {
   .services-page-card {
-    transition: background 220ms ease, transform 220ms ease;
+    transition: border-color 220ms ease, background 220ms ease, box-shadow 220ms ease, transform 220ms ease;
   }
 
   .services-page-card:hover {
-    position: relative;
     z-index: 1;
-    background: #fff;
-    transform: translateY(-4px);
+    border-color: #101010;
+    background: #000;
+    box-shadow: 0 14px 0 #d9d9d9;
+    transform: translateY(-5px);
   }
 }
 
@@ -125,9 +179,9 @@
     margin-bottom: 64px;
   }
 
-  .services-page-list {
-    grid-template-columns: 1fr;
-  }
+  .services-explorer-content { padding-top: 84px; padding-bottom: 84px; }
+
+  .services-page-list { grid-template-columns: 1fr; }
 
   .services-page-close {
     grid-template-columns: 1fr;
@@ -142,14 +196,21 @@
   }
 
   .services-page-card {
-    min-height: 360px;
+    min-height: 390px;
     padding: 27px 23px;
   }
 
-  .services-page-card h2 {
-    margin-top: 48px;
-    font-size: 39px;
-  }
+  .services-explorer { margin-top: 52px; }
+
+  .services-explorer-content { padding-top: 68px; padding-bottom: 68px; }
+
+  .services-explorer-intro h2 { font-size: clamp(46px, 13vw, 66px); }
+
+  .services-explorer-intro p { margin-top: 30px; font-size: 18px; }
+
+  .services-page-list { gap: 11px; margin-top: 54px; }
+
+  .services-page-card h3 { font-size: 39px; }
 
   .services-page-close {
     padding: 38px 25px;
