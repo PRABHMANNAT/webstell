@@ -672,6 +672,28 @@
   cursor: pointer;
 }
 
+.contact-optional-details input[type='date'] {
+  min-height: 54px;
+  border: 1px solid #171717 !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #fff 0%, #f2f7e8 100%) !important;
+  color: #171717;
+  color-scheme: light;
+  font-weight: 600;
+}
+
+.contact-optional-details input[type='date']::-webkit-calendar-picker-indicator {
+  padding: 7px;
+  border-radius: 8px;
+  background-color: #c8ff63;
+  cursor: pointer;
+}
+
+.contact-optional-details input[type='date']:focus {
+  box-shadow: 3px 3px 0 #171717 !important;
+  transform: translate(-1px, -1px);
+}
+
 .contact-file-field > span { font-size: 14px; font-weight: 600; }
 .contact-file-field em { color: #666660; font-size: 12px; font-style: normal; font-weight: 400; }
 .contact-file-field input { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0 !important; opacity: 0; cursor: pointer; }
