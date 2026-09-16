@@ -149,7 +149,7 @@ export default function ContactBriefForm() {
           <FieldError id="contact-name-error" message={errors.name} />
         </label>
         <label>
-          Business name <span className="contact-optional-label">optional</span>
+          Business name
           <input name="businessName" autoComplete="organization" placeholder="Your company or brand" maxLength={150} />
         </label>
       </div>
