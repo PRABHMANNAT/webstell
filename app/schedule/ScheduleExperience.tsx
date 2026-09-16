@@ -99,8 +99,8 @@ export default function ScheduleExperience() {
       <main className="studio-page schedule-page">
         <section className="schedule-intro studio-width">
           <h1>
-            Request a 30-minute
-            <br /><span>project call.</span>
+            Let’s find a time
+            <br /><span>for your project.</span>
           </h1>
           <p>Choose a preferred time below. It becomes confirmed after the WEBSTELL team replies.</p>
         </section>
