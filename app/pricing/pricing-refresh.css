@@ -55,5 +55,23 @@
 .pricing-confetti i{position:absolute;top:-20px;width:9px;height:16px;animation:pricing-confetti-fall 2.4s ease-in both;border:1px solid white}
 @keyframes pricing-confetti-fall{0%{opacity:0;transform:translateY(-5vh) rotate(0)}10%{opacity:1}100%{opacity:0;transform:translate(45px,110vh) rotate(680deg)}}
 @media(max-width:900px){.pricing-page .estimate-layout{grid-template-columns:1fr}.pricing-page .estimate-receipt{max-width:none}}
-@media(max-width:600px){.pricing-page .addon-card{grid-template-columns:24px minmax(0,1fr);padding:13px}.pricing-page .addon-price{grid-column:2;grid-row:3}.pricing-page .addon-heading{grid-template-columns:1fr}.pricing-page .recommended-button{grid-column:1}.estimate-enquiry{padding:18px}.pricing-page .pricing-price strong{font-size:32px}}
+@media(max-width:600px){
+  .pricing-page{overflow:hidden}
+  .pricing-page .pricing-showcase{padding-inline:0}
+  .pricing-page .pricing-grid{border-radius:18px}
+  .pricing-page .pricing-card{min-height:0;padding:24px 18px}
+  .pricing-page .pricing-card h3{font-size:clamp(30px,10vw,43px)}
+  .pricing-page .pricing-price{flex-wrap:wrap;align-items:flex-start;gap:11px;margin-top:22px;padding-bottom:22px}
+  .pricing-page .pricing-price strong{font-size:clamp(26px,8.5vw,38px)}
+  .pricing-page .pricing-price span{flex-basis:100%}
+  .pricing-page .pricing-includes ul{grid-template-columns:1fr}
+  .pricing-page .estimate-builder,.pricing-page .estimate-receipt{padding:20px 16px;border-radius:18px}
+  .pricing-page .addon-card{grid-template-columns:24px minmax(0,1fr);padding:13px}
+  .pricing-page .addon-price{grid-column:2;grid-row:3}
+  .pricing-page .addon-heading{grid-template-columns:1fr}
+  .pricing-page .recommended-button{grid-column:1}
+  .pricing-page .pricing-custom{margin-inline:0;border-radius:18px}
+  .pricing-page .pricing-custom button{width:100%;justify-content:space-between}
+  .estimate-enquiry{padding:18px}
+}
 @media(prefers-reduced-motion:reduce){.pricing-confetti{display:none}}
