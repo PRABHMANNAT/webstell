@@ -1,5 +1,9 @@
 .pricing-page{background:#fff;color:#171717}
 .pricing-page .pricing-page-intro h1>span{color:#c8ff63;font-weight:750}
+.pricing-page .pricing-scroll-link{gap:12px;padding:10px 11px 10px 16px;border:1px solid #c8ff63;border-radius:999px;background:#c8ff63;color:#171717;font-weight:700;box-shadow:0 10px 24px rgba(200,255,99,.22);transition:background .25s ease,color .25s ease,box-shadow .25s ease,transform .25s ease}
+.pricing-page .pricing-scroll-link svg{padding:5px;border-radius:50%;background:#171717;color:#fff;transition:transform .25s ease}
+.pricing-page .pricing-scroll-link:hover,.pricing-page .pricing-scroll-link:focus-visible{gap:12px;border-color:#171717;background:#171717;color:#fff;box-shadow:0 13px 28px rgba(23,23,23,.2);transform:translateY(-2px)}
+.pricing-page .pricing-scroll-link:hover svg,.pricing-page .pricing-scroll-link:focus-visible svg{background:#c8ff63;color:#171717;transform:translateY(2px)}
 .pricing-page .pricing-faq h2 em{color:#171717;font-style:normal;text-decoration:underline;text-decoration-color:#c8ff63;text-underline-offset:.12em}
 .pricing-page .pricing-showcase{margin-top:24px;padding-bottom:55px}
 .pricing-page .pricing-card{background:#fff;border:1px solid #d9d9d9;color:#171717;box-shadow:none}
