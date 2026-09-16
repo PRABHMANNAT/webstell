@@ -1542,30 +1542,23 @@ button:disabled {
 }
 .call-intro {
   padding: 40px;
-  background: #eaf0df;
+  background: #171717;
+  color: #fff;
+  border-radius: 23px 0 0 23px;
 }
 .call-monogram {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  place-items: center;
   width: 65px;
   height: 65px;
-  background: #25321b;
-  color: #e3fac5;
-  border-radius: 17px;
-  font-size: 35px;
-  padding: 12px;
+  background: #fff;
+  color: #171717;
+  border-radius: 18px;
   margin-bottom: 35px;
-  letter-spacing: -0.09em;
-}
-.call-monogram span {
-  font-size: 16px;
-  align-self: start;
-  letter-spacing: 0;
 }
 .call-intro > .studio-eyebrow {
   font-size: 10px;
-  color: #6a7856;
+  color: #c8ff63;
 }
 .call-intro h2 {
   font-size: 35px;
@@ -1574,7 +1567,7 @@ button:disabled {
 }
 .call-intro > p {
   font-size: 16px;
-  color: #748063;
+  color: #d6d6d6;
   line-height: 1.7;
 }
 .call-intro ul {
@@ -1590,7 +1583,7 @@ button:disabled {
   gap: 12px;
   font-size: 13px;
   line-height: 1.5;
-  color: #536143;
+  color: #f0f0f0;
 }
 .call-intro li svg {
   flex-shrink: 0;
@@ -1600,8 +1593,8 @@ button:disabled {
   line-height: 1.5;
   margin-top: 40px;
   padding-top: 25px;
-  border-top: 1px solid #cdd7be;
-  color: #667953;
+  border-top: 1px solid #454545;
+  color: #fff;
 }
 .calendar-panel {
   padding: 36px 42px;
@@ -2141,6 +2134,7 @@ button:disabled {
   }
   .call-intro {
     padding: 30px;
+    border-radius: 23px 23px 0 0;
   }
   .call-monogram {
     float: right;
@@ -3475,6 +3469,14 @@ button:disabled {
   color: #29361e;
   font-size: 14px;
   font-weight: 500;
+}
+.call-intro .call-pricing-context {
+  border-color: #4c4c4c;
+  background: #292929;
+  color: #e7e7e7;
+}
+.call-intro .call-pricing-context strong {
+  color: #fff;
 }
 .studio-footer-rich .studio-footer-links {
   display: grid;

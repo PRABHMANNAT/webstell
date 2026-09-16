@@ -106,8 +106,8 @@ export default function ScheduleExperience() {
         </section>
         <section className="schedule-card studio-width">
           <aside className="call-intro">
-            <div className="call-monogram">
-              W<span>↗</span>
+            <div className="call-monogram" aria-hidden="true">
+              <CalendarDays size={30} strokeWidth={1.8} />
             </div>
             <span className="studio-eyebrow">A CONVERSATION WITH WEBSTELL</span>
             <h2>Start with what you know.</h2>
