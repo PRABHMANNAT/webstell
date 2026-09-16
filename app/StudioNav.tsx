@@ -45,12 +45,13 @@ export function HireDialog({
           <X size={20} />
         </DialogClose>
         <DialogTitle className="hire-title">
-          Your next big thing.
+          Ready to build something
           <br />
-          <span>Let’s talk about it.</span>
+          <span>remarkable?</span>
         </DialogTitle>
         <DialogDescription className="hire-description">
-          A rough idea, a detailed brief, or just a question. We’re all ears.
+          Tell us what you want to achieve. We’ll turn the right idea into a
+          clear, high-impact digital experience.
         </DialogDescription>
         <div className="hire-options">
           <a
@@ -90,7 +91,7 @@ export function HireDialog({
           </Link>
         </div>
         <p className="hire-footnote">
-          Real people. Useful advice. No pressure.
+          Good things start with a hello.
         </p>
       </DialogContent>
     </Dialog>
