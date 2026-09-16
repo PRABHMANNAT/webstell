@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import {
   ArrowUpRight,
   CalendarDays,
-  Send,
+  Mail,
   X,
 } from 'lucide-react';
 import {
@@ -74,13 +74,13 @@ export function HireDialog({
             </div>
             <ArrowUpRight />
           </a>
-          <Link className="hire-option" href="/contact">
+          <Link className="hire-option hire-option-dark" href="/contact">
             <span className="option-icon">
-              <Send />
+              <Mail strokeWidth={1.8} />
             </span>
             <div>
-              <strong>Send us a message</strong>
-              <p>Give your idea a little more room.</p>
+              <strong>Send us the details</strong>
+              <p>Share the brief and we’ll come back with clear next steps.</p>
             </div>
             <ArrowUpRight />
           </Link>
