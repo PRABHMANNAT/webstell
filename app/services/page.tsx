@@ -1,5 +1,7 @@
-import Link from 'next/link';
-import StudioNav from '../StudioNav';
+'use client';
+
+import { useState } from 'react';
+import StudioNav, { HireDialog } from '../StudioNav';
 import SiteFooter from '../SiteFooter';
 import ServiceShowcase from '../ServiceShowcase';
 import SocialWorkGallery from '../SocialWorkGallery';
@@ -7,64 +9,58 @@ import './services.css';
 
 const serviceList = [
   {
-    number: '01',
     id: 'website-design-development',
     title: 'Website design & development',
-    description: 'We plan, design and build clear, high-performing websites that explain your value, build trust and make it easy for the right people to get in touch. A complete website redesign is available when your current site no longer reflects where the business is going.',
-    details: ['Strategy', 'Website redesigns', 'Content structure', 'UI/UX', 'Responsive development', 'Search foundations'],
+    intro: 'A modern website built from the ground up—or a complete redesign that brings an outdated site up to the level of your business.',
+    details: ['Business and customer research', 'Page planning and content structure', 'Custom design for desktop and mobile', 'Website redesigns and content refreshes', 'Search-ready setup, testing and launch support'],
   },
   {
-    number: '02',
     id: 'ecommerce-online-stores',
     title: 'Ecommerce & online stores',
-    description: 'Online stores designed around how customers browse, compare and buy—pairing persuasive product pages with simple, dependable checkout and practical tools for managing the day-to-day.',
-    details: ['Product catalogue', 'Cart and checkout', 'Payments', 'Shipping setup', 'Store management'],
+    intro: 'An online store that makes it easy for customers to find the right product, trust the purchase and check out with confidence.',
+    details: ['Product catalogue and collection setup', 'Product pages that explain and persuade', 'Cart, checkout and payment setup', 'Shipping, stock and order management', 'Store training for your team'],
   },
   {
-    number: '03',
     id: 'custom-software',
     title: 'Custom software',
-    description: 'Focused dashboards, portals and internal tools built around your real workflow—so your team can reduce manual work, see the right information and move decisions forward faster.',
-    details: ['Product planning', 'Interface design', 'Development', 'Integrations', 'Deployment'],
+    intro: 'A focused digital tool built around the way your team already works, so less time is spent chasing information or repeating tasks.',
+    details: ['Dashboards, portals and internal tools', 'Simple product planning and user flows', 'Useful integrations with your existing tools', 'Clear interface design and development', 'Testing, launch and team handover'],
   },
   {
-    number: '04',
     id: 'mobile-apps',
     title: 'Mobile apps',
-    description: 'Useful mobile products for Android and iOS, shaped around real daily habits from the first flow to launch—then tested and refined so every interaction feels considered.',
-    details: ['Product flow', 'UI/UX', 'Development', 'Testing', 'Launch support'],
+    intro: 'A practical mobile app that feels simple from the first tap, whether it helps customers buy, book, learn or stay connected.',
+    details: ['App idea, user journey and feature planning', 'Interface design for iOS and Android', 'Mobile app development', 'Real-device testing and quality checks', 'App-store launch support'],
   },
   {
-    number: '05',
     id: 'ai-chatbots-automation',
     title: 'AI chatbots & automation',
-    description: 'AI assistants and connected automations that answer common questions, qualify leads and take repetitive work off your team—without making the customer experience feel distant or robotic.',
-    details: ['Knowledge assistants', 'Web and WhatsApp chat', 'Workflow automation', 'API integrations'],
+    intro: 'Helpful AI tools that answer routine questions, guide potential customers and take repetitive work off your team without losing the human touch.',
+    details: ['Website and WhatsApp chat assistants', 'Lead capture and qualification', 'Knowledge bases your team can update', 'Automated follow-ups and workflows', 'Connections to the tools you already use'],
   },
   {
-    number: '06',
     id: 'brand-identity-ui-ux',
     title: 'Brand identity & UI/UX',
-    description: 'A distinct visual identity and interface system that gives your business a recognisable voice, helps customers understand the offer and makes every digital touchpoint feel connected.',
-    details: ['Visual direction', 'Design system', 'Web and app UI', 'Prototypes', 'Handover'],
+    intro: 'A clear, recognisable brand and digital design system that helps customers understand who you are and why they should choose you.',
+    details: ['Brand direction, colours and typography', 'Logo and visual identity guidance', 'Website and app interface design', 'Clickable prototypes before development', 'Simple design system for future updates'],
   },
   {
-    number: '07',
     id: 'growth-seo-optimisation',
     title: 'Growth, SEO & optimisation',
-    description: 'The technical and content foundations that help the right audience find you, reveal what is working and turn more qualified visits into meaningful next steps over time.',
-    details: ['Technical SEO', 'Analytics', 'Conversion paths', 'Content support'],
+    intro: 'A stronger foundation for showing up in search, understanding visitor behaviour and steadily improving the parts of your website that drive enquiries.',
+    details: ['Technical SEO setup and fixes', 'Analytics and conversion tracking', 'Clearer calls to action and enquiry paths', 'Content priorities for search visibility', 'Ongoing performance improvements'],
   },
   {
-    number: '08',
     id: 'ongoing-support-evolution',
     title: 'Ongoing support & evolution',
-    description: 'Practical support after launch to keep your website or product secure, fast and current—plus a clear roadmap for improvements as your business, customers and priorities evolve.',
-    details: ['Maintenance', 'Security', 'Updates', 'Roadmaps'],
+    intro: 'Reliable support after launch, so your website or product stays secure, current and ready to keep up with your business.',
+    details: ['Regular maintenance and security checks', 'Fast fixes when something needs attention', 'Content, feature and design updates', 'Performance monitoring', 'A practical roadmap for the next improvements'],
   },
 ];
 
 export default function ServicesPage() {
+  const [contactOpen, setContactOpen] = useState(false);
+
   return (
     <>
       <StudioNav current="services" />
@@ -89,25 +85,23 @@ export default function ServicesPage() {
 
             <div className="services-page-list" aria-label="WEBSTELL services">
               {serviceList.map((service) => (
-                <article className="services-page-card" id={service.id} key={service.number}>
+                <article className="services-page-card" id={service.id} key={service.id}>
                   <h3>{service.title}</h3>
-                  <p>{service.description}</p>
+                  <p>{service.intro}</p>
                   <ul>
                     {service.details.map((detail) => <li key={detail}>{detail}</li>)}
                   </ul>
+                  <button type="button" className="services-card-cta" onClick={() => setContactOpen(true)}>
+                    Discuss this service
+                  </button>
                 </article>
               ))}
             </div>
           </div>
         </section>
-
-        <section className="services-page-close studio-width">
-          <span className="studio-eyebrow">NOT SURE WHERE TO START?</span>
-          <h2>Bring the problem.<br />We’ll help shape the brief.</h2>
-          <Link className="studio-button dark-button" href="/contact">Discuss your project <span aria-hidden="true">↗</span></Link>
-        </section>
       </main>
       <SiteFooter />
+      <HireDialog open={contactOpen} onOpenChange={setContactOpen} />
     </>
   );
 }

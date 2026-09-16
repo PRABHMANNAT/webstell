@@ -65,11 +65,11 @@
 .services-page-card {
   position: relative;
   display: flex;
-  min-height: 428px;
+  min-height: 560px;
   flex-direction: column;
   padding: clamp(26px, 3.2vw, 42px);
   border: 1px solid #101010;
-  border-radius: 18px;
+  border-radius: 22px;
   background: #101010;
   box-shadow: none;
   scroll-margin-top: 110px;
@@ -92,10 +92,10 @@
 .services-page-card h3 {
   position: relative;
   z-index: 1;
-  max-width: 540px;
+  max-width: 470px;
   margin: 0;
   color: #fff;
-  font-size: clamp(34px, 3.75vw, 54px);
+  font-size: clamp(34px, 3.45vw, 52px);
   font-weight: 500;
   line-height: .94;
   letter-spacing: -.06em;
@@ -104,70 +104,82 @@
 .services-page-card p {
   position: relative;
   z-index: 1;
-  max-width: 500px;
-  margin: 22px 0 0;
+  max-width: 470px;
+  margin: 26px 0 0;
   color: #e1e1e1;
-  font-size: 16px;
-  line-height: 1.55;
+  font-size: 17px;
+  line-height: 1.48;
 }
 
 .services-page-card ul {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin: auto 0 0;
-  padding: 32px 0 0;
+  display: grid;
+  gap: 9px;
+  margin: 28px 0 0;
+  padding: 0;
   list-style: none;
 }
 
 .services-page-card li {
-  padding: 8px 11px;
-  border: 1px solid rgb(255 255 255 / 28%);
-  border-radius: 999px;
+  position: relative;
+  padding-left: 18px;
   color: #fff;
-  font-family: monospace;
-  font-size: 10px;
+  font-size: 14px;
+  line-height: 1.35;
 }
 
-.services-page-close {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 36px;
-  align-items: end;
-  margin-top: clamp(56px, 8vw, 118px);
-  padding: 72px;
-  border-radius: 26px;
-  background: #dfe9bd;
+.services-page-card li::before {
+  position: absolute;
+  top: .04em;
+  left: 0;
+  color: #fff;
+  content: '•';
 }
 
-.services-page-close .studio-eyebrow {
-  grid-column: 1 / -1;
-}
-
-.services-page-close h2 {
-  font-size: clamp(42px, 5.4vw, 80px);
-  line-height: .94;
-  letter-spacing: -.065em;
-}
-
-.services-page-close .studio-button {
-  min-width: 220px;
+.services-card-cta {
+  width: 100%;
+  min-height: 66px;
+  margin-top: auto;
+  border: 1px solid #fff;
+  border-radius: 16px;
+  background: #fff;
+  color: #101010;
+  cursor: pointer;
+  font: 600 16px/1.1 inherit;
+  letter-spacing: -.02em;
 }
 
 @media (hover: hover) {
-  .services-page-card {
-    transition: border-color 220ms ease, background 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  .services-page-card,
+  .services-card-cta {
+    transition: background 220ms ease, box-shadow 220ms ease, transform 220ms ease;
   }
 
   .services-page-card:hover {
     z-index: 1;
     border-color: #101010;
     background: #000;
-    box-shadow: 0 14px 0 #d9d9d9;
-    transform: translateY(-5px);
+    box-shadow: 0 12px 0 #d9d9d9;
+    transform: translateY(-4px);
   }
+
+  .services-page-card:hover .services-card-cta,
+  .services-card-cta:hover {
+    background: #f1f1f1;
+    box-shadow: 0 6px 0 rgb(255 255 255 / 25%);
+    transform: translateY(-3px);
+  }
+}
+
+.services-card-cta:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+.services-card-cta:active {
+  box-shadow: none;
+  transform: translateY(2px);
 }
 
 @media (max-width: 850px) {
@@ -183,10 +195,6 @@
 
   .services-page-list { grid-template-columns: 1fr; }
 
-  .services-page-close {
-    grid-template-columns: 1fr;
-    padding: 50px 42px;
-  }
 }
 
 @media (max-width: 600px) {
@@ -196,7 +204,7 @@
   }
 
   .services-page-card {
-    min-height: 390px;
+    min-height: 0;
     padding: 27px 23px;
   }
 
@@ -212,14 +220,18 @@
 
   .services-page-card h3 { font-size: 39px; }
 
-  .services-page-close {
-    padding: 38px 25px;
-    border-radius: 20px;
-  }
+  .services-page-card p { margin-top: 22px; font-size: 16px; }
+
+  .services-page-card ul { gap: 8px; margin-top: 24px; }
+
+  .services-page-card li { font-size: 13px; }
+
+  .services-card-cta { min-height: 60px; margin-top: 32px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .services-page-card {
+  .services-page-card,
+  .services-card-cta {
     transition: none;
   }
 }
