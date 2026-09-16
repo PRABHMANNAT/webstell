@@ -269,10 +269,29 @@
 }
 
 .studio-form .form-submit {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   min-height: 62px;
   border-radius: 13px;
   font-size: 16px;
 }
+
+.studio-form .form-submit > * { position: relative; z-index: 1; }
+.studio-form .form-submit::before {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: -48%;
+  width: 42%;
+  background: linear-gradient(90deg, transparent, rgba(215, 255, 70, 0.78), transparent);
+  content: '';
+  opacity: 0;
+}
+.studio-form .form-submit.is-loading { background: #1c281f; }
+.studio-form .form-submit.is-loading::before { opacity: 1; animation: form-submit-sweep 1.15s ease-in-out infinite; }
+@keyframes form-submit-sweep { to { transform: translateX(370%); } }
 
 .studio-form .form-submit:disabled {
   cursor: not-allowed;
@@ -409,4 +428,5 @@
 @media (prefers-reduced-motion: reduce) {
   .home-contact-whatsapp { transition: none; }
   .studio-submit-spinner { animation-duration: 1.8s; }
+  .studio-form .form-submit.is-loading::before { animation: none; }
 }

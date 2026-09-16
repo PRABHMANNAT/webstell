@@ -216,7 +216,7 @@ export default function BriefForm({
       </div>}
 
       {!compact && <p className="studio-privacy">We use your details only to respond to this enquiry. We do not add you to a marketing list without permission.</p>}
-      <button className="studio-button dark-button form-submit" type="submit" disabled={state === 'loading' || state === 'success'}>
+      <button className={`studio-button dark-button form-submit ${state === 'loading' ? 'is-loading' : ''}`} type="submit" disabled={state === 'loading' || state === 'success'}>
         <span>{state === 'loading' ? 'Sending securely…' : state === 'success' ? (booking ? 'Call requested' : 'Brief sent') : booking ? 'Request this time' : 'Send my project brief'}</span>
         {state === 'loading' ? <LoaderCircle className="studio-submit-spinner" size={20} /> : state === 'success' ? <Check size={20} /> : <ArrowUpRight size={20} />}
       </button>
