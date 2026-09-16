@@ -11,6 +11,7 @@
 .pricing-page .pricing-description,.pricing-page .pricing-audience{line-height:1.55}
 .pricing-page .pricing-custom{background:#f4f4f4}
 .pricing-page .pricing-custom::after{color:#c8ff63}
+.pricing-page .pricing-custom p{margin-bottom:30px}
 .pricing-page .pricing-custom button{position:relative;z-index:1;display:inline-flex;align-items:center;gap:18px;background:#171717;color:white;border:0;border-radius:999px;padding:17px 22px;font:inherit;cursor:pointer}
 .pricing-page .pricing-custom button:hover{background:#c8ff63;color:#171717}
 .pricing-page .faq-inline-link{display:inline-flex;padding:12px 18px;border-radius:999px;background:#c8ff63;color:#171717;margin-top:20px}
