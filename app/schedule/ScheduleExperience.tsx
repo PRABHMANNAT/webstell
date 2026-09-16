@@ -19,14 +19,8 @@ const customSlots = Array.from({ length: 96 }, (_, index) => {
   const minute = (index % 4) * 15;
   return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
 });
-const timeZones = [
-  { value: 'Asia/Kolkata', label: 'India · IST (UTC+05:30)' },
-  { value: 'Asia/Dubai', label: 'United Arab Emirates · GST (UTC+04:00)' },
-  { value: 'Asia/Singapore', label: 'Singapore · SGT (UTC+08:00)' },
-  { value: 'Europe/London', label: 'United Kingdom · UK time' },
-  { value: 'America/New_York', label: 'United States · Eastern time' },
-  { value: 'Australia/Sydney', label: 'Australia · Sydney time' },
-];
+const bookingTimeZone = 'Asia/Kolkata';
+const bookingTimeZoneLabel = 'India · IST (UTC+05:30)';
 const dateKey = (date: Date) =>
   `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 function indiaToday() {
@@ -63,7 +57,6 @@ export default function ScheduleExperience() {
   const [chosen, setChosen] = useState('');
   const [slot, setSlot] = useState('');
   const [customTimeOpen, setCustomTimeOpen] = useState(false);
-  const [timeZone, setTimeZone] = useState('Asia/Kolkata');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [bookingState, setBookingState] = useState<BookingState>('idle');
@@ -102,8 +95,6 @@ export default function ScheduleExperience() {
       )
     : null;
   const maxDate = upperBound ? dateKey(upperBound) : '';
-  const timeZoneLabel =
-    timeZones.find(({ value }) => value === timeZone)?.label ?? timeZones[0].label;
   const selectedLabel = chosen
     ? new Date(chosen + 'T12:00:00').toLocaleDateString('en-IN', {
         weekday: 'long',
@@ -146,7 +137,7 @@ export default function ScheduleExperience() {
     submissionId.current ||= crypto.randomUUID();
     setBookingState('loading');
     setBookingMessage('');
-    const scheduleContext = `CALL REQUEST\nPreferred date: ${selectedLabel}\nPreferred time: ${slotLabel(slot, chosen, timeZone)} · ${timeZoneLabel}\nDuration: 30 minutes\nSubject to confirmation. No booking has been made.`;
+    const scheduleContext = `CALL REQUEST\nPreferred date: ${selectedLabel}\nPreferred time: ${slotLabel(slot, chosen, bookingTimeZone)} · ${bookingTimeZoneLabel}\nDuration: 30 minutes\nSubject to confirmation. No booking has been made.`;
     const context = [
       pricingHandoff
         ? `PRICING HANDOFF\nProject: ${pricingHandoff.project}\nIndicative estimate: ${pricingHandoff.estimate}`
@@ -406,21 +397,6 @@ export default function ScheduleExperience() {
                     <h3>
                       {chosen ? 'Now choose a time.' : 'Choose a date to see times.'}
                     </h3>
-                    <label className="time-zone-picker">
-                      <span>Time zone</span>
-                      <select
-                        aria-label="Choose your time zone"
-                        value={timeZone}
-                        onChange={(event) => {
-                          clearBookingFeedback();
-                          setTimeZone(event.target.value);
-                        }}
-                      >
-                        {timeZones.map(({ value, label }) => (
-                          <option key={value} value={value}>{label}</option>
-                        ))}
-                      </select>
-                    </label>
                   </div>
                   <div
                     className="time-slots"
@@ -439,7 +415,7 @@ export default function ScheduleExperience() {
                           setSlot((current) => current === time ? '' : time);
                         }}
                       >
-                        {slotLabel(time, chosen || today, timeZone)}
+                        {slotLabel(time, chosen || today, bookingTimeZone)}
                       </button>
                     ))}
                     <button
@@ -452,7 +428,7 @@ export default function ScheduleExperience() {
                       onClick={() => setCustomTimeOpen((open) => !open)}
                     >
                       {slot && !slots.includes(slot)
-                        ? slotLabel(slot, chosen || today, timeZone)
+                        ? slotLabel(slot, chosen || today, bookingTimeZone)
                         : 'Custom time'}
                     </button>
                     {customTimeOpen && (
@@ -472,7 +448,7 @@ export default function ScheduleExperience() {
                           <option value="">Select a time</option>
                           {customSlots.map((time) => (
                             <option key={time} value={time} disabled={isPastSlot(time)}>
-                              {slotLabel(time, chosen || today, timeZone)}
+                              {slotLabel(time, chosen || today, bookingTimeZone)}
                             </option>
                           ))}
                         </select>

@@ -1726,22 +1726,6 @@ button:disabled {
 .time-heading h3 {
   font-size: 16px;
 }
-.time-zone-picker {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  color: #59624f;
-}
-.time-zone-picker select {
-  max-width: 235px;
-  padding: 7px 28px 7px 9px;
-  border: 1px solid #cfd5c7;
-  border-radius: 8px;
-  background: #fff;
-  color: #20251d;
-  font: inherit;
-}
 .time-slots {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -2634,12 +2618,6 @@ button:disabled {
   }
   .time-heading h3 {
     font-size: 14px;
-  }
-  .time-zone-picker {
-    font-size: 10px;
-  }
-  .time-zone-picker select {
-    max-width: 170px;
   }
   .time-slots {
     grid-template-columns: repeat(3, 1fr);
