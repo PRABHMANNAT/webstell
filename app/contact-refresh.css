@@ -472,7 +472,7 @@
 .contact-page-marquee-track {
   display: flex;
   width: max-content;
-  animation: contact-marquee-scroll 26s linear infinite;
+  animation: contact-marquee-scroll 13s linear infinite;
 }
 
 .contact-page-marquee-track span {
@@ -552,7 +552,7 @@
   font-size: clamp(2.75rem, 5.3vw, 5.7rem);
   font-weight: 550;
   letter-spacing: -.075em;
-  line-height: .88;
+  line-height: .98;
 }
 
 .contact-page-form-heading p {
