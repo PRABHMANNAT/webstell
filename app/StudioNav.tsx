@@ -101,6 +101,7 @@ export function HireDialog({
 export default function StudioNav({ current = '' }: { current?: string }) {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hireOpen, setHireOpen] = useState(false);
   const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
@@ -194,19 +195,19 @@ export default function StudioNav({ current = '' }: { current?: string }) {
               <span aria-hidden="true">{menu ? '−' : '☰'}</span>
             </button>
           </div>
-          <Link
+          <button
+            type="button"
             className="hire-pill"
-            href="/contact"
-            prefetch={false}
-            onClick={navigateWithDocument}
+            onClick={() => setHireOpen(true)}
           >
             <span aria-hidden="true">
               <ArrowUpRight size={22} />
             </span>{' '}
             Discuss your project
-          </Link>
+          </button>
         </div>
       </header>
+      <HireDialog open={hireOpen} onOpenChange={setHireOpen} />
     </>
   );
 }
