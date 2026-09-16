@@ -4,6 +4,7 @@ import { whatsappUrl } from './contact-utils';
 
 export default function ContactSection() {
   return (
+    <>
     <section className="home-contact-form" id="contact" aria-labelledby="home-contact-title">
       <div className="studio-width home-contact-shell">
         <div className="home-contact-form-intro">
@@ -30,5 +31,12 @@ export default function ContactSection() {
         </div>
       </div>
     </section>
+    <div className="contact-marquee" aria-label="Connect today. Build what’s next. Choose WEBSTELL.">
+      <div className="contact-marquee-track">
+        <span>Connect today <i aria-hidden="true">✳</i> Build what’s next <i aria-hidden="true">✳</i> Choose WEBSTELL <i aria-hidden="true">✳</i></span>
+        <span aria-hidden="true">Connect today <i>✳</i> Build what’s next <i>✳</i> Choose WEBSTELL <i>✳</i></span>
+      </div>
+    </div>
+    </>
   );
 }
