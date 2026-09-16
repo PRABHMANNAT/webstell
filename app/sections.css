@@ -4,6 +4,9 @@
 @media(prefers-reduced-motion:reduce){.insights-track,.insights-track i{animation:none}.insight-image img,.support-pill span,.all-articles span,.insight-card footer button{transition:none}}
 
 .studio-email-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:22px}
+.insights-lead .insights-kicker{margin:0 0 18px;color:#5d5d5d;font-family:var(--mono,monospace);font-size:12px;font-weight:600;letter-spacing:.1em;line-height:1.2}
+.insights-lead h2{max-width:690px;margin:0 0 28px;font-size:clamp(44px,5.7vw,78px);font-weight:500;letter-spacing:-.07em;line-height:.95}
+.insights-lead .insights-summary{margin-bottom:38px}
 .studio-email{color:#171717;font-size:15px;font-weight:600;text-decoration:underline;text-decoration-color:#999;text-underline-offset:5px;transition:text-decoration-color .2s ease}
 .studio-email:hover{color:#4f2bc6;text-decoration-color:currentColor}
 .copy-email{border:1px solid #b8b8b8;border-radius:999px;background:transparent;color:#171717;padding:8px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s ease,border-color .2s ease,color .2s ease}
