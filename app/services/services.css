@@ -5,48 +5,17 @@
 }
 
 .services-page-hero {
-  display: grid;
-  grid-template-columns: 1.12fr .88fr;
-  gap: 8vw;
-  align-items: end;
-  padding: 62px 0 92px;
+  margin-bottom: clamp(56px, 8vw, 120px);
+  overflow: hidden;
+  border-radius: 28px;
+  background: #111514;
 }
 
-.services-page-hero h1 {
-  margin-top: 28px;
-  font-size: clamp(62px, 7.4vw, 112px);
-  line-height: .86;
-  letter-spacing: -.075em;
-}
-
-.services-page-hero h1 span {
-  color: #7a8172;
-}
-
-.services-page-intro > p {
-  max-width: 520px;
-  color: var(--studio-muted);
-  font-size: clamp(18px, 1.6vw, 23px);
-  line-height: 1.42;
-}
-
-.services-page-actions {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  margin-top: 34px;
-}
-
-.services-page-actions .studio-button {
-  min-width: 218px;
-}
-
-.services-text-link {
-  display: inline-flex;
-  gap: 9px;
-  padding: 12px 0;
-  border-bottom: 1px solid #b8bdb2;
-  font-size: 14px;
+.services-page-hero-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 8.25;
+  object-fit: cover;
 }
 
 .services-page-list {
@@ -153,9 +122,7 @@
   }
 
   .services-page-hero {
-    grid-template-columns: 1fr;
-    gap: 42px;
-    padding-bottom: 70px;
+    margin-bottom: 64px;
   }
 
   .services-page-list {
@@ -170,16 +137,8 @@
 
 @media (max-width: 600px) {
   .services-page-hero {
-    padding: 40px 0 54px;
-  }
-
-  .services-page-hero h1 {
-    font-size: 57px;
-  }
-
-  .services-page-actions {
-    align-items: stretch;
-    flex-direction: column;
+    margin-bottom: 46px;
+    border-radius: 20px;
   }
 
   .services-page-card {

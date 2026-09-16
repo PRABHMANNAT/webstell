@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { ArrowDown, ArrowUp } from 'lucide-react';
 import { recentWorkProjects } from '../portfolio-data';
 import { whatsappUrl } from '../contact-utils';
@@ -44,8 +45,9 @@ export default function ProjectsPage() {
   const internationalProjectsRef = useRef<HTMLDivElement>(null);
   const internationalEndRef = useRef<HTMLDivElement>(null);
   const activeFilter = projectFilters.find((item) => item.value === filter);
-  const visibleProjects = activeFilter?.matches
-    ? recentWorkProjects.filter((project) => activeFilter.matches(project.category))
+  const filterMatches = activeFilter?.matches;
+  const visibleProjects = filterMatches
+    ? recentWorkProjects.filter((project) => filterMatches(project.category))
     : recentWorkProjects;
 
   useEffect(() => {
@@ -137,7 +139,7 @@ export default function ProjectsPage() {
               <article className="project" key={project.id}>
                 <a className="project-preview" href={projectWhatsAppUrl(project.title)} target="_blank" rel="noreferrer" aria-label={`Ask WEBSTELL about a website like ${project.title}`}>
                   <div className="project-image">
-                    <img src={project.image} alt={`${project.title} website design direction`} loading="lazy" />
+                    <Image src={project.image} alt={`${project.title} website design direction`} fill sizes="(max-width: 700px) 100vw, 50vw" />
                     <span className="project-arrow" aria-hidden="true">↗</span>
                   </div>
                 </a>

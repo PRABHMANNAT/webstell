@@ -54,17 +54,10 @@ export default function ServicesPage() {
       <StudioNav current="services" />
       <main className="services-page">
         <section className="services-page-hero studio-width" aria-labelledby="services-page-title">
-          <div>
-            <span className="studio-eyebrow">WEBSTELL / SERVICES</span>
-            <h1 id="services-page-title">One team.<br /><span>Six ways forward.</span></h1>
-          </div>
-          <div className="services-page-intro">
-            <p>Start with the digital experience that matters most now. Each service can stand alone or connect into one considered system.</p>
-            <div className="services-page-actions">
-              <Link className="studio-button lime-button" href="/contact">Discuss your project <span aria-hidden="true">↗</span></Link>
-              <Link className="services-text-link" href="/projects">See our work <span aria-hidden="true">↗</span></Link>
-            </div>
-          </div>
+          <h1 id="services-page-title" className="sr-only">WEBSTELL services</h1>
+          <video className="services-page-hero-video" autoPlay loop muted playsInline preload="metadata" aria-hidden="true">
+            <source src="/assets/services/services-hero.mp4" type="video/mp4" />
+          </video>
         </section>
 
         <section className="services-page-list studio-width" aria-label="WEBSTELL services">
