@@ -5,14 +5,15 @@ const plans = [
   {
     name: 'A strong first impression.',
     priceLabel: '₹20,000–25,000',
-    audience: 'For a business, a service, or a point of view that deserves a clear home.',
+    audience: 'For salons, local cafés, small restaurants, tutors and independent service businesses.',
     description:
-      'A focused website designed to explain what you do and turn interest into a useful next step.',
+      'Help people understand your services, find your business and contact you in a few taps.',
     features: [
-      'Five considered pages to start',
-      'A great experience on mobile',
-      'Contact form & WhatsApp link',
-      'Search foundations & launch handover',
+      'Show your services, prices, photos and story across up to five pages.',
+      'Easy-to-read layouts on phones, tablets and computers.',
+      'A contact form sends enquiries to your email; a WhatsApp button opens a chat.',
+      'Page titles and descriptions help search engines understand your business.',
+      'We publish the website and show you where your accounts and access live.',
     ],
     delivery: 'Usually 2–3 weeks',
     type: 'website',
