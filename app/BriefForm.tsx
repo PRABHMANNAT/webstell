@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { ArrowUpRight, Check, LoaderCircle, MessageCircle } from 'lucide-react';
+import { ArrowUpRight, Check, Clock3, LoaderCircle, MessageCircle } from 'lucide-react';
 import { whatsappUrl } from './contact-utils';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
@@ -229,19 +229,24 @@ export default function BriefForm({
       )}
 
       {state === 'success' && (
-        <div className="studio-form-message is-success" role="status">
-          <span><Check size={18} /></span>
-          <div>
-            <h3>{booking ? 'Your call request is with us.' : 'Thanks—your brief is with us.'}</h3>
+        <output className="studio-form-message is-success" aria-live="polite">
+          <span className="studio-success-icon" aria-hidden="true"><Check size={21} strokeWidth={2.4} /></span>
+          <div className="studio-success-content">
+            <span className="studio-success-kicker">{booking ? 'Call request received' : 'Project brief received'}</span>
+            <h3>{booking ? 'We’ll confirm your time shortly.' : 'You’re all set.'}</h3>
             <p>
               {booking
-                ? `A member of the WEBSTELL team will reply within one business day. Your preferred time becomes confirmed only after we reply.${customerCopySent ? ' We have also emailed you a copy.' : ''}`
+                ? `Our team will reply within one business day to confirm the call.${customerCopySent ? ' A copy is also in your inbox.' : ''}`
                 : customerCopySent
-                  ? 'A member of the WEBSTELL team will reply within one business day. We have also sent a copy to the email address you provided.'
-                  : 'A member of the WEBSTELL team will reply within one business day. This page is your confirmation; WhatsApp remains available if you need an immediate copy.'}
+                  ? 'Our team has your details and will reply within one business day. A copy is also in your inbox.'
+                  : 'Our team has your details and will reply within one business day.'}
             </p>
+            <div className="studio-success-actions">
+              <span><Clock3 size={15} aria-hidden="true" /> Reply within one business day</span>
+              <a href={whatsappUrl()} target="_blank" rel="noreferrer"><MessageCircle size={15} aria-hidden="true" /> Need a faster reply?</a>
+            </div>
           </div>
-        </div>
+        </output>
       )}
     </form>
   );

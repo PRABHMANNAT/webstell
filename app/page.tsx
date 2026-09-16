@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import WorksMarquee from './WorksMarquee';
 import SocialWorkGallery from './SocialWorkGallery';
 import CurvedTicker from './CurvedTicker';
@@ -27,7 +27,8 @@ const whyWebstellCards = [
 export default function Home() {
  const [selected,setSelected]=useState<Project|null>(null);
  const [contact,setContact]=useState(false);
- const [subscribed,setSubscribed]=useState(false);
+ const [subscribeState,setSubscribeState]=useState<'idle'|'loading'|'success'|'error'>('idle');
+ const [subscribeMessage,setSubscribeMessage]=useState('Occasional ideas and practical insights for a digital presence that works harder.');
  const [emailCopied,setEmailCopied]=useState(false);
  const projectDialog=useRef<HTMLDialogElement>(null);
  const heroCta=useRef<HTMLButtonElement>(null);
@@ -69,6 +70,33 @@ export default function Home() {
     setEmailCopied(true);
     window.setTimeout(()=>setEmailCopied(false),2200);
    }catch{setEmailCopied(false)}
+  }
+ };
+ const submitSubscription=async(event:SyntheticEvent<HTMLFormElement>)=>{
+ event.preventDefault();
+ if(subscribeState==='loading'||subscribeState==='success')return;
+  const formElement=event.currentTarget;
+  const form=new FormData(formElement);
+  const emailEntry=form.get('email');
+  const websiteEntry=form.get('website');
+  const email=typeof emailEntry==='string'?emailEntry.trim():'';
+  const website=typeof websiteEntry==='string'?websiteEntry:'';
+  setSubscribeState('loading');
+  setSubscribeMessage('Sending your subscription…');
+  try{
+   const response=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,website})});
+   const result=await response.json() as {ok?:boolean;message?:string};
+   if(!response.ok||!result.ok){
+    setSubscribeState('error');
+    setSubscribeMessage(result.message||'Subscription could not be sent. Please try again.');
+    return;
+   }
+   setSubscribeState('success');
+   setSubscribeMessage('Thanks — your subscription has been sent to WEBSTELL.');
+   formElement.reset();
+  }catch{
+   setSubscribeState('error');
+   setSubscribeMessage('Subscription could not be sent. Please try again.');
   }
  };
  return <>
@@ -119,12 +147,13 @@ export default function Home() {
    <div className="footer-brand">
     <a className="footer-logo" href="/">WEBSTELL</a>
     <p>We create distinctive websites, brands and digital products for ambitious businesses.</p>
-    <form className={"subscribe-form" + (subscribed ? " is-subscribed" : "")} onSubmit={e=>{e.preventDefault();setSubscribed(true)}}>
+    <form className={'subscribe-form is-' + subscribeState} onSubmit={submitSubscription}>
      <label className="sr-only" htmlFor="footer-email">Email address</label>
-     <input id="footer-email" type="email" required placeholder="you@company.com" aria-describedby="subscribe-status"/>
-     <button type="submit"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4 18-7Z"/></svg></span>{subscribed?'Subscribed':'Subscribe'}</button>
+     <input className="studio-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+     <input id="footer-email" name="email" type="email" required placeholder="you@company.com" aria-describedby="subscribe-status" disabled={subscribeState==='loading'||subscribeState==='success'}/>
+     <button type="submit" aria-busy={subscribeState==='loading'} disabled={subscribeState==='loading'||subscribeState==='success'}><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4 18-7Z"/></svg></span>{subscribeState==='loading'?'Sending…':subscribeState==='success'?'Subscribed':'Subscribe'}</button>
     </form>
-    <p className="subscribe-status" id="subscribe-status" aria-live="polite">{subscribed?'Thanks — you’re on the WEBSTELL list.':'Fresh thinking on design, digital products and growth—sent occasionally.'}</p>
+    <p className="subscribe-status" id="subscribe-status" aria-live="polite">{subscribeMessage}</p>
    </div>
    <nav className="footer-links" aria-label="Footer navigation">
     <div className="footer-link-group"><span className="footer-nav-label">Explore</span><a href="/">Home</a><a href="/services">Services</a><a href="/projects">Work</a><a href="/pricing">Pricing</a></div>
