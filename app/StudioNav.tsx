@@ -7,7 +7,6 @@ import { usePathname } from 'next/navigation';
 import {
   ArrowUpRight,
   CalendarDays,
-  MessageCircle,
   Send,
   X,
 } from 'lucide-react';
@@ -60,8 +59,14 @@ export function HireDialog({
             target="_blank"
             rel="noreferrer"
           >
-            <span className="option-icon">
-              <MessageCircle />
+            <span className="option-icon option-icon-image">
+              <Image
+                className="whatsapp-brand-icon"
+                src="/assets/contact/whatsapp-icon.png"
+                alt=""
+                width={44}
+                height={44}
+              />
             </span>
             <div>
               <strong>Connect on WhatsApp</strong>
