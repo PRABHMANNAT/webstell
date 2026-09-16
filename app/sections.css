@@ -16,12 +16,12 @@
 .insight-image-blue::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(215,255,70,.2) 49%,transparent 63%);transform:translateX(-120%);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
 .insight-image-blue:hover img{transform:scale(1.09);filter:contrast(1.06) saturate(1.08)}
 .insight-image-blue:hover::after{transform:translateX(120%)}
-.insights-lead .insights-kicker{margin:0 0 18px;color:#5d5d5d;font-family:var(--mono,monospace);font-size:12px;font-weight:600;letter-spacing:.1em;line-height:1.2}
-.insights-lead h2{max-width:690px;margin:0 0 28px;font-size:clamp(44px,5.7vw,78px);font-weight:500;letter-spacing:-.07em;line-height:.95}
+.insights-lead .insights-kicker{margin:0 0 22px;color:#525252;font-family:Georgia,"Times New Roman",serif;font-size:clamp(16px,1.5vw,20px);font-style:italic;font-weight:600;letter-spacing:-.02em;line-height:1.25}
+.insights-lead h2{max-width:690px;margin:0 0 34px;font-size:clamp(44px,5.7vw,78px);font-weight:500;letter-spacing:-.045em;word-spacing:.12em;line-height:.98}
 .insights-lead .insights-summary{margin-bottom:38px}
-.studio-email{position:relative;display:inline-flex;align-items:center;color:#171717;font-family:inherit;font-size:clamp(15px,1.2vw,17px);font-weight:700;letter-spacing:-.02em;text-decoration:none;transition:color .25s ease,transform .25s ease}
+.studio-email{position:relative;display:inline-flex;align-items:center;margin:-4px -7px;padding:4px 7px;border-radius:7px;color:#171717;font-family:inherit;font-size:clamp(15px,1.2vw,17px);font-weight:700;letter-spacing:-.02em;text-decoration:none;transition:background .25s ease,color .25s ease,transform .25s ease}
 .studio-email::after{position:absolute;right:0;bottom:-5px;left:0;height:2px;background:currentColor;content:"";opacity:.45;transform:scaleX(.5);transform-origin:left;animation:studio-email-underline 2.8s ease-in-out infinite;transition:opacity .25s ease,transform .25s ease}
-.studio-email:hover{color:#4f2bc6;transform:translateY(-2px)}
+.studio-email:hover{background:#191919;color:#d7ff46;transform:translateY(-2px)}
 .studio-email:hover::after{opacity:1;transform:scaleX(1);animation-play-state:paused}
 @keyframes studio-email-underline{0%,100%{transform:scaleX(.5)}50%{transform:scaleX(.85)}}
 .copy-email{display:inline-flex;align-items:center;gap:8px;border:1px solid #171717;border-radius:999px;background:#f7f7f7;color:#171717;padding:5px 12px 5px 5px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:background .2s ease,color .2s ease,transform .2s ease}
