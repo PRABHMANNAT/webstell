@@ -5,8 +5,9 @@
 .about-hero-copy{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(2rem,8vw,8rem);margin-left:auto;max-width:64rem;font-size:clamp(1.15rem,1.8vw,1.55rem);line-height:1.45}
 .about-hero-copy strong{font-weight:750;color:#171917}
 .about-page .team{background:#171917;color:#f7f8f4}
-.about-next{position:relative;isolation:isolate;overflow:hidden;margin:clamp(2rem,5vw,4rem) auto 0;padding:clamp(5rem,10vw,10rem) clamp(1.5rem,5vw,4rem);border:1px solid #cfd4cb;border-radius:2rem;background:radial-gradient(circle at 50% 0,#fff 0,transparent 54%),#e9edf2;text-align:center}
-.about-next-grid{position:absolute;z-index:-1;inset:-30% 0;height:200%;width:100%;mask-image:radial-gradient(500px circle at center,#fff,transparent);transform:skewY(12deg)}
+.about-next{position:relative;isolation:isolate;overflow:hidden;margin:clamp(2rem,5vw,4rem) auto clamp(3rem,6vw,5rem);padding:clamp(5rem,10vw,10rem) clamp(1.5rem,5vw,4rem);border:1px solid #c8d0d8;border-radius:2rem;background:radial-gradient(circle at 50% 6%,#fff 0,transparent 43%),linear-gradient(135deg,#f6f8fa,#e6edf3);box-shadow:0 22px 55px #1623300f;text-align:center}
+.about-next::before{position:absolute;z-index:-1;inset:0;background:radial-gradient(500px circle at 50% 45%,#d7ff461f,transparent 70%);content:"";pointer-events:none}
+.about-next-grid{position:absolute;z-index:-1;inset:-38% -16%;height:190%;width:132%;color:#26394a;opacity:.38;mask-image:radial-gradient(60% 54% at 50% 50%,#fff,transparent);-webkit-mask-image:radial-gradient(60% 54% at 50% 50%,#fff,transparent);transform:skewY(-8deg) scale(1.1)}
 .about-next-content{position:relative;z-index:1}
 .about-next-content>span{font:600 .72rem/1.2 var(--mono,monospace);letter-spacing:.12em}
 .about-next h2{font-size:clamp(3rem,7vw,7rem);font-weight:500;letter-spacing:-.065em;line-height:.95;margin:2rem auto 1.5rem;max-width:14ch}
@@ -30,5 +31,5 @@
 .about-primary:hover>i,.about-primary:focus-visible>i{background:#171917;color:#baf25b}
 .about-secondary:hover>i,.about-secondary:focus-visible>i{background:#baf25b;color:#171917}
 .about-next-actions>a:focus-visible,.about-next-actions>button:focus-visible{outline:3px solid #171917;outline-offset:4px}
-@media(max-width:767px){.about-page{padding-top:5.4rem}.about-hero h1{font-size:clamp(3.4rem,16vw,5.4rem);margin:0 0 3.5rem}.about-hero-copy{grid-template-columns:1fr;gap:1.25rem}.about-next{margin-top:1rem;border-radius:1.5rem}.about-next-actions>a,.about-next-actions>button{width:min(100%,22rem)}}
+@media(max-width:767px){.about-page{padding-top:5.4rem}.about-hero h1{font-size:clamp(3.4rem,16vw,5.4rem);margin:0 0 3.5rem}.about-hero-copy{grid-template-columns:1fr;gap:1.25rem}.about-next{margin-top:1rem;margin-bottom:2rem;border-radius:1.5rem}.about-next-grid{inset:-30% -30%;width:160%;height:180%}.about-next-actions>a,.about-next-actions>button{width:min(100%,22rem)}}
 @media(prefers-reduced-motion:reduce){.about-next-actions>a,.about-next-actions>button,.about-next-actions>a::before,.about-next-actions>button::before,.about-next-actions>a>i,.about-next-actions>button>i{transition:none}.about-next-actions>a:hover,.about-next-actions>a:focus-visible,.about-next-actions>button:hover,.about-next-actions>button:focus-visible{transform:none}}
