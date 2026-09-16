@@ -664,12 +664,14 @@
 .contact-file-field {
   position: relative;
   display: grid;
-  gap: 8px;
-  padding: 14px;
-  border: 1px dashed #96968f;
-  border-radius: 9px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 14px;
+  padding: 17px;
+  border: 1px dashed #171717;
+  border-radius: 14px;
   background: #fff;
   cursor: pointer;
+  transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
 .contact-optional-details input[type='date'] {
@@ -709,10 +711,12 @@
   transform: translate(-1px, -1px);
 }
 
-.contact-file-field > span { font-size: 14px; font-weight: 600; }
-.contact-file-field em { color: #666660; font-size: 12px; font-style: normal; font-weight: 400; }
+.contact-file-field:hover,
+.contact-file-field:focus-within { background: #efffd8; box-shadow: 3px 3px 0 #171717; transform: translate(-1px, -1px); }
+.contact-file-field > span { font-size: 14px; font-weight: 650; }
+.contact-file-field em { display: block; margin-top: 3px; color: #53613f; font-size: 12px; font-style: normal; font-weight: 400; }
 .contact-file-field input { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0 !important; opacity: 0; cursor: pointer; }
-.contact-file-field strong { overflow: hidden; color: #111; font-size: 13px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+.contact-file-field strong { align-self: center; overflow: hidden; padding: 9px 12px; border-radius: 999px; background: #171717; color: #fff; font-size: 13px; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
 
 .contact-success-confetti {
   position: fixed;
