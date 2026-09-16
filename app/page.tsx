@@ -85,10 +85,10 @@ export default function Home() {
  <TeamSection />
  <section className="queries wrap" id="faq"><div className="section-rule"><span className="section-mark" aria-hidden="true"></span><span className="rule-line"></span><span>YOUR QUESTIONS, ANSWERED</span></div><div className="queries-intro"><p>Clear answers before we start.</p><h2>What clients ask us.</h2></div><FaqAccordion items={selectedHomepageFaqs} /><div className="faq-actions"><a className="faq-whatsapp" href={whatsappUrl('Hi WEBSTELL, I have a question about my project.')} target="_blank" rel="noreferrer"><span aria-hidden="true">↗</span> Ask us about your project</a><a className="faq-contact" href="/contact">Get your website <span aria-hidden="true">↗</span></a></div></section>
  <section className="insights" id="insights" aria-labelledby="why-webstell-title">
-  <div className="insights-marquee" aria-label="Why WEBSTELL">
+  <div className="insights-marquee" aria-label="Why choose WEBSTELL">
    <div className="insights-track">
-    <span>Why WEBSTELL <i aria-hidden="true">✳</i> Why WEBSTELL <i aria-hidden="true">✳</i></span>
-    <span aria-hidden="true">Why WEBSTELL <i>✳</i> Why WEBSTELL <i>✳</i></span>
+    <span>Why WEBSTELL <i aria-hidden="true">✳</i> Choose WEBSTELL <i aria-hidden="true">✳</i></span>
+    <span aria-hidden="true">Why WEBSTELL <i>✳</i> Choose WEBSTELL <i>✳</i></span>
    </div>
   </div>
   <div className="insights-inner wrap">
