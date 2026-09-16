@@ -227,8 +227,23 @@
   }
 
   .site-header .hire-pill::after {
-    content: 'Discuss';
-    font-size: 11px;
+    content: 'Discuss your project';
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .site-header .hire-pill {
+    min-height: 50px;
+    border-color: #c9ff3d;
+    background: #c9ff3d;
+    color: #171717;
+    box-shadow: 0 8px 20px rgba(201, 255, 61, 0.16);
+  }
+
+  .site-header .hire-pill:hover,
+  .site-header .hire-pill:focus-visible {
+    background: #e0ff7a;
+    color: #171717;
   }
 }
 

@@ -1068,8 +1068,8 @@
     grid-template-columns: 1fr;
   }
 
-  .home-contact-image img {
-    aspect-ratio: 1.8 / 1;
+  .home-contact-image {
+    display: none;
   }
 }
 
