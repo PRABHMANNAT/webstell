@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, type SyntheticEvent } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function SiteFooter() {
   const [subscribeState, setSubscribeState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -45,11 +47,11 @@ export default function SiteFooter() {
 
   return (
     <footer className="site-footer">
-      <img className="site-footer-bg" src="/assets/footer/webstell-footer.avif" alt="Luminous cube in a landscaped garden" loading="lazy" />
+      <Image className="site-footer-bg" src="/assets/footer/webstell-footer.avif" alt="Luminous cube in a landscaped garden" fill sizes="100vw" />
       <div className="site-footer-shade" aria-hidden="true" />
       <div className="footer-panel wrap">
         <div className="footer-brand">
-          <a className="footer-logo" href="/">WEBSTELL</a>
+          <Link className="footer-logo" href="/">WEBSTELL</Link>
           <p>We create distinctive websites, brands and digital products for ambitious businesses.</p>
           <form className={`subscribe-form is-${subscribeState}`} onSubmit={submitSubscription}>
             <label className="sr-only" htmlFor="footer-email">Email address</label>
@@ -63,9 +65,9 @@ export default function SiteFooter() {
           <p className="subscribe-status" id="subscribe-status" aria-live="polite">{subscribeMessage}</p>
         </div>
         <nav className="footer-links" aria-label="Footer navigation">
-          <div className="footer-link-group"><span className="footer-nav-label">Explore</span><a href="/">Home</a><a href="/services">Services</a><a href="/projects">Work</a><a href="/pricing">Pricing</a></div>
-          <div className="footer-link-group"><span className="footer-nav-label">Company</span><a href="/#insights">Why WEBSTELL</a><a href="/#team">Our team</a><a href="/#faq">FAQs</a><a href="/contact">Contact</a></div>
-          <div className="footer-link-group footer-policies"><span className="footer-nav-label">Policies</span><div className="footer-policy-links"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/cookies">Cookies</a><a href="/refunds">Refunds</a><a href="/accessibility">Accessibility</a></div></div>
+          <div className="footer-link-group"><span className="footer-nav-label">Explore</span><Link href="/">Home</Link><Link href="/services">Services</Link><Link href="/projects">Work</Link><Link href="/pricing">Pricing</Link></div>
+          <div className="footer-link-group"><span className="footer-nav-label">Company</span><Link href="/#insights">Why WEBSTELL</Link><Link href="/#team">Our team</Link><Link href="/#faq">FAQs</Link><Link href="/contact">Contact</Link></div>
+          <div className="footer-link-group footer-policies"><span className="footer-nav-label">Policies</span><div className="footer-policy-links"><Link href="/privacy">Privacy Policy</Link><Link href="/terms">Terms &amp; Conditions</Link><Link href="/cookies">Cookies</Link><Link href="/refunds">Refunds</Link><Link href="/accessibility">Accessibility</Link></div></div>
         </nav>
       </div>
       <div className="footer-wordmark" aria-hidden="true">WEBSTELL</div>

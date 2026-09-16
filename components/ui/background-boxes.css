@@ -1,0 +1,84 @@
+.background-boxes {
+  position: absolute;
+  top: -25%;
+  left: 25%;
+  z-index: 0;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  pointer-events: none;
+  transform: translate(-40%, -60%) skewX(-48deg) skewY(14deg) scale(.675) translateZ(0);
+  transform-origin: center;
+}
+
+.background-boxes-cell {
+  position: relative;
+  width: 64px;
+  height: 32px;
+  border-right: 1px solid rgb(51 65 85 / 80%);
+  border-bottom: 1px solid rgb(51 65 85 / 80%);
+  pointer-events: auto;
+  transition: background-color 200ms ease;
+}
+
+.background-boxes-cell:hover {
+  background: var(--box-color);
+}
+
+.background-boxes-plus {
+  position: absolute;
+  top: -14px;
+  left: -22px;
+  width: 40px;
+  height: 24px;
+  stroke: currentColor;
+  color: rgb(51 65 85 / 80%);
+  pointer-events: none;
+}
+
+.background-boxes-demo {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 24rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #0f172a;
+}
+
+.background-boxes-demo-mask {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  pointer-events: none;
+  background: #0f172a;
+  mask-image: radial-gradient(transparent, white);
+}
+
+.background-boxes-demo-title,
+.background-boxes-demo-copy {
+  position: relative;
+  z-index: 20;
+}
+
+.background-boxes-demo-title {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.25rem, 3vw, 2.25rem);
+}
+
+.background-boxes-demo-copy {
+  margin: .5rem 0 0;
+  color: #d4d4d8;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .background-boxes-cell {
+    transition: none;
+  }
+}

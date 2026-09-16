@@ -16,6 +16,11 @@ function value(form: FormData, name: string) {
   return typeof input === 'string' ? input.trim() : '';
 }
 
+function validPhone(input: string) {
+  const digits = input.replace(/\D/g, '');
+  return digits.length >= 7 && digits.length <= 15;
+}
+
 function FieldError({ id, message }: { id: string; message?: string }) {
   return message ? <span className="studio-field-error" id={id}>{message}</span> : null;
 }
@@ -25,11 +30,20 @@ function validate(form: FormData) {
   const name = value(form, 'name');
   const email = value(form, 'email');
   const whatsapp = value(form, 'whatsapp');
+  const projectGoal = value(form, 'projectGoal');
+  const targetDate = value(form, 'targetDate');
+  const referenceLinks = value(form, 'referenceLinks');
 
   if (name.length < 2) errors.name = 'Please enter your name.';
   if (!email && !whatsapp) errors.contact = 'Add an email address or WhatsApp number so we can reply.';
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Enter a valid email address.';
-  if (whatsapp && !/^\+?[\d\s()-]{7,24}$/.test(whatsapp)) errors.whatsapp = 'Enter a valid phone or WhatsApp number, including the country code.';
+  if (whatsapp && !validPhone(whatsapp)) errors.whatsapp = 'Enter a valid phone or WhatsApp number, including the country code.';
+  if (projectGoal.length < 12) errors.projectGoal = 'Tell us a little more about the result you need.';
+  if (targetDate && targetDate < new Date().toISOString().slice(0, 10)) errors.targetDate = 'Choose today or a future date.';
+  if (referenceLinks) {
+    const links = referenceLinks.split(/[\s,]+/).filter(Boolean);
+    if (links.some((link) => !/^https?:\/\//i.test(link))) errors.referenceLinks = 'Start each link with http:// or https://.';
+  }
   return errors;
 }
 
@@ -174,7 +188,8 @@ export default function ContactBriefForm() {
 
       <label>
         Project description
-        <textarea name="projectGoal" rows={5} maxLength={4000} placeholder="What are you trying to achieve, and what would a strong outcome look like?" />
+        <textarea name="projectGoal" rows={5} maxLength={4000} placeholder="What are you trying to achieve, and what would a strong outcome look like?" aria-invalid={Boolean(errors.projectGoal)} aria-describedby={errors.projectGoal ? 'contact-project-goal-error' : undefined} />
+        <FieldError id="contact-project-goal-error" message={errors.projectGoal} />
       </label>
 
       <details className="contact-optional-details">
@@ -197,7 +212,8 @@ export default function ContactBriefForm() {
             </label>
             <label>
               Target delivery date
-              <input name="targetDate" type="date" />
+              <input name="targetDate" type="date" aria-invalid={Boolean(errors.targetDate)} aria-describedby={errors.targetDate ? 'contact-target-date-error' : undefined} />
+              <FieldError id="contact-target-date-error" message={errors.targetDate} />
             </label>
           </div>
           <label className="contact-file-field">
@@ -208,7 +224,8 @@ export default function ContactBriefForm() {
           </label>
           <label>
             Reference link
-            <input name="referenceLinks" type="url" inputMode="url" placeholder="A website, doc, Figma file or examples you like" maxLength={2000} />
+            <input name="referenceLinks" type="url" inputMode="url" placeholder="A website, doc, Figma file or examples you like" maxLength={2000} aria-invalid={Boolean(errors.referenceLinks)} aria-describedby={errors.referenceLinks ? 'contact-reference-links-error' : undefined} />
+            <FieldError id="contact-reference-links-error" message={errors.referenceLinks} />
           </label>
         </div>
       </details>

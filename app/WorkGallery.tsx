@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Image from 'next/image';
 import { workFilters, workGallery, type WorkCategory } from './showcase-data';
 
 import type { Project } from './portfolio-data';
@@ -18,7 +19,7 @@ export default function WorkGallery({onOpen}:{onOpen:(project:Project)=>void}){
   </div>
   <ul className="work-masonry wrap">
    {visible.map(item=><li key={item.id}><button className={'work-tile work-tile-'+item.shape} onClick={()=>onOpen(item)} aria-label={'Open '+item.title}>
-    <img src={item.image} alt={item.title+" website design preview"} loading="lazy"/>
+    <Image src={item.image} alt={item.title+" website design preview"} fill sizes="(max-width: 560px) 90vw, (max-width: 900px) 45vw, 30vw" unoptimized />
     <span className="work-tile-copy"><strong>{item.title}</strong><small>Studio concept · {item.meta}</small></span>
    </button></li>)}
   </ul>

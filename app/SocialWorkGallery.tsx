@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import ViewportVideo from './ViewportVideo';
 import { serviceOverview } from './service-overview-data';
 import { useInViewport } from './useInViewport';
@@ -55,7 +56,7 @@ export default function SocialWorkGallery() {
           </button>
         ))}
         <article className="social-post" aria-live="polite" onPointerDown={holdCard} onPointerUp={releaseCard} onPointerCancel={() => { pointerStart.current = null; setIsHolding(false); }}>
-          <header><span className="social-avatar" aria-hidden="true"><img src="/assets/brand/webstell-retro-mac.png" alt="" /></span><strong>WEBSTELL</strong><span className="service-post-count">{String(active + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}</span></header>
+          <header><span className="social-avatar" aria-hidden="true"><Image src="/assets/brand/webstell-retro-mac.png" alt="" width={30} height={30} sizes="30px" unoptimized /></span><strong>WEBSTELL</strong><span className="service-post-count">{String(active + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}</span></header>
           <div className="social-post-image service-post-video">
             <ViewportVideo key={current.video} src={current.video} loop aria-label={`${current.title} service video`} />
             <button className="social-prev" type="button" aria-label="Previous service" onPointerDown={(event) => event.stopPropagation()} onPointerUp={(event) => event.stopPropagation()} onClick={() => move(-1)}>‹</button>

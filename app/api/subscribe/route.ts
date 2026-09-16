@@ -1,4 +1,4 @@
-import { escapeHtml, getEmailClient } from '@/lib/resend';
+import { escapeHtml, getEmailClient } from '../../../lib/resend';
 
 type SubscribeInput = {
   email?: unknown;

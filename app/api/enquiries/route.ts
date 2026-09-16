@@ -1,4 +1,4 @@
-import { escapeHtml, getEmailClient } from '@/lib/resend';
+import { escapeHtml, getEmailClient } from '../../../lib/resend';
 
 type RequestKind = 'project_enquiry' | 'call_request';
 

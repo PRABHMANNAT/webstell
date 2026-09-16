@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import {
   ArrowUpRight,
   Check,
@@ -50,6 +50,11 @@ type BookingErrors = {
   time?: string;
 };
 
+function validPhone(input: string) {
+  const digits = input.replace(/\D/g, '');
+  return digits.length >= 7 && digits.length <= 15;
+}
+
 export default function ScheduleExperience() {
   const [today, setToday] = useState('');
   const [month, setMonth] = useState<Date | null>(null);
@@ -62,29 +67,45 @@ export default function ScheduleExperience() {
   const [bookingState, setBookingState] = useState<BookingState>('idle');
   const [bookingMessage, setBookingMessage] = useState('');
   const [bookingErrors, setBookingErrors] = useState<BookingErrors>({});
+  const [currentTime, setCurrentTime] = useState<number | null>(null);
   const submissionId = useRef('');
   const [pricingHandoff, setPricingHandoff] = useState<{
     project: string;
     estimate: string;
   } | null>(null);
   useEffect(() => {
-    const now = indiaToday();
-    setToday(now);
-    const date = new Date(now + 'T12:00:00');
-    setMonth(new Date(date.getFullYear(), date.getMonth(), 1));
+    const frameId = window.requestAnimationFrame(() => {
+      const now = indiaToday();
+      setToday(now);
+      const date = new Date(now + 'T12:00:00');
+      setMonth(new Date(date.getFullYear(), date.getMonth(), 1));
+    });
+    return () => window.cancelAnimationFrame(frameId);
   }, []);
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('source') !== 'pricing') return;
-    const project = (params.get('project') || '').trim().slice(0, 100);
-    const estimate = Number(params.get('estimate'));
-    if (!project || !Number.isFinite(estimate) || estimate < 0 || estimate > 10000000) {
-      return;
-    }
-    setPricingHandoff({
-      project,
-      estimate: `₹${Math.round(estimate).toLocaleString('en-IN')}`,
+    const frameId = window.requestAnimationFrame(() => {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('source') !== 'pricing') return;
+      const project = (params.get('project') || '').trim().slice(0, 100);
+      const estimate = Number(params.get('estimate'));
+      if (!project || !Number.isFinite(estimate) || estimate < 0 || estimate > 10000000) {
+        return;
+      }
+      setPricingHandoff({
+        project,
+        estimate: `₹${Math.round(estimate).toLocaleString('en-IN')}`,
+      });
     });
+    return () => window.cancelAnimationFrame(frameId);
+  }, []);
+  useEffect(() => {
+    const updateCurrentTime = () => setCurrentTime(Date.now());
+    const frameId = window.requestAnimationFrame(updateCurrentTime);
+    const intervalId = window.setInterval(updateCurrentTime, 60_000);
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.clearInterval(intervalId);
+    };
   }, []);
   const lowerBound = today ? new Date(today + 'T12:00:00') : null;
   const upperBound = lowerBound
@@ -105,7 +126,7 @@ export default function ScheduleExperience() {
     : '';
   function isPastSlot(value: string) {
     return (
-      !chosen || new Date(`${chosen}T${value}:00+05:30`).getTime() <= Date.now()
+      !chosen || (currentTime !== null && new Date(`${chosen}T${value}:00+05:30`).getTime() <= currentTime)
     );
   }
   function clearBookingFeedback() {
@@ -117,7 +138,7 @@ export default function ScheduleExperience() {
   function validateBooking() {
     const errors: BookingErrors = {};
     if (name.trim().length < 2) errors.name = 'Please enter your name.';
-    if (!/^\+?[\d\s()-]{7,24}$/.test(phone.trim())) {
+    if (!validPhone(phone.trim())) {
       errors.phone = 'Enter a valid phone number, including the country code.';
     }
     if (!chosen) errors.date = 'Choose a preferred date.';
@@ -125,7 +146,7 @@ export default function ScheduleExperience() {
     setBookingErrors(errors);
     return Object.keys(errors).length === 0;
   }
-  async function submitBooking(event: FormEvent<HTMLFormElement>) {
+  async function submitBooking(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
     if (bookingState === 'loading' || bookingState === 'success') return;
     if (!validateBooking()) {
@@ -326,12 +347,11 @@ export default function ScheduleExperience() {
                       </button>
                     </div>
                   </div>
-                  <div
+                  <fieldset
                     key={`calendar-${month.getFullYear()}-${month.getMonth()}`}
                     className={`calendar-grid month-${monthTransition}`}
-                    role="group"
-                    aria-label="Choose a date"
                   >
+                    <legend className="sr-only">Choose a date</legend>
                     {['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'].map(
                       (day) => (
                         <span className="calendar-weekday" key={day}>
@@ -389,18 +409,17 @@ export default function ScheduleExperience() {
                         );
                       },
                     )}
-                  </div>
+                  </fieldset>
                   {bookingErrors.date && <p className="schedule-selection-error" role="alert">{bookingErrors.date}</p>}
                   <div className="time-heading">
                     <h3>
                       {chosen ? 'Now choose a time.' : 'Choose a date to see times.'}
                     </h3>
                   </div>
-                  <div
+                  <fieldset
                     className="time-slots"
-                    role="group"
-                    aria-label="Preferred time"
                   >
+                    <legend className="sr-only">Preferred time</legend>
                     {slots.map((time) => (
                       <button
                         type="button"
@@ -433,7 +452,6 @@ export default function ScheduleExperience() {
                       <label className="custom-time-picker" id="custom-time-picker">
                         <span>Choose any time</span>
                         <select
-                          autoFocus
                           aria-label="Choose a custom time"
                           value={!slots.includes(slot) ? slot : ''}
                           onChange={(event) => {
@@ -452,7 +470,7 @@ export default function ScheduleExperience() {
                         </select>
                       </label>
                     )}
-                  </div>
+                  </fieldset>
                   {bookingErrors.time && <p className="schedule-selection-error" role="alert">{bookingErrors.time}</p>}
                   <p className="calendar-note">
                     We’ll check the team’s availability, then confirm your call by phone.

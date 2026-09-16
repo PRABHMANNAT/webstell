@@ -57,7 +57,7 @@ export default function LostRunner(){
  return <section className="lost-game" aria-label="Jump over obstacles game" aria-describedby="lost-game-help">
   <div className="lost-game-top"><span>THE DETOUR / ENDLESS RUNNER</span><strong>SCORE {String(score).padStart(4,'0')}</strong></div>
   <canvas ref={canvas} onPointerDown={jump} aria-label="Runner game. Tap the field, or use Space, up arrow or the jump button to jump over obstacles."/>
-  <div className="lost-game-controls"><button type="button" onClick={jump}>{status==='ready'?'Start game':status==='over'?'Try again':'Jump'} <span>↑</span></button><button type="button" onClick={pause} disabled={status==='ready'||status==='over'}>{status==='paused'?'Resume':'Pause'}</button><span role="status">{status==='over'?'Game over. Give it another jump.':status==='paused'?'Paused':status==='ready'?'A little game for your wrong turn.':'Clear the obstacles. Keep going.'}</span></div>
+  <div className="lost-game-controls"><button type="button" onClick={jump}>{status==='ready'?'Start game':status==='over'?'Try again':'Jump'} <span>↑</span></button><button type="button" onClick={pause} disabled={status==='ready'||status==='over'}>{status==='paused'?'Resume':'Pause'}</button><span><output aria-live="polite">{status==='over'?'Game over. Give it another jump.':status==='paused'?'Paused':status==='ready'?'A little game for your wrong turn.':'Clear the obstacles. Keep going.'}</output></span></div>
   <p className="lost-game-help" id="lost-game-help">Space / ↑ to jump · Tap the game on mobile · Esc to pause</p>
  </section>;
 }

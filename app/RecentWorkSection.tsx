@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { recentWorkProjects } from './portfolio-data';
 
 export default function RecentWorkSection() {
@@ -19,7 +20,13 @@ export default function RecentWorkSection() {
           <article className="project" key={project.id}>
             <Link className="project-preview" href="/projects" aria-label={`View ${project.title} in all projects`}>
               <div className="project-image">
-                <img src={project.image} alt={`${project.title} website design direction`} loading="lazy" />
+                <Image
+                  src={project.image}
+                  alt={`${project.title} website design direction`}
+                  fill
+                  sizes="(max-width: 700px) 100vw, 50vw"
+                  unoptimized
+                />
                 <span className="project-arrow" aria-hidden="true">↗</span>
               </div>
             </Link>

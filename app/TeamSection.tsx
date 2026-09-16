@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import SocialIcon from './SocialIcon';
 import { team } from './team-data';
 
@@ -15,7 +16,7 @@ export default function TeamSection() {
             <article className="team-card" key={member.name}>
               <div className="team-card-inner">
                 <div className="team-face team-front">
-                  <div className="team-photo"><img src={member.image} alt={`${member.name}, ${member.role}`} loading="lazy"/></div>
+                  <div className="team-photo"><Image src={member.image} alt={`${member.name}, ${member.role}`} fill sizes="(max-width: 767px) 50vw, (max-width: 1100px) 33vw, 25vw" unoptimized /></div>
                   <div className="team-meta"><span>{member.name}</span><p>{member.role}</p><p className="team-value">{member.value}</p></div>
                 </div>
                 <div className="team-face team-back">

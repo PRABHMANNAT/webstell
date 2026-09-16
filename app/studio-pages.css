@@ -1699,6 +1699,10 @@ button:disabled {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 8px;
+  min-inline-size: 0;
+  margin: 0;
+  border: 0;
+  padding: 0;
 }
 .calendar-grid.month-next {
   animation: calendar-grid-next 0.42s cubic-bezier(0.2, 0.8, 0.25, 1) both;
@@ -1757,6 +1761,9 @@ button:disabled {
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   padding: 9px;
+  min-inline-size: 0;
+  margin: 0;
+  border: 0;
   background: #171717;
   border-radius: 16px;
 }

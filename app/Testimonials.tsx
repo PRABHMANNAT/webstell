@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { useInViewport } from './useInViewport';
 
 const testimonials=[
@@ -57,7 +58,7 @@ export default function Testimonials(){
   <header className="testimonial-heading wrap"><span>CLIENT PERSPECTIVES / PREVIEW</span><h2 id="testimonials-title">Good websites solve real needs.</h2><p>Illustrative client briefs, not published endorsements. Sample copy and stock portraits will be replaced with approved client testimonials.</p></header>
   <div className="testimonial-stage">
    {testimonials.map((item,index)=><button type="button" key={item.name} className={'testimonial-person testimonial-slot-'+slot(index)+(index===active?' is-active':'')} onClick={()=>setActive(index)} aria-label={'Show testimonial from '+item.name} aria-current={index===active?'true':undefined}>
-    <img src={item.image} alt="" loading="lazy"/>
+    <Image src={item.image} alt="" fill sizes="(max-width: 700px) 72vw, 340px" unoptimized />
     <span className="testimonial-person-copy"><strong>{item.name}</strong><small>{item.role}<br/>{item.location}</small></span>
    </button>)}
    <span className="testimonial-quote-mark" aria-hidden="true">“</span>

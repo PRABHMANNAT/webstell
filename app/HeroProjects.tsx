@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { useInViewport } from './useInViewport';
 
@@ -92,7 +93,7 @@ export default function HeroProjects() {
       </div>
       <div className="hero-project-image">
         {slides.map((item, index) => (
-          <img
+          <Image
             key={item.image}
             src={item.image}
             alt={
@@ -100,7 +101,10 @@ export default function HeroProjects() {
             }
             aria-hidden={index !== active}
             className={index === active ? 'is-active' : ''}
-            fetchPriority={index === 0 ? 'high' : 'auto'}
+            fill
+            sizes="(max-width: 760px) 100vw, 44vw"
+            priority={index === 0}
+            unoptimized
           />
         ))}
       </div>

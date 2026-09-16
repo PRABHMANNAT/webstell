@@ -1,4 +1,5 @@
 import { ArrowUpRight, Mail, Phone } from 'lucide-react';
+import Image from 'next/image';
 import BriefForm from './BriefForm';
 import { whatsappUrl } from './contact-utils';
 
@@ -16,12 +17,12 @@ export default function ContactSection() {
             <a href="tel:+917696403580"><Phone size={17} /> +91 76964 03580</a>
           </div>
           <a href={whatsappUrl('Hi WEBSTELL! I would like to discuss a project.')} target="_blank" rel="noreferrer" className="home-contact-whatsapp">
-            <span className="home-contact-whatsapp-icon"><img src="/assets/contact/whatsapp-icon.png" alt="" /></span>
+            <span className="home-contact-whatsapp-icon"><Image src="/assets/contact/whatsapp-icon.png" alt="" width={44} height={44} sizes="50px" /></span>
             <span><small>Prefer WhatsApp?</small><strong>Message WEBSTELL directly</strong></span>
             <ArrowUpRight size={19} />
           </a>
           <figure className="home-contact-image">
-            <img src="/assets/contact/webstell-contact-connection.png" alt="A retro computer and telephone on a flower-covered hill beneath a bright sky" />
+            <Image src="/assets/contact/webstell-contact-connection.png" alt="A retro computer and telephone on a flower-covered hill beneath a bright sky" width={1536} height={1024} sizes="(max-width: 760px) 100vw, 510px" />
             <figcaption>Choose WEBSTELL.</figcaption>
           </figure>
         </div>

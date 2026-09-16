@@ -1,3 +1,6 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
 const internationalProjects = [
   { number: '01', title: 'Pear', location: 'Oslo, Norway', description: 'A growth-focused digital platform bringing search, custom software and commercial clarity into one confident customer journey.', image: '/assets/featured-projects/pear.png', url: 'https://pear.no/', tone: 'pear' },
   { number: '02', title: 'Araku Coffee', location: 'India / Global', description: 'A rich e-commerce experience connecting premium coffee, regenerative farming and the people behind every cup.', image: '/assets/featured-projects/araku-coffee.png', url: 'https://www.arakucoffee.in/', tone: 'araku' },
@@ -22,13 +25,13 @@ export default function InternationalProjectsSection() {
               <a className="case-project-link" href={project.url} target="_blank" rel="noreferrer">View project <span aria-hidden="true">→</span></a>
             </div>
             <a className="case-visual" href={project.url} target="_blank" rel="noreferrer" aria-label={`View the ${project.title} project`}>
-              <img src={project.image} alt={`${project.title} project preview`} loading={index === 0 ? 'eager' : 'lazy'} />
+              <Image src={project.image} alt={`${project.title} project preview`} fill sizes="(max-width: 760px) 100vw, (max-width: 980px) 60vw, 50vw" loading={index === 0 ? 'eager' : 'lazy'} />
               <span className="case-visual-open" aria-hidden="true"><b>View project</b><i>↗</i></span>
             </a>
           </article>
         ))}
       </div>
-      <div className="case-action"><a href="/contact">Get your website <span aria-hidden="true">↗</span></a></div>
+      <div className="case-action"><Link href="/contact">Get your website <span aria-hidden="true">↗</span></Link></div>
     </section>
   );
 }

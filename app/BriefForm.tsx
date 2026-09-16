@@ -23,6 +23,11 @@ function field(form: FormData, name: string) {
   return typeof input === 'string' ? input.trim() : '';
 }
 
+function validPhone(input: string) {
+  const digits = input.replace(/\D/g, '');
+  return digits.length >= 7 && digits.length <= 15;
+}
+
 function clientErrors(form: FormData, booking: boolean) {
   const errors: FieldErrors = {};
   const name = field(form, 'name');
@@ -36,7 +41,7 @@ function clientErrors(form: FormData, booking: boolean) {
   if (name.length < 2) errors.name = 'Please enter your name.';
   if (!email && !whatsapp) errors.contact = 'Add an email address or WhatsApp number so we can reply.';
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Enter a valid email address.';
-  if (whatsapp && !/^\+?[\d\s()-]{7,24}$/.test(whatsapp)) errors.whatsapp = 'Enter a valid WhatsApp number, including the country code.';
+  if (whatsapp && !validPhone(whatsapp)) errors.whatsapp = 'Enter a valid WhatsApp number, including the country code.';
   if (!booking && !projectType) errors.projectType = 'Choose the closest fit for your project.';
   if (goal.length < 12) errors.projectGoal = booking ? 'Tell us what would make the call useful.' : 'Tell us a little more about the result you need.';
   if (targetDate && targetDate < new Date().toISOString().slice(0, 10)) errors.targetDate = 'Choose today or a future date.';
