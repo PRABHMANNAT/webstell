@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, MessageCircle, Phone } from 'lucide-react';
+import { ArrowUpRight, Mail, Phone } from 'lucide-react';
 import BriefForm from './BriefForm';
 import { whatsappUrl } from './contact-utils';
 
@@ -15,7 +15,7 @@ export default function ContactSection() {
             <a href="tel:+917696403580"><Phone size={17} /> +91 76964 03580</a>
           </div>
           <a href={whatsappUrl('Hi WEBSTELL! I would like to discuss a project.')} target="_blank" rel="noreferrer" className="home-contact-whatsapp">
-            <span className="home-contact-whatsapp-icon"><MessageCircle size={19} /></span>
+            <span className="home-contact-whatsapp-icon"><img src="/assets/contact/whatsapp-icon.png" alt="" /></span>
             <span><small>Prefer WhatsApp?</small><strong>Message WEBSTELL directly</strong></span>
             <ArrowUpRight size={19} />
           </a>
