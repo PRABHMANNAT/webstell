@@ -11,7 +11,7 @@ import {
   Sparkles,
   SlidersHorizontal,
 } from 'lucide-react';
-import StudioNav, { StudioFooter } from '../StudioNav';
+import StudioNav, { HireDialog, StudioFooter } from '../StudioNav';
 import BriefForm from '../BriefForm';
 import FaqAccordion from '../FaqAccordion';
 import PricingSection from '../PricingSection';
@@ -26,6 +26,7 @@ import {
 } from '../pricing-data';
 
 export default function PricingExperience() {
+  const [hireOpen, setHireOpen] = useState(false);
   const [type, setType] = useState('website');
   const [selected, setSelected] = useState<string[]>([]);
   const [ownDomain, setOwnDomain] = useState(false);
@@ -404,9 +405,9 @@ export default function PricingExperience() {
               describe? We’ll build a custom quote around your actual
               requirements — not squeeze your idea into a box.
             </p>
-            <a href={callHref}>
+            <button type="button" onClick={() => setHireOpen(true)}>
               Talk through the bigger picture <ArrowUpRight size={18} />
-            </a>
+            </button>
           </div>
         </section>
 
@@ -421,6 +422,7 @@ export default function PricingExperience() {
         </div>
       </main>
       <StudioFooter />
+      <HireDialog open={hireOpen} onOpenChange={setHireOpen} />
     </>
   );
 }
