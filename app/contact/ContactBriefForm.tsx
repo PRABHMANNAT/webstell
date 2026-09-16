@@ -25,14 +25,11 @@ function validate(form: FormData) {
   const name = value(form, 'name');
   const email = value(form, 'email');
   const whatsapp = value(form, 'whatsapp');
-  const projectGoal = value(form, 'projectGoal');
 
   if (name.length < 2) errors.name = 'Please enter your name.';
   if (!email && !whatsapp) errors.contact = 'Add an email address or WhatsApp number so we can reply.';
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Enter a valid email address.';
   if (whatsapp && !/^\+?[\d\s()-]{7,24}$/.test(whatsapp)) errors.whatsapp = 'Enter a valid phone or WhatsApp number, including the country code.';
-  if (projectGoal.length < 12) errors.projectGoal = 'Tell us a little more about what you need.';
-
   return errors;
 }
 
@@ -147,24 +144,25 @@ export default function ContactBriefForm() {
       <input className="studio-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <div className="studio-form-row">
         <label>
-          Name <b aria-hidden="true">*</b>
+          Name
           <input name="name" autoComplete="name" placeholder="What should we call you?" maxLength={100} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'contact-name-error' : undefined} />
           <FieldError id="contact-name-error" message={errors.name} />
         </label>
         <label>
-          Business name <span>(optional)</span>
+          Business name <span className="contact-optional-label">optional</span>
           <input name="businessName" autoComplete="organization" placeholder="Your company or brand" maxLength={150} />
         </label>
       </div>
 
       <fieldset className="studio-contact-fields">
-        <legend>Email or Phone / WhatsApp <b aria-hidden="true">*</b> <span>at least one</span></legend>
+        <legend className="sr-only">Email or phone number</legend>
         <div className="studio-form-row">
           <label>
             Email
             <input name="email" type="email" autoComplete="email" placeholder="you@company.com" maxLength={200} aria-invalid={Boolean(errors.email || errors.contact)} aria-describedby={errors.email ? 'contact-email-error' : errors.contact ? 'contact-details-error' : undefined} />
             <FieldError id="contact-email-error" message={errors.email} />
           </label>
+          <span className="contact-method-or" aria-hidden="true">or</span>
           <label>
             Phone / WhatsApp
             <input name="whatsapp" type="tel" autoComplete="tel" placeholder="+91 98765 43210" maxLength={30} aria-invalid={Boolean(errors.whatsapp || errors.contact)} aria-describedby={errors.whatsapp ? 'contact-phone-error' : errors.contact ? 'contact-details-error' : undefined} />
@@ -175,9 +173,8 @@ export default function ContactBriefForm() {
       </fieldset>
 
       <label>
-        Project description <b aria-hidden="true">*</b>
-        <textarea name="projectGoal" rows={5} maxLength={4000} placeholder="What are you trying to achieve, and what would a strong outcome look like?" aria-invalid={Boolean(errors.projectGoal)} aria-describedby={errors.projectGoal ? 'contact-description-error' : undefined} />
-        <FieldError id="contact-description-error" message={errors.projectGoal} />
+        Project description <span className="contact-optional-label">optional</span>
+        <textarea name="projectGoal" rows={5} maxLength={4000} placeholder="What are you trying to achieve, and what would a strong outcome look like?" />
       </label>
 
       <details className="contact-optional-details">
