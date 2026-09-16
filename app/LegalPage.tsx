@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import StudioNav, { StudioFooter } from './StudioNav';
+import StudioNav from './StudioNav';
+import SiteFooter from './SiteFooter';
 
 export type LegalSection = {
   title: string;
@@ -12,7 +13,7 @@ type LegalPageProps = {
   title: string;
   intro: string;
   sections: LegalSection[];
-  heroVariant?: 'terms';
+  heroVariant?: 'terms' | 'privacy';
 };
 
 export default function LegalPage({
@@ -70,7 +71,7 @@ export default function LegalPage({
           </article>
         </div>
       </main>
-      <StudioFooter />
+      <SiteFooter />
     </>
   );
 }
