@@ -650,6 +650,7 @@
 }
 
 .contact-optional-details summary:hover { background: #d9ff8b; }
+.contact-optional-details summary:active { transform: translateY(1px); }
 .contact-optional-details:focus-within { box-shadow: 4px 4px 0 #171717; transform: translate(-2px, -2px); }
 
 .contact-optional-details summary::-webkit-details-marker { display: none; }
@@ -664,6 +665,12 @@
   padding: 2px 16px 16px;
   border-top: 1px solid #171717;
   background: #f8f8f5;
+  animation: contact-details-reveal .25s ease-out;
+}
+
+@keyframes contact-details-reveal {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .contact-file-field {
