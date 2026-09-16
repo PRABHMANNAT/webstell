@@ -10,7 +10,8 @@ import {
   Sparkles,
   SlidersHorizontal,
 } from 'lucide-react';
-import StudioNav, { HireDialog, StudioFooter } from '../StudioNav';
+import StudioNav, { HireDialog } from '../StudioNav';
+import SiteFooter from '../SiteFooter';
 import BriefForm from '../BriefForm';
 import FaqAccordion from '../FaqAccordion';
 import PricingSection from '../PricingSection';
@@ -384,7 +385,7 @@ export default function PricingExperience() {
           </a>
         </div>
       </main>
-      <StudioFooter />
+      <SiteFooter />
       <HireDialog open={hireOpen} onOpenChange={setHireOpen} />
     </>
   );
