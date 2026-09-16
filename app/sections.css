@@ -3,6 +3,38 @@
 @media(max-width:760px){.queries{border-radius:22px;padding:32px 18px 28px}.section-rule{grid-template-columns:auto 1fr;gap:14px}.section-rule>span:last-child{grid-column:1/-1}.queries-intro{padding:42px 0}.queries h2{font-size:44px}.query-list summary{padding:20px 18px}.query-list details p{padding:0 48px 24px 18px}.insights{padding:90px 0 72px;margin-top:28px;border-radius:22px 22px 0 0}.insights-track span{font-size:100px}.insights-inner{padding-top:54px}.insight-grid{grid-template-columns:1fr;gap:14px;margin-top:48px}.insight-image-red,.insight-card.featured,.insight-card:not(.featured):not(.wide),.insight-image-blue,.insight-card.wide{grid-column:1;grid-row:auto;min-height:390px}.insight-card{padding:28px 24px}.insight-card h3{font-size:34px}.insight-card.featured{min-height:520px}}
 @media(prefers-reduced-motion:reduce){.insights-track,.insights-track i{animation:none}.insight-image img,.support-pill span,.all-articles span,.insight-card footer button{transition:none}}
 
+/* Why WEBSTELL — a compact studio introduction instead of an article feed. */
+.why-webstell-intro{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:clamp(40px,8vw,130px);align-items:start}
+.insights .studio-eyebrow{margin:0 0 21px;color:#5e5e5e;font-family:var(--mono,monospace);font-size:12px;font-weight:600;letter-spacing:.09em}
+.why-webstell-intro h2{max-width:680px;margin:0;font-size:clamp(48px,6.6vw,96px);font-weight:500;letter-spacing:-.07em;line-height:.92}
+.why-webstell-copy{max-width:510px;padding-top:10px}
+.why-webstell-copy>p{margin:0;color:#303030;font-size:clamp(19px,1.8vw,25px);line-height:1.42}
+.why-webstell-cta{display:inline-flex;align-items:center;gap:18px;min-height:66px;margin-top:36px;padding:0 28px 0 8px;border-radius:18px;background:#191919;color:#fff;font-size:17px;font-weight:600;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease}
+.why-webstell-cta span{display:grid;place-items:center;width:50px;height:50px;border-radius:14px;background:#d7ff46;color:#171717;font-size:23px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.why-webstell-cta:hover{box-shadow:0 12px 26px #17171725;transform:translateY(-3px)}
+.why-webstell-cta:hover span{transform:translate(3px,-3px)}
+.studio-email-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:22px}
+.studio-email{color:#171717;font-size:15px;font-weight:600;text-decoration:underline;text-decoration-color:#999;text-underline-offset:5px;transition:text-decoration-color .2s ease}
+.studio-email:hover{color:#4f2bc6;text-decoration-color:currentColor}
+.copy-email{border:1px solid #b8b8b8;border-radius:999px;background:transparent;color:#171717;padding:8px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s ease,border-color .2s ease,color .2s ease}
+.copy-email:hover{border-color:#171717;background:#171717;color:#fff}
+.studio-principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:clamp(70px,10vw,150px)}
+.studio-principles article{min-height:280px;padding:28px;border:1px solid #c3c3c3;border-radius:24px;background:#f4f4f4;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease}
+.studio-principles article:hover{box-shadow:0 18px 28px #17171715;transform:translateY(-5px)}
+.studio-principles article>span{color:#676767;font-family:var(--mono,monospace);font-size:12px;letter-spacing:.08em}
+.studio-principles h3{max-width:260px;margin:48px 0 13px;font-size:clamp(28px,3vw,44px);font-weight:500;letter-spacing:-.055em;line-height:.98}
+.studio-principles p{max-width:300px;margin:0;color:#565656;font-size:16px;line-height:1.45}
+.studio-process{display:grid;grid-template-columns:minmax(260px,.86fr) minmax(0,1.14fr);gap:clamp(32px,8vw,120px);margin-top:24px;padding:clamp(32px,5vw,64px);border-radius:28px;background:#191919;color:#fff}
+.studio-process .studio-eyebrow{color:#b9b9b9}
+.studio-process>div>h3{max-width:420px;margin:0;font-size:clamp(29px,3.4vw,50px);font-weight:500;letter-spacing:-.055em;line-height:1.02}
+.studio-process ol{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.studio-process li{display:grid;grid-template-columns:46px 1fr;gap:16px;padding:17px 0;border-top:1px solid #ffffff2b}
+.studio-process li:last-child{border-bottom:1px solid #ffffff2b}
+.studio-process li>span{padding-top:3px;color:#d7ff46;font-family:var(--mono,monospace);font-size:12px}
+.studio-process h4{margin:0 0 6px;font-size:20px;font-weight:600;letter-spacing:-.03em}
+.studio-process li p{max-width:460px;margin:0;color:#c7c7c7;font-size:16px;line-height:1.45}
+.why-webstell-cta:focus-visible,.studio-email:focus-visible,.copy-email:focus-visible{outline:3px solid #7647ee;outline-offset:4px}
+
 /* Homepage FAQ */
 .faq-accordion{display:grid;gap:10px}
 .faq-accordion details{overflow:hidden;border:1px solid transparent;border-radius:24px;background:#191919;color:#fff}
