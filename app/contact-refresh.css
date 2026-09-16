@@ -641,6 +641,62 @@
 .contact-file-field input { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0 !important; opacity: 0; cursor: pointer; }
 .contact-file-field strong { overflow: hidden; color: #111; font-size: 13px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
 
+.contact-success-confetti {
+  position: fixed;
+  z-index: 40;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.contact-success-confetti span {
+  position: absolute;
+  top: -5vh;
+  width: 9px;
+  height: 16px;
+  border: 1px solid #111;
+  background: #fff;
+  transform: rotate(var(--contact-confetti-rotation));
+  animation: contact-confetti-fall var(--contact-confetti-duration) cubic-bezier(.15,.7,.3,1) var(--contact-confetti-delay) both;
+}
+
+.contact-success-confetti span:nth-child(4n + 2) { background: #111; border-color: #fff; }
+.contact-success-confetti span:nth-child(4n + 3) { background: #d8d8d2; }
+.contact-success-confetti span:nth-child(4n) { width: 14px; height: 8px; border-radius: 999px; }
+.contact-success-confetti span:nth-child(1) { --contact-confetti-left: 4%; --contact-confetti-rotation: 16deg; }
+.contact-success-confetti span:nth-child(2) { --contact-confetti-left: 9%; --contact-confetti-rotation: 65deg; }
+.contact-success-confetti span:nth-child(3) { --contact-confetti-left: 14%; --contact-confetti-rotation: 28deg; }
+.contact-success-confetti span:nth-child(4) { --contact-confetti-left: 19%; --contact-confetti-rotation: 112deg; }
+.contact-success-confetti span:nth-child(5) { --contact-confetti-left: 25%; --contact-confetti-rotation: 42deg; }
+.contact-success-confetti span:nth-child(6) { --contact-confetti-left: 30%; --contact-confetti-rotation: 142deg; }
+.contact-success-confetti span:nth-child(7) { --contact-confetti-left: 35%; --contact-confetti-rotation: 74deg; }
+.contact-success-confetti span:nth-child(8) { --contact-confetti-left: 40%; --contact-confetti-rotation: 128deg; }
+.contact-success-confetti span:nth-child(9) { --contact-confetti-left: 45%; --contact-confetti-rotation: 18deg; }
+.contact-success-confetti span:nth-child(10) { --contact-confetti-left: 50%; --contact-confetti-rotation: 98deg; }
+.contact-success-confetti span:nth-child(11) { --contact-confetti-left: 55%; --contact-confetti-rotation: 54deg; }
+.contact-success-confetti span:nth-child(12) { --contact-confetti-left: 60%; --contact-confetti-rotation: 132deg; }
+.contact-success-confetti span:nth-child(13) { --contact-confetti-left: 65%; --contact-confetti-rotation: 30deg; }
+.contact-success-confetti span:nth-child(14) { --contact-confetti-left: 70%; --contact-confetti-rotation: 84deg; }
+.contact-success-confetti span:nth-child(15) { --contact-confetti-left: 75%; --contact-confetti-rotation: 146deg; }
+.contact-success-confetti span:nth-child(16) { --contact-confetti-left: 80%; --contact-confetti-rotation: 47deg; }
+.contact-success-confetti span:nth-child(17) { --contact-confetti-left: 85%; --contact-confetti-rotation: 118deg; }
+.contact-success-confetti span:nth-child(18) { --contact-confetti-left: 90%; --contact-confetti-rotation: 22deg; }
+.contact-success-confetti span:nth-child(19) { --contact-confetti-left: 95%; --contact-confetti-rotation: 106deg; }
+.contact-success-confetti span:nth-child(20) { --contact-confetti-left: 12%; --contact-confetti-rotation: 152deg; }
+.contact-success-confetti span:nth-child(21) { --contact-confetti-left: 57%; --contact-confetti-rotation: 70deg; }
+.contact-success-confetti span:nth-child(22) { --contact-confetti-left: 82%; --contact-confetti-rotation: 36deg; }
+.contact-success-confetti span:nth-child(5n + 1) { --contact-confetti-duration: 1.8s; --contact-confetti-delay: 0s; }
+.contact-success-confetti span:nth-child(5n + 2) { --contact-confetti-duration: 2.15s; --contact-confetti-delay: .08s; }
+.contact-success-confetti span:nth-child(5n + 3) { --contact-confetti-duration: 1.95s; --contact-confetti-delay: .16s; }
+.contact-success-confetti span:nth-child(5n + 4) { --contact-confetti-duration: 2.3s; --contact-confetti-delay: .04s; }
+.contact-success-confetti span:nth-child(5n) { --contact-confetti-duration: 2.05s; --contact-confetti-delay: .12s; }
+
+@keyframes contact-confetti-fall {
+  0% { opacity: 0; transform: translate3d(var(--contact-confetti-left), -5vh, 0) rotate(var(--contact-confetti-rotation)); }
+  10% { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(calc(var(--contact-confetti-left) + 7vw), 108vh, 0) rotate(calc(var(--contact-confetti-rotation) + 680deg)); }
+}
+
 .contact-page-conversation {
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(280px, .72fr);

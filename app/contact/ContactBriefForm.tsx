@@ -9,6 +9,7 @@ type FieldErrors = Record<string, string>;
 
 const maxAttachmentBytes = 2_400_000;
 const allowedFileExtensions = /\.(pdf|doc|docx|txt|rtf|png|jpe?g|webp)$/i;
+const confettiPieces = Array.from({ length: 22 }, (_, index) => index);
 
 function value(form: FormData, name: string) {
   return String(form.get(name) || '').trim();
@@ -137,6 +138,11 @@ export default function ContactBriefForm() {
 
   return (
     <form className="studio-form contact-brief-form" onSubmit={submit} noValidate>
+      {state === 'success' ? (
+        <div className="contact-success-confetti" aria-hidden="true">
+          {confettiPieces.map((piece) => <span key={piece} />)}
+        </div>
+      ) : null}
       <input className="studio-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <div className="studio-form-row">
         <label>
