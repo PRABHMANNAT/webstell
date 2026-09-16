@@ -1,4 +1,5 @@
-import StudioNav, { StudioFooter } from '../StudioNav';
+import StudioNav from '../StudioNav';
+import SiteFooter from '../SiteFooter';
 import TeamSection from '../TeamSection';
 import InternationalProjectsSection from '../InternationalProjectsSection';
 import WhyWebstellSection from '../WhyWebstellSection';
@@ -26,7 +27,7 @@ export default function AboutPage() {
 
         <AboutCallToAction />
       </main>
-      <StudioFooter />
+      <SiteFooter />
     </>
   );
 }
