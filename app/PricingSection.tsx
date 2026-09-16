@@ -62,14 +62,15 @@ const plans = [
   {
     name: 'Build the useful thing.',
     priceLabel: '₹65,000–1,00,000',
-    audience: 'For teams ready to turn a workflow, service or idea into a digital product.',
+    audience: 'For restaurant groups, distributors, service teams and startups with a workflow an ordinary website cannot handle.',
     description:
-      'A clear starting point for a focused dashboard, customer portal or custom web application.',
+      'Turn a repeated business task into a useful tool, such as an order dashboard or customer portal.',
     features: [
-      'A focused product journey',
-      'Responsive interface design',
-      'Thoughtful handover & support plan',
-      'Scope shaped around your workflow',
+      'We map one main workflow, such as receiving orders or tracking customer requests.',
+      'Custom screens help your team see information and complete the agreed tasks.',
+      'Layouts work across agreed phone and desktop sizes.',
+      'We test the main workflow with you before launch.',
+      'You receive a walkthrough, account handover and a clearly agreed support plan.',
     ],
     delivery: 'Usually 4–6 weeks',
     type: 'software',
