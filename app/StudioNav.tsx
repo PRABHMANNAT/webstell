@@ -36,7 +36,11 @@ export function HireDialog({
 }) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="hire-dialog" showCloseButton={false}>
+      <DialogContent
+        className="hire-dialog"
+        overlayClassName="hire-dialog-overlay"
+        showCloseButton={false}
+      >
         <DialogClose
           className="hire-close"
           aria-label="Close conversation options"
