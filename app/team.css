@@ -347,6 +347,5 @@
 .team-front{display:grid;grid-template-rows:minmax(0,1fr) 130px}
 .team-meta{padding-right:14px}
 .team-meta>.team-value{margin:12px 0 0;color:#d7ff46;font-size:13px;line-height:1.35;letter-spacing:-.01em;opacity:0;transform:translateY(8px);visibility:hidden;transition:opacity 230ms ease-out,transform 230ms ease-out,visibility 0s linear 230ms}
-@media (hover:hover) and (pointer:fine){.team-card:hover .team-card-inner{transform:rotateY(-7deg) rotateX(2deg)}.team-card:hover .team-value{opacity:1;transform:translateY(0);visibility:visible;transition-delay:0s}}
 @media (max-width:767px){.team-front{grid-template-rows:minmax(0,1fr) 118px}.team-meta>.team-value{margin-top:10px;color:#d7ff46;font-size:12px;line-height:1.35;opacity:1;transform:none;visibility:visible;transition:none}}
 @media (prefers-reduced-motion:reduce){.team-meta>.team-value{transition:none}}

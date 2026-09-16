@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import SocialIcon from './SocialIcon';
 import { team } from './team-data';
 
 export default function TeamSection() {
@@ -16,6 +17,15 @@ export default function TeamSection() {
                 <div className="team-face team-front">
                   <div className="team-photo"><img src={member.image} alt={`${member.name}, ${member.role}`} loading="lazy"/></div>
                   <div className="team-meta"><span>{member.name}</span><p>{member.role}</p><p className="team-value">{member.value}</p></div>
+                </div>
+                <div className="team-face team-back">
+                  <div className="team-socials" aria-label={`Social profiles for ${member.name}`}>
+                    <a href={member.linkedin} target="_blank" rel="noreferrer" aria-label={`${member.name} on LinkedIn`}><SocialIcon name="linkedin"/></a>
+                    <a href={member.instagram} target="_blank" rel="noreferrer" aria-label={`${member.name} on Instagram`}><SocialIcon name="instagram"/></a>
+                    {member.github && <a href={member.github} target="_blank" rel="noreferrer" aria-label={`${member.name} on GitHub`}><SocialIcon name="github"/></a>}
+                  </div>
+                  <div className="team-bio"><p>{member.bio}</p></div>
+                  <div className="team-meta"><span>{member.name}</span><p>{member.role}</p></div>
                 </div>
               </div>
             </article>
