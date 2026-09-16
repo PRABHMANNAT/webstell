@@ -98,7 +98,6 @@ export default function ScheduleExperience() {
       <StudioNav />
       <main className="studio-page schedule-page">
         <section className="schedule-intro studio-width">
-          <span className="studio-eyebrow">REQUEST A CALL</span>
           <h1>
             Request a 30-minute
             <br /><span>project call.</span>
