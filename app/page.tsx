@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import WorksMarquee from './WorksMarquee';
 import SocialWorkGallery from './SocialWorkGallery';
 import CurvedTicker from './CurvedTicker';
@@ -13,6 +13,7 @@ import TeamSection from './TeamSection';
 import FaqAccordion from './FaqAccordion';
 import { selectedHomepageFaqs } from './faq-data';
 import { whatsappUrl } from './contact-utils';
+import SiteFooter from './SiteFooter';
 import { Check, Copy } from 'lucide-react';
 const featuredProjects = [
  {number:'01',title:'Pear',category:'Growth platform',location:'Oslo, Norway',description:'A growth-focused digital platform bringing search, custom software and commercial clarity into one confident customer journey.',tags:['Custom software','Organic growth','Revenue share'],image:'/assets/featured-projects/pear.png',url:'https://pear.no/',tone:'pear'},
@@ -27,8 +28,6 @@ const whyWebstellCards = [
 export default function Home() {
  const [selected,setSelected]=useState<Project|null>(null);
  const [contact,setContact]=useState(false);
- const [subscribeState,setSubscribeState]=useState<'idle'|'loading'|'success'|'error'>('idle');
- const [subscribeMessage,setSubscribeMessage]=useState('Get website maintenance, development updates and customer insights—straight to your inbox.');
  const [emailCopied,setEmailCopied]=useState(false);
  const projectDialog=useRef<HTMLDialogElement>(null);
  const heroCta=useRef<HTMLButtonElement>(null);
@@ -72,33 +71,6 @@ export default function Home() {
    }catch{setEmailCopied(false)}
   }
  };
- const submitSubscription=async(event:SyntheticEvent<HTMLFormElement>)=>{
- event.preventDefault();
- if(subscribeState==='loading'||subscribeState==='success')return;
-  const formElement=event.currentTarget;
-  const form=new FormData(formElement);
-  const emailEntry=form.get('email');
-  const websiteEntry=form.get('website');
-  const email=typeof emailEntry==='string'?emailEntry.trim():'';
-  const website=typeof websiteEntry==='string'?websiteEntry:'';
-  setSubscribeState('loading');
-  setSubscribeMessage('Sending your subscription…');
-  try{
-   const response=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,website})});
-   const result=await response.json() as {ok?:boolean;message?:string};
-   if(!response.ok||!result.ok){
-    setSubscribeState('error');
-    setSubscribeMessage(result.message||'Subscription could not be sent. Please try again.');
-    return;
-   }
-   setSubscribeState('success');
-   setSubscribeMessage('Thanks — your subscription has been sent to WEBSTELL.');
-   formElement.reset();
-  }catch{
-   setSubscribeState('error');
-   setSubscribeMessage('Subscription could not be sent. Please try again.');
-  }
- };
  return <>
  <StudioNav/>
  <main>
@@ -140,29 +112,7 @@ export default function Home() {
  <section className="queries wrap" id="faq"><div className="section-rule"><span className="section-mark" aria-hidden="true"></span><span className="rule-line"></span><span>YOUR QUESTIONS, ANSWERED</span></div><div className="queries-intro"><p>Clear answers before we start.</p><h2>What clients ask us.</h2></div><FaqAccordion items={selectedHomepageFaqs} /><div className="faq-actions"><a className="faq-whatsapp" href={whatsappUrl('Hi WEBSTELL, I have a question about my project.')} target="_blank" rel="noreferrer"><span aria-hidden="true">↗</span> Ask us about your project</a><a className="faq-contact" href="/contact">Get your website <span aria-hidden="true">↗</span></a></div></section>
  <ContactSection/>
  </main>
- <footer className="site-footer">
-  <img className="site-footer-bg" src="/assets/footer/webstell-footer.avif" alt="Luminous cube in a landscaped garden" loading="lazy"/>
-  <div className="site-footer-shade" aria-hidden="true"></div>
-  <div className="footer-panel wrap">
-   <div className="footer-brand">
-    <a className="footer-logo" href="/">WEBSTELL</a>
-    <p>We create distinctive websites, brands and digital products for ambitious businesses.</p>
-    <form className={'subscribe-form is-' + subscribeState} onSubmit={submitSubscription}>
-     <label className="sr-only" htmlFor="footer-email">Email address</label>
-     <input className="studio-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-     <input id="footer-email" name="email" type="email" required placeholder="you@company.com" aria-describedby="subscribe-status" disabled={subscribeState==='loading'||subscribeState==='success'}/>
-     <button type="submit" aria-busy={subscribeState==='loading'} disabled={subscribeState==='loading'||subscribeState==='success'}><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4 18-7Z"/></svg></span>{subscribeState==='loading'?'Sending…':subscribeState==='success'?'Subscribed':'Subscribe'}</button>
-    </form>
-    <p className="subscribe-status" id="subscribe-status" aria-live="polite">{subscribeMessage}</p>
-   </div>
-   <nav className="footer-links" aria-label="Footer navigation">
-    <div className="footer-link-group"><span className="footer-nav-label">Explore</span><a href="/">Home</a><a href="/services">Services</a><a href="/projects">Work</a><a href="/pricing">Pricing</a></div>
-    <div className="footer-link-group"><span className="footer-nav-label">Company</span><a href="/#insights">Why WEBSTELL</a><a href="/#team">Our team</a><a href="/#faq">FAQs</a><a href="/contact">Contact</a></div>
-    <div className="footer-link-group footer-policies"><span className="footer-nav-label">Policies</span><div className="footer-policy-links"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/cookies">Cookies</a><a href="/refunds">Refunds</a><a href="/accessibility">Accessibility</a></div></div>
-   </nav>
-  </div>
-  <div className="footer-wordmark" aria-hidden="true">WEBSTELL</div>
- </footer>
+ <SiteFooter />
  <HireDialog open={contact} onOpenChange={setContact}/>
  <dialog ref={projectDialog} className="project-dialog" onCancel={()=>setSelected(null)} onClick={e=>{if(e.target===e.currentTarget)setSelected(null)}} aria-labelledby="project-preview-title"><button className="close" onClick={()=>setSelected(null)} aria-label="Close project">×</button>{selected!==null&&<><img src={selected.image} alt={selected.title+' preview'}/><span className="refresh-eyebrow">{selected.kind==='Featured design'?'Independent reference · Not WEBSTELL work':selected.kind==='Design concept'?'Studio concept':selected.kind} / {selected.category}</span><h2 id="project-preview-title">{selected.title}</h2><p>{selected.description}</p>{selected.url?<a className="text-link" href={selected.url} target="_blank" rel="noreferrer">Visit source site ↗</a>:<p className="muted">A design direction from our visual collection. Let’s adapt the right ideas to your business, content and goals.</p>}</>}</dialog>
  </>;

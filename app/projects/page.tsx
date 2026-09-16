@@ -1,46 +1,107 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
 import { recentWorkProjects, type Project } from '../portfolio-data';
-import StudioNav, { StudioFooter } from '../StudioNav';
+import StudioNav from '../StudioNav';
+import SiteFooter from '../SiteFooter';
 import './projects.css';
+
+type ProjectFilter = {
+  value: string;
+  label: string;
+  description: string;
+  matches?: (category: string) => boolean;
+};
+
+const projectFilters: ProjectFilter[] = [
+  { value: 'all', label: 'All projects', description: 'Show every direction' },
+  { value: 'food', label: 'Cafés & food', description: 'Menus, coffee and culinary brands', matches: (category) => category.includes('Food') },
+  { value: 'travel', label: 'Travel & tourism', description: 'Journeys, routes and destinations', matches: (category) => category.includes('Travel') },
+  { value: 'hospitality', label: 'Hospitality & stays', description: 'Places designed to be experienced', matches: (category) => category.includes('Hospitality') || category.includes('Leisure') },
+  { value: 'health', label: 'Health & wellbeing', description: 'Care, fitness and balanced living', matches: (category) => category.includes('Health') },
+  { value: 'fashion', label: 'Fashion & beauty', description: 'Collections, care and personal style', matches: (category) => category.includes('Fashion') || category.includes('Beauty') },
+  { value: 'technology', label: 'Technology & innovation', description: 'Products, platforms and systems', matches: (category) => category.includes('Technology') || category.includes('Tech') || category.includes('Logistics') || category.includes('Automotive') },
+  { value: 'creative', label: 'Creative & culture', description: 'Studios, stories and visual identity', matches: (category) => category.includes('Creative') || category.includes('Culture') },
+  { value: 'agriculture', label: 'Agriculture & sustainability', description: 'Growing smarter, more responsibly', matches: (category) => category.includes('Agriculture') },
+  { value: 'places', label: 'Property, home & events', description: 'Spaces, celebrations and places to live', matches: (category) => category.includes('Property') || category.includes('Home') || category.includes('Weddings') },
+];
 
 export default function ProjectsPage() {
   const [selected, setSelected] = useState<Project | null>(null);
+  const [filter, setFilter] = useState('');
+  const [filterOpen, setFilterOpen] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
+  const filterMenu = useRef<HTMLDivElement>(null);
+  const activeFilter = projectFilters.find((item) => item.value === filter);
+  const visibleProjects = activeFilter?.matches
+    ? recentWorkProjects.filter((project) => activeFilter.matches(project.category))
+    : recentWorkProjects;
 
   useEffect(() => {
     if (selected) dialog.current?.showModal();
     else dialog.current?.close();
   }, [selected]);
 
+  useEffect(() => {
+    if (!filterOpen) return;
+
+    const closeFilter = (event: MouseEvent) => {
+      if (!filterMenu.current?.contains(event.target as Node)) setFilterOpen(false);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setFilterOpen(false);
+    };
+
+    document.addEventListener('mousedown', closeFilter);
+    document.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.removeEventListener('mousedown', closeFilter);
+      document.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [filterOpen]);
+
   return (
     <>
       <StudioNav current="work" />
       <main>
         <section className="projects-hero">
+          <video className="projects-hero-video" autoPlay loop muted playsInline preload="metadata" aria-hidden="true">
+            <source src="/assets/projects/projects-hero.mp4" type="video/mp4" />
+          </video>
           <div className="projects-hero-inner wrap">
-            <span className="refresh-eyebrow">WEBSTELL / ALL PROJECTS</span>
             <h1>Directions made<br />to be explored.</h1>
             <p>
               A growing collection of WEBSTELL studio concepts for brands with
               something worth saying. Open any direction to take a closer look.
             </p>
-            <Link className="projects-back" href="/#projects">Back to home <span aria-hidden="true">↗</span></Link>
           </div>
         </section>
 
         <section className="projects-list wrap" aria-labelledby="all-projects-title">
           <div className="projects-list-heading">
             <div>
-              <span className="refresh-eyebrow">{String(recentWorkProjects.length).padStart(2, '0')} PROJECTS</span>
+              <span className="refresh-eyebrow">{String(visibleProjects.length).padStart(2, '0')} PROJECTS</span>
               <h2 id="all-projects-title">All projects.</h2>
             </div>
-            <p>Travel, hospitality, culture, commerce and technology, brought together in one visual collection.</p>
+            <div className={`project-filter${filterOpen ? ' is-open' : ''}`} ref={filterMenu}>
+              <span className="project-filter-label">Browse by industry</span>
+              <button type="button" className="project-filter-trigger" onClick={() => setFilterOpen((isOpen) => !isOpen)} aria-expanded={filterOpen} aria-haspopup="listbox" aria-controls="project-filter-menu">
+                <span>{activeFilter?.label ?? 'Filter projects'}</span>
+                <span className="project-filter-chevron" aria-hidden="true">⌄</span>
+              </button>
+              {filterOpen && <div className="project-filter-menu" id="project-filter-menu" role="listbox" aria-label="Project industries">
+                {projectFilters.map((item, index) => (
+                  <button type="button" role="option" key={item.value} aria-selected={filter === item.value} className={`project-filter-option${filter === item.value ? ' is-selected' : ''}`} onClick={() => { setFilter(item.value); setFilterOpen(false); }}>
+                    <span className="project-filter-icon" aria-hidden="true">{index === 0 ? '✦' : String(index).padStart(2, '0')}</span>
+                    <span><strong>{item.label}</strong><small>{item.description}</small></span>
+                    <span className="project-filter-check" aria-hidden="true">{filter === item.value ? '✓' : '↗'}</span>
+                  </button>
+                ))}
+              </div>}
+            </div>
           </div>
           <div className="project-grid">
-            {recentWorkProjects.map((project) => (
+            {visibleProjects.map((project) => (
               <article className="project" key={project.id}>
                 <button className="project-preview" onClick={() => setSelected(project)} aria-label={`Preview ${project.title}`}>
                   <div className="project-image">
@@ -58,7 +119,7 @@ export default function ProjectsPage() {
           </div>
         </section>
       </main>
-      <StudioFooter />
+      <SiteFooter />
       <dialog ref={dialog} className="project-dialog" onCancel={() => setSelected(null)} onClick={(event) => { if (event.target === event.currentTarget) setSelected(null); }} aria-labelledby="project-preview-title">
         <button className="close" onClick={() => setSelected(null)} aria-label="Close project">×</button>
         {selected && <>
