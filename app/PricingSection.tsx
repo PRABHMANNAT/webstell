@@ -5,6 +5,7 @@ import { calculateEstimate, money } from './pricing-data';
 const plans = [
   {
     name: 'A strong first impression.',
+    priceLabel: '₹20,000–25,000',
     audience: 'For a business, a service, or a point of view that deserves a clear home.',
     description:
       'A focused website designed to explain what you do and turn interest into a useful next step.',
@@ -22,6 +23,7 @@ const plans = [
   },
   {
     name: 'Yours to keep fresh.',
+    priceLabel: '₹27,000–35,000',
     audience: 'For teams who want control of everyday updates without losing the craft.',
     description:
       'A business website with a tailored editing space and a proper walkthrough for your team.',
@@ -39,6 +41,7 @@ const plans = [
   },
   {
     name: 'Open for business.',
+    priceLabel: '₹54,900',
     audience: 'For products ready to find their people and make buying feel effortless.',
     description:
       'A considered store experience built around product discovery, checkout and a confident launch.',
@@ -56,6 +59,7 @@ const plans = [
   },
   {
     name: 'Build the useful thing.',
+    priceLabel: '₹65,000–1,00,000',
     audience: 'For teams ready to turn a workflow, service or idea into a digital product.',
     description:
       'A clear starting point for a focused dashboard, customer portal or custom web application.',
@@ -115,7 +119,7 @@ export default function PricingSection({
                 </div>
                 <h3>{plan.name}</h3>
                 <div className="pricing-price">
-                  <strong>{money(estimate.total)}</strong>
+                  <strong>{plan.priceLabel}</strong>
                   <span>starting estimate · one-time</span>
                 </div>
                 <p className="pricing-audience">{plan.audience}</p>
