@@ -11,10 +11,10 @@ export default function AboutPage() {
       <StudioNav current="about" />
       <main className="about-page">
         <section className="about-hero studio-width" aria-labelledby="about-page-title">
-          <h1 id="about-page-title">A small studio for<br/><em>ambitious digital work.</em></h1>
+          <h1 id="about-page-title">Made to be noticed.<br/><em>Built to be trusted.</em></h1>
           <div className="about-hero-copy">
-            <p>WEBSTELL brings strategy, design and engineering together for businesses that want to be understood, remembered and easier to choose.</p>
-            <p>You work directly with the people making the work. That keeps decisions clear, collaboration human and every detail connected to the original goal.</p>
+            <p>WEBSTELL combines <strong>clear strategy, distinctive design and dependable engineering</strong> to give ambitious businesses a presence people <strong>notice, trust and choose.</strong></p>
+            <p>We are a hands-on team of designers and developers working across <strong>multiple countries</strong>—with direct access, honest collaboration and care for the details that make digital work feel real.</p>
           </div>
         </section>
 
