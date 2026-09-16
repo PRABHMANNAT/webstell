@@ -21,7 +21,7 @@ const featuredProjects = [
  {number:'03',title:'Eclipse Space',category:'Digital infrastructure',location:'United States / Global',description:'A clear product experience that makes sophisticated space infrastructure easier for global partners to understand and act on.',tags:['Product narrative','Technical clarity','Global systems'],image:'/assets/featured-projects/eclipse-space-orbit.png',url:'https://www.eclipse.space/',tone:'eclipse'},
 ];
 const whyWebstellCards = [
- {eyebrow:'WHY CHOOSE WEBSTELL',title:'Clarity first. Character always.',text:'We make the useful feel unmistakably yours—so customers understand, trust and remember you.'},
+ {eyebrow:'WHY CHOOSE WEBSTELL',title:'Clarity first. Character always.',text:'Most agencies deliver a polished page. WEBSTELL brings strategy, state-of-the-art design and production-grade engineering together—so your business is easier to trust, harder to ignore and ready to perform long after launch.'},
  {eyebrow:'WHAT WE PROVIDE',title:'Websites, digital products and smarter systems.',text:'From a first impression to the work behind it, we build the pieces that help your business move.'},
  {eyebrow:'HOW WE WORK',title:'Find the focus. Build with intent. Keep moving.',text:'A clear process, direct collaboration and no unnecessary layers between a good idea and a finished result.'},
 ];
