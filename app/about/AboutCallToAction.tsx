@@ -19,19 +19,20 @@ export default function AboutCallToAction() {
           repeatDelay={1}
         />
         <div className="about-next-content">
-          <span>HAVE SOMETHING IN MIND?</span>
-          <h2 id="about-next-title">Let’s make the next move count.</h2>
+          <span>READY TO MOVE?</span>
+          <h2 id="about-next-title">Build the next thing people choose.</h2>
+          <p className="about-next-copy">Bring the idea, roadblock or ambition. We’ll shape a clear digital next step that earns attention, builds trust and is ready to grow.</p>
           <div className="about-next-actions">
             <button
               type="button"
               className="about-primary"
               onClick={() => setHireOpen(true)}
             >
-              <span>Discuss your project</span>
+              <span>Start a conversation</span>
               <i aria-hidden="true">↗</i>
             </button>
             <Link className="about-secondary" href="/projects">
-              <span>See our work</span>
+              <span>Explore our work</span>
               <i aria-hidden="true">↗</i>
             </Link>
           </div>
