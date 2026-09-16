@@ -543,8 +543,13 @@
 }
 
 .contact-page-form-heading .studio-eyebrow {
+  display: block;
+  margin-top: auto;
+  padding-top: 34px;
   color: #555;
 }
+
+.contact-page-form-heading { display: flex; flex-direction: column; }
 
 .contact-page-form-heading h1 {
   margin: 18px 0;

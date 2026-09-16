@@ -15,9 +15,9 @@ export default function ContactPageSection() {
         <div className="studio-width contact-page-shell">
           <div className="contact-page-form-card">
             <div className="contact-page-form-heading">
-              <span className="studio-eyebrow">YOUR PROJECT, IN YOUR WORDS</span>
               <h1 id="contact-page-title">Tell us what you’re building.</h1>
               <p>Start with the essentials. You can add more detail whenever you’re ready.</p>
+              <span className="studio-eyebrow">YOUR PROJECT, IN YOUR WORDS</span>
             </div>
             <ContactBriefForm />
           </div>
