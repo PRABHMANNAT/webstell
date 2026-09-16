@@ -16,6 +16,7 @@ import FaqAccordion from '../FaqAccordion';
 import PricingSection from '../PricingSection';
 import { pricingFaqs } from './pricing-faqs';
 import { projectGuidance } from './project-guidance';
+import { whatsappUrl } from '../contact-utils';
 import {
   calculateEstimate,
   getAvailableExtras,
@@ -177,6 +178,13 @@ export default function PricingExperience() {
               <span>
                 {projectGuidance[project.id].included}
               </span>
+            </div>
+
+            <div className="pricing-help">
+              <strong>Not sure what you need?</strong>
+              <p>Tell us about your business. We can help you choose.</p>
+              <a href={whatsappUrl(`Hi WEBSTELL! I am unsure which features I need for a ${project.name}. My current estimate is ${money(total)}. Please help me choose, or arrange a call.`)} target="_blank" rel="noreferrer">Help me choose on WhatsApp <ArrowUpRight size={16} /></a>
+              <a href={callHref}>Request a call <ArrowUpRight size={16} /></a>
             </div>
 
             <div className="builder-section-heading addon-heading">
