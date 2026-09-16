@@ -1,5 +1,5 @@
 import StudioNav, { StudioFooter } from '../StudioNav';
-import ContactSection from '../ContactSection';
+import ContactPageSection from './ContactPageSection';
 export const metadata = {
   title: 'Start a Conversation | WEBSTELL',
   description:
@@ -10,7 +10,7 @@ export default function ContactPage() {
     <>
       <StudioNav current="contact" />
       <main className="studio-page contact-page contact-page-refresh">
-        <ContactSection />
+        <ContactPageSection />
       </main>
       <StudioFooter />
     </>
