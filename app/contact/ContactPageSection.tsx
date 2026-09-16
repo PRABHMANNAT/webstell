@@ -25,8 +25,8 @@ export default function ContactPageSection() {
           <div className="contact-page-conversation">
             <div className="contact-page-intro">
               <span className="studio-eyebrow">START A CONVERSATION</span>
-              <h2>Make your next digital move matter.</h2>
-              <p>Bring the ambition, the obstacle or the rough idea. We’ll bring the strategic thinking and craft to turn it into something people trust.</p>
+              <h2>Let’s turn your idea into something real.</h2>
+              <p>Tell us what you want to improve or build. We’ll help you turn it into a clear, useful next step for your business.</p>
               <div className="contact-page-details" aria-label="WEBSTELL contact details">
                 <a href="mailto:contact@webstell-studio.com"><Mail size={17} /> contact@webstell-studio.com</a>
                 <a href="tel:+917696403580"><Phone size={17} /> +91 76964 03580</a>
