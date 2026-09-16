@@ -15,7 +15,7 @@ import StudioNav, { HireDialog, StudioFooter } from '../StudioNav';
 import BriefForm from '../BriefForm';
 import FaqAccordion from '../FaqAccordion';
 import PricingSection from '../PricingSection';
-import { fullFaqs } from '../faq-data';
+import { pricingFaqs } from './pricing-faqs';
 import {
   calculateEstimate,
   getAvailableExtras,
@@ -380,7 +380,7 @@ export default function PricingExperience() {
 
         <section className="pricing-faq studio-width" aria-labelledby="pricing-faq-title">
           <div className="pricing-faq-intro">
-            <span className="studio-eyebrow">FULL FAQ</span>
+            <span className="studio-eyebrow">Frequently asked questions</span>
             <h2 id="pricing-faq-title">
               More questions,
               <br />
@@ -390,7 +390,7 @@ export default function PricingExperience() {
               Everything else you may want to know before you begin.
             </p>
           </div>
-          <FaqAccordion items={fullFaqs} />
+          <FaqAccordion items={pricingFaqs} />
         </section>
 
         <section className="pricing-custom studio-width">
