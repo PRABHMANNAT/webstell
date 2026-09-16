@@ -23,7 +23,7 @@ const featuredProjects = [
 const whyWebstellCards = [
  {eyebrow:'WHY CHOOSE WEBSTELL',title:'Clarity first. Character always.',text:'Most agencies deliver a polished page. WEBSTELL brings strategy, state-of-the-art design and production-grade engineering together—so your business is easier to trust, harder to ignore and ready to perform long after launch.'},
  {eyebrow:'WHAT WE PROVIDE',title:'Websites, digital products and smarter systems.'},
- {eyebrow:'HOW WE WORK',title:'Find the focus. Build with intent. Keep moving.',text:'A clear process, direct collaboration and no unnecessary layers between a good idea and a finished result.'},
+ {eyebrow:'HOW WE WORK',title:'Find the focus. Build with intent. Keep moving.',text:'We stay close from the first conversation through launch and beyond—combining clear strategy, direct collaboration and production-ready delivery with maintenance, updates, troubleshooting and support after deployment.'},
 ];
 export default function Home() {
  const [selected,setSelected]=useState<Project|null>(null);
