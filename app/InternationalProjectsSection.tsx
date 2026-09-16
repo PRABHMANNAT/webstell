@@ -28,7 +28,7 @@ export default function InternationalProjectsSection() {
           </article>
         ))}
       </div>
-      <div className="case-action"><a href="/projects">See all projects <span aria-hidden="true">↗</span></a></div>
+      <div className="case-action"><a href="/contact">Get your website <span aria-hidden="true">↗</span></a></div>
     </section>
   );
 }
