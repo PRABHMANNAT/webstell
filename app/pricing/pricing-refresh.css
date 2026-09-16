@@ -6,7 +6,7 @@
 .pricing-page .pricing-card-popular{background:#171717;color:#fff}
 .pricing-page .pricing-card-popular p,.pricing-page .pricing-card-popular li,.pricing-page .pricing-card-popular .pricing-price span{color:#eee}
 .pricing-page .pricing-card-popular .pricing-includes>span{color:#c8ff63}
-.pricing-page .pricing-price strong{font-size:clamp(27px,3.4vw,48px);letter-spacing:-.06em}
+.pricing-page .pricing-price strong{flex:0 0 auto;font-size:clamp(24px,3vw,42px);letter-spacing:-.06em;white-space:nowrap}
 .pricing-page .pricing-includes li{line-height:1.5;margin-bottom:13px}
 .pricing-page .pricing-description,.pricing-page .pricing-audience{line-height:1.55}
 .pricing-page .pricing-custom{background:#f4f4f4}
