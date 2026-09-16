@@ -1,7 +1,7 @@
 .all-articles{position:relative;isolation:isolate;min-width:268px;padding-left:104px;transition:color .42s cubic-bezier(.2,.8,.2,1),transform .25s ease}
 .all-articles>span{position:absolute;z-index:2;left:3px;top:3px;bottom:3px;width:74px;min-width:0;height:auto;margin:0;padding:0 0 0 23px;display:flex;justify-content:flex-start;align-items:center;border:0;border-radius:15px;background:#f7f7f7;color:#171717;font-size:0;overflow:hidden;transform:none;transition:width .48s cubic-bezier(.2,.85,.2,1)}
 .all-articles>span:before{content:'↗';display:block;font-size:25px;line-height:1;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
-.all-articles>span:after{content:'All articles';position:absolute;left:96px;top:50%;transform:translate(12px,-50%);opacity:0;white-space:nowrap;font-size:18px;font-weight:500;transition:opacity .22s ease .08s,transform .4s cubic-bezier(.2,.8,.2,1)}
+.all-articles>span:after{content:attr(data-hover-label);position:absolute;left:96px;top:50%;transform:translate(12px,-50%);opacity:0;white-space:nowrap;font-size:18px;font-weight:500;transition:opacity .22s ease .08s,transform .4s cubic-bezier(.2,.8,.2,1)}
 .all-articles:hover,.all-articles:focus-visible{color:transparent;transform:translateY(-2px)}
 .all-articles:hover>span,.all-articles:focus-visible>span{width:calc(100% - 6px);transform:none}
 .all-articles:hover>span:before,.all-articles:focus-visible>span:before{transform:translate(4px,-4px)}
