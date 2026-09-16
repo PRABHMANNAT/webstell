@@ -16,6 +16,9 @@
 .insight-image-blue::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(215,255,70,.2) 49%,transparent 63%);transform:translateX(-120%);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
 .insight-image-blue:hover img{transform:scale(1.09);filter:contrast(1.06) saturate(1.08)}
 .insight-image-blue:hover::after{transform:translateX(120%)}
+.insight-image video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1),filter .7s ease}
+.insight-image:hover video{transform:scale(1.045)}
+.insight-image-blue:hover video{transform:scale(1.09);filter:contrast(1.06) saturate(1.08)}
 .insights-lead .insights-kicker{margin:0 0 18px;color:#5d5d5d;font-family:var(--mono,monospace);font-size:12px;font-weight:600;letter-spacing:.1em;line-height:1.2}
 .insights-lead h2{max-width:690px;margin:0 0 28px;font-size:clamp(44px,5.7vw,78px);font-weight:500;letter-spacing:-.07em;line-height:.95}
 .insights-lead .insights-summary{margin-bottom:38px}
@@ -27,7 +30,7 @@
 .copy-email:hover>span{background:#d7ff46;color:#171717;transform:rotate(-10deg)}
 .studio-email:focus-visible,.copy-email:focus-visible{outline:3px solid #7647ee;outline-offset:4px}
 @media(max-width:760px){.studio-email-row{gap:10px}.studio-email{font-size:14px}}
-@media(prefers-reduced-motion:reduce){.studio-email,.copy-email,.insight-image-red::after,.insight-image-blue::after{transition:none}}
+@media(prefers-reduced-motion:reduce){.studio-email,.copy-email,.insight-image-red::after,.insight-image-blue::after,.insight-image video{transition:none}}
 
 /* Homepage FAQ */
 .faq-accordion{display:grid;gap:10px}
