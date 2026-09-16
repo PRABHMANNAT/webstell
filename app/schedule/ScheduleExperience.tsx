@@ -14,6 +14,14 @@ import StudioNav, { StudioFooter } from '../StudioNav';
 import BriefForm from '../BriefForm';
 
 const slots = ['10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00'];
+const timeZones = [
+  { value: 'Asia/Kolkata', label: 'India · IST (UTC+05:30)' },
+  { value: 'Asia/Dubai', label: 'United Arab Emirates · GST (UTC+04:00)' },
+  { value: 'Asia/Singapore', label: 'Singapore · SGT (UTC+08:00)' },
+  { value: 'Europe/London', label: 'United Kingdom · UK time' },
+  { value: 'America/New_York', label: 'United States · Eastern time' },
+  { value: 'Australia/Sydney', label: 'Australia · Sydney time' },
+];
 const dateKey = (date: Date) =>
   `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 function indiaToday() {
@@ -27,9 +35,13 @@ function indiaToday() {
     .map((type) => parts.find((part) => part.type === type)?.value)
     .join('-');
 }
-function slotLabel(slot: string) {
-  const hour = Number(slot.split(':')[0]);
-  return `${hour > 12 ? hour - 12 : hour}:00 ${hour >= 12 ? 'PM' : 'AM'}`;
+function slotLabel(slot: string, date: string, timeZone: string) {
+  return new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  }).format(new Date(`${date}T${slot}:00+05:30`));
 }
 
 export default function ScheduleExperience() {
@@ -37,6 +49,7 @@ export default function ScheduleExperience() {
   const [month, setMonth] = useState<Date | null>(null);
   const [chosen, setChosen] = useState('');
   const [slot, setSlot] = useState('');
+  const [timeZone, setTimeZone] = useState('Asia/Kolkata');
   const [error, setError] = useState('');
   const [pricingHandoff, setPricingHandoff] = useState<{
     project: string;
@@ -70,6 +83,8 @@ export default function ScheduleExperience() {
       )
     : null;
   const maxDate = upperBound ? dateKey(upperBound) : '';
+  const timeZoneLabel =
+    timeZones.find(({ value }) => value === timeZone)?.label ?? timeZones[0].label;
   const selectedLabel = chosen
     ? new Date(chosen + 'T12:00:00').toLocaleDateString('en-IN', {
         weekday: 'long',
@@ -137,7 +152,7 @@ export default function ScheduleExperience() {
               </li>
               <li>
                 <Globe2 size={18} />
-                India Standard Time (UTC+05:30)
+                {timeZoneLabel}
               </li>
             </ul>
             <div className="call-note">
@@ -269,7 +284,18 @@ export default function ScheduleExperience() {
                   <h3>
                     {chosen ? 'And a time?' : 'Choose a date to see times.'}
                   </h3>
-                  <span>IST · UTC+05:30</span>
+                  <label className="time-zone-picker">
+                    <span>Time zone</span>
+                    <select
+                      aria-label="Choose your time zone"
+                      value={timeZone}
+                      onChange={(event) => setTimeZone(event.target.value)}
+                    >
+                      {timeZones.map(({ value, label }) => (
+                        <option key={value} value={value}>{label}</option>
+                      ))}
+                    </select>
+                  </label>
                 </div>
                 <div
                   className="time-slots"
@@ -287,7 +313,7 @@ export default function ScheduleExperience() {
                         setError('');
                       }}
                     >
-                      {slotLabel(time)}
+                      {slotLabel(time, chosen || today, timeZone)}
                     </button>
                   ))}
                 </div>
@@ -337,7 +363,7 @@ export default function ScheduleExperience() {
                   ? `PRICING HANDOFF\nProject: ${pricingHandoff.project}\nIndicative estimate: ${pricingHandoff.estimate}`
                   : '',
                 chosen && slot
-                  ? `CALL REQUEST\nPreferred date: ${selectedLabel}\nPreferred time: ${slotLabel(slot)} IST (UTC+05:30)\nDuration: 30 minutes\nSubject to confirmation. No booking has been made.`
+                  ? `CALL REQUEST\nPreferred date: ${selectedLabel}\nPreferred time: ${slotLabel(slot, chosen, timeZone)} · ${timeZoneLabel}\nDuration: 30 minutes\nSubject to confirmation. No booking has been made.`
                   : '',
               ]
                 .filter(Boolean)
