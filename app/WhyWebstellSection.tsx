@@ -116,9 +116,10 @@ export default function WhyWebstellSection({
               <h3>{whyWebstellCards[0].title}</h3>
               <p>{whyWebstellCards[0].text}</p>
               <footer>
-                <button type="button" onClick={openDiscussDialog} aria-label="Start your project">
-                  ↗
-                </button>
+                <a className="insight-about-link" href="/about">
+                  <span>Read more about us</span>
+                  <i aria-hidden="true">↗</i>
+                </a>
               </footer>
             </article>
             <article className="insight-card">
