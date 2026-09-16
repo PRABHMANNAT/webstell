@@ -21,7 +21,7 @@ const featuredProjects = [
  {number:'03',title:'Eclipse Space',category:'Digital infrastructure',location:'United States / Global',description:'A clear product experience that makes sophisticated space infrastructure easier for global partners to understand and act on.',tags:['Product narrative','Technical clarity','Global systems'],image:'/assets/featured-projects/eclipse-space-orbit.png',url:'https://www.eclipse.space/',tone:'eclipse'},
 ];
 const whyWebstellCards = [
- {eyebrow:'WHY CHOOSE WEBSTELL',title:'Clarity first. Character always.',text:'Most agencies deliver a polished page. WEBSTELL brings strategy, state-of-the-art design and production-grade engineering together—so your business is easier to trust, harder to ignore and ready to perform long after launch.'},
+ {title:'Why choose WEBSTELL',text:'Most agencies deliver a polished page. WEBSTELL brings strategy, state-of-the-art design and production-grade engineering together—so your business is easier to trust, harder to ignore and ready to perform long after launch.'},
  {eyebrow:'WHAT WE PROVIDE',title:'Websites, digital products and smarter systems.'},
  {eyebrow:'HOW WE WORK',title:'Find the focus. Build with intent. Keep moving.',text:'We stay close from the first conversation through launch and beyond—combining clear strategy, direct collaboration and production-ready delivery with maintenance, updates, troubleshooting and support after deployment.'},
 ];
@@ -93,9 +93,9 @@ export default function Home() {
   </div>
   <div className="insights-inner wrap">
    <div className="insights-lead">
-    <p className="insights-kicker">ABOUT WEBSTELL</p>
-    <h2 id="why-webstell-title">Built for businesses that refuse to blend in.</h2>
-    <p className="insights-summary">WEBSTELL is a new-generation design and technology studio for businesses ready to lead in an AI-shaped world. Founded in 2026, our team brings experience from international, production-grade projects to create standout websites, digital products and intelligent systems that earn attention, build trust and turn interest into action.</p>
+    <p className="insights-kicker">Built for businesses that refuse to blend in.</p>
+    <h2 id="why-webstell-title">About WEBSTELL</h2>
+    <p className="insights-summary">Founded in 2026, WEBSTELL is a new-generation design and technology studio for businesses ready to lead in an AI-shaped world. We combine original creative direction, AI-ready technology and production-grade engineering—backed by experience on international projects—to build digital experiences that stand out, earn trust and turn attention into action.</p>
     <button type="button" className="all-articles" onClick={()=>setContact(true)}><span aria-hidden="true" data-hover-label="Get your website today">↗</span> Get your website today</button>
     <div className="studio-email-row">
      <a className="studio-email" href="mailto:contact@webstell-studio.com">contact@webstell-studio.com</a>
@@ -104,7 +104,7 @@ export default function Home() {
    </div>
    <div className="insight-grid" id="insight-grid">
     <div className="insight-image insight-image-red"><img src="/assets/insights-red.avif" alt="WEBSTELL design direction" loading="lazy"/></div>
-    <article className="insight-card featured"><span>{whyWebstellCards[0].eyebrow}</span><h3>{whyWebstellCards[0].title}</h3><p>{whyWebstellCards[0].text}</p><footer><button onClick={()=>setContact(true)} aria-label="Start your project">↗</button></footer></article>
+    <article className="insight-card featured"><h3>{whyWebstellCards[0].title}</h3><p>{whyWebstellCards[0].text}</p><footer><button onClick={()=>setContact(true)} aria-label="Start your project">↗</button></footer></article>
     <article className="insight-card"><span>{whyWebstellCards[1].eyebrow}</span><h3>{whyWebstellCards[1].title}</h3><ul className="insight-services"><li>Websites</li><li>Online stores</li><li>Custom software</li><li>Mobile apps</li><li>Chatbots &amp; automation</li><li>Branding &amp; UI/UX</li></ul></article>
     <div className="insight-image insight-image-blue"><img src="/assets/insights-blue.avif" alt="WEBSTELL digital product direction" loading="lazy"/></div>
     <article className="insight-card wide"><span>{whyWebstellCards[2].eyebrow}</span><h3>{whyWebstellCards[2].title}</h3><p>{whyWebstellCards[2].text}</p></article>

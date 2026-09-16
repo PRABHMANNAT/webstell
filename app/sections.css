@@ -19,15 +19,18 @@
 .insights-lead .insights-kicker{margin:0 0 18px;color:#5d5d5d;font-family:var(--mono,monospace);font-size:12px;font-weight:600;letter-spacing:.1em;line-height:1.2}
 .insights-lead h2{max-width:690px;margin:0 0 28px;font-size:clamp(44px,5.7vw,78px);font-weight:500;letter-spacing:-.07em;line-height:.95}
 .insights-lead .insights-summary{margin-bottom:38px}
-.studio-email{color:#171717;font-family:var(--mono,monospace);font-size:13px;font-weight:600;letter-spacing:.035em;text-decoration:none;transition:color .2s ease}
-.studio-email:hover{color:#4f2bc6}
+.studio-email{position:relative;display:inline-flex;align-items:center;color:#171717;font-family:inherit;font-size:clamp(15px,1.2vw,17px);font-weight:700;letter-spacing:-.02em;text-decoration:none;transition:color .25s ease,transform .25s ease}
+.studio-email::after{position:absolute;right:0;bottom:-5px;left:0;height:2px;background:currentColor;content:"";opacity:.45;transform:scaleX(.5);transform-origin:left;animation:studio-email-underline 2.8s ease-in-out infinite;transition:opacity .25s ease,transform .25s ease}
+.studio-email:hover{color:#4f2bc6;transform:translateY(-2px)}
+.studio-email:hover::after{opacity:1;transform:scaleX(1);animation-play-state:paused}
+@keyframes studio-email-underline{0%,100%{transform:scaleX(.5)}50%{transform:scaleX(.85)}}
 .copy-email{display:inline-flex;align-items:center;gap:8px;border:1px solid #171717;border-radius:999px;background:#f7f7f7;color:#171717;padding:5px 12px 5px 5px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:background .2s ease,color .2s ease,transform .2s ease}
 .copy-email>span{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#171717;color:#fff;transition:transform .25s cubic-bezier(.2,.8,.2,1),background .2s ease}
 .copy-email:hover{background:#171717;color:#fff;transform:translateY(-2px)}
 .copy-email:hover>span{background:#d7ff46;color:#171717;transform:rotate(-10deg)}
 .studio-email:focus-visible,.copy-email:focus-visible{outline:3px solid #7647ee;outline-offset:4px}
-@media(max-width:760px){.studio-email-row{gap:10px}.studio-email{font-size:14px}}
-@media(prefers-reduced-motion:reduce){.studio-email,.copy-email,.insight-image-red::after,.insight-image-blue::after{transition:none}}
+@media(max-width:760px){.studio-email-row{gap:10px}}
+@media(prefers-reduced-motion:reduce){.studio-email,.studio-email::after,.copy-email,.insight-image-red::after,.insight-image-blue::after{animation:none;transition:none}}
 
 /* Homepage FAQ */
 .faq-accordion{display:grid;gap:10px}
