@@ -1725,6 +1725,7 @@ button:disabled {
 }
 .time-heading h3 {
   font-size: 16px;
+  white-space: nowrap;
 }
 .time-slots {
   display: grid;
