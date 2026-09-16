@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { AnimatedGridPattern } from '@/components/ui/animated-grid-pattern';
 import { HireDialog } from '../StudioNav';
 
 export default function AboutCallToAction() {
@@ -11,13 +10,6 @@ export default function AboutCallToAction() {
   return (
     <>
       <section className="about-next studio-width" aria-labelledby="about-next-title">
-        <AnimatedGridPattern
-          className="about-next-grid"
-          duration={3}
-          maxOpacity={0.1}
-          numSquares={30}
-          repeatDelay={1}
-        />
         <div className="about-next-content">
           <span>READY TO MOVE?</span>
           <h2 id="about-next-title">Build the next thing people choose.</h2>
