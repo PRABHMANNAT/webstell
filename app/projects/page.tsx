@@ -73,7 +73,7 @@ export default function ProjectsPage() {
             <source src="/assets/projects/projects-hero.mp4" type="video/mp4" />
           </video>
           <div className="projects-hero-inner wrap">
-            <h1>Directions made<br />to be explored.</h1>
+            <h1>Built to make<br />your next move<br />impossible to ignore.</h1>
             <p>
               A growing collection of WEBSTELL studio concepts for brands with
               something worth saying. Open any direction to take a closer look.
