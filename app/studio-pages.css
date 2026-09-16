@@ -526,11 +526,6 @@
   display: grid;
   place-items: center;
 }
-.hire-dialog .studio-eyebrow {
-  font-size: 10px;
-  color: #737c67;
-  margin-bottom: 23px;
-}
 .hire-title[data-slot='dialog-title'] {
   font-size: 40px;
   line-height: 1.08;
@@ -2176,10 +2171,6 @@ button:disabled {
   }
   .hire-description[data-slot='dialog-description'] {
     font-size: 14px;
-  }
-  .hire-dialog .studio-eyebrow {
-    font-size: 9px;
-    max-width: 230px;
   }
   .hire-option {
     padding: 16px 12px;

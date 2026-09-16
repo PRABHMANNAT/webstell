@@ -44,7 +44,6 @@ export function HireDialog({
         >
           <X size={20} />
         </DialogClose>
-        <span className="studio-eyebrow">GOOD THINGS START WITH A HELLO</span>
         <DialogTitle className="hire-title">
           Your next big thing.
           <br />
