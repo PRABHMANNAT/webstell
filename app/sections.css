@@ -4,6 +4,7 @@
 @media(prefers-reduced-motion:reduce){.insights-track,.insights-track i{animation:none}.insight-image img,.support-pill span,.all-articles span,.insight-card footer button{transition:none}}
 
 .studio-email-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:22px}
+.insight-card.featured footer{justify-content:flex-end}
 .insights-lead .insights-kicker{margin:0 0 18px;color:#5d5d5d;font-family:var(--mono,monospace);font-size:12px;font-weight:600;letter-spacing:.1em;line-height:1.2}
 .insights-lead h2{max-width:690px;margin:0 0 28px;font-size:clamp(44px,5.7vw,78px);font-weight:500;letter-spacing:-.07em;line-height:.95}
 .insights-lead .insights-summary{margin-bottom:38px}

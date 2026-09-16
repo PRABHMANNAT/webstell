@@ -104,7 +104,7 @@ export default function Home() {
    </div>
    <div className="insight-grid" id="insight-grid">
     <div className="insight-image insight-image-red"><img src="/assets/insights-red.avif" alt="WEBSTELL design direction" loading="lazy"/></div>
-    <article className="insight-card featured"><span>{whyWebstellCards[0].eyebrow}</span><h3>{whyWebstellCards[0].title}</h3><p>{whyWebstellCards[0].text}</p><footer><small>WEBSTELL<br/><b>Design and technology studio</b></small><button onClick={()=>setContact(true)} aria-label="Start your project">↗</button></footer></article>
+    <article className="insight-card featured"><span>{whyWebstellCards[0].eyebrow}</span><h3>{whyWebstellCards[0].title}</h3><p>{whyWebstellCards[0].text}</p><footer><button onClick={()=>setContact(true)} aria-label="Start your project">↗</button></footer></article>
     <article className="insight-card"><span>{whyWebstellCards[1].eyebrow}</span><h3>{whyWebstellCards[1].title}</h3><p>{whyWebstellCards[1].text}</p><footer><small>01 — 03<br/><b>What we provide</b></small><button onClick={()=>setContact(true)} aria-label="Start your project">↗</button></footer></article>
     <div className="insight-image insight-image-blue"><img src="/assets/insights-blue.avif" alt="WEBSTELL digital product direction" loading="lazy"/></div>
     <article className="insight-card wide"><span>{whyWebstellCards[2].eyebrow}</span><h3>{whyWebstellCards[2].title}</h3><p>{whyWebstellCards[2].text}</p><footer><small>01 Find focus · 02 Build with intent · 03 Keep moving</small><button onClick={()=>setContact(true)} aria-label="Start your project">↗</button></footer></article>
