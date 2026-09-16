@@ -15,16 +15,10 @@ import { selectedHomepageFaqs } from './faq-data';
 import { whatsappUrl } from './contact-utils';
 import SiteFooter from './SiteFooter';
 import InternationalProjectsSection from './InternationalProjectsSection';
-import { Check, Copy } from 'lucide-react';
-const whyWebstellCards = [
- {title:'Why choose WEBSTELL',text:'Most agencies deliver a polished page. WEBSTELL brings strategy, state-of-the-art design and production-grade engineering together—so your business is easier to trust, harder to ignore and ready to perform long after launch.'},
- {eyebrow:'WHAT WE PROVIDE',title:'Websites, digital products and smarter systems.'},
- {eyebrow:'HOW WE WORK',title:'Find the focus. Build with intent. Keep moving.',text:'We stay close from the first conversation through launch and beyond—combining clear strategy, direct collaboration and production-ready delivery with maintenance, updates, troubleshooting and support after deployment.'},
-];
+import WhyWebstellSection from './WhyWebstellSection';
 export default function Home() {
  const [selected,setSelected]=useState<Project|null>(null);
  const [contact,setContact]=useState(false);
- const [emailCopied,setEmailCopied]=useState(false);
  const projectDialog=useRef<HTMLDialogElement>(null);
  const heroCta=useRef<HTMLButtonElement>(null);
  useEffect(()=>{if(selected!==null)projectDialog.current?.showModal();else projectDialog.current?.close()},[selected]);
@@ -41,32 +35,6 @@ export default function Home() {
   window.addEventListener('pointermove',follow,{passive:true});
   return()=>window.removeEventListener('pointermove',follow);
  },[]);
- const copyStudioEmail=async()=>{
-  const fallbackCopy=()=>{
-   const field=document.createElement('textarea');
-   field.value='contact@webstell-studio.com';
-   field.setAttribute('readonly','');
-   field.style.position='fixed';
-   field.style.opacity='0';
-   document.body.appendChild(field);
-   field.select();
-   const copied=document.execCommand('copy');
-   field.remove();
-   if(!copied)throw new Error('Copy failed');
-  };
-  try{
-   if(navigator.clipboard?.writeText)await navigator.clipboard.writeText('contact@webstell-studio.com');
-   else fallbackCopy();
-   setEmailCopied(true);
-   window.setTimeout(()=>setEmailCopied(false),2200);
-  }catch{
-   try{
-    fallbackCopy();
-    setEmailCopied(true);
-    window.setTimeout(()=>setEmailCopied(false),2200);
-   }catch{setEmailCopied(false)}
-  }
- };
  return <>
  <StudioNav/>
  <main>
@@ -77,33 +45,7 @@ export default function Home() {
  <SocialWorkGallery/>
 <CurvedTicker/>
 <InternationalProjectsSection />
- <section className="insights" id="insights" aria-labelledby="why-webstell-title">
-  <div className="insights-marquee" aria-label="Why choose WEBSTELL">
-   <div className="insights-track">
-    <span>Why WEBSTELL <i aria-hidden="true">✳</i> Choose WEBSTELL <i aria-hidden="true">✳</i></span>
-    <span aria-hidden="true">Why WEBSTELL <i>✳</i> Choose WEBSTELL <i>✳</i></span>
-   </div>
-  </div>
-  <div className="insights-inner wrap">
-   <div className="insights-lead">
-    <p className="insights-kicker">Built for businesses that refuse to blend in.</p>
-    <h2 id="why-webstell-title">About WEBSTELL</h2>
-    <p className="insights-summary">Founded in 2026, WEBSTELL is a new-generation design and technology studio for businesses ready to lead in an AI-shaped world. We combine original creative direction, AI-ready technology and production-grade engineering—backed by experience on international projects—to build digital experiences that stand out, earn trust and turn attention into action.</p>
-    <button type="button" className="all-articles" onClick={()=>setContact(true)}><span aria-hidden="true" data-hover-label="Get your website today">↗</span> Get your website today</button>
-    <div className="studio-email-row">
-     <a className="studio-email" href="mailto:contact@webstell-studio.com">contact@webstell-studio.com</a>
-     <button type="button" className="copy-email" onClick={copyStudioEmail} aria-live="polite"><span aria-hidden="true">{emailCopied?<Check size={15}/>:<Copy size={15}/>}</span>{emailCopied?'Copied':'Copy email'}</button>
-    </div>
-   </div>
-   <div className="insight-grid" id="insight-grid">
-    <div className="insight-image insight-image-red"><img src="/assets/insights-red.avif" alt="WEBSTELL design direction" loading="lazy"/></div>
-    <article className="insight-card featured"><h3>{whyWebstellCards[0].title}</h3><p>{whyWebstellCards[0].text}</p><footer><button onClick={()=>setContact(true)} aria-label="Start your project">↗</button></footer></article>
-    <article className="insight-card"><span>{whyWebstellCards[1].eyebrow}</span><h3>{whyWebstellCards[1].title}</h3><ul className="insight-services"><li>Websites</li><li>Online stores</li><li>Custom software</li><li>Mobile apps</li><li>Chatbots &amp; automation</li><li>Branding &amp; UI/UX</li></ul></article>
-    <div className="insight-image insight-image-blue"><img src="/assets/insights-blue.avif" alt="WEBSTELL digital product direction" loading="lazy"/></div>
-    <article className="insight-card wide"><span>{whyWebstellCards[2].eyebrow}</span><h3>{whyWebstellCards[2].title}</h3><p>{whyWebstellCards[2].text}</p></article>
-   </div>
-  </div>
- </section>
+ <WhyWebstellSection id="insights" onDiscuss={()=>setContact(true)} />
  <TeamSection />
  <section className="queries wrap" id="faq"><div className="section-rule"><span className="section-mark" aria-hidden="true"></span><span className="rule-line"></span><span>YOUR QUESTIONS, ANSWERED</span></div><div className="queries-intro"><p>Clear answers before we start.</p><h2>What clients ask us.</h2></div><FaqAccordion items={selectedHomepageFaqs} /><div className="faq-actions"><a className="faq-whatsapp" href={whatsappUrl('Hi WEBSTELL, I have a question about my project.')} target="_blank" rel="noreferrer"><span aria-hidden="true">↗</span> Ask us about your project</a><a className="faq-contact" href="/contact">Get your website <span aria-hidden="true">↗</span></a></div></section>
  <ContactSection/>

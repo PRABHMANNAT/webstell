@@ -1,13 +1,9 @@
 import StudioNav, { StudioFooter } from '../StudioNav';
 import Link from 'next/link';
 import TeamSection from '../TeamSection';
+import InternationalProjectsSection from '../InternationalProjectsSection';
+import WhyWebstellSection from '../WhyWebstellSection';
 import './about.css';
-
-const principles = [
-  ['01', 'Clarity before decoration', 'We get close to the business problem before deciding what the work should look like.'],
-  ['02', 'One connected team', 'Strategy, design and engineering stay in the same conversation from first sketch to launch.'],
-  ['03', 'Useful over fashionable', 'Every interaction earns its place, works on real devices and leaves room for the business to grow.'],
-];
 
 export default function AboutPage() {
   return (
@@ -15,7 +11,6 @@ export default function AboutPage() {
       <StudioNav current="about" />
       <main className="about-page">
         <section className="about-hero studio-width" aria-labelledby="about-page-title">
-          <div className="about-hero-label"><span>ABOUT WEBSTELL</span><span>INDIA / WORLDWIDE</span></div>
           <h1 id="about-page-title">A small studio for<br/><em>ambitious digital work.</em></h1>
           <div className="about-hero-copy">
             <p>WEBSTELL brings strategy, design and engineering together for businesses that want to be understood, remembered and easier to choose.</p>
@@ -23,14 +18,11 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="about-principle-section studio-width" aria-labelledby="principles-title">
-          <div className="about-principle-heading"><span>HOW WE WORK</span><h2 id="principles-title">Thoughtful by default.</h2></div>
-          <div className="about-principle-grid">
-            {principles.map(([number, title, text]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}
-          </div>
-        </section>
+        <WhyWebstellSection id="about-why-webstell" />
 
         <TeamSection />
+
+        <InternationalProjectsSection />
 
         <section className="about-next studio-width" aria-labelledby="about-next-title">
           <span>HAVE SOMETHING IN MIND?</span>
