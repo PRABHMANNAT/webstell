@@ -8,7 +8,7 @@ export default function ServiceShowcase() {
         </div>
       </div>
       <div className="quick-services-inner wrap">
-        <p className="quick-services-summary">Websites, digital products and smarter systems—designed to win attention, simplify work and help your business grow.</p>
+        <p className="quick-services-summary">Make a sharper first impression—and build the digital tools that turn attention into momentum.</p>
       </div>
     </section>
   );

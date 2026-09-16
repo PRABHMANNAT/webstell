@@ -164,7 +164,11 @@ export async function POST(request: Request) {
     );
 
     if (error) {
-      console.error('Resend enquiry delivery failed:', error.name);
+      console.error(
+        'Resend enquiry delivery failed:',
+        error.name,
+        error.message,
+      );
       return Response.json(
         {
           ok: false,

@@ -18,7 +18,7 @@ async function cloudflareEnvironment(): Promise<EmailEnvironment> {
 
 export async function getEmailClient() {
   const runtime = await cloudflareEnvironment();
-  const apiKey = runtime.RESEND_API_KEY || process.env.RESEND_API_KEY;
+  const apiKey = process.env.RESEND_API_KEY || runtime.RESEND_API_KEY;
 
   if (!apiKey) {
     throw new Error('RESEND_API_KEY is not configured.');
@@ -27,12 +27,12 @@ export async function getEmailClient() {
   return {
     resend: new Resend(apiKey),
     from:
-      runtime.CONTACT_FROM_EMAIL ||
       process.env.CONTACT_FROM_EMAIL ||
+      runtime.CONTACT_FROM_EMAIL ||
       'WEBSTELL <onboarding@resend.dev>',
     teamEmail:
-      runtime.CONTACT_TEAM_EMAIL ||
       process.env.CONTACT_TEAM_EMAIL ||
+      runtime.CONTACT_TEAM_EMAIL ||
       'contact@webstell-studio.com',
   };
 }

@@ -178,7 +178,7 @@ export default function ScheduleExperience() {
       }
       setBookingErrors({});
       setBookingState('success');
-      setBookingMessage('Your call request is with the team. We’ll confirm your preferred time shortly.');
+      setBookingMessage('Your call request is scheduled successfully. We’ll confirm the preferred time shortly.');
     } catch {
       setBookingState('error');
       setBookingMessage('We could not send this right now. Please try again.');
@@ -462,7 +462,7 @@ export default function ScheduleExperience() {
                     type="submit"
                     disabled={bookingState === 'loading' || bookingState === 'success'}
                   >
-                    <span>{bookingState === 'loading' ? 'Sending your request…' : bookingState === 'success' ? 'Call requested' : 'Request your call'}</span>
+                    <span>{bookingState === 'loading' ? 'Sending your request…' : bookingState === 'success' ? 'Call scheduled' : 'Request your call'}</span>
                     {bookingState === 'loading' ? <LoaderCircle className="schedule-submit-spinner" size={19} /> : bookingState === 'success' ? <Check size={19} /> : <ArrowUpRight size={19} />}
                   </button>
                   {bookingState === 'success' && (

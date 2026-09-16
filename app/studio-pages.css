@@ -1786,35 +1786,39 @@ button:disabled {
   grid-template-columns: minmax(125px, 0.7fr) minmax(180px, 1fr);
   align-items: center;
   gap: 12px;
-  padding: 12px;
-  border: 1px solid #e1e5da;
-  border-radius: 11px;
+  padding: 13px;
+  border: 1px solid #171717;
+  border-radius: 12px;
   background: #fff;
   color: #171717;
-  box-shadow: 0 8px 20px #00000012;
+  box-shadow: 0 12px 28px #0000001c;
   font-size: 13px;
   font-weight: 500;
-  animation: custom-time-picker-in 0.22s ease both;
+  animation: custom-time-picker-in 0.28s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
+.custom-time-picker > span {
+  letter-spacing: -0.01em;
 }
 .custom-time-picker select {
   width: 100%;
-  min-height: 42px;
-  padding: 9px 34px 9px 12px;
-  border: 1px solid #cfd6c5;
+  min-height: 44px;
+  appearance: none;
+  padding: 9px 42px 9px 14px;
+  border: 1px solid #171717;
   border-radius: 9px;
-  background: #fff;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m3.5 6 4.5 4 4.5-4' fill='none' stroke='%23171717' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8'/%3E%3C/svg%3E") no-repeat right 14px center / 14px;
   color: #171717;
   font: inherit;
   font-weight: 400;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.18s ease;
+  cursor: pointer;
+  transition: box-shadow 0.24s ease, transform 0.2s ease;
 }
 .custom-time-picker select:hover {
-  border-color: #9da892;
+  box-shadow: 0 4px 12px #00000012;
 }
 .custom-time-picker select:focus {
   outline: 0;
-  border-color: #171717;
-  box-shadow: 0 0 0 3px #17171714;
+  box-shadow: 0 0 0 3px #1717171c, 0 6px 16px #00000016;
   transform: translateY(-1px);
 }
 .calendar-note {
@@ -1873,9 +1877,9 @@ button:disabled {
   animation: schedule-submit-pulse 1.2s ease-in-out infinite;
 }
 .schedule-submit.is-success {
-  background: #c8ff63;
-  color: #15200c;
-  box-shadow: 0 12px 30px #86b43745;
+  background: #baf25b;
+  color: #11180a;
+  box-shadow: 0 12px 30px #8dcf324d;
   animation: schedule-success-pop 0.55s cubic-bezier(0.2, 1.5, 0.45, 1) both;
 }
 .schedule-submit-spinner {
