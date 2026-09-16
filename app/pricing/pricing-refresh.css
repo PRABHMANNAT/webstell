@@ -38,3 +38,22 @@
 .pricing-goals label{display:flex;gap:12px;align-items:center;padding:14px;border:1px solid #ddd;border-radius:10px;cursor:pointer}
 .pricing-goals input{accent-color:#171717;width:18px;height:18px}
 .pricing-goals label:has(input:checked){background:#c8ff63;border-color:#171717}
+.pricing-page .estimate-receipt{position:static;background:#171717;color:white;border-color:#171717;box-shadow:none}
+.pricing-page .estimate-receipt::before{display:none}
+.pricing-page .receipt-label,.pricing-page .receipt-currency,.pricing-page .receipt-note,.pricing-page .receipt-call-link,.pricing-page .receipt-measures span{color:#ddd}
+.pricing-page .receipt-top,.pricing-page .receipt-saving{color:#c8ff63}
+.estimate-enquiry{margin-top:24px;padding:22px;border-radius:16px;background:white;color:#171717}
+.estimate-enquiry h3{font-size:24px;letter-spacing:-.04em;margin-bottom:8px}
+.estimate-enquiry>p{font-size:14px;line-height:1.5;color:#555;margin-bottom:20px}
+.pricing-page .estimate-enquiry .studio-form-row{grid-template-columns:1fr}
+.pricing-page .estimate-enquiry .studio-contact-fields .studio-form-row{grid-template-columns:1fr}
+.pricing-page .estimate-enquiry .studio-contact-or{margin:0}
+.pricing-page .estimate-enquiry input,.pricing-page .estimate-enquiry textarea{border-color:#ccc;color:#171717;background:#fff;min-width:0;width:100%}
+.pricing-page .estimate-enquiry .form-submit{background:#c8ff63;color:#171717}
+.pricing-page .estimate-enquiry .is-success{background:#171717;color:#fff}
+.pricing-confetti{position:fixed;z-index:60;inset:0;pointer-events:none;overflow:hidden}
+.pricing-confetti i{position:absolute;top:-20px;width:9px;height:16px;animation:pricing-confetti-fall 2.4s ease-in both;border:1px solid white}
+@keyframes pricing-confetti-fall{0%{opacity:0;transform:translateY(-5vh) rotate(0)}10%{opacity:1}100%{opacity:0;transform:translate(45px,110vh) rotate(680deg)}}
+@media(max-width:900px){.pricing-page .estimate-layout{grid-template-columns:1fr}.pricing-page .estimate-receipt{max-width:none}}
+@media(max-width:600px){.pricing-page .addon-card{grid-template-columns:24px minmax(0,1fr);padding:13px}.pricing-page .addon-price{grid-column:2;grid-row:3}.pricing-page .addon-heading{grid-template-columns:1fr}.pricing-page .recommended-button{grid-column:1}.estimate-enquiry{padding:18px}.pricing-page .pricing-price strong{font-size:32px}}
+@media(prefers-reduced-motion:reduce){.pricing-confetti{display:none}}
