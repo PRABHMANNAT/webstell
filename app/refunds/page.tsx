@@ -51,5 +51,5 @@ const sections: LegalSection[] = [
 ];
 
 export default function RefundPolicyPage() {
-  return <LegalPage eyebrow="CLEAR EXPECTATIONS" title="Refund & Cancellation Policy" intro="A straightforward guide to deposits, project changes and cancellations for custom WEBSTELL work." sections={sections} />;
+  return <LegalPage eyebrow="CLEAR EXPECTATIONS" title="Refund & Cancellation Policy" intro="A straightforward guide to deposits, project changes and cancellations for custom WEBSTELL work." sections={sections} heroVariant="refunds" />;
 }

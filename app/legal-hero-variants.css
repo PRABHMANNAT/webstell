@@ -1,0 +1,17 @@
+.legal-hero--refunds {
+  background-image:
+    linear-gradient(90deg, #16090fd9 0%, #16090fc7 34%, #16090b85 62%, #16090b42 100%),
+    linear-gradient(0deg, #16090b7d 0%, transparent 61%),
+    url('/assets/hero/webstell-refunds-landscape.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.legal-hero--cookies {
+  background-image:
+    linear-gradient(90deg, #140e0cd9 0%, #140e0cc9 34%, #140e0c85 62%, #140e0c42 100%),
+    linear-gradient(0deg, #140e0c78 0%, transparent 61%),
+    url('/assets/hero/webstell-cookies-landscape.png');
+  background-position: center;
+  background-size: cover;
+}

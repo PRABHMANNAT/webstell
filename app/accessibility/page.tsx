@@ -50,5 +50,5 @@ const sections: LegalSection[] = [
 ];
 
 export default function AccessibilityPage() {
-  return <LegalPage eyebrow="ACCESS FOR EVERYONE" title="Accessibility Statement" intro="Our commitment to making WEBSTELL easier to use, understand and navigate for more people." sections={sections} />;
+  return <LegalPage eyebrow="ACCESS FOR EVERYONE" title="Accessibility Statement" intro="Our commitment to making WEBSTELL easier to use, understand and navigate for more people." sections={sections} heroVariant="accessibility" />;
 }

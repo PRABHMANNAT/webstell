@@ -44,5 +44,5 @@ const sections: LegalSection[] = [
 ];
 
 export default function CookiePolicyPage() {
-  return <LegalPage eyebrow="A SMALL EXPLANATION" title="Cookie Policy" intro="How this website uses cookies today—and what we will do if that changes." sections={sections} />;
+  return <LegalPage eyebrow="A SMALL EXPLANATION" title="Cookie Policy" intro="How this website uses cookies today—and what we will do if that changes." sections={sections} heroVariant="cookies" />;
 }

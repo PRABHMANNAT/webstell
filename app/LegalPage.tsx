@@ -13,7 +13,7 @@ type LegalPageProps = {
   title: string;
   intro: string;
   sections: LegalSection[];
-  heroVariant?: 'terms' | 'privacy';
+  heroVariant?: 'terms' | 'privacy' | 'accessibility' | 'refunds' | 'cookies';
 };
 
 export default function LegalPage({
