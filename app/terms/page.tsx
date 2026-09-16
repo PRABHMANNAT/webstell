@@ -58,5 +58,5 @@ const sections: LegalSection[] = [
 ];
 
 export default function TermsPage() {
-  return <LegalPage eyebrow="THE GROUND RULES" title="Terms of Use" intro="The simple terms that apply when you browse, share or get in touch through the WEBSTELL website." sections={sections} />;
+  return <LegalPage eyebrow="THE GROUND RULES" title="Terms of Use" intro="The simple terms that apply when you browse, share or get in touch through the WEBSTELL website." sections={sections} heroVariant="terms" />;
 }

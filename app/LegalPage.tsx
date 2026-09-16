@@ -12,6 +12,7 @@ type LegalPageProps = {
   title: string;
   intro: string;
   sections: LegalSection[];
+  heroVariant?: 'terms';
 };
 
 export default function LegalPage({
@@ -19,12 +20,13 @@ export default function LegalPage({
   title,
   intro,
   sections,
+  heroVariant,
 }: LegalPageProps) {
   return (
     <>
       <StudioNav />
       <main className="legal-page">
-        <section className="legal-hero" aria-labelledby="legal-page-title">
+        <section className={`legal-hero${heroVariant ? ` legal-hero--${heroVariant}` : ''}`} aria-labelledby="legal-page-title">
           <div className="studio-width">
             <span className="legal-eyebrow">{eyebrow}</span>
             <h1 id="legal-page-title">{title}</h1>
