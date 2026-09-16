@@ -595,11 +595,42 @@
   color: #fff;
 }
 
+.contact-page-form-card .contact-optional-label {
+  display: inline;
+  margin-left: 4px;
+  color: #696965;
+  font-size: inherit;
+  font-weight: 400;
+}
+
+.contact-page-form-card .studio-contact-fields .studio-form-row {
+  position: relative;
+}
+
+.contact-method-or {
+  position: absolute;
+  z-index: 1;
+  top: 42px;
+  left: 50%;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid #c8c8c1;
+  border-radius: 50%;
+  background: #f8f8f5;
+  color: #171717;
+  font-size: 12px;
+  font-weight: 700;
+  transform: translateX(-50%);
+}
+
 .contact-optional-details {
   overflow: hidden;
-  border: 1px solid #d0d0c9;
-  border-radius: 10px;
-  background: #f1f1ed;
+  border: 1px solid #171717;
+  border-radius: 16px;
+  background: #c8ff63;
+  transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .contact-optional-details summary {
@@ -607,22 +638,27 @@
   grid-template-columns: 1fr auto;
   gap: 12px;
   align-items: center;
-  padding: 15px 16px;
+  padding: 17px 18px;
   cursor: pointer;
   list-style: none;
+  transition: background-color .2s ease;
 }
+
+.contact-optional-details summary:hover { background: #d9ff8b; }
+.contact-optional-details:focus-within { box-shadow: 4px 4px 0 #171717; transform: translate(-2px, -2px); }
 
 .contact-optional-details summary::-webkit-details-marker { display: none; }
 .contact-optional-details summary span { font-size: 15px; font-weight: 650; }
-.contact-optional-details summary small { color: #656560; font-size: 12px; }
-.contact-optional-details summary::after { grid-column: 2; grid-row: 1; content: '+'; font-size: 20px; line-height: 1; }
-.contact-optional-details[open] summary::after { content: '−'; }
+.contact-optional-details summary small { color: #263311; font-size: 12px; }
+.contact-optional-details summary::after { grid-column: 2; grid-row: 1; content: '+'; font-size: 20px; line-height: 1; transition: transform .25s ease; }
+.contact-optional-details[open] summary::after { transform: rotate(45deg); }
 
 .contact-optional-details-body {
   display: grid;
   gap: 16px;
   padding: 2px 16px 16px;
-  border-top: 1px solid #d0d0c9;
+  border-top: 1px solid #171717;
+  background: #f8f8f5;
 }
 
 .contact-file-field {
@@ -751,6 +787,12 @@
   .contact-optional-details-body .studio-form-row,
   .contact-page-aside {
     grid-template-columns: 1fr;
+  }
+
+  .contact-method-or {
+    position: static;
+    margin: -5px auto;
+    transform: none;
   }
 
   .contact-page-form-card .studio-form {
