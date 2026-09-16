@@ -14,6 +14,7 @@ import TeamSection from './TeamSection';
 import FaqAccordion from './FaqAccordion';
 import { selectedHomepageFaqs } from './faq-data';
 import { whatsappUrl } from './contact-utils';
+import { Check, Copy } from 'lucide-react';
 const featuredProjects = [
  {number:'01',title:'Pear',category:'Growth platform',location:'Oslo, Norway',description:'A growth-focused digital platform bringing search, custom software and commercial clarity into one confident customer journey.',tags:['Custom software','Organic growth','Revenue share'],image:'/assets/featured-projects/pear.png',url:'https://pear.no/',tone:'pear'},
  {number:'02',title:'Araku Coffee',category:'Global commerce',location:'India / Global',description:'A rich e-commerce experience connecting premium coffee, regenerative farming and the people behind every cup.',tags:['Ecommerce','Brand storytelling','Product discovery'],image:'/assets/featured-projects/araku-coffee.png',url:'https://www.arakucoffee.in/',tone:'araku'},
@@ -98,7 +99,7 @@ export default function Home() {
     <button type="button" className="all-articles" onClick={()=>setContact(true)}><span aria-hidden="true" data-hover-label="Get your website today">↗</span> Get your website today</button>
     <div className="studio-email-row">
      <a className="studio-email" href="mailto:contact@webstell-studio.com">contact@webstell-studio.com</a>
-     <button type="button" className="copy-email" onClick={copyStudioEmail} aria-live="polite">{emailCopied?'Copied':'Copy email'}</button>
+     <button type="button" className="copy-email" onClick={copyStudioEmail} aria-live="polite"><span aria-hidden="true">{emailCopied?<Check size={15}/>:<Copy size={15}/>}</span>{emailCopied?'Copied':'Copy email'}</button>
     </div>
    </div>
    <div className="insight-grid" id="insight-grid">
