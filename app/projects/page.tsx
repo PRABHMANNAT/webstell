@@ -139,7 +139,7 @@ export default function ProjectsPage() {
               <article className="project" key={project.id}>
                 <a className="project-preview" href={projectWhatsAppUrl(project.title)} target="_blank" rel="noreferrer" aria-label={`Ask WEBSTELL about a website like ${project.title}`}>
                   <div className="project-image">
-                    <Image src={project.image} alt={`${project.title} website design direction`} fill sizes="(max-width: 700px) 100vw, 50vw" />
+                    <Image src={project.image} alt={`${project.title} website design direction`} fill sizes="(max-width: 700px) 100vw, 50vw" unoptimized />
                     <span className="project-arrow" aria-hidden="true">↗</span>
                   </div>
                 </a>
