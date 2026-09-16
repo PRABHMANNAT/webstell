@@ -16,7 +16,7 @@ export default function ContactPageSection() {
           <div className="contact-page-form-card">
             <div className="contact-page-form-heading">
               <h1 id="contact-page-title">Tell us what you’re building.</h1>
-              <p>Start with the essentials. You can add more detail whenever you’re ready.</p>
+              <p>Fill in the details you know and send your brief. Our team will review it and reach out with the right next step. Not sure what to write? Start simple or message us on WhatsApp.</p>
               <span className="studio-eyebrow">YOUR PROJECT, IN YOUR WORDS</span>
             </div>
             <ContactBriefForm />
