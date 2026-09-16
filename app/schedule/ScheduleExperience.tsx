@@ -102,7 +102,7 @@ export default function ScheduleExperience() {
             Let’s find a time
             <br /><span>for your project.</span>
           </h1>
-          <p>Choose a preferred time below. It becomes confirmed after the WEBSTELL team replies.</p>
+          <p>Choose a time that works for you. We’ll confirm your call once we’ve checked the team’s availability.</p>
         </section>
         <section className="schedule-card studio-width">
           <aside className="call-intro">
