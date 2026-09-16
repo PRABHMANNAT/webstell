@@ -53,6 +53,7 @@ type BookingErrors = {
 export default function ScheduleExperience() {
   const [today, setToday] = useState('');
   const [month, setMonth] = useState<Date | null>(null);
+  const [monthTransition, setMonthTransition] = useState<'previous' | 'next'>('next');
   const [chosen, setChosen] = useState('');
   const [slot, setSlot] = useState('');
   const [customTimeOpen, setCustomTimeOpen] = useState(false);
@@ -271,7 +272,11 @@ export default function ScheduleExperience() {
               {month && lowerBound && upperBound && (
                 <>
                   <div className="calendar-month">
-                    <strong>
+                    <strong
+                      key={`${month.getFullYear()}-${month.getMonth()}`}
+                      className={`calendar-month-label is-${monthTransition}`}
+                      aria-live="polite"
+                    >
                       {month.toLocaleDateString('en-IN', {
                         month: 'long',
                         year: 'numeric',
@@ -285,15 +290,16 @@ export default function ScheduleExperience() {
                           month.getFullYear() === lowerBound.getFullYear() &&
                           month.getMonth() === lowerBound.getMonth()
                         }
-                        onClick={() =>
+                        onClick={() => {
+                          setMonthTransition('previous');
                           setMonth(
                             new Date(
                               month.getFullYear(),
                               month.getMonth() - 1,
                               1,
                             ),
-                          )
-                        }
+                          );
+                        }}
                       >
                         <ChevronLeft size={18} />
                       </button>
@@ -305,22 +311,24 @@ export default function ScheduleExperience() {
                           month.getFullYear() === upperBound.getFullYear() &&
                           month.getMonth() === upperBound.getMonth()
                         }
-                        onClick={() =>
+                        onClick={() => {
+                          setMonthTransition('next');
                           setMonth(
                             new Date(
                               month.getFullYear(),
                               month.getMonth() + 1,
                               1,
                             ),
-                          )
-                        }
+                          );
+                        }}
                       >
                         <ChevronRight size={18} />
                       </button>
                     </div>
                   </div>
                   <div
-                    className="calendar-grid"
+                    key={`calendar-${month.getFullYear()}-${month.getMonth()}`}
+                    className={`calendar-grid month-${monthTransition}`}
                     role="group"
                     aria-label="Choose a date"
                   >

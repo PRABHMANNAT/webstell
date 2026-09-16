@@ -1661,6 +1661,12 @@ button:disabled {
   font-size: 17px;
   font-weight: 500;
 }
+.calendar-month-label.is-next {
+  animation: calendar-label-next 0.38s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
+.calendar-month-label.is-previous {
+  animation: calendar-label-previous 0.38s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
 .calendar-month > div {
   display: flex;
   gap: 8px;
@@ -1693,6 +1699,12 @@ button:disabled {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 8px;
+}
+.calendar-grid.month-next {
+  animation: calendar-grid-next 0.42s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
+.calendar-grid.month-previous {
+  animation: calendar-grid-previous 0.42s cubic-bezier(0.2, 0.8, 0.25, 1) both;
 }
 .calendar-weekday {
   font: 10px monospace;
@@ -1866,7 +1878,7 @@ button:disabled {
 .schedule-confetti span {
   position: absolute;
   top: -18px;
-  left: calc(5% * var(--confetti-column));
+  left: var(--confetti-left);
   width: 9px;
   height: 16px;
   border-radius: 2px;
@@ -1883,26 +1895,26 @@ button:disabled {
 .schedule-confetti span:nth-child(5n + 3) { --confetti-duration: 1.95s; --confetti-delay: 0.16s; }
 .schedule-confetti span:nth-child(5n + 4) { --confetti-duration: 2.3s; --confetti-delay: 0.04s; }
 .schedule-confetti span:nth-child(5n) { --confetti-duration: 2.05s; --confetti-delay: 0.12s; }
-.schedule-confetti span:nth-child(1) { --confetti-column: 1; }
-.schedule-confetti span:nth-child(2) { --confetti-column: 2; }
-.schedule-confetti span:nth-child(3) { --confetti-column: 3; }
-.schedule-confetti span:nth-child(4) { --confetti-column: 4; }
-.schedule-confetti span:nth-child(5) { --confetti-column: 5; }
-.schedule-confetti span:nth-child(6) { --confetti-column: 6; }
-.schedule-confetti span:nth-child(7) { --confetti-column: 7; }
-.schedule-confetti span:nth-child(8) { --confetti-column: 8; }
-.schedule-confetti span:nth-child(9) { --confetti-column: 9; }
-.schedule-confetti span:nth-child(10) { --confetti-column: 10; }
-.schedule-confetti span:nth-child(11) { --confetti-column: 11; }
-.schedule-confetti span:nth-child(12) { --confetti-column: 12; }
-.schedule-confetti span:nth-child(13) { --confetti-column: 13; }
-.schedule-confetti span:nth-child(14) { --confetti-column: 14; }
-.schedule-confetti span:nth-child(15) { --confetti-column: 15; }
-.schedule-confetti span:nth-child(16) { --confetti-column: 16; }
-.schedule-confetti span:nth-child(17) { --confetti-column: 17; }
-.schedule-confetti span:nth-child(18) { --confetti-column: 18; }
-.schedule-confetti span:nth-child(19) { --confetti-column: 19; }
-.schedule-confetti span:nth-child(20) { --confetti-column: 20; }
+.schedule-confetti span:nth-child(1) { --confetti-left: 5%; }
+.schedule-confetti span:nth-child(2) { --confetti-left: 10%; }
+.schedule-confetti span:nth-child(3) { --confetti-left: 15%; }
+.schedule-confetti span:nth-child(4) { --confetti-left: 20%; }
+.schedule-confetti span:nth-child(5) { --confetti-left: 25%; }
+.schedule-confetti span:nth-child(6) { --confetti-left: 30%; }
+.schedule-confetti span:nth-child(7) { --confetti-left: 35%; }
+.schedule-confetti span:nth-child(8) { --confetti-left: 40%; }
+.schedule-confetti span:nth-child(9) { --confetti-left: 45%; }
+.schedule-confetti span:nth-child(10) { --confetti-left: 50%; }
+.schedule-confetti span:nth-child(11) { --confetti-left: 55%; }
+.schedule-confetti span:nth-child(12) { --confetti-left: 60%; }
+.schedule-confetti span:nth-child(13) { --confetti-left: 65%; }
+.schedule-confetti span:nth-child(14) { --confetti-left: 70%; }
+.schedule-confetti span:nth-child(15) { --confetti-left: 75%; }
+.schedule-confetti span:nth-child(16) { --confetti-left: 80%; }
+.schedule-confetti span:nth-child(17) { --confetti-left: 85%; }
+.schedule-confetti span:nth-child(18) { --confetti-left: 90%; }
+.schedule-confetti span:nth-child(19) { --confetti-left: 95%; }
+.schedule-confetti span:nth-child(20) { --confetti-left: 98%; }
 .schedule-submit-message {
   display: flex;
   align-items: flex-start;
@@ -1936,6 +1948,18 @@ button:disabled {
   0% { opacity: 0; transform: translate3d(0, -5vh, 0) rotate(var(--confetti-rotation)); }
   12% { opacity: 1; }
   100% { opacity: 0; transform: translate3d(35px, 105vh, 0) rotate(540deg); }
+}
+@keyframes calendar-label-next {
+  from { opacity: 0; transform: translateX(12px); }
+}
+@keyframes calendar-label-previous {
+  from { opacity: 0; transform: translateX(-12px); }
+}
+@keyframes calendar-grid-next {
+  from { opacity: 0; transform: translateX(18px) scale(0.985); }
+}
+@keyframes calendar-grid-previous {
+  from { opacity: 0; transform: translateX(-18px) scale(0.985); }
 }
 .schedule-details {
   padding-top: 70px;
