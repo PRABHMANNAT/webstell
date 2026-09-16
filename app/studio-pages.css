@@ -1730,18 +1730,16 @@ button:disabled {
   opacity: 0.5;
 }
 .calendar-grid button.chosen-day {
-  background: #29381e;
-  color: #e5fbbe;
+  background: #171717;
+  color: #fff;
 }
 .calendar-grid button.today {
   border-color: #171717;
-  box-shadow: inset 0 0 0 1px #171717;
 }
 .calendar-grid button.today.chosen-day {
-  background: #29381e;
-  border-color: #29381e;
-  box-shadow: none;
-  color: #e5fbbe;
+  background: #171717;
+  border-color: #171717;
+  color: #fff;
 }
 .time-heading {
   display: flex;
