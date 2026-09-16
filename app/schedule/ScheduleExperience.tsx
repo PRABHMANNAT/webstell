@@ -14,6 +14,11 @@ import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
 
 const slots = ['10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00'];
+const customSlots = Array.from({ length: 96 }, (_, index) => {
+  const hour = Math.floor(index / 4);
+  const minute = (index % 4) * 15;
+  return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+});
 const timeZones = [
   { value: 'Asia/Kolkata', label: 'India · IST (UTC+05:30)' },
   { value: 'Asia/Dubai', label: 'United Arab Emirates · GST (UTC+04:00)' },
@@ -57,6 +62,7 @@ export default function ScheduleExperience() {
   const [month, setMonth] = useState<Date | null>(null);
   const [chosen, setChosen] = useState('');
   const [slot, setSlot] = useState('');
+  const [customTimeOpen, setCustomTimeOpen] = useState(false);
   const [timeZone, setTimeZone] = useState('Asia/Kolkata');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -436,6 +442,42 @@ export default function ScheduleExperience() {
                         {slotLabel(time, chosen || today, timeZone)}
                       </button>
                     ))}
+                    <button
+                      className="custom-time-trigger"
+                      type="button"
+                      disabled={!chosen}
+                      aria-expanded={customTimeOpen}
+                      aria-controls="custom-time-picker"
+                      aria-pressed={Boolean(slot) && !slots.includes(slot)}
+                      onClick={() => setCustomTimeOpen((open) => !open)}
+                    >
+                      {slot && !slots.includes(slot)
+                        ? slotLabel(slot, chosen || today, timeZone)
+                        : 'Custom time'}
+                    </button>
+                    {customTimeOpen && (
+                      <label className="custom-time-picker" id="custom-time-picker">
+                        <span>Choose any time</span>
+                        <select
+                          autoFocus
+                          aria-label="Choose a custom time"
+                          value={!slots.includes(slot) ? slot : ''}
+                          onChange={(event) => {
+                            clearBookingFeedback();
+                            setBookingErrors((current) => ({ ...current, time: undefined }));
+                            setSlot(event.target.value);
+                            if (event.target.value) setCustomTimeOpen(false);
+                          }}
+                        >
+                          <option value="">Select a time</option>
+                          {customSlots.map((time) => (
+                            <option key={time} value={time} disabled={isPastSlot(time)}>
+                              {slotLabel(time, chosen || today, timeZone)}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    )}
                   </div>
                   {bookingErrors.time && <p className="schedule-selection-error" role="alert">{bookingErrors.time}</p>}
                   <p className="calendar-note">
