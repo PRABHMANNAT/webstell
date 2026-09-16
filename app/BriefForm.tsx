@@ -141,6 +141,7 @@ export default function BriefForm({
 
   return (
     <form className={`studio-form ${compact ? 'studio-form-compact' : ''}`} onSubmit={submit} noValidate>
+      {estimate !== undefined && state === 'success' && <div className="pricing-confetti" aria-hidden="true">{Array.from({ length: 28 }, (_, i) => <i key={i} style={{ left: `${(i * 37) % 100}%`, animationDelay: `${(i % 5) * .12}s`, background: i % 2 ? '#171717' : '#c8ff63' }} />)}</div>}
       <input className="studio-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <div className="studio-form-row">
         <label className={compact ? 'studio-form-wide' : undefined}>
