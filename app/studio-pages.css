@@ -1701,19 +1701,25 @@ button:disabled {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
+  padding: 9px;
+  background: #171717;
+  border-radius: 16px;
 }
 .time-slots button {
   font-size: 13px;
   padding: 13px 5px;
-  background: #fff;
-  border: 1px solid #dce3d2;
+  background: #242424;
+  border: 1px solid #444;
   border-radius: 8px;
-  color: #57664a;
+  color: #fff;
+}
+.time-slots button:hover:not(:disabled) {
+  background: #353535;
 }
 .time-slots button[aria-pressed='true'] {
-  background: #d9fa6b;
-  border-color: #a4c450;
-  color: #28351d;
+  background: #fff;
+  border-color: #fff;
+  color: #171717;
 }
 .calendar-note {
   font-size: 12px;
