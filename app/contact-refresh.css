@@ -198,6 +198,12 @@
 
 .studio-form-compact textarea { min-height: 98px; }
 
+.home-contact-form-card .studio-form-compact { gap: 14px; }
+.home-contact-form-card .studio-form-compact .studio-form-row { gap: 14px; }
+.home-contact-form-card .studio-form-compact input:not([type='checkbox']),
+.home-contact-form-card .studio-form-compact select { min-height: 48px; padding: 12px 14px; }
+.home-contact-form-card .studio-form-compact textarea { min-height: 88px; padding: 12px 14px; }
+
 .studio-form input[aria-invalid='true'],
 .studio-form select[aria-invalid='true'],
 .studio-form textarea[aria-invalid='true'] {
