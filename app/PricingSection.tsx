@@ -1,6 +1,5 @@
 'use client';
 
-import { calculateEstimate, money } from './pricing-data';
 
 const plans = [
   {
@@ -105,7 +104,6 @@ export default function PricingSection({
 
         <div className="pricing-grid">
           {plans.map((plan, index) => {
-            const estimate = calculateEstimate(plan.type, [...plan.extras], false, 0);
             return (
               <article
                 className={'pricing-card pricing-card-' + plan.tone}
@@ -120,7 +118,7 @@ export default function PricingSection({
                 <h3>{plan.name}</h3>
                 <div className="pricing-price">
                   <strong>{plan.priceLabel}</strong>
-                  <span>starting estimate · one-time</span>
+                  <span>one-time project estimate · final scope agreed together</span>
                 </div>
                 <p className="pricing-audience">{plan.audience}</p>
                 <p className="pricing-description">{plan.description}</p>

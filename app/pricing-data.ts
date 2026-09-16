@@ -26,7 +26,7 @@ export const projectTypes = [
   {
     id: 'store',
     name: 'Online store',
-    price: 30000,
+    price: 50900,
     description: 'A shopping experience that makes browsing, paying and ordering feel simple.',
     includedUnits: 6,
     unitLabel: 'pages',
@@ -38,7 +38,7 @@ export const projectTypes = [
   {
     id: 'software',
     name: 'Custom software',
-    price: 45000,
+    price: 65000,
     description: 'A focused estimate for a dashboard, portal or web app with a clear first job.',
     includedUnits: 4,
     unitLabel: 'core screens',
