@@ -2,6 +2,7 @@
   position: relative;
   isolation: isolate;
   overflow: visible;
+  margin-top: clamp(48px, 6vw, 88px);
   padding: clamp(72px, 8vw, 118px) 0;
   background: #14201b;
 }
@@ -340,6 +341,7 @@
 
 @media (max-width: 620px) {
   .home-contact-form {
+    margin-top: 36px;
     padding: 54px 0;
   }
 
