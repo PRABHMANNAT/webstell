@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import StudioNav, { StudioFooter } from '../StudioNav';
+import StudioNav from '../StudioNav';
+import SiteFooter from '../SiteFooter';
 import './services.css';
 
 const serviceList = [
@@ -85,7 +86,7 @@ export default function ServicesPage() {
           <Link className="studio-button dark-button" href="/contact">Discuss your project <span aria-hidden="true">↗</span></Link>
         </section>
       </main>
-      <StudioFooter />
+      <SiteFooter />
     </>
   );
 }

@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { ArrowDown, ArrowUp } from 'lucide-react';
-import { recentWorkProjects, type Project } from '../portfolio-data';
+import { recentWorkProjects } from '../portfolio-data';
+import { whatsappUrl } from '../contact-utils';
 import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
 import InternationalProjectsSection from '../InternationalProjectsSection';
@@ -28,13 +29,15 @@ const projectFilters: ProjectFilter[] = [
   { value: 'places', label: 'Property, home & events', description: 'Spaces, celebrations and places to live', matches: (category) => category.includes('Property') || category.includes('Home') || category.includes('Weddings') },
 ];
 
+const projectWhatsAppUrl = (projectTitle: string) => whatsappUrl(
+  `Hi WEBSTELL, I was exploring the ${projectTitle} website direction and I’m interested in a website like this for my business. Could you tell me more about how we can make it happen?`,
+);
+
 export default function ProjectsPage() {
-  const [selected, setSelected] = useState<Project | null>(null);
   const [filter, setFilter] = useState('');
   const [filterOpen, setFilterOpen] = useState(false);
   const [showScrollShortcut, setShowScrollShortcut] = useState(false);
   const [atInternationalEnd, setAtInternationalEnd] = useState(false);
-  const dialog = useRef<HTMLDialogElement>(null);
   const filterMenu = useRef<HTMLDivElement>(null);
   const filterTrigger = useRef<HTMLButtonElement>(null);
   const allProjectsRef = useRef<HTMLElement>(null);
@@ -44,11 +47,6 @@ export default function ProjectsPage() {
   const visibleProjects = activeFilter?.matches
     ? recentWorkProjects.filter((project) => activeFilter.matches(project.category))
     : recentWorkProjects;
-
-  useEffect(() => {
-    if (selected) dialog.current?.showModal();
-    else dialog.current?.close();
-  }, [selected]);
 
   useEffect(() => {
     if (!filterOpen) return;
@@ -103,7 +101,7 @@ export default function ProjectsPage() {
             <source src="/assets/projects/projects-hero.mp4" type="video/mp4" />
           </video>
           <div className="projects-hero-inner wrap">
-            <h1>Built to make<br />your next move<br />impossible to ignore.</h1>
+            <h1>Designs<br />impossible<br />to ignore.</h1>
             <p>
               Explore bold website directions—from distinctive storefronts to
               smarter digital products—built to turn attention into action.
@@ -137,14 +135,14 @@ export default function ProjectsPage() {
           <div className="project-grid">
             {visibleProjects.map((project) => (
               <article className="project" key={project.id}>
-                <button className="project-preview" onClick={() => setSelected(project)} aria-label={`Preview ${project.title}`}>
+                <a className="project-preview" href={projectWhatsAppUrl(project.title)} target="_blank" rel="noreferrer" aria-label={`Ask WEBSTELL about a website like ${project.title}`}>
                   <div className="project-image">
                     <img src={project.image} alt={`${project.title} website design direction`} loading="lazy" />
                     <span className="project-arrow" aria-hidden="true">↗</span>
                   </div>
-                </button>
+                </a>
                 <div className="project-title-row">
-                  <h3>{project.title}</h3>
+                  <h3><a className="project-title-link" href={projectWhatsAppUrl(project.title)} target="_blank" rel="noreferrer">{project.title}</a></h3>
                 </div>
                 <p className="project-category">{project.category}</p>
                 <p className="project-description">{project.description}</p>
@@ -161,15 +159,6 @@ export default function ProjectsPage() {
         {atInternationalEnd ? <ArrowUp aria-hidden="true" /> : <ArrowDown aria-hidden="true" />}
       </button>}
       <SiteFooter />
-      <dialog ref={dialog} className="project-dialog" onCancel={() => setSelected(null)} onClick={(event) => { if (event.target === event.currentTarget) setSelected(null); }} aria-labelledby="project-preview-title">
-        <button className="close" onClick={() => setSelected(null)} aria-label="Close project">×</button>
-        {selected && <>
-          <img src={selected.image} alt={`${selected.title} preview`} />
-          <span className="refresh-eyebrow">Studio concept / {selected.category}</span>
-          <h2 id="project-preview-title">{selected.title}</h2>
-          <p>{selected.description}</p>
-        </>}
-      </dialog>
     </>
   );
 }

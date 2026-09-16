@@ -160,6 +160,8 @@
   width: min(380px, calc(100vw - 32px));
   max-height: min(560px, calc(100vh - 120px));
   overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   padding: 10px;
   border: 1px solid #303b35;
   border-radius: 17px;
@@ -168,6 +170,12 @@
   backdrop-filter: blur(18px);
   transform-origin: top right;
   animation: project-filter-in .2s ease both;
+}
+
+.project-filter-menu::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 @keyframes project-filter-in {
@@ -214,8 +222,15 @@
 }
 
 .project-filter-option.is-selected {
-  border-color: #506341;
-  background: #26352b;
+  border-color: #c8f35d;
+  background: #c8f35d;
+  color: #111514;
+}
+
+.project-filter-option.is-selected strong,
+.project-filter-option.is-selected small,
+.project-filter-option.is-selected .project-filter-check {
+  color: #111514;
 }
 
 .project-filter-menu-label {
@@ -255,6 +270,30 @@
 
 .projects-list .project-grid {
   gap: clamp(48px, 7vw, 100px) 30px;
+}
+
+.projects-list .project-title-row .project-title-link {
+  display: inline;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+  text-decoration: none;
+  transition: color .18s ease, text-decoration-color .18s ease;
+}
+
+.projects-list .project-title-row .project-title-link:hover {
+  color: #33463b;
+  text-decoration: underline;
+  text-decoration-color: #b9e85e;
+  text-decoration-thickness: .09em;
+  text-underline-offset: .12em;
+}
+
+.projects-list .project-title-row .project-title-link:focus-visible {
+  outline: 3px solid rgba(185, 232, 94, .8);
+  outline-offset: 4px;
+  border-radius: 3px;
 }
 
 .international-projects-anchor {

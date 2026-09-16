@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import {
   ArrowUpRight,
   CalendarDays,
@@ -100,8 +101,12 @@ export function HireDialog({
 export default function StudioNav({ current = '' }: { current?: string }) {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
+  const visibleNavigationLinks = pathname === '/'
+    ? navigationLinks
+    : ([['Home', '/'], ...navigationLinks] as const);
 
   useEffect(() => {
     const updateHeader = () => setScrolled(window.scrollY > 24);
@@ -153,13 +158,13 @@ export default function StudioNav({ current = '' }: { current?: string }) {
               aria-label="Main navigation"
               className={menu ? 'open' : ''}
             >
-              {navigationLinks.map(([label, href], index) => (
+              {visibleNavigationLinks.map(([label, href], index) => (
                 <Link
                   key={href}
                   href={href}
                   ref={index === 0 ? firstLinkRef : undefined}
                   aria-current={
-                    current === label.toLowerCase() ? 'page' : undefined
+                    pathname === href || current === label.toLowerCase() ? 'page' : undefined
                   }
                   onClick={closeMenu}
                 >
