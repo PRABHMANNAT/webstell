@@ -1,4 +1,5 @@
-import StudioNav, { StudioFooter } from '../StudioNav';
+import StudioNav from '../StudioNav';
+import SiteFooter from '../SiteFooter';
 import ContactPageSection from './ContactPageSection';
 export const metadata = {
   title: 'Start a Conversation | WEBSTELL',
@@ -12,7 +13,7 @@ export default function ContactPage() {
       <main className="studio-page contact-page contact-page-refresh">
         <ContactPageSection />
       </main>
-      <StudioFooter />
+      <SiteFooter />
     </>
   );
 }
