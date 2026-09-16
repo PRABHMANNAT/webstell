@@ -6,8 +6,8 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   ArrowUpRight,
-  CalendarDays,
   Mail,
+  PhoneCall,
   X,
 } from 'lucide-react';
 import {
@@ -84,13 +84,13 @@ export function HireDialog({
             </div>
             <ArrowUpRight />
           </Link>
-          <Link className="hire-option" href="/schedule">
+          <Link className="hire-option hire-option-dark" href="/schedule">
             <span className="option-icon">
-              <CalendarDays />
+              <PhoneCall strokeWidth={1.8} />
             </span>
             <div>
-              <strong>Request a call</strong>
-              <p>Pick a time for a 30-minute conversation.</p>
+              <strong>Book a discovery call</strong>
+              <p>Choose a time and leave with a clearer way forward.</p>
             </div>
             <ArrowUpRight />
           </Link>
