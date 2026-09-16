@@ -1668,16 +1668,26 @@ button:disabled {
 .calendar-month button {
   display: grid;
   place-items: center;
-  border: 1px solid #dfe4d6;
-  background: transparent;
+  border: 1px solid #171717;
+  background: #171717;
+  color: #fff;
   border-radius: 50%;
   width: 31px;
   height: 31px;
+  box-shadow: 0 4px 10px #17171726;
+  transition: background 0.2s ease, opacity 0.2s ease, transform 0.18s ease;
 }
-.calendar-month button.calendar-next:not(:disabled) {
+.calendar-month button:hover:not(:disabled) {
+  background: #2d3a24;
+  transform: translateY(-1px);
+}
+.calendar-month button:active:not(:disabled) {
+  transform: translateY(1px) scale(0.94);
+}
+.calendar-month button:disabled {
   background: #171717;
-  border-color: #171717;
   color: #fff;
+  opacity: 0.32;
 }
 .calendar-grid {
   display: grid;
