@@ -385,13 +385,8 @@ export default function ScheduleExperience() {
                             onClick={() => {
                               clearBookingFeedback();
                               setBookingErrors((current) => ({ ...current, date: undefined, time: undefined }));
-                              if (chosen === key) {
-                                setChosen('');
-                                setSlot('');
-                                return;
-                              }
                               setChosen(key);
-                              setSlot('');
+                              if (chosen !== key) setSlot('');
                             }}
                           >
                             {index + 1}
