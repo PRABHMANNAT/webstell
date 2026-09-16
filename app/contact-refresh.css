@@ -3,6 +3,7 @@
   isolation: isolate;
   overflow: visible;
   margin-top: clamp(48px, 6vw, 88px);
+  margin-bottom: clamp(48px, 6vw, 88px);
   padding: clamp(72px, 8vw, 118px) 0;
   background: #14201b;
 }
@@ -229,17 +230,10 @@
 }
 
 .studio-contact-or {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  margin-bottom: 12px;
-  border: 1px solid #d3dac8;
-  border-radius: 50%;
-  color: #687266;
-  background: #fff;
-  font: 600 11px/1 var(--mono, monospace);
-  text-transform: uppercase;
+  margin-bottom: 14px;
+  color: #425239;
+  font: 700 italic 14px/1 var(--sans, sans-serif);
+  text-transform: none;
 }
 
 .studio-field-error {
@@ -387,6 +381,7 @@
 @media (max-width: 620px) {
   .home-contact-form {
     margin-top: 36px;
+    margin-bottom: 36px;
     padding: 54px 0;
   }
 
