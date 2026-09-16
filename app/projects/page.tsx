@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { recentWorkProjects, type Project } from '../portfolio-data';
 import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
+import InternationalProjectsSection from '../InternationalProjectsSection';
 import './projects.css';
 
 type ProjectFilter = {
@@ -118,6 +119,7 @@ export default function ProjectsPage() {
             ))}
           </div>
         </section>
+        <InternationalProjectsSection />
       </main>
       <SiteFooter />
       <dialog ref={dialog} className="project-dialog" onCancel={() => setSelected(null)} onClick={(event) => { if (event.target === event.currentTarget) setSelected(null); }} aria-labelledby="project-preview-title">
