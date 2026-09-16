@@ -142,7 +142,7 @@ export default function BriefForm({
       <input className="studio-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <div className="studio-form-row">
         <label className={compact ? 'studio-form-wide' : undefined}>
-          Name <b aria-hidden="true">*</b>
+          Name {!compact && <b aria-hidden="true">*</b>}
           <input name="name" autoComplete="name" placeholder="What should we call you?" maxLength={100} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} />
           <FieldError id="name-error" message={errors.name} />
         </label>
@@ -153,7 +153,7 @@ export default function BriefForm({
       </div>
 
       <fieldset className="studio-contact-fields">
-        <legend>Email or WhatsApp <b>*</b> <span>at least one</span></legend>
+        <legend className={compact ? 'sr-only' : undefined}>Email or WhatsApp {!compact && <><b>*</b> <span>at least one</span></>}</legend>
         <div className="studio-form-row">
           <label>
             Email
@@ -172,7 +172,7 @@ export default function BriefForm({
       {!booking && (
         <div className="studio-form-row">
           <label className={compact ? 'studio-form-wide' : undefined}>
-            What would you like us to build? <b aria-hidden="true">*</b>
+            What would you like us to build? {!compact && <b aria-hidden="true">*</b>}
             <select name="projectType" defaultValue={projectType} aria-invalid={Boolean(errors.projectType)} aria-describedby={errors.projectType ? 'project-type-error' : undefined}>
               <option value="" disabled>Choose the closest fit</option>
               {projectOptions.map((option) => <option key={option}>{option}</option>)}
@@ -194,7 +194,7 @@ export default function BriefForm({
       )}
 
       <label>
-        {booking ? 'What would make this call useful?' : 'What should this project achieve?'} <b aria-hidden="true">*</b>
+        {booking ? 'What would make this call useful?' : 'What should this project achieve?'} {!compact && <b aria-hidden="true">*</b>}
         <textarea name="projectGoal" rows={compact ? 3 : 4} maxLength={4000} placeholder={booking ? 'Share the question, idea or decision you would like to talk through.' : 'Tell us the goal, what is not working now and what a good result would look like.'} aria-invalid={Boolean(errors.projectGoal)} aria-describedby={errors.projectGoal ? 'project-goal-error' : undefined} />
         <FieldError id="project-goal-error" message={errors.projectGoal} />
       </label>
@@ -214,7 +214,7 @@ export default function BriefForm({
         </label>
       </div>}
 
-      <p className="studio-privacy">We use your details only to respond to this enquiry. We do not add you to a marketing list without permission.</p>
+      {!compact && <p className="studio-privacy">We use your details only to respond to this enquiry. We do not add you to a marketing list without permission.</p>}
       <button className="studio-button dark-button form-submit" type="submit" disabled={state === 'loading' || state === 'success'}>
         <span>{state === 'loading' ? 'Sending securely…' : state === 'success' ? (booking ? 'Call requested' : 'Brief sent') : booking ? 'Request this time' : 'Send my project brief'}</span>
         {state === 'loading' ? <LoaderCircle className="studio-submit-spinner" size={20} /> : state === 'success' ? <Check size={20} /> : <ArrowUpRight size={20} />}
