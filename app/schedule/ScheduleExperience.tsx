@@ -1,17 +1,14 @@
 'use client';
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
+import Image from 'next/image';
 import {
   ArrowUpRight,
-  CalendarDays,
   Check,
   ChevronLeft,
   ChevronRight,
-  Clock3,
-  Globe2,
   LoaderCircle,
   Sparkles,
-  Video,
 } from 'lucide-react';
 import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
@@ -204,7 +201,14 @@ export default function ScheduleExperience() {
         <section className="schedule-card studio-width">
           <aside className="call-intro">
             <div className="call-monogram" aria-hidden="true">
-              <CalendarDays size={30} strokeWidth={1.8} />
+              <Image
+                src="/assets/brand/webstell-retro-mac.png"
+                alt=""
+                width={42}
+                height={42}
+                sizes="42px"
+                unoptimized
+              />
             </div>
             <span className="studio-eyebrow">A CONVERSATION WITH WEBSTELL</span>
             <h2>Start with what you know.</h2>
@@ -223,24 +227,10 @@ export default function ScheduleExperience() {
                 </span>
               </div>
             )}
-            <ul>
-              <li>
-                <Clock3 size={18} />
-                30 minutes
-              </li>
-              <li>
-                <Video size={18} />
-                Video call · link after confirmation
-              </li>
-              <li>
-                <Globe2 size={18} />
-                {timeZoneLabel}
-              </li>
-            </ul>
             <div className="call-note">
               Bring your questions.
               <br />
-              Leave with a little more clarity.
+              We’ll help you find the clearest next step.
             </div>
           </aside>
           <div className="calendar-panel">
