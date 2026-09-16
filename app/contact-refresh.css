@@ -848,6 +848,9 @@
     transform: none;
   }
 
+  .contact-file-field { grid-template-columns: 1fr; }
+  .contact-file-field strong { justify-self: start; }
+
   .contact-page-form-card .studio-form {
     gap: 15px;
   }
