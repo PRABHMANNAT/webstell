@@ -1613,6 +1613,10 @@ button:disabled {
   color: #45513d;
   font-size: 13px;
   font-weight: 600;
+  transition: color 0.2s ease;
+}
+.schedule-contact-fields label:focus-within {
+  color: #263b18;
 }
 .schedule-contact-fields input {
   width: 100%;
@@ -1624,11 +1628,17 @@ button:disabled {
   color: #1d251b;
   font: inherit;
   font-weight: 400;
+  box-shadow: 0 0 0 0 #b8dc5d00;
+  transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.18s ease;
 }
 .schedule-contact-fields input:focus {
-  outline: 2px solid #b8dc5d;
-  outline-offset: 2px;
+  outline: 0;
   border-color: #7e9a3b;
+  box-shadow: 0 0 0 4px #b8dc5d3d, 0 8px 20px #536a3514;
+  transform: translateY(-1px);
+}
+.schedule-contact-fields input:active {
+  transform: translateY(0) scale(0.995);
 }
 .schedule-contact-fields input[aria-invalid='true'] {
   border-color: #b85645;
