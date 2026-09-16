@@ -95,11 +95,11 @@
   gap: 18px;
   width: 100%;
   min-height: 60px;
-  border: 1px solid #b9bfba;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #fff, #f0f3f1);
-  box-shadow: 0 8px 22px rgba(20, 33, 27, .06);
-  color: #1b211d;
+  border: 1px solid #2f3934;
+  border-radius: 17px;
+  background: #111514;
+  box-shadow: 0 10px 24px rgba(10, 15, 12, .12);
+  color: #fff;
   cursor: pointer;
   font: inherit;
   font-size: 16px;
@@ -110,8 +110,9 @@
 
 .project-filter-trigger:hover,
 .project-filter.is-open .project-filter-trigger {
-  border-color: #1b211d;
-  box-shadow: 0 12px 30px rgba(20, 33, 27, .12);
+  border-color: #526259;
+  background: #171d1a;
+  box-shadow: 0 15px 30px rgba(10, 15, 12, .18);
 }
 
 .project-filter-trigger:hover {
@@ -119,26 +120,32 @@
 }
 
 .project-filter-trigger:focus-visible {
-  outline: 3px solid rgba(85, 118, 84, .22);
+  outline: 3px solid rgba(200, 243, 93, .5);
   outline-offset: 3px;
 }
 
 .project-filter-chevron {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  background: #1b211d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
   color: #fff;
-  font-size: 20px;
-  line-height: 1;
-  transition: transform .25s ease, background .25s ease;
+  transition: transform .25s ease;
+}
+
+.project-filter-chevron svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
 }
 
 .project-filter.is-open .project-filter-chevron {
   transform: rotate(180deg);
-  background: #567957;
 }
 
 .project-filter-menu {
@@ -147,14 +154,16 @@
   top: calc(100% + 12px);
   right: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  width: min(520px, calc(100vw - 40px));
+  grid-template-columns: 1fr;
+  gap: 3px;
+  width: min(380px, calc(100vw - 32px));
+  max-height: min(560px, calc(100vh - 120px));
+  overflow-y: auto;
   padding: 10px;
-  border: 1px solid rgba(27, 33, 29, .16);
-  border-radius: 22px;
-  background: rgba(251, 253, 251, .97);
-  box-shadow: 0 24px 55px rgba(20, 33, 27, .2);
+  border: 1px solid #303b35;
+  border-radius: 17px;
+  background: rgba(13, 16, 15, .98);
+  box-shadow: 0 24px 55px rgba(0, 0, 0, .35);
   backdrop-filter: blur(18px);
   transform-origin: top right;
   animation: project-filter-in .2s ease both;
@@ -167,33 +176,31 @@
 
 .project-filter-option {
   display: grid;
-  grid-template-columns: 30px minmax(0, 1fr) 18px;
+  grid-template-columns: minmax(0, 1fr) 20px;
   gap: 10px;
   align-items: center;
   min-width: 0;
-  min-height: 76px;
+  min-height: 58px;
   border: 1px solid transparent;
-  border-radius: 15px;
+  border-radius: 11px;
   background: transparent;
-  color: #1b211d;
+  color: #fff;
   cursor: pointer;
   font: inherit;
-  padding: 12px;
+  padding: 10px 11px;
   text-align: left;
   transition: background .2s ease, border-color .2s ease, transform .2s ease;
 }
 
 .project-filter-option:first-child {
-  grid-column: 1 / -1;
-  min-height: 62px;
-  background: #e8efea;
+  min-height: 58px;
 }
 
 .project-filter-option:hover,
 .project-filter-option:focus-visible,
 .project-filter-option.is-selected {
-  border-color: #9eada1;
-  background: #f0f5ee;
+  border-color: #344139;
+  background: #1a211d;
 }
 
 .project-filter-option:hover {
@@ -201,31 +208,22 @@
 }
 
 .project-filter-option:focus-visible {
-  outline: 2px solid #567957;
+  outline: 2px solid #c8f35d;
   outline-offset: 2px;
 }
 
 .project-filter-option.is-selected {
-  border-color: #567957;
-  background: #dbe9d6;
+  border-color: #506341;
+  background: #26352b;
 }
 
-.project-filter-icon {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 9px;
-  background: #1b211d;
-  color: #fff;
+.project-filter-menu-label {
+  padding: 5px 8px 8px;
+  color: #a9b2ac;
   font-family: var(--mono, monospace);
   font-size: 10px;
-  letter-spacing: -.04em;
-}
-
-.project-filter-option:first-child .project-filter-icon {
-  background: #567957;
-  font-size: 15px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
 .project-filter-option strong,
@@ -237,17 +235,18 @@
   font-size: 14px;
   font-weight: 650;
   line-height: 1.15;
+  color: #fff;
 }
 
 .project-filter-option small {
   margin-top: 4px;
-  color: #68716a;
+  color: #a9b2ac;
   font-size: 11px;
   line-height: 1.25;
 }
 
 .project-filter-check {
-  color: #567957;
+  color: #c8f35d;
   font-size: 14px;
   font-weight: 700;
   text-align: right;

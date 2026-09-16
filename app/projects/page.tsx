@@ -33,6 +33,7 @@ export default function ProjectsPage() {
   const [filterOpen, setFilterOpen] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
   const filterMenu = useRef<HTMLDivElement>(null);
+  const filterTrigger = useRef<HTMLButtonElement>(null);
   const activeFilter = projectFilters.find((item) => item.value === filter);
   const visibleProjects = activeFilter?.matches
     ? recentWorkProjects.filter((project) => activeFilter.matches(project.category))
@@ -50,7 +51,9 @@ export default function ProjectsPage() {
       if (!filterMenu.current?.contains(event.target as Node)) setFilterOpen(false);
     };
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setFilterOpen(false);
+      if (event.key !== 'Escape') return;
+      setFilterOpen(false);
+      filterTrigger.current?.focus();
     };
 
     document.addEventListener('mousedown', closeFilter);
@@ -81,21 +84,21 @@ export default function ProjectsPage() {
         <section className="projects-list wrap" aria-labelledby="all-projects-title">
           <div className="projects-list-heading">
             <div>
-              <span className="refresh-eyebrow">{String(visibleProjects.length).padStart(2, '0')} PROJECTS</span>
+              <span className="refresh-eyebrow" aria-live="polite">{String(visibleProjects.length).padStart(2, '0')} PROJECTS</span>
               <h2 id="all-projects-title">All projects.</h2>
             </div>
             <div className={`project-filter${filterOpen ? ' is-open' : ''}`} ref={filterMenu}>
               <span className="project-filter-label">Browse by industry</span>
-              <button type="button" className="project-filter-trigger" onClick={() => setFilterOpen((isOpen) => !isOpen)} aria-expanded={filterOpen} aria-haspopup="listbox" aria-controls="project-filter-menu">
+              <button ref={filterTrigger} type="button" className="project-filter-trigger" onClick={() => setFilterOpen((isOpen) => !isOpen)} aria-expanded={filterOpen} aria-haspopup="menu" aria-controls="project-filter-menu">
                 <span>{activeFilter?.label ?? 'Filter projects'}</span>
-                <span className="project-filter-chevron" aria-hidden="true">⌄</span>
+                <span className="project-filter-chevron" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4" /></svg></span>
               </button>
-              {filterOpen && <div className="project-filter-menu" id="project-filter-menu" role="listbox" aria-label="Project industries">
+              {filterOpen && <div className="project-filter-menu" id="project-filter-menu" role="menu" aria-label="Project industries">
+                <span className="project-filter-menu-label">Choose an industry</span>
                 {projectFilters.map((item, index) => (
-                  <button type="button" role="option" key={item.value} aria-selected={filter === item.value} className={`project-filter-option${filter === item.value ? ' is-selected' : ''}`} onClick={() => { setFilter(item.value); setFilterOpen(false); }}>
-                    <span className="project-filter-icon" aria-hidden="true">{index === 0 ? '✦' : String(index).padStart(2, '0')}</span>
+                  <button type="button" role="menuitemradio" key={item.value} aria-checked={filter === item.value || (filter === '' && index === 0)} className={`project-filter-option${filter === item.value || (filter === '' && index === 0) ? ' is-selected' : ''}`} onClick={() => { setFilter(item.value); setFilterOpen(false); requestAnimationFrame(() => filterTrigger.current?.focus()); }}>
                     <span><strong>{item.label}</strong><small>{item.description}</small></span>
-                    <span className="project-filter-check" aria-hidden="true">{filter === item.value ? '✓' : '↗'}</span>
+                    <span className="project-filter-check" aria-hidden="true">{filter === item.value || (filter === '' && index === 0) ? '✓' : ''}</span>
                   </button>
                 ))}
               </div>}
