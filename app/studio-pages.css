@@ -1618,6 +1618,48 @@ button:disabled {
   font-size: 14px;
   margin-top: 10px;
 }
+.schedule-booking-form {
+  margin-top: 26px;
+}
+.schedule-contact-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.schedule-contact-fields label {
+  display: grid;
+  gap: 8px;
+  color: #45513d;
+  font-size: 13px;
+  font-weight: 600;
+}
+.schedule-contact-fields input {
+  width: 100%;
+  margin: 0;
+  padding: 12px 13px;
+  border: 1px solid #cfd6c5;
+  border-radius: 10px;
+  background: #fff;
+  color: #1d251b;
+  font: inherit;
+  font-weight: 400;
+}
+.schedule-contact-fields input:focus {
+  outline: 2px solid #b8dc5d;
+  outline-offset: 2px;
+  border-color: #7e9a3b;
+}
+.schedule-contact-fields input[aria-invalid='true'] {
+  border-color: #b85645;
+}
+.schedule-field-error,
+.schedule-selection-error {
+  margin: 0;
+  color: #a44031;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+}
 .calendar-month {
   display: flex;
   justify-content: space-between;
@@ -1738,6 +1780,51 @@ button:disabled {
   color: #8a947c;
   margin-top: 17px;
   line-height: 1.6;
+}
+.schedule-submit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 54px;
+  margin-top: 20px;
+  padding: 0 18px 0 22px;
+  border: 0;
+  border-radius: 12px;
+  background: #171717;
+  color: #fff;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.schedule-submit:hover:not(:disabled) {
+  background: #2e3e22;
+  transform: translateY(-1px);
+}
+.schedule-submit:disabled {
+  cursor: not-allowed;
+}
+.schedule-submit-spinner {
+  animation: schedule-spin 0.8s linear infinite;
+}
+.schedule-submit-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 12px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.schedule-submit-message.is-error {
+  color: #a44031;
+}
+.schedule-submit-message.is-success {
+  color: #315d25;
+}
+@keyframes schedule-spin {
+  to { transform: rotate(360deg); }
 }
 .schedule-details {
   padding-top: 70px;
@@ -2519,6 +2606,10 @@ button:disabled {
   }
   .calendar-panel {
     padding: 25px 20px;
+  }
+  .schedule-contact-fields {
+    grid-template-columns: 1fr;
+    gap: 13px;
   }
   .calendar-heading h2 {
     font-size: 23px;

@@ -7,6 +7,7 @@ type EnquiryInput = {
   kind?: unknown;
   name?: unknown;
   email?: unknown;
+  phone?: unknown;
   whatsapp?: unknown;
   businessName?: unknown;
   projectType?: unknown;
@@ -41,7 +42,7 @@ function validate(raw: EnquiryInput) {
     kind,
     name: value(raw.name, 100),
     email: value(raw.email, 200).toLowerCase(),
-    whatsapp: value(raw.whatsapp, 30),
+    phone: value(raw.phone, 30) || value(raw.whatsapp, 30),
     businessName: value(raw.businessName, 150),
     projectType: value(raw.projectType, 120),
     projectGoal: value(raw.projectGoal, 4_000),
@@ -54,16 +55,22 @@ function validate(raw: EnquiryInput) {
 
   if (!data.submissionId) errors.form = 'Please reload the page and try again.';
   if (data.name.length < 2) errors.name = 'Please enter your name.';
-  if (!data.email && !data.whatsapp)
+  if (data.kind === 'call_request' && !data.phone) {
+    errors.phone = 'Add a phone number so we can confirm your call.';
+  }
+  if (data.kind !== 'call_request' && !data.email && !data.phone) {
     errors.contact = 'Add an email address or WhatsApp number so we can reply.';
+  }
   if (data.email && !validEmail(data.email))
     errors.email = 'Enter a valid email address.';
-  if (data.whatsapp && !validWhatsApp(data.whatsapp))
-    errors.whatsapp =
-      'Enter a valid WhatsApp number, including the country code.';
+  if (data.phone && !validWhatsApp(data.phone))
+    errors[data.kind === 'call_request' ? 'phone' : 'whatsapp'] =
+      data.kind === 'call_request'
+        ? 'Enter a valid phone number, including the country code.'
+        : 'Enter a valid WhatsApp number, including the country code.';
   if (!data.projectType)
     errors.projectType = 'Choose what you would like us to build.';
-  if (data.projectGoal.length < 12)
+  if (data.kind !== 'call_request' && data.projectGoal.length < 12)
     errors.projectGoal = 'Tell us a little more about the result you need.';
   if (data.targetDate && !/^\d{4}-\d{2}-\d{2}$/.test(data.targetDate))
     errors.targetDate = 'Choose a valid target date.';
@@ -84,7 +91,7 @@ function labelledFields(data: ReturnType<typeof validate>['data']) {
     ],
     ['Name', data.name],
     ['Email', data.email || 'Not provided'],
-    ['WhatsApp', data.whatsapp || 'Not provided'],
+    ['Phone / WhatsApp', data.phone || 'Not provided'],
     ['Business', data.businessName || 'Not provided'],
     ['What they need', data.projectType],
     ['What success should look like', data.projectGoal],
@@ -139,7 +146,10 @@ export async function POST(request: Request) {
     const { error } = await resend.emails.send(
       {
         from,
-        to: teamEmail,
+        to:
+          data.kind === 'call_request'
+            ? 'contact@webstell-studio.com'
+            : teamEmail,
         replyTo: data.email || undefined,
         subject:
           data.kind === 'call_request'
