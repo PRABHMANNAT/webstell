@@ -230,6 +230,14 @@ export function StudioFooter() {
             <Link href="/contact">Discuss your project</Link>
             <Link href="/schedule">Request a call</Link>
           </div>
+          <div className="studio-footer-policies">
+            <span>POLICIES</span>
+            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/terms">Terms of Use</Link>
+            <Link href="/cookies">Cookie Policy</Link>
+            <Link href="/refunds">Refund &amp; Cancellation</Link>
+            <Link href="/accessibility">Accessibility</Link>
+          </div>
         </nav>
         <div className="studio-footer-meta">
           <span>Based in India. Building everywhere.</span>

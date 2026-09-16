@@ -158,6 +158,7 @@ export default function Home() {
    <nav className="footer-links" aria-label="Footer navigation">
     <div className="footer-link-group"><span className="footer-nav-label">Explore</span><a href="/">Home</a><a href="/services">Services</a><a href="/projects">Work</a><a href="/pricing">Pricing</a></div>
     <div className="footer-link-group"><span className="footer-nav-label">Company</span><a href="/#insights">Why WEBSTELL</a><a href="/#team">Our team</a><a href="/#faq">FAQs</a><a href="/contact">Contact</a></div>
+    <div className="footer-link-group footer-policies"><span className="footer-nav-label">Policies</span><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="/cookies">Cookie Policy</a><a href="/refunds">Refund &amp; Cancellation</a><a href="/accessibility">Accessibility</a></div>
    </nav>
   </div>
   <div className="footer-wordmark" aria-hidden="true">WEBSTELL</div>
