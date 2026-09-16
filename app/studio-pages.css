@@ -1674,7 +1674,9 @@ button:disabled {
   color: #e5fbbe;
 }
 .calendar-grid button.today {
-  border-color: #a8b78e;
+  background: #171717;
+  border-color: #171717;
+  color: #fff;
 }
 .time-heading {
   display: flex;
