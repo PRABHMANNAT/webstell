@@ -1541,6 +1541,8 @@ button:disabled {
   overflow: hidden;
 }
 .call-intro {
+  display: flex;
+  flex-direction: column;
   padding: 40px;
   background: #171717;
   color: #fff;
@@ -1577,7 +1579,7 @@ button:disabled {
 .call-note {
   font-size: 18px;
   line-height: 1.5;
-  margin-top: 32px;
+  margin-top: auto;
   padding-top: 25px;
   border-top: 1px solid #454545;
   color: #fff;
