@@ -350,6 +350,17 @@
 @media (max-width:767px){.team-front{grid-template-rows:minmax(0,1fr) 118px}.team-meta>.team-value{margin-top:10px;color:#d7ff46;font-size:12px;line-height:1.35;opacity:1;transform:none;visibility:visible;transition:none}}
 @media (prefers-reduced-motion:reduce){.team-meta>.team-value{transition:none}}
 
+/* Keep each portrait edge-to-edge, with its identity legible inside the image. */
+.team-front{display:block}
+.team-front .team-photo{position:absolute;inset:0;border-radius:inherit}
+.team-front::after{position:absolute;z-index:1;right:0;bottom:0;left:0;height:48%;background:linear-gradient(to bottom,transparent 0%,rgba(10,10,10,.08) 18%,rgba(10,10,10,.9) 100%);content:'';pointer-events:none}
+.team-front .team-meta{position:absolute;z-index:2;right:0;bottom:0;left:0;margin:0;padding:42px 22px 22px;border:0;color:#fff}
+.team-front .team-meta>span{color:#fff;font-size:14px;font-weight:600;letter-spacing:.035em}
+.team-front .team-meta p{margin-top:6px;color:rgba(255,255,255,.78);font-size:14px}
+.team-front .team-meta>.team-value{display:none}
+.team-back .team-meta{border-left:0}
+@media (max-width:767px){.team-front .team-meta{padding:36px 16px 16px}.team-front .team-meta>span{font-size:12px}.team-front .team-meta p{font-size:13px}}
+
 /* The team CTA carries the same forward energy as the project links. */
 .team-story{position:relative;isolation:isolate;overflow:hidden;transition:transform 250ms ease-out,box-shadow 250ms ease-out}
 .team-story::before{content:'';position:absolute;z-index:0;inset:0;background:#d7ff46;transform:translateX(-115%) skewX(-14deg);transition:transform 280ms ease-out}
