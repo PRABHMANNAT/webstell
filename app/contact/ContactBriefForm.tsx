@@ -173,7 +173,7 @@ export default function ContactBriefForm() {
       </fieldset>
 
       <label>
-        Project description <span className="contact-optional-label">optional</span>
+        Project description
         <textarea name="projectGoal" rows={5} maxLength={4000} placeholder="What are you trying to achieve, and what would a strong outcome look like?" />
       </label>
 
