@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
+import ServiceShowcase from '../ServiceShowcase';
+import SocialWorkGallery from '../SocialWorkGallery';
 import './services.css';
 
 const serviceList = [
@@ -59,6 +61,9 @@ export default function ServicesPage() {
             <source src="/assets/services/services-hero.mp4" type="video/mp4" />
           </video>
         </section>
+
+        <ServiceShowcase />
+        <SocialWorkGallery />
 
         <section className="services-page-list studio-width" aria-label="WEBSTELL services">
           {serviceList.map((service) => (

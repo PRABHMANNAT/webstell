@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -135,13 +135,18 @@ export default function StudioNav({ current = '' }: { current?: string }) {
 
   const toggleMenu = () => setMenu((isOpen) => !isOpen);
   const closeMenu = () => setMenu(false);
+  const navigateWithDocument = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    window.location.assign(event.currentTarget.href);
+  };
 
   return (
     <>
       <header className={scrolled ? 'site-header is-scrolled' : 'site-header'}>
         <div className="header wrap">
           <div className="nav-capsule">
-            <Link className="nav-mark" href="/" aria-label="WEBSTELL home">
+            <Link className="nav-mark" href="/" aria-label="WEBSTELL home" prefetch={false} onClick={navigateWithDocument}>
               <Image
                 src="/assets/brand/webstell-retro-mac.png"
                 alt=""
@@ -162,11 +167,15 @@ export default function StudioNav({ current = '' }: { current?: string }) {
                 <Link
                   key={href}
                   href={href}
+                  prefetch={false}
                   ref={index === 0 ? firstLinkRef : undefined}
                   aria-current={
                     pathname === href || current === label.toLowerCase() ? 'page' : undefined
                   }
-                  onClick={closeMenu}
+                  onClick={(event) => {
+                    closeMenu();
+                    navigateWithDocument(event);
+                  }}
                 >
                   {label}
                 </Link>
@@ -188,6 +197,8 @@ export default function StudioNav({ current = '' }: { current?: string }) {
           <Link
             className="hire-pill"
             href="/contact"
+            prefetch={false}
+            onClick={navigateWithDocument}
           >
             <span aria-hidden="true">
               <ArrowUpRight size={22} />
