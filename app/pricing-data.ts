@@ -64,6 +64,15 @@ export const projectTypes = [
 export type ProjectTypeId = (typeof projectTypes)[number]['id'];
 
 export const extras = [
+  { id: 'menu', name: 'Digital restaurant menu', detail: 'Show dishes, prices and dietary notes from a QR link.', price: 3000, effort: 1, availableFor: ['website'] as ProjectTypeId[], recommendedFor: [] as ProjectTypeId[] },
+  { id: 'reviews', name: 'Customer reviews', detail: 'Display testimonials you approve to help new customers decide.', price: 2000, effort: 1, availableFor: ['website', 'portfolio'] as ProjectTypeId[], recommendedFor: [] as ProjectTypeId[] },
+  { id: 'case-studies', name: 'Detailed work stories', detail: 'Show your process, project photos and results in a reusable layout.', price: 3500, effort: 1, availableFor: ['portfolio'] as ProjectTypeId[], recommendedFor: ['portfolio'] as ProjectTypeId[] },
+  { id: 'discounts', name: 'Discount codes', detail: 'Create offers customers can apply at checkout.', price: 3000, effort: 1, availableFor: ['store'] as ProjectTypeId[], recommendedFor: [] as ProjectTypeId[] },
+  { id: 'shipping', name: 'Shipping updates', detail: 'Connect one supported delivery provider for order tracking.', price: 5000, effort: 1, availableFor: ['store'] as ProjectTypeId[], recommendedFor: ['store'] as ProjectTypeId[] },
+  { id: 'reports', name: 'Business reports', detail: 'See agreed totals and trends and download a spreadsheet.', price: 6000, effort: 1, availableFor: ['software'] as ProjectTypeId[], recommendedFor: ['software'] as ProjectTypeId[] },
+  { id: 'roles', name: 'Team access levels', detail: 'Choose which information each team role can view or edit.', price: 5000, effort: 1, availableFor: ['software'] as ProjectTypeId[], recommendedFor: [] as ProjectTypeId[] },
+  { id: 'notifications', name: 'App notifications', detail: 'Send useful reminders to users who allow notifications.', price: 5000, effort: 1, availableFor: ['mobile'] as ProjectTypeId[], recommendedFor: ['mobile'] as ProjectTypeId[] },
+  { id: 'offline', name: 'Use key information offline', detail: 'Save agreed content on the device for use without internet.', price: 7000, effort: 2, availableFor: ['mobile'] as ProjectTypeId[], recommendedFor: [] as ProjectTypeId[] },
   {
     id: 'chatbot',
     name: 'A chatbot for visitors',
