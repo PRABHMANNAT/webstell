@@ -13,11 +13,13 @@
 .pricing-page .pricing-price strong{flex:0 0 auto;font-size:clamp(24px,3vw,42px);letter-spacing:-.06em;white-space:nowrap}
 .pricing-page .pricing-includes li{line-height:1.5;margin-bottom:13px}
 .pricing-page .pricing-description,.pricing-page .pricing-audience{line-height:1.55}
-.pricing-page .pricing-custom{background:#f4f4f4}
-.pricing-page .pricing-custom::after{color:#c8ff63}
-.pricing-page .pricing-custom p{margin-bottom:30px}
-.pricing-page .pricing-custom button{position:relative;z-index:1;display:inline-flex;align-items:center;gap:18px;background:#171717;color:white;border:0;border-radius:999px;padding:17px 22px;font:inherit;cursor:pointer}
-.pricing-page .pricing-custom button:hover{background:#c8ff63;color:#171717}
+.pricing-page .pricing-custom{background:linear-gradient(90deg,rgba(8,18,13,.92) 0%,rgba(8,18,13,.78) 48%,rgba(8,18,13,.58) 100%),url('/assets/pricing-custom-background.png') center / cover}
+.pricing-page .pricing-custom::after{display:none}
+.pricing-page .pricing-custom h2{color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.42)}
+.pricing-page .pricing-custom h2 em{color:#c8ff63}
+.pricing-page .pricing-custom p{margin-bottom:30px;color:#f3f6ef;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.pricing-page .pricing-custom button{position:relative;z-index:1;display:inline-flex;align-items:center;gap:18px;background:#c8ff63;color:#171717;border:0;border-radius:999px;padding:17px 22px;font:inherit;font-weight:700;cursor:pointer}
+.pricing-page .pricing-custom button:hover{background:#fff;color:#171717}
 .pricing-page .faq-inline-link{display:inline-flex;padding:12px 18px;border-radius:999px;background:#c8ff63;color:#171717;margin-top:20px}
 .pricing-page .estimate-builder{background:#fff;border:1px solid #d9d9d9;border-radius:24px;box-shadow:0 12px 40px #00000008}
 .pricing-page .estimate-builder::before{display:none}
