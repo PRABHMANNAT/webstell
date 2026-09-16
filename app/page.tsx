@@ -22,7 +22,7 @@ const featuredProjects = [
 ];
 const whyWebstellCards = [
  {eyebrow:'WHY CHOOSE WEBSTELL',title:'Clarity first. Character always.',text:'Most agencies deliver a polished page. WEBSTELL brings strategy, state-of-the-art design and production-grade engineering together—so your business is easier to trust, harder to ignore and ready to perform long after launch.'},
- {eyebrow:'WHAT WE PROVIDE',title:'Websites, digital products and smarter systems.',text:'From a first impression to the work behind it, we build the pieces that help your business move.'},
+ {eyebrow:'WHAT WE PROVIDE',title:'Websites, digital products and smarter systems.'},
  {eyebrow:'HOW WE WORK',title:'Find the focus. Build with intent. Keep moving.',text:'A clear process, direct collaboration and no unnecessary layers between a good idea and a finished result.'},
 ];
 export default function Home() {
@@ -105,7 +105,7 @@ export default function Home() {
    <div className="insight-grid" id="insight-grid">
     <div className="insight-image insight-image-red"><img src="/assets/insights-red.avif" alt="WEBSTELL design direction" loading="lazy"/></div>
     <article className="insight-card featured"><span>{whyWebstellCards[0].eyebrow}</span><h3>{whyWebstellCards[0].title}</h3><p>{whyWebstellCards[0].text}</p><footer><button onClick={()=>setContact(true)} aria-label="Start your project">↗</button></footer></article>
-    <article className="insight-card"><span>{whyWebstellCards[1].eyebrow}</span><h3>{whyWebstellCards[1].title}</h3><p>{whyWebstellCards[1].text}</p><footer><small>01 — 03<br/><b>What we provide</b></small><button onClick={()=>setContact(true)} aria-label="Start your project">↗</button></footer></article>
+    <article className="insight-card"><span>{whyWebstellCards[1].eyebrow}</span><h3>{whyWebstellCards[1].title}</h3><ul className="insight-services"><li>Websites</li><li>Online stores</li><li>Custom software</li><li>Mobile apps</li><li>Chatbots &amp; automation</li><li>Branding &amp; UI/UX</li></ul><footer><small>01 — 03<br/><b>What we provide</b></small><button onClick={()=>setContact(true)} aria-label="Start your project">↗</button></footer></article>
     <div className="insight-image insight-image-blue"><img src="/assets/insights-blue.avif" alt="WEBSTELL digital product direction" loading="lazy"/></div>
     <article className="insight-card wide"><span>{whyWebstellCards[2].eyebrow}</span><h3>{whyWebstellCards[2].title}</h3><p>{whyWebstellCards[2].text}</p><footer><small>01 Find focus · 02 Build with intent · 03 Keep moving</small><button onClick={()=>setContact(true)} aria-label="Start your project">↗</button></footer></article>
    </div>
