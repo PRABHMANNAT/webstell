@@ -185,7 +185,7 @@ export default function ContactBriefForm() {
         <div className="contact-optional-details-body">
           <div className="studio-form-row">
             <label>
-              Budget <span>(optional)</span>
+              Budget
               <select name="budgetRange" defaultValue="">
                 <option value="">Not sure yet</option>
                 <option>₹15,000 to ₹25,000</option>
@@ -196,18 +196,18 @@ export default function ContactBriefForm() {
               </select>
             </label>
             <label>
-              Target delivery date <span>(optional)</span>
+              Target delivery date
               <input name="targetDate" type="date" />
             </label>
           </div>
           <label className="contact-file-field">
-            <span>Requirement file, PRD or brief <em>(optional · PDF, document or image · max 2.4 MB)</em></span>
+            <span>Requirement file, PRD or brief <em>PDF, document or image · max 2.4 MB</em></span>
             <input name="projectFile" type="file" accept=".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg,.webp" onChange={chooseAttachment} aria-invalid={Boolean(errors.attachment)} aria-describedby={errors.attachment ? 'contact-attachment-error' : undefined} />
             <strong>{attachment ? attachment.name : 'Choose a file'}</strong>
             <FieldError id="contact-attachment-error" message={errors.attachment} />
           </label>
           <label>
-            Reference link <span>(optional)</span>
+            Reference link
             <input name="referenceLinks" type="url" inputMode="url" placeholder="A website, doc, Figma file or examples you like" maxLength={2000} />
           </label>
         </div>
