@@ -360,15 +360,7 @@ export default function PricingExperience() {
                 </div>
               )}
             </dl>
-            <a
-              href="#project-enquiry"
-              className="studio-button lime-button estimate-cta"
-            >
-              <span>Continue with this estimate</span>
-              <span className="estimate-cta-arrow">
-                <ArrowUpRight size={20} />
-              </span>
-            </a>
+            <BriefForm context={context} projectType={project.name} compact />
             <a href={callHref} className="receipt-call-link">
               Still undecided? Request a 30-minute call <ArrowUpRight size={16} />
             </a>
@@ -415,42 +407,6 @@ export default function PricingExperience() {
             <a href={callHref}>
               Talk through the bigger picture <ArrowUpRight size={18} />
             </a>
-          </div>
-        </section>
-
-        <section className="enquiry-layout studio-width" id="project-enquiry">
-          <div className="enquiry-copy">
-            <span className="studio-eyebrow">READY WHEN YOU ARE</span>
-            <h2>
-              Make it
-              <br />
-              <span>more yours.</span>
-            </h2>
-            <p>
-              Add the context the calculator can’t see. Your chosen features,
-              scope and estimate will travel with the brief.
-            </p>
-            <div className="enquiry-total">
-              <span>Your current estimate</span>
-              <strong>{money(total)}</strong>
-            </div>
-            <div className="enquiry-reassurance">
-              <Sparkles size={18} />
-              <span>
-                No pressure, no commitment. We’ll come back with the clearest
-                next step for your project.
-              </span>
-            </div>
-            <p className="pricing-smallprint">
-              The estimate includes the selected scope only. Premium domains,
-              renewals, hosting, taxes where applicable, payment fees and
-              third-party subscriptions are separate. Software and app work is
-              confirmed after discovery.
-            </p>
-          </div>
-          <div className="enquiry-form-panel">
-            <span className="form-panel-kicker">YOUR DETAILS, IN YOUR WORDS</span>
-            <BriefForm context={context} projectType={project.name} compact />
           </div>
         </section>
 
