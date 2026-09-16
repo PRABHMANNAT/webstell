@@ -50,7 +50,6 @@ export default function ProjectsPage() {
                 </button>
                 <div className="project-title-row">
                   <h3>{project.title}</h3>
-                  <button className="project-view" onClick={() => setSelected(project)}>View direction ↗</button>
                 </div>
                 <p className="project-category">{project.category}</p>
                 <p className="project-description">{project.description}</p>

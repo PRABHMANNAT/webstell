@@ -257,6 +257,278 @@ export const recentWorkProjects:Project[] = [
     description: 'A WEBSTELL travel concept shaped to turn vivid safari inspiration into confident, considered itinerary enquiries.',
     image: '/assets/recent-work/safario.png',
     kind: 'Design concept'
+  },
+  {
+    id: 'bakery-co',
+    title: 'Bakery Co.',
+    category: 'Food & Drink',
+    description: 'A WEBSTELL bakery concept that pairs the warmth of a neighbourhood counter with a clear path to the daily menu.',
+    image: '/assets/recent-work/bakery-co.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'twofive',
+    title: 'Twofive',
+    category: 'Food & Drink',
+    description: 'A WEBSTELL coffee concept built around a crisp visual identity, opening hours and an unhurried morning ritual.',
+    image: '/assets/recent-work/twofive.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'common-grounds',
+    title: 'Common Grounds',
+    category: 'Food & Drink',
+    description: 'A WEBSTELL coffee concept that gives a simple cup, a strong message and local details equal presence.',
+    image: '/assets/recent-work/common-grounds.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'harbor-favorites',
+    title: 'Harbor Favorites',
+    category: 'Food & Drink',
+    description: 'A WEBSTELL menu concept that makes popular drinks feel instantly browseable across desktop and mobile.',
+    image: '/assets/recent-work/harbor-favorites.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'deux',
+    title: 'Deux',
+    category: 'Food & Drink',
+    description: 'A WEBSTELL bakery concept with expressive type, generous product photography and a playful shopfront energy.',
+    image: '/assets/recent-work/deux.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'latte-haven',
+    title: 'Latte Haven',
+    category: 'Food & Drink',
+    description: 'A WEBSTELL café concept that turns a good coffee, a welcoming room and the menu into one calm invitation.',
+    image: '/assets/recent-work/latte-haven.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'latte-haven-journal',
+    title: 'Latte Haven Journal',
+    category: 'Food & Drink',
+    description: 'A WEBSTELL editorial concept that lets a café extend its story through thoughtful origin notes and image-led articles.',
+    image: '/assets/recent-work/latte-haven-journal.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'mewar',
+    title: 'Mewar',
+    category: 'Culture & Hospitality',
+    description: 'A WEBSTELL fine-dining concept that brings heritage, craft and the dining experience together in a rich visual world.',
+    image: '/assets/recent-work/mewar.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'velox',
+    title: 'Velox',
+    category: 'Logistics & Technology',
+    description: 'A WEBSTELL port-technology concept that makes complex automation feel visible, immediate and ready to act on.',
+    image: '/assets/recent-work/velox.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'altruist-mission',
+    title: 'Altruist Mission',
+    category: 'Nonprofit & Community',
+    description: 'A WEBSTELL impact-report concept that uses vivid stories and clear goals to make progress feel tangible.',
+    image: '/assets/recent-work/altruist-mission.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'altruist-impact',
+    title: 'Altruist',
+    category: 'Nonprofit & Community',
+    description: 'A WEBSTELL giving concept designed to turn a shared purpose into a direct, human donation journey.',
+    image: '/assets/recent-work/altruist-impact.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'matter',
+    title: 'Matter',
+    category: 'Creative Agency',
+    description: 'A WEBSTELL studio concept that layers motion, playful objects and a direct point of view into a memorable introduction.',
+    image: '/assets/recent-work/matter.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'agriculture-consulting',
+    title: 'Agriculture Consulting',
+    category: 'Agriculture & Sustainability',
+    description: 'A WEBSTELL consultancy concept that gives practical farm guidance a confident, modern presentation.',
+    image: '/assets/recent-work/agriculture-consulting.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'farmio',
+    title: 'Farmio',
+    category: 'Agriculture & Technology',
+    description: 'A WEBSTELL agriculture concept that connects smart farming tools with a clear, growth-focused story.',
+    image: '/assets/recent-work/farmio.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'alpine-planner',
+    title: 'Alpine Planner',
+    category: 'Travel & Lifestyle',
+    description: 'A WEBSTELL trip-planning concept that maps a changing route, useful details and the feeling of the outdoors.',
+    image: '/assets/recent-work/alpine-planner.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'nomia-plans',
+    title: 'Nomia Plans',
+    category: 'Travel & Lifestyle',
+    description: 'A WEBSTELL travel-planning concept that makes every itinerary easy to shape, adjust and carry with you.',
+    image: '/assets/recent-work/nomia-plans.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'nexura',
+    title: 'Nexura',
+    category: 'Technology & AI',
+    description: 'A WEBSTELL AI-operations concept that makes an ambitious product story feel approachable from the first screen.',
+    image: '/assets/recent-work/nexura.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'montana',
+    title: 'Montana',
+    category: 'Creative Agency',
+    description: 'A WEBSTELL agency concept that gives bold strategy, editorial design and client proof an unmistakable stage.',
+    image: '/assets/recent-work/montana.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'rumaya',
+    title: 'Rumaya',
+    category: 'Travel & Stays',
+    description: 'A WEBSTELL retreat concept that turns rooms, stories and quiet hospitality into a considered booking journey.',
+    image: '/assets/recent-work/rumaya.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'elian-valen',
+    title: 'Elian Valen',
+    category: 'Fashion & Accessories',
+    description: 'A WEBSTELL fashion concept where a new collection reads with the focus and confidence of an editorial campaign.',
+    image: '/assets/recent-work/elian-valen.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'fathom',
+    title: 'Fathom',
+    category: 'Creative Agency',
+    description: 'A WEBSTELL marketing-agency concept that balances an artful visual world with confident, strategic positioning.',
+    image: '/assets/recent-work/fathom.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'vinea-journal',
+    title: 'Vinea Journal',
+    category: 'Food, Drink & Culture',
+    description: 'A WEBSTELL winery-journal concept that gives seasonal stories, place and product a soft, hand-crafted rhythm.',
+    image: '/assets/recent-work/vinea-journal.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'kriste',
+    title: 'Kristé',
+    category: 'Beauty & Wellness',
+    description: 'A WEBSTELL skincare concept that helps customers understand their routine and explore a curated product range.',
+    image: '/assets/recent-work/kriste.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'echelon',
+    title: 'Echelon',
+    category: 'Creative Agency',
+    description: 'A WEBSTELL digital-agency concept with a high-energy visual system built to make ambition impossible to miss.',
+    image: '/assets/recent-work/echelon.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'ora',
+    title: 'Ora',
+    category: 'Fashion & Accessories',
+    description: 'A WEBSTELL accessories concept that treats a sculptural product as the centrepiece of a polished shopping story.',
+    image: '/assets/recent-work/ora.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'flow',
+    title: 'Flow',
+    category: 'Health & Fitness',
+    description: 'A WEBSTELL wellbeing concept that makes finding balance, a class and a next step feel more personal.',
+    image: '/assets/recent-work/flow.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'velour',
+    title: 'Velour',
+    category: 'Fashion & Accessories',
+    description: 'A WEBSTELL fashion concept that brings motion, product details and contemporary styling into one clean collection view.',
+    image: '/assets/recent-work/velour.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'zenova',
+    title: 'Zenova',
+    category: 'Health & Wellness',
+    description: 'A WEBSTELL health concept that turns a personal care journey into an approachable, mobile-first experience.',
+    image: '/assets/recent-work/zenova.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'velora',
+    title: 'Velora',
+    category: 'Home & Interiors',
+    description: 'A WEBSTELL lighting concept that gives a statement piece the scale, atmosphere and detail of an object worth living with.',
+    image: '/assets/recent-work/velora.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'averon',
+    title: 'Averon',
+    category: 'Fintech & Technology',
+    description: 'A WEBSTELL payments concept that turns technical infrastructure into a sharp, direct B2B proposition.',
+    image: '/assets/recent-work/averon.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'revolut-racing',
+    title: 'Revolut Racing',
+    category: 'Automotive & Technology',
+    description: 'A WEBSTELL motorsport concept that uses pace, precision and a dramatic visual system to create instant impact.',
+    image: '/assets/recent-work/revolut-racing.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'abnormal',
+    title: 'Abnormal',
+    category: 'Fashion & Accessories',
+    description: 'A WEBSTELL fashion concept that lets a bold collection and its attitude lead the entire storefront.',
+    image: '/assets/recent-work/abnormal.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'perf',
+    title: 'Perf.',
+    category: 'Beauty & Fragrance',
+    description: 'A WEBSTELL fragrance concept that gives a considered catalogue the visual restraint and sensory depth it deserves.',
+    image: '/assets/recent-work/perf.png',
+    kind: 'Design concept'
+  },
+  {
+    id: 'chalet',
+    title: 'Chalet',
+    category: 'Travel & Stays',
+    description: 'A WEBSTELL mountain-stay concept that combines a cinematic alpine setting with an effortless route to book.',
+    image: '/assets/recent-work/chalet.png',
+    kind: 'Design concept'
   }
 ];
 
