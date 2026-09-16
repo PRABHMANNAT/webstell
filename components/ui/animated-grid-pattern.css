@@ -1,0 +1,30 @@
+.animated-grid-pattern {
+  color: #111;
+  pointer-events: none;
+}
+
+.animated-grid-pattern-square {
+  fill: currentColor;
+  opacity: 0;
+  animation: animated-grid-pattern-pulse var(--grid-duration) ease-in-out infinite;
+  animation-delay: var(--grid-delay);
+}
+
+@keyframes animated-grid-pattern-pulse {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  36%,
+  64% {
+    opacity: var(--grid-max-opacity);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-grid-pattern-square {
+    animation: none;
+    opacity: calc(var(--grid-max-opacity) * 0.45);
+  }
+}

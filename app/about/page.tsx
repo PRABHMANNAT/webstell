@@ -1,8 +1,8 @@
 import StudioNav, { StudioFooter } from '../StudioNav';
-import Link from 'next/link';
 import TeamSection from '../TeamSection';
 import InternationalProjectsSection from '../InternationalProjectsSection';
 import WhyWebstellSection from '../WhyWebstellSection';
+import AboutCallToAction from './AboutCallToAction';
 import './about.css';
 
 export default function AboutPage() {
@@ -24,11 +24,7 @@ export default function AboutPage() {
 
         <InternationalProjectsSection />
 
-        <section className="about-next studio-width" aria-labelledby="about-next-title">
-          <span>HAVE SOMETHING IN MIND?</span>
-          <h2 id="about-next-title">Let’s make the next move count.</h2>
-          <div><Link className="about-primary" href="/contact">Discuss your project <span aria-hidden="true">↗</span></Link><Link className="about-secondary" href="/projects">See our work <span aria-hidden="true">↗</span></Link></div>
-        </section>
+        <AboutCallToAction />
       </main>
       <StudioFooter />
     </>
