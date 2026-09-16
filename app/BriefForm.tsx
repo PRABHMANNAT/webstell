@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import { ArrowUpRight, Check, Clock3, LoaderCircle, MessageCircle } from 'lucide-react';
 import { whatsappUrl } from './contact-utils';
 
@@ -19,7 +19,8 @@ const projectOptions = [
 ];
 
 function field(form: FormData, name: string) {
-  return String(form.get(name) || '').trim();
+  const input = form.get(name);
+  return typeof input === 'string' ? input.trim() : '';
 }
 
 function clientErrors(form: FormData, booking: boolean) {
@@ -68,7 +69,7 @@ export default function BriefForm({
   const [state, setState] = useState<FormState>('idle');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<FieldErrors>({});
-  const [pricingContext, setPricingContext] = useState('');
+  const pricingContext = useRef('');
   const [customerCopySent, setCustomerCopySent] = useState(false);
   const submissionId = useRef('');
 
@@ -78,11 +79,11 @@ export default function BriefForm({
     const project = (params.get('project') || '').trim().slice(0, 100);
     const estimate = Number(params.get('estimate'));
     if (project && Number.isFinite(estimate) && estimate >= 0 && estimate <= 10_000_000) {
-      setPricingContext(`PRICING ESTIMATE\nProject: ${project}\nIndicative estimate: ₹${Math.round(estimate).toLocaleString('en-IN')}`);
+      pricingContext.current = `PRICING ESTIMATE\nProject: ${project}\nIndicative estimate: ₹${Math.round(estimate).toLocaleString('en-IN')}`;
     }
   }, []);
 
-  async function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
     if (state === 'loading' || state === 'success') return;
     if (onValidate && !onValidate()) return;
@@ -112,7 +113,7 @@ export default function BriefForm({
       budgetRange: estimate !== undefined ? `INR ${estimate}` : booking ? '' : field(form, 'budgetRange'),
       targetDate: booking ? '' : field(form, 'targetDate'),
       referenceLinks: field(form, 'referenceLinks'),
-      context: [context, pricingContext].filter(Boolean).join('\n\n'),
+      context: [context, estimate === undefined ? pricingContext.current : ''].filter(Boolean).join('\n\n'),
       website: field(form, 'website'),
     };
 

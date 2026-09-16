@@ -53,7 +53,7 @@ const plans = [
       'Manage your agreed product catalogue, prices and incoming orders from one place.',
       'We test the shopping journey on phones and walk you through running the store.',
     ],
-    delivery: 'Usually 3–4 weeks',
+    delivery: 'Usually 4–5 weeks',
     type: 'store',
     extras: ['payments'],
     tone: 'growth',

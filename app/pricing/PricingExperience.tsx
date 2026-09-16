@@ -30,17 +30,15 @@ export default function PricingExperience() {
   const [type, setType] = useState('website');
   const [selected, setSelected] = useState<string[]>([]);
   const [ownDomain, setOwnDomain] = useState(false);
-  const extraUnits = 0;
   const [goal, setGoal] = useState('');
   const {
     project,
     additions,
-    unitCost,
     total,
     deposit,
     delivery,
     domainSaving,
-  } = calculateEstimate(type, selected, ownDomain, extraUnits);
+  } = calculateEstimate(type, selected, ownDomain, 0);
   const availableExtras = getAvailableExtras(type);
   const recommendedExtras = availableExtras.filter((item) =>
     item.recommendedFor.includes(project.id),
@@ -55,11 +53,6 @@ export default function PricingExperience() {
     `Starting scope: ${project.includedUnits} ${project.unitLabel}`,
     `Starting price: ${money(project.price)}`,
     ...additions.map((item) => `${item.name}: +${money(item.price)}`),
-    ...(extraUnits
-      ? [
-          `${extraUnits} ${project.extraUnitLabel}${extraUnits === 1 ? '' : 's'}: +${money(unitCost)}`,
-        ]
-      : []),
     domainSaving
       ? 'Client supplies eligible domain: −₹3,500'
       : project.domainEligible
@@ -324,15 +317,6 @@ export default function PricingExperience() {
                   <dd>+{money(item.price)}</dd>
                 </div>
               ))}
-              {extraUnits > 0 && (
-                <div>
-                  <dt>
-                    {extraUnits} {project.extraUnitLabel}
-                    {extraUnits === 1 ? '' : 's'}
-                  </dt>
-                  <dd>+{money(unitCost)}</dd>
-                </div>
-              )}
               {domainSaving > 0 && (
                 <div className="receipt-saving">
                   <dt>You supply the domain</dt>
