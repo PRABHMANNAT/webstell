@@ -16,6 +16,7 @@ import BriefForm from '../BriefForm';
 import FaqAccordion from '../FaqAccordion';
 import PricingSection from '../PricingSection';
 import { pricingFaqs } from './pricing-faqs';
+import { projectGuidance } from './project-guidance';
 import {
   calculateEstimate,
   getAvailableExtras,
@@ -173,9 +174,7 @@ export default function PricingExperience() {
             <div className="included-strip">
               <Check size={16} />
               <span>
-                Starts with {project.includedUnits} {project.unitLabel}, custom
-                design, mobile-ready layouts, search foundations and a launch
-                handover.
+                {projectGuidance[project.id].included}
               </span>
             </div>
 
