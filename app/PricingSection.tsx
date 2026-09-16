@@ -43,14 +43,15 @@ const plans = [
   {
     name: 'Open for business.',
     priceLabel: '₹54,900',
-    audience: 'For products ready to find their people and make buying feel effortless.',
+    audience: 'For cosmetics shops, clothing brands, gift stores and businesses selling physical products online.',
     description:
-      'A considered store experience built around product discovery, checkout and a confident launch.',
+      'Give customers a simple way to find a product, put it in their basket and pay from their phone.',
     features: [
-      'Product catalogue & shopping cart',
-      'Payment gateway integration',
-      'Product management essentials',
-      'Mobile shopping & launch handover',
+      'Product listings show photos, prices and descriptions so customers can choose.',
+      'A shopping basket keeps selected items together before checkout.',
+      'Connect an approved payment provider to take online payments; provider fees are separate.',
+      'Manage your agreed product catalogue, prices and incoming orders from one place.',
+      'We test the shopping journey on phones and walk you through running the store.',
     ],
     delivery: 'Usually 3–4 weeks',
     type: 'store',
