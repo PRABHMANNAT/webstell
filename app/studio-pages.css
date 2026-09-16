@@ -528,10 +528,26 @@
   place-items: center;
   box-shadow: 0 8px 20px #1111112e;
   cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms ease;
 }
 .hire-close svg {
   width: 18px;
   height: 18px;
+}
+.hire-close:hover {
+  background: var(--studio-lime);
+  color: #111311;
+  transform: rotate(90deg) scale(1.06);
+  box-shadow: 0 12px 24px #1111113d;
+}
+.hire-close:focus-visible,
+.hire-option:focus-visible {
+  outline: 3px solid var(--studio-lime);
+  outline-offset: 3px;
 }
 .hire-title[data-slot='dialog-title'] {
   font-size: 40px;
@@ -564,14 +580,9 @@
   color: var(--studio-ink);
   text-decoration: none;
   transition:
-    transform 0.25s,
-    border-color 0.25s,
-    box-shadow 0.25s;
-}
-.hire-option:hover {
-  transform: translateX(4px);
-  border-color: #9ba983;
-  box-shadow: 0 5px 16px #00000006;
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease,
+    box-shadow 220ms ease;
 }
 .hire-option.whatsapp-option {
   background: var(--studio-lime);
@@ -590,6 +601,7 @@
   place-items: center;
   border-radius: 12px;
   flex-shrink: 0;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .whatsapp-option .option-icon {
   background: #111311;
@@ -632,10 +644,30 @@
   background: #111311;
   color: #fff;
   flex-shrink: 0;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .hire-option-dark > svg {
   background: #fff;
   color: #111311;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hire-option:hover {
+    transform: translateY(-4px);
+    border-color: #111311;
+    box-shadow: 0 18px 30px #1111111f;
+  }
+  .whatsapp-option:hover {
+    box-shadow: 0 18px 30px #9fc64a57;
+  }
+  .hire-option:hover .option-icon {
+    transform: rotate(-6deg) scale(1.08);
+  }
+  .hire-option:hover > svg {
+    transform: translate(3px, -3px);
+  }
+}
+.hire-option:active {
+  transform: translateY(-1px) scale(0.985);
 }
 .hire-footnote {
   font-size: 12px;
