@@ -8,7 +8,7 @@ export default function TeamSection() {
       <div className="team-inner">
         <div className="team-heading">
           <div><span className="team-kicker">The people who make it happen.</span><h2 id="team-title">Meet our team</h2></div>
-          <Link className="team-story" href="/contact"><span aria-hidden="true">↗</span> Discuss your project</Link>
+          <Link className="team-story" href="/contact"><span className="team-story-arrow" aria-hidden="true">↗</span><strong>Discuss your project</strong></Link>
         </div>
         <div className="team-grid">
           {team.map(member => (

@@ -349,3 +349,23 @@
 .team-meta>.team-value{margin:12px 0 0;color:#d7ff46;font-size:13px;line-height:1.35;letter-spacing:-.01em;opacity:0;transform:translateY(8px);visibility:hidden;transition:opacity 230ms ease-out,transform 230ms ease-out,visibility 0s linear 230ms}
 @media (max-width:767px){.team-front{grid-template-rows:minmax(0,1fr) 118px}.team-meta>.team-value{margin-top:10px;color:#d7ff46;font-size:12px;line-height:1.35;opacity:1;transform:none;visibility:visible;transition:none}}
 @media (prefers-reduced-motion:reduce){.team-meta>.team-value{transition:none}}
+
+/* The team CTA carries the same forward energy as the project links. */
+.team-story{position:relative;isolation:isolate;overflow:hidden;transition:transform 250ms ease-out,box-shadow 250ms ease-out}
+.team-story::before{content:'';position:absolute;z-index:0;inset:0;background:#d7ff46;transform:translateX(-115%) skewX(-14deg);transition:transform 280ms ease-out}
+.team-story>*{position:relative;z-index:1}
+.team-story-arrow{transition:transform 240ms cubic-bezier(.2,.8,.2,1),background 240ms ease-out,color 240ms ease-out,box-shadow 240ms ease-out}
+@media (hover:hover){.team-story:hover{transform:translateY(-3px);box-shadow:0 14px 30px #00000040}.team-story:hover::before{transform:translateX(0) skewX(-14deg)}.team-story:hover .team-story-arrow{background:#171717;color:#d7ff46;box-shadow:0 0 0 4px #d7ff4640,0 7px 16px #00000030;transform:translate(5px,-5px)}}
+@media (prefers-reduced-motion:reduce){.team-story,.team-story::before,.team-story-arrow{transition:none}}
+
+/* Keep the arrow's motion inside its tile so the CTA never leaves a blank trail. */
+.team-story::before{display:none}
+.team-story-arrow{overflow:hidden;color:transparent}
+.team-story-arrow::before,.team-story-arrow::after{content:'↗';position:absolute;inset:0;display:grid;place-items:center;color:#fff;transition:transform 240ms cubic-bezier(.2,.8,.2,1),opacity 180ms ease-out}
+.team-story-arrow::after{opacity:0;transform:translate(-8px,8px)}
+@media (hover:hover){.team-story:hover .team-story-arrow{background:#171717;color:transparent;box-shadow:0 7px 16px #00000030;transform:none}.team-story:hover .team-story-arrow::before{opacity:0;transform:translate(8px,-8px)}.team-story:hover .team-story-arrow::after{opacity:1;transform:translate(0)}}
+@media (prefers-reduced-motion:reduce){.team-story-arrow::before,.team-story-arrow::after{transition:none}}
+
+/* Use the studio lime as the CTA's clear hover confirmation. */
+.team-story{transition:background 220ms ease-out,color 220ms ease-out,transform 250ms ease-out,box-shadow 250ms ease-out}
+@media (hover:hover){.team-story:hover{background:#d7ff46;color:#171717}.team-story:hover strong{color:#171717}}

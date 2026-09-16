@@ -1,13 +1,15 @@
 export type FaqItem = {
   question: string;
   answer: string;
+  cta?: { href: string; label: string };
 };
 
 export const homepageFaqs: FaqItem[] = [
   {
     question: 'How much does a website cost?',
     answer:
-      'A custom business website currently starts at ₹25,000. The final price depends on the number of pages, content, integrations and features such as payments, bookings or a CMS. You can build a starting estimate on our Pricing page before contacting us.',
+      'A custom business website currently starts at ₹25,000. The final price depends on the number of pages, content, integrations and features such as payments, bookings or a CMS.',
+    cta: { href: '/pricing', label: 'See pricing for your project' },
   },
   {
     question: 'How long does a project take?',

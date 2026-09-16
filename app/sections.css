@@ -44,6 +44,9 @@
 .faq-accordion details:not([open]):hover summary i{transform:none}
 .faq-accordion details[open] summary i{transform:rotate(45deg)}
 .faq-accordion .faq-answer p{padding:0 28px 26px;animation:none}
+.faq-inline-link{display:inline-flex;align-items:center;gap:10px;margin:0 28px 28px;padding:10px 13px 10px 15px;border-radius:999px;background:#d7ff46;color:#171717;font-size:14px;font-weight:700;line-height:1;text-decoration:none;transition:transform .22s ease,box-shadow .22s ease}
+.faq-inline-link span{font-size:17px;transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+@media(hover:hover){.faq-inline-link:hover{transform:translateY(-2px);box-shadow:0 8px 18px #0000002e}.faq-inline-link:hover span{transform:translate(3px,-3px)}}
 .faq-accordion details::details-content{interpolate-size:allow-keywords;height:0;overflow:clip;transition:height .32s ease,content-visibility .32s allow-discrete}
 .faq-accordion details[open]::details-content{height:auto}
 .faq-actions a{position:relative;isolation:isolate;overflow:hidden;gap:20px;font-size:clamp(18px,1.9vw,25px);line-height:1.25;text-decoration:none}
@@ -51,7 +54,7 @@
 .faq-actions a::before{content:"";position:absolute;inset:-80% -30%;z-index:-1;pointer-events:none;background:linear-gradient(110deg,transparent 40%,#ffffff30 50%,transparent 60%);transform:translateX(-100%);transition:transform .65s ease}
 @media(hover:hover) and (prefers-reduced-motion:no-preference){.faq-actions a:hover{transform:translateY(-3px);box-shadow:0 12px 24px #17171720}.faq-actions a:hover::before{transform:translateX(100%)}.faq-actions a:hover>span{transform:translate(3px,-3px) scale(1.06)}}
 .faq-actions a:active{transform:scale(.985)}
-@media(max-width:760px){#faq .queries-intro{padding:30px 0}.faq-accordion .faq-answer p{padding:0 18px 22px}.faq-actions a{min-height:88px}.faq-actions a>span{width:40px;height:40px}}
+@media(max-width:760px){#faq .queries-intro{padding:30px 0}.faq-accordion .faq-answer p{padding:0 18px 22px}.faq-inline-link{margin:0 18px 22px}.faq-actions a{min-height:88px}.faq-actions a>span{width:40px;height:40px}}
 @media(prefers-reduced-motion:reduce){.faq-accordion details::details-content,.faq-actions a::before{transition:none}.faq-actions a:active{transform:none}}
 .pricing-faq{display:grid;grid-template-columns:minmax(240px,.65fr) minmax(0,1.35fr);gap:clamp(32px,7vw,110px);padding:clamp(78px,11vw,148px) 0}.pricing-faq-intro{align-self:start;position:sticky;top:120px}.pricing-faq .studio-eyebrow{display:block;margin-bottom:24px}.pricing-faq h2{margin:0;font-size:clamp(42px,5.3vw,76px);line-height:.94;letter-spacing:-.07em;font-weight:500}.pricing-faq h2 em{font-style:normal;color:#7647ee}.pricing-faq-intro p{max-width:340px;margin:28px 0 0;color:#5b6270;font-size:18px;line-height:1.55}
 @media(max-width:760px){.faq-accordion{gap:8px}.faq-accordion details{border-radius:18px}.faq-accordion summary{gap:15px;padding:19px 18px;font-size:18px;line-height:1.25}.faq-accordion summary i{width:32px;height:32px;font-size:24px}.faq-answer p{padding:0 18px;font-size:16px;line-height:1.58}.faq-accordion details[open] .faq-answer p{padding-bottom:24px}.faq-actions{grid-template-columns:1fr;gap:10px;margin-top:22px}.faq-actions a{min-height:80px;border-radius:20px;padding:16px 18px 16px 22px;font-size:20px}.faq-actions a>span{width:44px;height:44px;font-size:22px}.pricing-faq{grid-template-columns:1fr;gap:38px;padding:78px 0}.pricing-faq-intro{position:static}.pricing-faq .studio-eyebrow{margin-bottom:18px}.pricing-faq h2{font-size:clamp(40px,12vw,54px)}.pricing-faq-intro p{margin-top:20px;font-size:16px}}

@@ -26,6 +26,7 @@ export default function FaqAccordion({ items, className = '' }: FaqAccordionProp
           <div className="faq-answer">
             <div>
               <p>{item.answer}</p>
+              {item.cta && <a className="faq-inline-link" href={item.cta.href}>{item.cta.label}<span aria-hidden="true">↗</span></a>}
             </div>
           </div>
         </details>
