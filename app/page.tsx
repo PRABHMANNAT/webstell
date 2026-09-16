@@ -107,7 +107,7 @@ export default function Home() {
     <article className="insight-card featured"><span>{whyWebstellCards[0].eyebrow}</span><h3>{whyWebstellCards[0].title}</h3><p>{whyWebstellCards[0].text}</p><footer><button onClick={()=>setContact(true)} aria-label="Start your project">↗</button></footer></article>
     <article className="insight-card"><span>{whyWebstellCards[1].eyebrow}</span><h3>{whyWebstellCards[1].title}</h3><ul className="insight-services"><li>Websites</li><li>Online stores</li><li>Custom software</li><li>Mobile apps</li><li>Chatbots &amp; automation</li><li>Branding &amp; UI/UX</li></ul></article>
     <div className="insight-image insight-image-blue"><img src="/assets/insights-blue.avif" alt="WEBSTELL digital product direction" loading="lazy"/></div>
-    <article className="insight-card wide"><span>{whyWebstellCards[2].eyebrow}</span><h3>{whyWebstellCards[2].title}</h3><p>{whyWebstellCards[2].text}</p><footer><small>01 Find focus · 02 Build with intent · 03 Keep moving</small><button onClick={()=>setContact(true)} aria-label="Start your project">↗</button></footer></article>
+    <article className="insight-card wide"><span>{whyWebstellCards[2].eyebrow}</span><h3>{whyWebstellCards[2].title}</h3><p>{whyWebstellCards[2].text}</p></article>
    </div>
   </div>
  </section>
