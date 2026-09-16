@@ -24,14 +24,15 @@ const plans = [
   {
     name: 'Yours to keep fresh.',
     priceLabel: '₹27,000–35,000',
-    audience: 'For teams who want control of everyday updates without losing the craft.',
+    audience: 'For busy restaurants, clinics, growing salons and teams that change offers or services often.',
     description:
-      'A business website with a tailored editing space and a proper walkthrough for your team.',
+      'Keep menus, offers and photos up to date without asking a developer for every small change.',
     features: [
-      'Everything in a business website',
-      'Update text and imagery yourself',
-      'A clear content dashboard',
-      'Walkthrough with your team',
+      'Includes the starter website, contact form, WhatsApp link and mobile layouts.',
+      'Log in to change agreed text, photos, services or menu items yourself.',
+      'An organised editing dashboard makes everyday updates easy to find.',
+      'A guided walkthrough teaches your team how to make and publish changes.',
+      'We agree on the editable areas before building so you know what you control.',
     ],
     delivery: 'Usually 3–4 weeks',
     type: 'website',
