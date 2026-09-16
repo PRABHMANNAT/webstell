@@ -1,4 +1,4 @@
-const tickerItems = ['Websites that win attention', 'Software built to scale', 'Digital experiences that convert', 'WEBSTELL'];
+const tickerItems = ['WEBSITES THAT WORK HARDER', 'PRODUCTS PEOPLE WANT TO USE', 'SYSTEMS THAT MAKE WORK SIMPLER'];
 
 function TickerSet() {
  return <div className="curved-ticker-set" aria-hidden="true">
@@ -7,8 +7,8 @@ function TickerSet() {
 }
 
 export default function CurvedTicker(){
- return <section className="curved-ticker" aria-label="WEBSTELL — websites, software and digital experiences">
-  <span className="sr-only">Websites that win attention. Software built to scale. Digital experiences that convert.</span>
+ return <section className="curved-ticker" aria-label="Websites that work harder. Products people want to use. Systems that make work simpler.">
+  <span className="sr-only">Websites that work harder. Products people want to use. Systems that make work simpler.</span>
   <div className="curved-ticker-track"><TickerSet/><TickerSet/></div>
  </section>;
 }
