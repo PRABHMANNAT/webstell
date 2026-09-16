@@ -160,6 +160,7 @@ export default function BriefForm({
             <input name="email" type="email" autoComplete="email" placeholder="you@company.com" maxLength={200} aria-invalid={Boolean(errors.email || errors.contact)} aria-describedby={errors.email ? 'email-error' : errors.contact ? 'contact-error' : undefined} />
             <FieldError id="email-error" message={errors.email} />
           </label>
+          {compact && <span className="studio-contact-or" aria-hidden="true">or</span>}
           <label>
             WhatsApp
             <input name="whatsapp" type="tel" autoComplete="tel" placeholder="+91 98765 43210" maxLength={30} aria-invalid={Boolean(errors.whatsapp || errors.contact)} aria-describedby={errors.whatsapp ? 'whatsapp-error' : errors.contact ? 'contact-error' : undefined} />
