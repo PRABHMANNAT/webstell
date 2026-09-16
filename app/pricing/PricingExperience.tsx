@@ -6,7 +6,6 @@ import {
   ArrowUpRight,
   Check,
   Clock3,
-  Minus,
   Plus,
   Sparkles,
   SlidersHorizontal,
@@ -21,7 +20,6 @@ import {
   calculateEstimate,
   getAvailableExtras,
   getProjectType,
-  MAX_EXTRA_UNITS,
   money,
   projectTypes,
 } from '../pricing-data';
@@ -31,7 +29,8 @@ export default function PricingExperience() {
   const [type, setType] = useState('website');
   const [selected, setSelected] = useState<string[]>([]);
   const [ownDomain, setOwnDomain] = useState(false);
-  const [extraUnits, setExtraUnits] = useState(0);
+  const extraUnits = 0;
+  const [goal, setGoal] = useState('');
   const {
     project,
     additions,
@@ -51,6 +50,7 @@ export default function PricingExperience() {
   const context = [
     'PROJECT ESTIMATE',
     `Project: ${project.name}`,
+    `Business goal: ${goal || 'To discuss together'}`,
     `Starting scope: ${project.includedUnits} ${project.unitLabel}`,
     `Starting price: ${money(project.price)}`,
     ...additions.map((item) => `${item.name}: +${money(item.price)}`),
@@ -74,6 +74,7 @@ export default function PricingExperience() {
     const nextProject = getProjectType(nextType);
     const nextAvailable = getAvailableExtras(nextType);
     setType(nextType);
+    setGoal('');
     setSelected((current) =>
       current.filter((id) => nextAvailable.some((item) => item.id === id)),
     );
@@ -86,7 +87,7 @@ export default function PricingExperience() {
     setSelected(
       nextExtras.filter((id) => nextAvailable.some((item) => item.id === id)),
     );
-    setExtraUnits(0);
+    setGoal('');
     setOwnDomain(false);
   }
 
@@ -231,48 +232,19 @@ export default function PricingExperience() {
             <div className="builder-section-heading scope-heading">
               <span>03</span>
               <div>
-                <h3>Give it the right amount of room.</h3>
+                <h3>What should this do for you?</h3>
                 <p>
-                  Your starting scope includes {project.includedUnits}{' '}
-                  {project.unitLabel}. Add only what you know you need.
+                  Choose your main goal. This helps us suggest useful features and is included in your brief.
                 </p>
               </div>
             </div>
-            <div className="extra-pages">
-              <div className="scope-copy">
-                <span className="scope-count">
-                  {project.includedUnits + extraUnits} {project.unitLabel}
-                </span>
-                <p>
-                  {extraUnits
-                    ? `${extraUnits} ${project.extraUnitLabel}${extraUnits === 1 ? '' : 's'} · ${money(project.extraUnitPrice)} each`
-                    : `Add ${project.extraUnitLabel}s only if your project needs them.`}
-                </p>
-              </div>
-              <div className="page-stepper" aria-label="Extra project scope">
-                <button
-                  type="button"
-                  onClick={() => setExtraUnits(Math.max(0, extraUnits - 1))}
-                  disabled={extraUnits === 0}
-                  aria-label={`Remove an ${project.extraUnitLabel}`}
-                >
-                  <Minus size={16} />
-                </button>
-                <output aria-label={`Number of ${project.extraUnitLabel}s`}>
-                  {extraUnits}
-                </output>
-                <button
-                  type="button"
-                  onClick={() =>
-                    setExtraUnits(Math.min(MAX_EXTRA_UNITS, extraUnits + 1))
-                  }
-                  disabled={extraUnits === MAX_EXTRA_UNITS}
-                  aria-label={`Add an ${project.extraUnitLabel}`}
-                >
-                  <Plus size={16} />
-                </button>
-              </div>
-            </div>
+            <fieldset className="pricing-goals">
+              <legend className="sr-only">Your main business goal</legend>
+              {projectGuidance[project.id].goals.map((item) => (
+                <label key={item}><input type="radio" name="business-goal" checked={goal === item} onChange={() => setGoal(item)} />{item}</label>
+              ))}
+            </fieldset>
+            <p className="pricing-goal-note">Tell us if you need launch or marketing guidance. We’ll discuss what is included and any paid work before you commit.</p>
 
             {project.domainEligible && (
               <>
