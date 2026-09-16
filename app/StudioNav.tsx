@@ -69,8 +69,8 @@ export function HireDialog({
               />
             </span>
             <div>
-              <strong>Connect on WhatsApp</strong>
-              <p>Say hello. Tell us what you have in mind.</p>
+              <strong>Chat with us on WhatsApp</strong>
+              <p>Tell us your goal—we’ll help you find the fastest way forward.</p>
             </div>
             <ArrowUpRight />
           </a>
