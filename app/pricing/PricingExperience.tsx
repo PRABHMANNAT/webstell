@@ -337,7 +337,7 @@ export default function PricingExperience() {
               Minimum project value: ₹15,000
             </div>
             <span className="receipt-stamp">
-              MADE FOR YOUR BUSINESS. <span>✳</span>
+              WEBSTELL <span>✳</span>
             </span>
           </aside>
         </section>
