@@ -11,7 +11,6 @@ import {
   Video,
 } from 'lucide-react';
 import StudioNav, { StudioFooter } from '../StudioNav';
-import BriefForm from '../BriefForm';
 
 const slots = ['10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00'];
 const timeZones = [
@@ -50,7 +49,6 @@ export default function ScheduleExperience() {
   const [chosen, setChosen] = useState('');
   const [slot, setSlot] = useState('');
   const [timeZone, setTimeZone] = useState('Asia/Kolkata');
-  const [error, setError] = useState('');
   const [pricingHandoff, setPricingHandoff] = useState<{
     project: string;
     estimate: string;
@@ -85,28 +83,10 @@ export default function ScheduleExperience() {
   const maxDate = upperBound ? dateKey(upperBound) : '';
   const timeZoneLabel =
     timeZones.find(({ value }) => value === timeZone)?.label ?? timeZones[0].label;
-  const selectedLabel = chosen
-    ? new Date(chosen + 'T12:00:00').toLocaleDateString('en-IN', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      })
-    : '';
   function isPastSlot(value: string) {
     return (
       !chosen || new Date(`${chosen}T${value}:00+05:30`).getTime() <= Date.now()
     );
-  }
-  function validate() {
-    if (!chosen || !slot || chosen > maxDate || isPastSlot(slot)) {
-      setError(
-        'Please choose a future date and time before preparing your request.',
-      );
-      return false;
-    }
-    setError('');
-    return true;
   }
   return (
     <>
@@ -271,7 +251,6 @@ export default function ScheduleExperience() {
                           onClick={() => {
                             setChosen(key);
                             setSlot('');
-                            setError('');
                           }}
                         >
                           {index + 1}
@@ -310,7 +289,6 @@ export default function ScheduleExperience() {
                       aria-pressed={slot === time}
                       onClick={() => {
                         setSlot(time);
-                        setError('');
                       }}
                     >
                       {slotLabel(time, chosen || today, timeZone)}
@@ -323,54 +301,6 @@ export default function ScheduleExperience() {
               </>
             )}
           </div>
-        </section>
-        <section className="enquiry-layout schedule-details studio-width">
-          <div>
-            <span className="studio-eyebrow">02 / YOUR DETAILS</span>
-            <h2>
-              Who’s joining
-              <br />
-              <span>the conversation?</span>
-            </h2>
-            <p>
-              Share enough context for us to prepare. You do not need a finished brief.
-            </p>
-            <div className="selected-call" aria-live="polite">
-              <CalendarDays size={23} />
-              <div>
-                <strong>
-                  {chosen ? selectedLabel : 'Your preferred date'}
-                </strong>
-                <span>
-                  {slot
-                    ? `${slotLabel(slot)} · 30 minutes · IST`
-                    : 'Choose a date and time above'}
-                </span>
-              </div>
-            </div>
-            {error && (
-              <p className="schedule-error" role="alert">
-                {error}
-              </p>
-            )}
-          </div>
-          <BriefForm
-            compact
-            booking
-            context={
-              [
-                pricingHandoff
-                  ? `PRICING HANDOFF\nProject: ${pricingHandoff.project}\nIndicative estimate: ${pricingHandoff.estimate}`
-                  : '',
-                chosen && slot
-                  ? `CALL REQUEST\nPreferred date: ${selectedLabel}\nPreferred time: ${slotLabel(slot, chosen, timeZone)} · ${timeZoneLabel}\nDuration: 30 minutes\nSubject to confirmation. No booking has been made.`
-                  : '',
-              ]
-                .filter(Boolean)
-                .join('\n\n')
-            }
-            onValidate={validate}
-          />
         </section>
       </main>
       <StudioFooter />
