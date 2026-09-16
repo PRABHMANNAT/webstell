@@ -134,6 +134,8 @@ export default function PricingExperience() {
           </div>
         </section>
 
+        <PricingSection onChoose={applyPlan} />
+
         <section
           className="estimate-layout studio-width"
           id="calculator"
@@ -382,8 +384,6 @@ export default function PricingExperience() {
             </span>
           </aside>
         </section>
-
-        <PricingSection onChoose={applyPlan} />
 
         <section className="pricing-faq studio-width" aria-labelledby="pricing-faq-title">
           <div className="pricing-faq-intro">
