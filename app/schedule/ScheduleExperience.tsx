@@ -183,6 +183,7 @@ export default function ScheduleExperience() {
                       <ChevronLeft size={18} />
                     </button>
                     <button
+                      className="calendar-next"
                       aria-label="Next month"
                       disabled={
                         month.getFullYear() === upperBound.getFullYear() &&

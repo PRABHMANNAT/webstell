@@ -1641,6 +1641,11 @@ button:disabled {
   width: 31px;
   height: 31px;
 }
+.calendar-month button.calendar-next:not(:disabled) {
+  background: #171717;
+  border-color: #171717;
+  color: #fff;
+}
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
