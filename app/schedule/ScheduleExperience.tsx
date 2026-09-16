@@ -460,13 +460,20 @@ export default function ScheduleExperience() {
                     We’ll check the team’s availability, then confirm your call by phone.
                   </p>
                   <button
-                    className={`schedule-submit ${bookingState === 'loading' ? 'is-loading' : ''}`}
+                    className={`schedule-submit ${bookingState === 'loading' ? 'is-loading' : ''} ${bookingState === 'success' ? 'is-success' : ''}`}
                     type="submit"
                     disabled={bookingState === 'loading' || bookingState === 'success'}
                   >
                     <span>{bookingState === 'loading' ? 'Sending your request…' : bookingState === 'success' ? 'Call requested' : 'Request your call'}</span>
                     {bookingState === 'loading' ? <LoaderCircle className="schedule-submit-spinner" size={19} /> : bookingState === 'success' ? <Check size={19} /> : <ArrowUpRight size={19} />}
                   </button>
+                  {bookingState === 'success' && (
+                    <div className="schedule-confetti" aria-hidden="true">
+                      {Array.from({ length: 20 }, (_, index) => (
+                        <span key={index} />
+                      ))}
+                    </div>
+                  )}
                   {bookingState === 'error' && <p className="schedule-submit-message is-error" role="alert">{bookingMessage}</p>}
                   {bookingState === 'success' && <p className="schedule-submit-message is-success" aria-live="polite"><Check size={17} /> {bookingMessage}</p>}
                 </>
