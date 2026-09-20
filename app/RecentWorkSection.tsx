@@ -3,10 +3,13 @@
 import Link from './SiteLink';
 import Image from 'next/image';
 import { recentWorkProjects } from './portfolio-data';
+import { useInViewport } from './useInViewport';
 
 export default function RecentWorkSection() {
+  const { ref, isInViewport } = useInViewport<HTMLElement>('400px', 0);
+
   return (
-    <section className="work wrap" id="projects" aria-labelledby="recent-work-title">
+    <section ref={ref} className="work wrap" id="projects" aria-labelledby="recent-work-title">
       <div className="section-heading">
         <div>
           <h2 id="recent-work-title">Work that works.</h2>
@@ -20,13 +23,17 @@ export default function RecentWorkSection() {
           <article className="project" key={project.id}>
             <Link className="project-preview" href="/projects" aria-label={`View ${project.title} in all projects`}>
               <div className="project-image">
-                <Image
-                  src={project.image}
-                  alt={`${project.title} website design direction`}
-                  fill
-                  sizes="(max-width: 700px) 100vw, 50vw"
-                  unoptimized
-                />
+                {isInViewport && (
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} website design direction`}
+                    fill
+                    sizes="(max-width: 700px) 100vw, 50vw"
+                    loading="lazy"
+                    decoding="async"
+                    unoptimized
+                  />
+                )}
                 <span className="project-arrow" aria-hidden="true">↗</span>
               </div>
             </Link>

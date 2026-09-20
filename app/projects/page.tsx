@@ -8,6 +8,7 @@ import { whatsappUrl } from '../contact-utils';
 import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
 import InternationalProjectsSection from '../InternationalProjectsSection';
+import { useInViewport } from '../useInViewport';
 import './projects.css';
 
 type ProjectFilter = {
@@ -44,6 +45,7 @@ export default function ProjectsPage() {
   const allProjectsRef = useRef<HTMLElement>(null);
   const internationalProjectsRef = useRef<HTMLDivElement>(null);
   const internationalEndRef = useRef<HTMLDivElement>(null);
+  const { ref: projectGridRef, isInViewport: isProjectGridInViewport } = useInViewport<HTMLDivElement>('200px', 0);
   const activeFilter = projectFilters.find((item) => item.value === filter);
   const filterMatches = activeFilter?.matches;
   const visibleProjects = filterMatches
@@ -134,12 +136,12 @@ export default function ProjectsPage() {
               </div>}
             </div>
           </div>
-          <div className="project-grid">
+          <div ref={projectGridRef} className="project-grid">
             {visibleProjects.map((project) => (
               <article className="project" key={project.id}>
                 <a className="project-preview" href={projectWhatsAppUrl(project.title)} target="_blank" rel="noreferrer" aria-label={`Ask WEBSTELL about a website like ${project.title}`}>
                   <div className="project-image">
-                    <Image src={project.image} alt={`${project.title} website design direction`} fill sizes="(max-width: 700px) 100vw, 50vw" unoptimized />
+                    {isProjectGridInViewport && <Image src={project.image} alt={`${project.title} website design direction`} fill sizes="(max-width: 700px) 100vw, 50vw" loading="lazy" decoding="async" unoptimized />}
                     <span className="project-arrow" aria-hidden="true">↗</span>
                   </div>
                 </a>

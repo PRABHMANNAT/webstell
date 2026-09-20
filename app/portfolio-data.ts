@@ -167,7 +167,7 @@ export const recentWorkProjects:Project[] = [
     title: 'Nomia',
     category: 'Travel & Lifestyle',
     description: 'A WEBSTELL travel-planning concept that turns one prompt into the beginning of a tailored journey.',
-    image: '/assets/recent-work/nomia.png',
+    image: '/assets/recent-work/optimized/nomia.webp',
     kind: 'Design concept'
   },
   {
@@ -175,7 +175,7 @@ export const recentWorkProjects:Project[] = [
     title: 'The Stay',
     category: 'Travel & Stays',
     description: 'A WEBSTELL stay concept that brings atmosphere, practical details and a clear booking path into one calm journey.',
-    image: '/assets/recent-work/the-stay.png',
+    image: '/assets/recent-work/optimized/the-stay.webp',
     kind: 'Design concept'
   },
   {
@@ -183,7 +183,7 @@ export const recentWorkProjects:Project[] = [
     title: 'The Course',
     category: 'Leisure & Hospitality',
     description: 'A WEBSTELL course concept that makes a complete landscape easy to understand, explore and plan around.',
-    image: '/assets/recent-work/course.png',
+    image: '/assets/recent-work/optimized/course.webp',
     kind: 'Design concept'
   },
   {
@@ -191,7 +191,7 @@ export const recentWorkProjects:Project[] = [
     title: 'Ferea',
     category: 'Food & Drink',
     description: 'A WEBSTELL coffee concept where rich flavour, distinct character and quick ordering meet in one memorable storefront.',
-    image: '/assets/recent-work/ferea.png',
+    image: '/assets/recent-work/optimized/ferea.webp',
     kind: 'Design concept'
   },
   {
@@ -199,7 +199,7 @@ export const recentWorkProjects:Project[] = [
     title: 'Vantage',
     category: 'Health & Fitness',
     description: 'A WEBSTELL performance concept that helps ambitious players find the right next step with energy and clarity.',
-    image: '/assets/recent-work/vantage.png',
+    image: '/assets/recent-work/optimized/vantage.webp',
     kind: 'Design concept'
   },
   {
@@ -207,7 +207,7 @@ export const recentWorkProjects:Project[] = [
     title: 'GEN-Z Dash',
     category: 'Fashion & Accessories',
     description: 'A WEBSTELL fashion concept where product, identity and attitude arrive with equal impact.',
-    image: '/assets/recent-work/genz.png',
+    image: '/assets/recent-work/optimized/genz.webp',
     kind: 'Design concept'
   },
   {

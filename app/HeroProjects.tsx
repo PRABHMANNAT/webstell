@@ -7,49 +7,49 @@ import { useInViewport } from './useInViewport';
 
 const slides = [
   {
-    image: '/assets/hero-projects/kuvat.png',
+    image: '/assets/hero-projects/optimized/kuvat.webp',
     title: 'Kuvat.',
     category: 'CREATIVE STUDIO',
     description: 'A bold introduction for a brand with something to say.',
   },
   {
-    image: '/assets/hero-projects/hedvig.png',
+    image: '/assets/hero-projects/optimized/hedvig.webp',
     title: 'Hedvig',
     category: 'DIGITAL PRODUCT',
     description: 'A thoughtful product, introduced with colour and character.',
   },
   {
-    image: '/assets/hero-projects/interiors.png',
+    image: '/assets/hero-projects/optimized/interiors.webp',
     title: 'Made for living',
     category: 'HOME & INTERIORS',
     description: 'A considered collection, made easy to explore.',
   },
   {
-    image: '/assets/hero-projects/roofex.png',
+    image: '/assets/hero-projects/optimized/roofex.webp',
     title: 'Roofex',
     category: 'BUSINESS WEBSITE',
     description: 'Clear services and a simple path from visitor to enquiry.',
   },
   {
-    image: '/assets/hero-projects/anclote.png',
+    image: '/assets/hero-projects/optimized/anclote.webp',
     title: 'Anclote',
     category: 'REAL ESTATE',
     description: 'A property experience that lets the spaces do the talking.',
   },
   {
-    image: '/assets/hero-projects/cafes.png',
+    image: '/assets/hero-projects/optimized/cafes.webp',
     title: 'Cafés of India',
     category: 'EDITORIAL & DISCOVERY',
     description: 'Local stories, good coffee, and places worth finding.',
   },
   {
-    image: '/assets/hero-projects/config.png',
+    image: '/assets/hero-projects/optimized/config.webp',
     title: 'Config',
     category: 'EVENT WEBSITE',
     description: 'Big ideas meet a confident, energetic event experience.',
   },
   {
-    image: '/assets/hero-projects/whimsy.png',
+    image: '/assets/hero-projects/optimized/whimsy.webp',
     title: 'Whimsy’s',
     category: 'FOOD & HOSPITALITY',
     description: 'An appetite-first website that brings people to the table.',
@@ -71,7 +71,7 @@ export default function HeroProjects() {
     if (!isInViewport || reducedMotion) return;
     const timer = window.setInterval(() => {
       if (!document.hidden) setActive((index) => (index + 1) % slides.length);
-    }, 1000);
+    }, 4000);
     return () => window.clearInterval(timer);
   }, [isInViewport, reducedMotion]);
   const slide = slides[active];
@@ -94,6 +94,9 @@ export default function HeroProjects() {
       <div className="hero-project-image">
         {slides.map((item, index) => {
           const isCurrentOrNext = index === active || index === (active + 1) % slides.length;
+          const isPrevious = index === (active + slides.length - 1) % slides.length;
+
+          if (!isCurrentOrNext && (active === 0 || !isPrevious)) return null;
 
           return (
             <Image
@@ -106,7 +109,7 @@ export default function HeroProjects() {
               className={index === active ? 'is-active' : ''}
               fill
               sizes="(max-width: 760px) 100vw, 44vw"
-              loading={isCurrentOrNext ? 'eager' : 'lazy'}
+              loading={index === active ? 'eager' : 'lazy'}
               unoptimized
             />
           );
