@@ -4,7 +4,15 @@ import TeamSection from '../TeamSection';
 import InternationalProjectsSection from '../InternationalProjectsSection';
 import WhyWebstellSection from '../WhyWebstellSection';
 import AboutCallToAction from './AboutCallToAction';
+import { createPageMetadata } from '../seo-metadata';
 import './about.css';
+
+export const metadata = createPageMetadata({
+  title: 'About Webstell | Software & Digital Product Agency',
+  description:
+    'Meet Webstell, a hands-on design and development team creating distinctive websites, software and digital products for businesses across markets.',
+  path: '/about',
+});
 
 export default function AboutPage() {
   return (

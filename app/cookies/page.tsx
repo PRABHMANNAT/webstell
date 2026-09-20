@@ -1,9 +1,12 @@
 import LegalPage, { type LegalSection } from '../LegalPage';
+import { createPageMetadata } from '../seo-metadata';
 
-export const metadata = {
-  title: 'Cookie Policy | WEBSTELL',
-  description: 'How WEBSTELL uses cookies and similar technologies.',
-};
+export const metadata = createPageMetadata({
+  title: 'Cookie Policy | Webstell',
+  description:
+    'Learn how Webstell uses cookies and similar technologies, which technical information may be processed and what choices visitors have.',
+  path: '/cookies',
+});
 
 const sections: LegalSection[] = [
   {

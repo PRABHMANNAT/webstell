@@ -1,9 +1,12 @@
 import LegalPage, { type LegalSection } from '../LegalPage';
+import { createPageMetadata } from '../seo-metadata';
 
-export const metadata = {
-  title: 'Accessibility Statement | WEBSTELL',
-  description: 'WEBSTELL’s commitment to making this website more accessible.',
-};
+export const metadata = createPageMetadata({
+  title: 'Accessibility | Webstell',
+  description:
+    'Read Webstell’s accessibility commitment, current measures, known limitations and how to report a barrier or request information in another format.',
+  path: '/accessibility',
+});
 
 const sections: LegalSection[] = [
   {

@@ -1,9 +1,12 @@
 import LegalPage, { type LegalSection } from '../LegalPage';
+import { createPageMetadata } from '../seo-metadata';
 
-export const metadata = {
-  title: 'Refund & Cancellation Policy | WEBSTELL',
-  description: 'How WEBSTELL handles project cancellations, deposits and refunds.',
-};
+export const metadata = createPageMetadata({
+  title: 'Refund Policy | Webstell',
+  description:
+    'Read Webstell’s approach to project deposits, cancellations, completed work, committed costs and requests for refunds or account balances.',
+  path: '/refunds',
+});
 
 const sections: LegalSection[] = [
   {

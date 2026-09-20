@@ -1,9 +1,12 @@
 import LegalPage, { type LegalSection } from '../LegalPage';
+import { createPageMetadata } from '../seo-metadata';
 
-export const metadata = {
-  title: 'Terms of Use | WEBSTELL',
-  description: 'Terms governing use of the WEBSTELL website.',
-};
+export const metadata = createPageMetadata({
+  title: 'Terms & Conditions | Webstell',
+  description:
+    'Review the terms governing use of the Webstell website, including acceptable use, intellectual property, third-party links and liability.',
+  path: '/terms',
+});
 
 const sections: LegalSection[] = [
   {

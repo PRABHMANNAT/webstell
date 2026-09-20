@@ -1,11 +1,13 @@
 import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
+import { createPageMetadata } from '../seo-metadata';
 import ContactPageSection from './ContactPageSection';
-export const metadata = {
-  title: 'Start a Conversation | WEBSTELL',
+export const metadata = createPageMetadata({
+  title: 'Contact Webstell | Start Your Project',
   description:
-    'Share what you want to build or improve. WEBSTELL replies with questions or a sensible next step within one business day.',
-};
+    'Tell Webstell what you want to build or improve. Share your website, software, ecommerce, mobile app or automation project with the team.',
+  path: '/contact',
+});
 export default function ContactPage() {
   return (
     <>

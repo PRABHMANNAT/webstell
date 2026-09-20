@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import CopyGuard from './CopyGuard';
+import { createPageMetadata, metadataBase } from './seo-metadata';
 import './globals.css';
 import './hero.css';
 import './hero-motion.css';
@@ -27,5 +28,14 @@ import './services-refresh.css';
 import './contact-refresh.css';
 import './legal-pages.css';
 import './legal-hero-variants.css';
-export const metadata: Metadata = { title:'WEBSTELL | Website Design & Development Agency', description:'Websites that look exceptional and work for you. WEBSTELL creates websites, ecommerce experiences, brand identities and digital products.', icons:{icon:'/assets/brand/webstell-retro-mac.png'} };
+export const metadata: Metadata = {
+  metadataBase,
+  ...createPageMetadata({
+    title: 'Webstell — Website & Software Development Agency',
+    description:
+      'Webstell is a website and software development agency building websites, ecommerce platforms, custom software, mobile apps and AI automation for businesses.',
+    path: '/',
+  }),
+  icons: { icon: '/assets/brand/webstell-retro-mac.png' },
+};
 export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body><CopyGuard />{children}</body></html>}
