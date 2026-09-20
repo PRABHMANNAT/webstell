@@ -1,11 +1,13 @@
 @font-face {
   font-family: Suisse;
   src: url('/assets/fonts/suisseintl/suisseintl-regular.woff2');
+  font-display: swap;
 }
 @font-face {
   font-family: Suisse;
   src: url('/assets/fonts/suisseintl/suisseintl-medium.woff2');
   font-weight: 500;
+  font-display: swap;
 }
 * {
   box-sizing: border-box;

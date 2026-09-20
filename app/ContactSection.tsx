@@ -22,7 +22,7 @@ export default function ContactSection() {
             <ArrowUpRight size={19} />
           </a>
           <figure className="home-contact-image">
-            <Image src="/assets/contact/webstell-contact-connection.png" alt="A retro computer and telephone on a flower-covered hill beneath a bright sky" width={1536} height={1024} sizes="(max-width: 760px) 100vw, 510px" />
+            <Image src="/assets/contact/webstell-contact-connection.avif" alt="A retro computer and telephone on a flower-covered hill beneath a bright sky" width={768} height={512} sizes="320px" />
             <figcaption>Choose WEBSTELL.</figcaption>
           </figure>
         </div>

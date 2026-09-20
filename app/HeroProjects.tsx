@@ -92,21 +92,25 @@ export default function HeroProjects() {
         <ArrowUpRight size={16} />
       </div>
       <div className="hero-project-image">
-        {slides.map((item, index) => (
-          <Image
-            key={item.image}
-            src={item.image}
-            alt={
-              index === active ? `${item.title} website design reference` : ''
-            }
-            aria-hidden={index !== active}
-            className={index === active ? 'is-active' : ''}
-            fill
-            sizes="(max-width: 760px) 100vw, 44vw"
-            priority={index === 0}
-            unoptimized
-          />
-        ))}
+        {slides.map((item, index) => {
+          const isCurrentOrNext = index === active || index === (active + 1) % slides.length;
+
+          return (
+            <Image
+              key={item.image}
+              src={item.image}
+              alt={
+                index === active ? `${item.title} website design reference` : ''
+              }
+              aria-hidden={index !== active}
+              className={index === active ? 'is-active' : ''}
+              fill
+              sizes="(max-width: 760px) 100vw, 44vw"
+              loading={isCurrentOrNext ? 'eager' : 'lazy'}
+              unoptimized
+            />
+          );
+        })}
       </div>
       <div className="hero-project-caption" key={slide.title}>
         <span>

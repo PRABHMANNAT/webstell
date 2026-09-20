@@ -25,7 +25,7 @@ export default function InternationalProjectsSection() {
               <a className="case-project-link" href={project.url} target="_blank" rel="noreferrer">View project <span aria-hidden="true">→</span></a>
             </div>
             <a className="case-visual" href={project.url} target="_blank" rel="noreferrer" aria-label={`View the ${project.title} project`}>
-              <Image src={project.image} alt={`${project.title} project preview`} fill sizes="(max-width: 760px) 100vw, (max-width: 980px) 60vw, 50vw" loading={index === 0 ? 'eager' : 'lazy'} />
+              <Image src={project.image} alt={`${project.title} project preview`} fill sizes="(max-width: 760px) 100vw, (max-width: 980px) 60vw, 50vw" loading="lazy" />
               <span className="case-visual-open" aria-hidden="true"><b>View project</b><i>↗</i></span>
             </a>
           </article>

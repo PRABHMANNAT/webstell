@@ -163,7 +163,7 @@ export default function StudioNav({ current = '' }: { current?: string }) {
                 width={29}
                 height={29}
                 sizes="29px"
-                priority
+                loading="eager"
                 unoptimized
               />
               <span>WEBSTELL</span>

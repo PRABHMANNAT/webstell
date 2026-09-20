@@ -6,7 +6,7 @@ type ViewportVideoProps = VideoHTMLAttributes<HTMLVideoElement> & {
   playOnHover?: boolean;
 };
 
-export default function ViewportVideo({ playOnHover = false, ...props }: ViewportVideoProps) {
+export default function ViewportVideo({ src, playOnHover = false, ...props }: ViewportVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function ViewportVideo({ playOnHover = false, ...props }: Viewpor
       video.removeEventListener('pointerleave', pauseOnLeave);
       video.pause();
     };
-  }, [playOnHover]);
+  }, [playOnHover, src]);
 
-  return <video ref={videoRef} muted playsInline preload="metadata" {...props} />;
+  return <video ref={videoRef} muted playsInline preload="metadata" src={src} {...props} />;
 }
