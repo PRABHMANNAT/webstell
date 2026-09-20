@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import CopyGuard from './CopyGuard';
+import GoogleAnalytics from './GoogleAnalytics';
 import { createPageMetadata, metadataBase } from './seo-metadata';
 import './globals.css';
 import './hero.css';
@@ -38,4 +39,7 @@ export const metadata: Metadata = {
   }),
   icons: { icon: '/assets/brand/webstell-retro-mac.png' },
 };
-export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body><CopyGuard />{children}</body></html>}
+const analyticsEnabled =
+  process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV !== 'preview';
+
+export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body><CopyGuard />{children}{analyticsEnabled ? <GoogleAnalytics /> : null}</body></html>}

@@ -2,6 +2,7 @@
 
 import { useRef, useState, type ChangeEvent, type SyntheticEvent } from 'react';
 import { ArrowUpRight, Check, LoaderCircle, MessageCircle } from 'lucide-react';
+import { trackAnalyticsEvent } from '../../lib/analytics';
 import { whatsappUrl } from '../contact-utils';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
@@ -142,6 +143,9 @@ export default function ContactBriefForm() {
       setErrors({});
       setState('success');
       setMessage('');
+      trackAnalyticsEvent('contact_form_submit', {
+        cta_name: 'contact_project_brief',
+      });
     } catch {
       setState('error');
       setMessage(attachment ? 'We could not prepare that file. Please try another one or use WhatsApp.' : 'We could not reach the studio. Please try again or use WhatsApp.');

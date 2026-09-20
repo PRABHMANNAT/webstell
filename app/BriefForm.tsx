@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import { ArrowUpRight, Check, Clock3, LoaderCircle, MessageCircle } from 'lucide-react';
+import { trackAnalyticsEvent } from '../lib/analytics';
 import { whatsappUrl } from './contact-utils';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
@@ -139,6 +140,19 @@ export default function BriefForm({
       setErrors({});
       setState('success');
       setMessage('');
+      if (!booking) {
+        trackAnalyticsEvent(
+          estimate !== undefined
+            ? 'pricing_calculator_complete'
+            : 'project_enquiry',
+          {
+            cta_name:
+              estimate !== undefined
+                ? 'pricing_estimate_enquiry'
+                : 'website_project_brief',
+          },
+        );
+      }
     } catch {
       setState('error');
       setMessage('We could not reach the studio. Your details are still here, so please try again or use WhatsApp.');
