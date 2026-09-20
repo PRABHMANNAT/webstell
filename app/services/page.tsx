@@ -67,8 +67,8 @@ export default function ServicesPage() {
       <main className="services-page">
         <section className="services-page-hero studio-width" aria-labelledby="services-page-title">
           <h1 id="services-page-title" className="sr-only">WEBSTELL services</h1>
-          <video className="services-page-hero-video" autoPlay loop muted playsInline preload="metadata" aria-hidden="true">
-            <source src="/assets/services/services-hero.mp4" type="video/mp4" />
+          <video className="services-page-hero-video" autoPlay loop muted playsInline preload="metadata" poster="/assets/services/optimized/services-hero.webp" aria-hidden="true">
+            <source src="/assets/services/optimized/services-hero.web.mp4" type="video/mp4" />
           </video>
         </section>
 

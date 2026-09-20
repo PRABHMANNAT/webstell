@@ -56,14 +56,14 @@ export default function SocialWorkGallery() {
 
           return (
             <button type="button" key={service.slug} className={`social-preview social-preview-${position}`} aria-label={`Show ${service.title}`} onClick={() => setActive(index)}>
-              <ViewportVideo src={isInViewport && isAdjacentPreview ? service.video : undefined} loop aria-hidden="true" tabIndex={-1} />
+              <ViewportVideo src={isInViewport && isAdjacentPreview ? service.video : undefined} poster={isInViewport && isAdjacentPreview ? service.poster : undefined} loop aria-hidden="true" tabIndex={-1} />
             </button>
           );
         })}
         <article className="social-post" aria-live="polite" onPointerDown={holdCard} onPointerUp={releaseCard} onPointerCancel={() => { pointerStart.current = null; setIsHolding(false); }}>
           <header><span className="social-avatar" aria-hidden="true"><Image src="/assets/brand/webstell-retro-mac.png" alt="" width={30} height={30} sizes="30px" unoptimized /></span><strong>WEBSTELL</strong><span className="service-post-count">{String(active + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}</span></header>
           <div className="social-post-image service-post-video">
-            <ViewportVideo key={current.video} src={isInViewport ? current.video : undefined} loop aria-label={`${current.title} service video`} />
+            <ViewportVideo key={current.video} src={isInViewport ? current.video : undefined} poster={isInViewport ? current.poster : undefined} loop aria-label={`${current.title} service video`} />
             <button className="social-prev" type="button" aria-label="Previous service" onPointerDown={(event) => event.stopPropagation()} onPointerUp={(event) => event.stopPropagation()} onClick={() => move(-1)}>‹</button>
             <button className="social-next" type="button" aria-label="Next service" onPointerDown={(event) => event.stopPropagation()} onPointerUp={(event) => event.stopPropagation()} onClick={() => move(1)}>›</button>
           </div>

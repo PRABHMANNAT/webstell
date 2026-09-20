@@ -99,8 +99,8 @@ export default function ProjectsPage() {
       <StudioNav current="work" />
       <main>
         <section className="projects-hero">
-          <video className="projects-hero-video" autoPlay loop muted playsInline preload="metadata" aria-hidden="true">
-            <source src="/assets/projects/projects-hero.mp4" type="video/mp4" />
+          <video className="projects-hero-video" autoPlay loop muted playsInline preload="metadata" poster="/assets/projects/optimized/projects-hero.webp" aria-hidden="true">
+            <source src="/assets/projects/optimized/projects-hero.web.mp4" type="video/mp4" />
           </video>
           <div className="projects-hero-inner wrap">
             <h1>Designs<br />impossible<br />to ignore.</h1>

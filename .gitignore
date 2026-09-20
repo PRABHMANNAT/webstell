@@ -40,3 +40,9 @@ next-env.d.ts
 /work/
 /.sites-runtime/
 *.tsbuildinfo
+
+# local performance tooling and generated diagnostics
+.tools/
+/tmp/
+/dev-*.stdout.log
+/dev-*.stderr.log

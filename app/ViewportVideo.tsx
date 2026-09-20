@@ -48,5 +48,5 @@ export default function ViewportVideo({ src, playOnHover = false, ...props }: Vi
     };
   }, [playOnHover, src]);
 
-  return <video ref={videoRef} muted playsInline preload="metadata" src={src} {...props} />;
+  return <video ref={videoRef} muted playsInline preload="none" src={src} {...props} />;
 }
