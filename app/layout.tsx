@@ -33,6 +33,7 @@ import './contact-refresh.css';
 import './legal-pages.css';
 import './legal-hero-variants.css';
 import './cookie-consent.css';
+import './insights.css';
 export const metadata: Metadata = {
   metadataBase,
   ...createPageMetadata({

@@ -68,3 +68,49 @@ export function createPageSchema({ path, name, breadcrumbName }: PageSchemaOptio
     ],
   };
 }
+
+type ArticleSchemaOptions = {
+  path: `/insights/${string}`;
+  headline: string;
+  description: string;
+};
+
+export function createArticleSchema({ path, headline, description }: ArticleSchemaOptions) {
+  const url = `${siteUrl}${path}`;
+  const breadcrumbId = `${url}#breadcrumb`;
+  const webpageId = `${url}#webpage`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': webpageId,
+        url,
+        name: headline,
+        isPartOf: { '@id': websiteId },
+        about: { '@id': organizationId },
+        breadcrumb: { '@id': breadcrumbId },
+        mainEntity: { '@id': `${url}#article` },
+      },
+      {
+        '@type': 'Article',
+        '@id': `${url}#article`,
+        url,
+        headline,
+        description,
+        mainEntityOfPage: { '@id': webpageId },
+        publisher: { '@id': organizationId },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': breadcrumbId,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+          { '@type': 'ListItem', position: 2, name: 'Insights', item: `${siteUrl}/insights` },
+          { '@type': 'ListItem', position: 3, name: headline, item: url },
+        ],
+      },
+    ],
+  };
+}

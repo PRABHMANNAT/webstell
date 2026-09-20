@@ -249,6 +249,7 @@ export function StudioFooter() {
             <Link href="/">Home</Link>
             <Link href="/projects">See our work</Link>
             <Link href="/services">Services</Link>
+            <Link href="/insights">Insights</Link>
           </div>
           <div>
             <span>START HERE</span>
