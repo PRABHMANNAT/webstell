@@ -84,7 +84,7 @@ export function HireDialog({
             </div>
             <ArrowUpRight />
           </a>
-          <Link className="hire-option hire-option-dark" href="/contact" onClick={navigateWithDocument}>
+          <a className="hire-option hire-option-dark" href="/contact">
             <span className="option-icon">
               <Mail strokeWidth={1.8} />
             </span>
@@ -93,8 +93,8 @@ export function HireDialog({
               <p>Share the brief and we’ll come back with clear next steps.</p>
             </div>
             <ArrowUpRight />
-          </Link>
-          <Link className="hire-option hire-option-dark" href="/schedule" onClick={navigateWithDocument}>
+          </a>
+          <a className="hire-option hire-option-dark" href="/schedule">
             <span className="option-icon">
               <PhoneCall strokeWidth={1.8} />
             </span>
@@ -103,7 +103,7 @@ export function HireDialog({
               <p>Choose a time and leave with a clearer way forward.</p>
             </div>
             <ArrowUpRight />
-          </Link>
+          </a>
         </div>
         <p className="hire-footnote">
           Good things start with a hello.
