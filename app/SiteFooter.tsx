@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type SyntheticEvent } from 'react';
+import { useState, type MouseEvent, type SyntheticEvent } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { openCookieSettings } from '../lib/consent';
@@ -46,13 +46,19 @@ export default function SiteFooter() {
     }
   };
 
+  const navigateWithDocument = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    window.location.assign(event.currentTarget.href);
+  };
+
   return (
     <footer className="site-footer">
       <Image className="site-footer-bg" src="/assets/footer/webstell-footer.avif" alt="Luminous cube in a landscaped garden" fill sizes="100vw" />
       <div className="site-footer-shade" aria-hidden="true" />
       <div className="footer-panel wrap">
         <div className="footer-brand">
-          <Link className="footer-logo" href="/">WEBSTELL</Link>
+          <Link className="footer-logo" href="/" onClick={navigateWithDocument}>WEBSTELL</Link>
           <p>We create distinctive websites, brands and digital products for ambitious businesses.</p>
           <form className={`subscribe-form is-${subscribeState}`} onSubmit={submitSubscription}>
             <label className="sr-only" htmlFor="footer-email">Email address</label>
@@ -66,9 +72,9 @@ export default function SiteFooter() {
           <p className="subscribe-status" id="subscribe-status" aria-live="polite">{subscribeMessage}</p>
         </div>
         <nav className="footer-links" aria-label="Footer navigation">
-          <div className="footer-link-group"><span className="footer-nav-label">Explore</span><Link href="/">Home</Link><Link href="/services">Services</Link><Link href="/projects">Work</Link><Link href="/pricing">Pricing</Link></div>
-          <div className="footer-link-group"><span className="footer-nav-label">Company</span><Link href="/#insights">Why WEBSTELL</Link><Link href="/insights">Insights</Link><Link href="/#team">Our team</Link><Link href="/#faq">FAQs</Link><Link href="/contact">Contact</Link></div>
-          <div className="footer-link-group footer-policies"><span className="footer-nav-label">Policies</span><div className="footer-policy-links"><Link href="/privacy">Privacy Policy</Link><Link href="/terms">Terms &amp; Conditions</Link><Link href="/cookies">Cookies</Link><Link href="/refunds">Refunds</Link><Link href="/accessibility">Accessibility</Link><button type="button" className="cookie-settings-button" onClick={openCookieSettings}>Cookie settings</button></div></div>
+          <div className="footer-link-group"><span className="footer-nav-label">Explore</span><Link href="/" onClick={navigateWithDocument}>Home</Link><Link href="/services" onClick={navigateWithDocument}>Services</Link><Link href="/projects" onClick={navigateWithDocument}>Work</Link><Link href="/pricing" onClick={navigateWithDocument}>Pricing</Link></div>
+          <div className="footer-link-group"><span className="footer-nav-label">Company</span><Link href="/#insights" onClick={navigateWithDocument}>Why WEBSTELL</Link><Link href="/insights" onClick={navigateWithDocument}>Insights</Link><Link href="/#team" onClick={navigateWithDocument}>Our team</Link><Link href="/#faq" onClick={navigateWithDocument}>FAQs</Link><Link href="/contact" onClick={navigateWithDocument}>Contact</Link></div>
+          <div className="footer-link-group footer-policies"><span className="footer-nav-label">Policies</span><div className="footer-policy-links"><Link href="/privacy" onClick={navigateWithDocument}>Privacy Policy</Link><Link href="/terms" onClick={navigateWithDocument}>Terms &amp; Conditions</Link><Link href="/cookies" onClick={navigateWithDocument}>Cookies</Link><Link href="/refunds" onClick={navigateWithDocument}>Refunds</Link><Link href="/accessibility" onClick={navigateWithDocument}>Accessibility</Link><button type="button" className="cookie-settings-button" onClick={openCookieSettings}>Cookie settings</button></div></div>
         </nav>
       </div>
       <div className="footer-wordmark" aria-hidden="true">WEBSTELL</div>
