@@ -123,7 +123,7 @@
 }
 
 .home-contact-image {
-  width: min(100%, 510px);
+  width: min(100%, 320px);
   margin: 18px 0 0;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -134,7 +134,8 @@
 .home-contact-image img {
   display: block;
   width: 100%;
-  aspect-ratio: 2.28 / 1;
+  height: 320px;
+  aspect-ratio: 1;
   object-fit: cover;
   object-position: 50% 64%;
 }
