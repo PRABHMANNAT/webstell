@@ -5,6 +5,8 @@ import InternationalProjectsSection from '../InternationalProjectsSection';
 import WhyWebstellSection from '../WhyWebstellSection';
 import AboutCallToAction from './AboutCallToAction';
 import { createPageMetadata } from '../seo-metadata';
+import StructuredData from '../StructuredData';
+import { createPageSchema } from '../structured-data';
 import './about.css';
 
 export const metadata = createPageMetadata({
@@ -17,6 +19,7 @@ export const metadata = createPageMetadata({
 export default function AboutPage() {
   return (
     <>
+      <StructuredData data={createPageSchema({ path: '/about', name: 'About Webstell | Software & Digital Product Agency', breadcrumbName: 'About' })} />
       <StudioNav current="about" />
       <main className="about-page">
         <section className="about-hero studio-width" aria-labelledby="about-page-title">

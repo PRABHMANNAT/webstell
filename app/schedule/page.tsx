@@ -1,5 +1,7 @@
 import ScheduleExperience from './ScheduleExperience';
 import { createPageMetadata } from '../seo-metadata';
+import StructuredData from '../StructuredData';
+import { createPageSchema } from '../structured-data';
 export const metadata = createPageMetadata({
   title: 'Schedule a Project Call | Webstell',
   description:
@@ -7,5 +9,5 @@ export const metadata = createPageMetadata({
   path: '/schedule',
 });
 export default function SchedulePage() {
-  return <ScheduleExperience />;
+  return <><StructuredData data={createPageSchema({ path: '/schedule', name: 'Schedule a Project Call | Webstell', breadcrumbName: 'Schedule a Call' })} /><ScheduleExperience /></>;
 }

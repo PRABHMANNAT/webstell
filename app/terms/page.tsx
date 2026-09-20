@@ -1,5 +1,7 @@
 import LegalPage, { type LegalSection } from '../LegalPage';
 import { createPageMetadata } from '../seo-metadata';
+import StructuredData from '../StructuredData';
+import { createPageSchema } from '../structured-data';
 
 export const metadata = createPageMetadata({
   title: 'Terms & Conditions | Webstell',
@@ -61,5 +63,5 @@ const sections: LegalSection[] = [
 ];
 
 export default function TermsPage() {
-  return <LegalPage eyebrow="THE GROUND RULES" title="Terms of Use" intro="The simple terms that apply when you browse, share or get in touch through the WEBSTELL website." sections={sections} heroVariant="terms" />;
+  return <><StructuredData data={createPageSchema({ path: '/terms', name: 'Terms & Conditions | Webstell', breadcrumbName: 'Terms & Conditions' })} /><LegalPage eyebrow="THE GROUND RULES" title="Terms of Use" intro="The simple terms that apply when you browse, share or get in touch through the WEBSTELL website." sections={sections} heroVariant="terms" /></>;
 }

@@ -1,4 +1,6 @@
 import { createPageMetadata } from '../seo-metadata';
+import StructuredData from '../StructuredData';
+import { createPageSchema } from '../structured-data';
 
 export const metadata = createPageMetadata({
   title: 'Website, Software, AI & App Development Services | Webstell',
@@ -10,5 +12,5 @@ export const metadata = createPageMetadata({
 export default function ServicesLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return children;
+  return <><StructuredData data={createPageSchema({ path: '/services', name: 'Website, Software, AI & App Development Services | Webstell', breadcrumbName: 'Services' })} />{children}</>;
 }

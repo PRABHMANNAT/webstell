@@ -1,5 +1,7 @@
 import LegalPage, { type LegalSection } from '../LegalPage';
 import { createPageMetadata } from '../seo-metadata';
+import StructuredData from '../StructuredData';
+import { createPageSchema } from '../structured-data';
 
 export const metadata = createPageMetadata({
   title: 'Privacy Policy | Webstell',
@@ -66,5 +68,5 @@ const sections: LegalSection[] = [
 ];
 
 export default function PrivacyPage() {
-  return <LegalPage eyebrow="YOUR PRIVACY" title="Privacy Policy" intro="A clear explanation of the information you share with us, why we use it and the choices you have." sections={sections} heroVariant="privacy" />;
+  return <><StructuredData data={createPageSchema({ path: '/privacy', name: 'Privacy Policy | Webstell', breadcrumbName: 'Privacy Policy' })} /><LegalPage eyebrow="YOUR PRIVACY" title="Privacy Policy" intro="A clear explanation of the information you share with us, why we use it and the choices you have." sections={sections} heroVariant="privacy" /></>;
 }

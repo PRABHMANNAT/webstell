@@ -1,5 +1,7 @@
 import LegalPage, { type LegalSection } from '../LegalPage';
 import { createPageMetadata } from '../seo-metadata';
+import StructuredData from '../StructuredData';
+import { createPageSchema } from '../structured-data';
 
 export const metadata = createPageMetadata({
   title: 'Cookie Policy | Webstell',
@@ -54,5 +56,5 @@ const sections: LegalSection[] = [
 ];
 
 export default function CookiePolicyPage() {
-  return <LegalPage eyebrow="A SMALL EXPLANATION" title="Cookie Policy" intro="How this website uses essential preferences and optional analytics cookies." sections={sections} heroVariant="cookies" />;
+  return <><StructuredData data={createPageSchema({ path: '/cookies', name: 'Cookie Policy | Webstell', breadcrumbName: 'Cookie Policy' })} /><LegalPage eyebrow="A SMALL EXPLANATION" title="Cookie Policy" intro="How this website uses essential preferences and optional analytics cookies." sections={sections} heroVariant="cookies" /></>;
 }

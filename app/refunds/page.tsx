@@ -1,5 +1,7 @@
 import LegalPage, { type LegalSection } from '../LegalPage';
 import { createPageMetadata } from '../seo-metadata';
+import StructuredData from '../StructuredData';
+import { createPageSchema } from '../structured-data';
 
 export const metadata = createPageMetadata({
   title: 'Refund Policy | Webstell',
@@ -54,5 +56,5 @@ const sections: LegalSection[] = [
 ];
 
 export default function RefundPolicyPage() {
-  return <LegalPage eyebrow="CLEAR EXPECTATIONS" title="Refund & Cancellation Policy" intro="A straightforward guide to deposits, project changes and cancellations for custom WEBSTELL work." sections={sections} heroVariant="refunds" />;
+  return <><StructuredData data={createPageSchema({ path: '/refunds', name: 'Refund Policy | Webstell', breadcrumbName: 'Refund Policy' })} /><LegalPage eyebrow="CLEAR EXPECTATIONS" title="Refund & Cancellation Policy" intro="A straightforward guide to deposits, project changes and cancellations for custom WEBSTELL work." sections={sections} heroVariant="refunds" /></>;
 }

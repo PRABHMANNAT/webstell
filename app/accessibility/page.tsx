@@ -1,5 +1,7 @@
 import LegalPage, { type LegalSection } from '../LegalPage';
 import { createPageMetadata } from '../seo-metadata';
+import StructuredData from '../StructuredData';
+import { createPageSchema } from '../structured-data';
 
 export const metadata = createPageMetadata({
   title: 'Accessibility | Webstell',
@@ -53,5 +55,5 @@ const sections: LegalSection[] = [
 ];
 
 export default function AccessibilityPage() {
-  return <LegalPage eyebrow="ACCESS FOR EVERYONE" title="Accessibility Statement" intro="Our commitment to making WEBSTELL easier to use, understand and navigate for more people." sections={sections} heroVariant="accessibility" />;
+  return <><StructuredData data={createPageSchema({ path: '/accessibility', name: 'Accessibility | Webstell', breadcrumbName: 'Accessibility' })} /><LegalPage eyebrow="ACCESS FOR EVERYONE" title="Accessibility Statement" intro="Our commitment to making WEBSTELL easier to use, understand and navigate for more people." sections={sections} heroVariant="accessibility" /></>;
 }

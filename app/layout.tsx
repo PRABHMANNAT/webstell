@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import CookieConsent from './CookieConsent';
 import CopyGuard from './CopyGuard';
 import GoogleAnalytics from './GoogleAnalytics';
+import StructuredData from './StructuredData';
 import { createPageMetadata, metadataBase } from './seo-metadata';
+import { organizationSchema } from './structured-data';
 import './globals.css';
 import './hero.css';
 import './hero-motion.css';
@@ -44,4 +46,4 @@ export const metadata: Metadata = {
 const analyticsEnabled =
   process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV !== 'preview';
 
-export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body><CopyGuard />{children}<CookieConsent />{analyticsEnabled ? <GoogleAnalytics /> : null}</body></html>}
+export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body><StructuredData data={organizationSchema} /><CopyGuard />{children}<CookieConsent />{analyticsEnabled ? <GoogleAnalytics /> : null}</body></html>}

@@ -2,6 +2,8 @@ import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
 import { createPageMetadata } from '../seo-metadata';
 import ContactPageSection from './ContactPageSection';
+import StructuredData from '../StructuredData';
+import { createPageSchema } from '../structured-data';
 export const metadata = createPageMetadata({
   title: 'Contact Webstell | Start Your Project',
   description:
@@ -11,6 +13,7 @@ export const metadata = createPageMetadata({
 export default function ContactPage() {
   return (
     <>
+      <StructuredData data={createPageSchema({ path: '/contact', name: 'Contact Webstell | Start Your Project', breadcrumbName: 'Contact' })} />
       <StudioNav current="contact" />
       <main className="studio-page contact-page contact-page-refresh">
         <ContactPageSection />

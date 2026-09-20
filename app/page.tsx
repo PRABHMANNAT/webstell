@@ -18,6 +18,8 @@ import { whatsappUrl } from './contact-utils';
 import SiteFooter from './SiteFooter';
 import InternationalProjectsSection from './InternationalProjectsSection';
 import WhyWebstellSection from './WhyWebstellSection';
+import StructuredData from './StructuredData';
+import { homepageSchema } from './structured-data';
 export default function Home() {
  const [selected,setSelected]=useState<Project|null>(null);
  const [contact,setContact]=useState(false);
@@ -50,6 +52,7 @@ export default function Home() {
   return()=>window.removeEventListener('pointermove',follow);
  },[]);
  return <>
+ <StructuredData data={homepageSchema} />
  <StudioNav/>
  <main>
 <section className="launch-hero" aria-labelledby="launch-title"><Image className="launch-landscape" src="/assets/hero/webstell-landscape.avif" alt="A retro computer in a sunlit green landscape" fill priority sizes="100vw"/><div className="launch-wash" aria-hidden="true"></div><div className="launch-copy"><h1 id="launch-title"><span>Websites people</span><strong>remember<span className="hero-period">.</span></strong></h1><p>Websites, custom software, portfolios and mobile apps. We design and build the things your business needs—with a team you can actually talk to.</p><button ref={heroCta} onClick={()=>setContact(true)}><span className="cta-eyes" aria-hidden="true"><i><b></b></i><i><b></b></i></span> Discuss your project <span className="hero-cta-arrow" aria-hidden="true">↗</span></button><a className="hero-secondary" href="https://wa.me/917696403580?text=Hi%20WEBSTELL%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noreferrer">Message us on WhatsApp <span aria-hidden="true">↗</span></a></div><HeroProjects/><div className="launch-capabilities"><div>{['Websites','Software','Mobile Apps','Portfolios','Chatbots','AI Automations'].map(item=><Link key={item} href="/services">{item}<span aria-hidden="true">↗</span></Link>)}</div></div></section>
