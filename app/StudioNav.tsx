@@ -27,6 +27,12 @@ const navigationLinks = [
   ['Contact', '/contact'],
 ] as const;
 
+function navigateWithDocument(event: MouseEvent<HTMLAnchorElement>) {
+  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  window.location.assign(event.currentTarget.href);
+}
+
 export function HireDialog({
   open,
   onOpenChange,
@@ -78,7 +84,7 @@ export function HireDialog({
             </div>
             <ArrowUpRight />
           </a>
-          <Link className="hire-option hire-option-dark" href="/contact">
+          <Link className="hire-option hire-option-dark" href="/contact" onClick={navigateWithDocument}>
             <span className="option-icon">
               <Mail strokeWidth={1.8} />
             </span>
@@ -88,7 +94,7 @@ export function HireDialog({
             </div>
             <ArrowUpRight />
           </Link>
-          <Link className="hire-option hire-option-dark" href="/schedule">
+          <Link className="hire-option hire-option-dark" href="/schedule" onClick={navigateWithDocument}>
             <span className="option-icon">
               <PhoneCall strokeWidth={1.8} />
             </span>
@@ -145,12 +151,6 @@ export default function StudioNav({ current = '' }: { current?: string }) {
 
   const toggleMenu = () => setMenu((isOpen) => !isOpen);
   const closeMenu = () => setMenu(false);
-  const navigateWithDocument = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    event.preventDefault();
-    window.location.assign(event.currentTarget.href);
-  };
-
   return (
     <>
       <header className={scrolled ? 'site-header is-scrolled' : 'site-header'}>
