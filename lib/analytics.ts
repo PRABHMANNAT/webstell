@@ -1,3 +1,5 @@
+import { hasAnalyticsConsent } from './consent';
+
 export type AnalyticsEventName =
   | 'whatsapp_click'
   | 'email_click'
@@ -19,18 +21,15 @@ export type AnalyticsEventParameters = {
     | 'pricing_estimate_enquiry';
 };
 
-declare global {
-  interface Window {
-    dataLayer?: unknown[];
-    gtag?: (...args: unknown[]) => void;
-  }
-}
-
 export function trackAnalyticsEvent(
   eventName: AnalyticsEventName,
   parameters: AnalyticsEventParameters = {},
 ) {
-  if (process.env.NODE_ENV !== 'production' || typeof window === 'undefined') {
+  if (
+    process.env.NODE_ENV !== 'production' ||
+    typeof window === 'undefined' ||
+    !hasAnalyticsConsent()
+  ) {
     return;
   }
 

@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import Script from 'next/script';
 import { trackAnalyticsEvent, type AnalyticsEventName } from '../lib/analytics';
+import { CONSENT_STORAGE_KEY } from '../lib/consent';
 
 const measurementId = 'G-FG7X5G0MDL';
 const whatsappHosts = new Set([
@@ -72,18 +73,32 @@ export default function GoogleAnalytics() {
 
   return (
     <>
+      <Script id="google-analytics-init" strategy="afterInteractive">
+        {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+var webstellAnalyticsConsent = 'denied';
+try {
+  webstellAnalyticsConsent = localStorage.getItem('${CONSENT_STORAGE_KEY}') === 'accepted' ? 'granted' : 'denied';
+} catch (error) {}
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: webstellAnalyticsConsent,
+  functionality_storage: 'granted',
+  security_storage: 'granted',
+  personalization_storage: 'denied',
+  wait_for_update: 500
+});
+gtag('js', new Date());
+gtag('config', '${measurementId}');`}
+      </Script>
       <Script
         id="google-analytics-loader"
         src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
         strategy="afterInteractive"
         async
       />
-      <Script id="google-analytics-init" strategy="afterInteractive">
-        {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${measurementId}');`}
-      </Script>
     </>
   );
 }

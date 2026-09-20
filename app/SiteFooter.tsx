@@ -3,6 +3,7 @@
 import { useState, type SyntheticEvent } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { openCookieSettings } from '../lib/consent';
 
 export default function SiteFooter() {
   const [subscribeState, setSubscribeState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -67,7 +68,7 @@ export default function SiteFooter() {
         <nav className="footer-links" aria-label="Footer navigation">
           <div className="footer-link-group"><span className="footer-nav-label">Explore</span><Link href="/">Home</Link><Link href="/services">Services</Link><Link href="/projects">Work</Link><Link href="/pricing">Pricing</Link></div>
           <div className="footer-link-group"><span className="footer-nav-label">Company</span><Link href="/#insights">Why WEBSTELL</Link><Link href="/#team">Our team</Link><Link href="/#faq">FAQs</Link><Link href="/contact">Contact</Link></div>
-          <div className="footer-link-group footer-policies"><span className="footer-nav-label">Policies</span><div className="footer-policy-links"><Link href="/privacy">Privacy Policy</Link><Link href="/terms">Terms &amp; Conditions</Link><Link href="/cookies">Cookies</Link><Link href="/refunds">Refunds</Link><Link href="/accessibility">Accessibility</Link></div></div>
+          <div className="footer-link-group footer-policies"><span className="footer-nav-label">Policies</span><div className="footer-policy-links"><Link href="/privacy">Privacy Policy</Link><Link href="/terms">Terms &amp; Conditions</Link><Link href="/cookies">Cookies</Link><Link href="/refunds">Refunds</Link><Link href="/accessibility">Accessibility</Link><button type="button" className="cookie-settings-button" onClick={openCookieSettings}>Cookie settings</button></div></div>
         </nav>
       </div>
       <div className="footer-wordmark" aria-hidden="true">WEBSTELL</div>

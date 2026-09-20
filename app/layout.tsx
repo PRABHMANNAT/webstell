@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import CookieConsent from './CookieConsent';
 import CopyGuard from './CopyGuard';
 import GoogleAnalytics from './GoogleAnalytics';
 import { createPageMetadata, metadataBase } from './seo-metadata';
@@ -29,6 +30,7 @@ import './services-refresh.css';
 import './contact-refresh.css';
 import './legal-pages.css';
 import './legal-hero-variants.css';
+import './cookie-consent.css';
 export const metadata: Metadata = {
   metadataBase,
   ...createPageMetadata({
@@ -42,4 +44,4 @@ export const metadata: Metadata = {
 const analyticsEnabled =
   process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV !== 'preview';
 
-export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body><CopyGuard />{children}{analyticsEnabled ? <GoogleAnalytics /> : null}</body></html>}
+export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body><CopyGuard />{children}<CookieConsent />{analyticsEnabled ? <GoogleAnalytics /> : null}</body></html>}
