@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '../SiteLink';
 import SiteFooter from '../SiteFooter';
 import StudioNav from '../StudioNav';
 import StructuredData from '../StructuredData';

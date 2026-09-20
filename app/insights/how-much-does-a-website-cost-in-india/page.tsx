@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '../../SiteLink';
 import { createPageMetadata } from '../../seo-metadata';
 import InsightArticle from '../InsightArticle';
 import { insightArticles } from '../insights-data';

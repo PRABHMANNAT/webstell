@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from './SiteLink';
 import Image from 'next/image';
 import SocialIcon from './SocialIcon';
 import { team } from './team-data';

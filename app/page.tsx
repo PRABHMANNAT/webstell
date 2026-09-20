@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from './SiteLink';
 import WorksMarquee from './WorksMarquee';
 import SocialWorkGallery from './SocialWorkGallery';
 import CurvedTicker from './CurvedTicker';

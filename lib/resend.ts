@@ -1,5 +1,3 @@
-import { Resend } from 'resend';
-
 type EmailEnvironment = {
   RESEND_API_KEY?: string;
   CONTACT_FROM_EMAIL?: string;
@@ -23,6 +21,8 @@ export async function getEmailClient() {
   if (!apiKey) {
     throw new Error('RESEND_API_KEY is not configured.');
   }
+
+  const { Resend } = await import('resend');
 
   return {
     resend: new Resend(apiKey),

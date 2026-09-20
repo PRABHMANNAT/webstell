@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import Link from './SiteLink';
 import LostRunner from './LostRunner';
 
 export default function LostPage() {

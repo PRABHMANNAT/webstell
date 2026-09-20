@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import Link from './SiteLink';
 import Image from 'next/image';
 import { recentWorkProjects } from './portfolio-data';
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type MouseEvent } from 'react';
-import Link from 'next/link';
+import Link from './SiteLink';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
@@ -156,7 +156,7 @@ export default function StudioNav({ current = '' }: { current?: string }) {
       <header className={scrolled ? 'site-header is-scrolled' : 'site-header'}>
         <div className="header wrap">
           <div className="nav-capsule">
-            <Link className="nav-mark" href="/" aria-label="WEBSTELL home" prefetch={false} onClick={navigateWithDocument}>
+            <Link className="nav-mark" href="/" aria-label="WEBSTELL home" onClick={navigateWithDocument}>
               <Image
                 src="/assets/brand/webstell-retro-mac.png"
                 alt=""
@@ -177,7 +177,6 @@ export default function StudioNav({ current = '' }: { current?: string }) {
                 <Link
                   key={href}
                   href={href}
-                  prefetch={false}
                   ref={index === 0 ? firstLinkRef : undefined}
                   aria-current={
                     pathname === href || current === label.toLowerCase() ? 'page' : undefined

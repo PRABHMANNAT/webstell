@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from './SiteLink';
 import StudioNav from './StudioNav';
 import SiteFooter from './SiteFooter';
 

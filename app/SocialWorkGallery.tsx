@@ -69,7 +69,13 @@ export default function SocialWorkGallery() {
           </div>
           <footer className="service-card-footer">
             <h3>{current.title}</h3>
-            <a href={`/services#${current.slug}`}>Explore service <i aria-hidden="true">→</i></a>
+            <a
+              href={`/services#${current.slug}`}
+              onPointerDown={(event) => event.stopPropagation()}
+              onPointerUp={(event) => event.stopPropagation()}
+            >
+              Explore service <i aria-hidden="true">→</i>
+            </a>
           </footer>
         </article>
         <p className="service-carousel-hint">Swipe or use arrows to explore.</p>
