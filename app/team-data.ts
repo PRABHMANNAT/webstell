@@ -2,10 +2,12 @@ export type TeamMember = {
   name: string;
   role: string;
   image: string;
+  imageAlt?: string;
+  imagePosition?: string;
   value: string;
   bio: string;
   linkedin: string;
-  instagram: string;
+  instagram?: string;
   github?: string;
 };
 
@@ -14,4 +16,14 @@ export const team: TeamMember[] = [
   { name: 'Arnav Hooda', role: 'Frontend Engineer', image: '/assets/team/arnav-hooda.png', value: 'Builds fast, intuitive digital experiences.', bio: 'Creates responsive, scalable digital experiences with a strong understanding of modern software and AI-driven products.', linkedin: 'https://www.linkedin.com/in/arnav-hooda-87061486/', instagram: 'https://www.instagram.com/arnavhooda_7777/' },
   { name: 'Prabhmannat Singh', role: 'Forward Deployed Engineer', image: '/assets/team/prabhmannat-singh.png', value: 'Turns complex ideas into reliable products.', bio: 'Builds and deploys production-grade AI products, turning complex client problems into scalable software.', linkedin: 'https://www.linkedin.com/in/prabhmannat/', instagram: 'https://www.instagram.com/young.elonmusk/', github: 'https://github.com/PRABHMANNAT' },
   { name: 'Adhiraj Dogra', role: 'Senior AI/ML Engineer', image: '/assets/team/adhiraj-dogra.png', value: 'Makes intelligent systems useful in the real world.', bio: 'Designs intelligent systems spanning GenAI, RAG, multi-agent workflows, machine learning, and production software infrastructure.', linkedin: 'https://www.linkedin.com/in/adhiraj-dogra/', instagram: 'https://www.instagram.com/adirajdogra/', github: 'https://github.com/AdiBoi007' },
+  {
+    name: 'Simranjit Kaur',
+    role: 'Business Development & Partnerships',
+    image: '/assets/team/simranjit-kaur.png',
+    imageAlt: 'Portrait of Simranjit Kaur in a black blazer against a lime background',
+    imagePosition: '60% 20%',
+    value: 'Connects ambitious businesses with the right solutions.',
+    bio: 'Connects business needs with practical digital solutions through client discovery, strategic partnerships, and a strong understanding of AI-driven products.',
+    linkedin: 'https://www.linkedin.com/in/simranjit-sarah-kaur-a773a5294/',
+  },
 ];
