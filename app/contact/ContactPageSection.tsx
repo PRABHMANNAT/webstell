@@ -29,7 +29,7 @@ export default function ContactPageSection() {
               <p>Tell us what you want to improve or build. We’ll help you turn it into a clear, useful next step for your business.</p>
               <div className="contact-page-details" aria-label="WEBSTELL contact details">
                 <a href="mailto:contact@webstell-studio.com"><Mail size={17} /> contact@webstell-studio.com</a>
-                <a href="tel:+917696403580"><Phone size={17} /> +91 76964 03580</a>
+                <a href="tel:+917889136989"><Phone size={17} /> +91 7889136989</a>
               </div>
             </div>
             <div className="contact-page-aside">

@@ -11,7 +11,7 @@ export const organizationSchema = {
   url: `${siteUrl}/`,
   logo: `${siteUrl}/assets/brand/webstell-logo-512.png`,
   email: 'contact@webstell-studio.com',
-  telephone: '+91 76964 03580',
+  telephone: '+91 7889136989',
 };
 
 export const homepageSchema = {

@@ -14,7 +14,7 @@ export default function ContactSection() {
           <p>Tell us what you need. We’ll take it from there.</p>
           <div className="home-contact-details" aria-label="WEBSTELL contact details">
             <a href="mailto:contact@webstell-studio.com"><Mail size={17} /> contact@webstell-studio.com</a>
-            <a href="tel:+917696403580"><Phone size={17} /> +91 76964 03580</a>
+            <a href="tel:+917889136989"><Phone size={17} /> +91 7889136989</a>
           </div>
           <a href={whatsappUrl('Hi WEBSTELL! I would like to discuss a project.')} target="_blank" rel="noreferrer" className="home-contact-whatsapp">
             <span className="home-contact-whatsapp-icon"><Image src="/assets/contact/whatsapp-icon.png" alt="" width={44} height={44} sizes="50px" /></span>
