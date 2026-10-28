@@ -301,7 +301,11 @@ export function IndustryExplorer({
                 <IndustryIcon industry={item.id} />
               </span>
               <span>{industryLabels[item.id]}</span>
-              <span className="industry-selected-dot" aria-hidden="true" />
+              <ArrowUpRight
+                className="industry-row-arrow"
+                size={16}
+                aria-hidden="true"
+              />
             </button>
           ))}
         </fieldset>
@@ -310,6 +314,9 @@ export function IndustryExplorer({
           id="industry-focus"
           aria-labelledby="industry-focus-title"
         >
+          <div className="industry-object" aria-hidden="true">
+            <IndustryIcon industry={industry.id} />
+          </div>
           <div className="industry-focus-intro">
             <span className="industry-focus-icon">
               <IndustryIcon industry={industry.id} />

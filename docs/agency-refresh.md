@@ -38,3 +38,5 @@ Live inbox delivery and live Vercel geolocation require deployment configuration
 ### Industry refinement
 
 The industry explorer now follows the hero and capability section as the third homepage section. Its heading is a single sentence, with concise illustrated feature tiles and no decorative heading note. The main navigation no longer includes Industries. A “Need something else?” disclosure offers the full enquiry service list and a short written brief, then passes both into the existing contact form; the service list includes an Other option. The shared section updates Services and the Australian edition too.
+
+The industry section now uses a single ink-coloured stage, a compact vertical selector, large editorial typography and raised lime SVG objects. Feature capabilities sit along a clean rule rather than inside nested cards. The mobile edition keeps the native industry picker and the same illustrated panel; custom enquiries and the third-section homepage position are preserved.
