@@ -1,0 +1,21 @@
+// Enquiry choices are broader than fixed pricing packages. Scope is agreed in a proposal.
+export const enquiryServices = [
+  'Business website',
+  'Online store',
+  'Personal & brand portfolio',
+  'Mobile app',
+  'Custom software & SaaS',
+  'SaaS product / MVP',
+  'Dashboard & reporting',
+  'Customer / team portal',
+  'AI chatbot',
+  'AI receptionist / voice assistant',
+  'AI solution',
+  'Business automation',
+  'CRM & system integrations',
+  'Booking & scheduling system',
+  'SEO & growth',
+  'Brand identity & UI/UX',
+  'Maintenance & ongoing support',
+  'Other — tell us your idea',
+] as const;

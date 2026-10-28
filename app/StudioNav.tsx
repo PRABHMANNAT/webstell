@@ -17,7 +17,6 @@ import { whatsappUrl } from './contact-utils';
 const navigationLinks = [
   ['Work', '/projects'],
   ['Services', '/services'],
-  ['Industries', '/services#industries'],
   ['About', '/about'],
   ['Pricing', '/pricing'],
   ['Contact', '/contact'],

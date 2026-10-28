@@ -125,12 +125,12 @@ export default function Home() {
           </div>
         </section>
         <CapabilityGrid />
+        <IndustryExplorer />
         <WorksMarquee />
         <RecentWorkSection />
         <ServiceShowcase />
         <SocialWorkGallery />
         <CurvedTicker />
-        <IndustryExplorer />
         <InternationalProjectsSection />
         <WhyWebstellSection id="insights" onDiscuss={() => setContact(true)} />
         <TeamSection />

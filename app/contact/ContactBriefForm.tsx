@@ -12,7 +12,7 @@ import { trackAnalyticsEvent } from '../../lib/analytics';
 import { whatsappUrl } from '../contact-utils';
 import { useRegion, CurrencySwitcher } from '../RegionProvider';
 import { readEnquiryContext } from '../../lib/enquiry-context';
-import { projectTypes } from '../pricing-scope';
+import { enquiryServices } from '../enquiry-services';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 type FieldErrors = Record<string, string>;
@@ -319,12 +319,12 @@ export default function ContactBriefForm() {
           onChange={(event) => setProject(event.target.value)}
         >
           <option value="">Help me choose</option>
-          {project && !projectTypes.some((item) => item.name === project) && (
+          {project && !enquiryServices.some((item) => item === project) && (
             <option>{project}</option>
           )}
-          {projectTypes.map((item) => (
-            <option value={item.name} key={item.id}>
-              {item.name}
+          {enquiryServices.map((item) => (
+            <option value={item} key={item}>
+              {item}
             </option>
           ))}
         </select>

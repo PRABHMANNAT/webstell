@@ -1,7 +1,25 @@
 'use client';
 import SiteLink from './SiteLink';
 import { useState } from 'react';
-import { ArrowUpRight, ArrowRight, Check, Plus } from 'lucide-react';
+import {
+  ArrowUpRight,
+  ArrowRight,
+  Plus,
+  Search,
+  CalendarDays,
+  Workflow,
+  ShoppingBag,
+  MapPin,
+  Layers,
+  Truck,
+  Ruler,
+  CreditCard,
+  MessageCircle,
+  Heart,
+  Images,
+  type LucideIcon,
+} from 'lucide-react';
+import { enquiryServices } from './enquiry-services';
 import {
   services,
   industries,
@@ -180,6 +198,57 @@ const industryLabels: Record<IndustryId, string> = {
   'australian-tradies': 'Australian tradies',
 };
 
+const industryHighlights: Record<
+  IndustryId,
+  readonly (readonly [LucideIcon, string])[]
+> = {
+  'cafes-restaurants': [
+    [Layers, 'Digital menus'],
+    [CalendarDays, 'Table bookings'],
+    [MapPin, 'Find & visit'],
+  ],
+  'sweets-beverages': [
+    [ShoppingBag, 'Gift collections'],
+    [MessageCircle, 'Custom orders'],
+    [Truck, 'Pickup & delivery'],
+  ],
+  'beauty-makeup': [
+    [Images, 'Work galleries'],
+    [CalendarDays, 'Appointments'],
+    [Heart, 'Bridal enquiries'],
+  ],
+  'jewellery-fashion': [
+    [Layers, 'Shop collections'],
+    [CreditCard, 'Easy checkout'],
+    [MessageCircle, 'Custom designs'],
+  ],
+  'furniture-home': [
+    [Ruler, 'Sizes & materials'],
+    [Truck, 'Delivery details'],
+    [MessageCircle, 'Trade enquiries'],
+  ],
+  retail: [
+    [ShoppingBag, 'Online storefront'],
+    [CreditCard, 'Stock & payments'],
+    [MessageCircle, 'Customer support'],
+  ],
+  'real-estate': [
+    [Search, 'Property search'],
+    [CalendarDays, 'Viewing requests'],
+    [Workflow, 'CRM connections'],
+  ],
+  clinics: [
+    [Heart, 'Care & specialists'],
+    [CalendarDays, 'Booking links'],
+    [MessageCircle, 'Private enquiries'],
+  ],
+  'australian-tradies': [
+    [MapPin, 'Service areas'],
+    [Images, 'Job & photo briefs'],
+    [Workflow, 'Quote follow-ups'],
+  ],
+};
+
 export function IndustryExplorer({
   australia = false,
 }: {
@@ -197,22 +266,9 @@ export function IndustryExplorer({
       aria-labelledby="industry-title"
     >
       <header className="industry-heading">
-        <div>
-          <span className="studio-eyebrow">
-            A WEBSITE THAT KNOWS YOUR WORLD
-          </span>
-          <h2 id="industry-title">
-            Made for <em>your business.</em>
-          </h2>
-          <p>
-            Choose your industry. Explore what we can build.
-          </p>
-        </div>
-        <span className="industry-heading-note">
-          <span aria-hidden="true">✳</span> DIFFERENT BUSINESSES.
-          <br />
-          THEIR OWN POSSIBILITIES.
-        </span>
+        <h2 id="industry-title">
+          Digital solutions for <em>your business.</em>
+        </h2>
       </header>
       <div className="industry-browser">
         <label className="industry-mobile-picker">
@@ -259,7 +315,7 @@ export function IndustryExplorer({
               <IndustryIcon industry={industry.id} />
             </span>
             <div>
-              <span className="industry-focus-kicker">BUILT AROUND</span>
+              <span className="industry-focus-kicker">POSSIBILITIES FOR</span>
               <p>{industry.name}</p>
             </div>
             <span className="industry-focus-number" aria-hidden="true">
@@ -273,12 +329,11 @@ export function IndustryExplorer({
             aria-atomic="true"
           >
             <h3 id="industry-focus-title">{industry.tagline}</h3>
-            <p>{industry.need}</p>
             <ul>
-              {industry.features.map((feature) => (
-                <li key={feature}>
-                  <Check size={16} aria-hidden="true" />
-                  {feature}
+              {industryHighlights[industry.id].map(([Icon, label]) => (
+                <li key={label}>
+                  <Icon size={23} strokeWidth={1.5} aria-hidden="true" />
+                  <span>{label}</span>
                 </li>
               ))}
             </ul>
@@ -307,6 +362,64 @@ export function IndustryExplorer({
           </details>
         </article>
       </div>
+      <details className="industry-other">
+        <summary>
+          <span>Need something else?</span>
+          <span className="industry-other-action">
+            Tell us your idea <Plus size={18} aria-hidden="true" />
+          </span>
+        </summary>
+        <form
+          action="/contact"
+          method="get"
+          className="industry-brief"
+          onSubmit={(event) => {
+            event.preventDefault();
+            const brief = new FormData(event.currentTarget);
+            const project = brief.get('project');
+            const detail = brief.get('detail');
+            window.location.assign(
+              enquiryHref(
+                typeof project === 'string' ? project : '',
+                typeof detail === 'string' ? detail : '',
+                { source: 'industries-other' },
+              ),
+            );
+          }}
+        >
+          <input type="hidden" name="source" value="industries-other" />
+          <label>
+            What would you like to build?
+            <select name="project" defaultValue="" required>
+              <option value="" disabled>
+                Choose a service
+              </option>
+              {enquiryServices.map((service) => (
+                <option key={service} value={service}>
+                  {service}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Tell us your idea
+            <textarea
+              name="detail"
+              rows={3}
+              required
+              minLength={12}
+              maxLength={600}
+              placeholder="What should it do, and who is it for?"
+            />
+          </label>
+          <div className="industry-brief-footer">
+            <small>Add your contact details on the next step.</small>
+            <button className="agency-button" type="submit">
+              Continue my enquiry <ArrowUpRight size={18} aria-hidden="true" />
+            </button>
+          </div>
+        </form>
+      </details>
     </section>
   );
 }

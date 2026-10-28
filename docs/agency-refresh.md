@@ -34,3 +34,7 @@ Unit and integration tests cover country defaults, saved preferences, redirects,
 Final results: 19 tests passed; lint and TypeScript checks passed; the Vercel production build prerendered 18 pages, with the three API routes remaining dynamic. The internal route/anchor audit found no broken links in generated pages. Homepage, Australia, pricing, services, projects, contact and schedule were measured at 320 pixels with no page-level horizontal overflow; 390-pixel and desktop layouts were visually reviewed. Existing clipped marquees retain their intentional animation. A Sydney conversion of a 10:00 IST call slot correctly displayed 15:30 on the tested October date.
 
 Live inbox delivery and live Vercel geolocation require deployment configuration and were not represented as verified by local testing.
+
+### Industry refinement
+
+The industry explorer now follows the hero and capability section as the third homepage section. Its heading is a single sentence, with concise illustrated feature tiles and no decorative heading note. The main navigation no longer includes Industries. A “Need something else?” disclosure offers the full enquiry service list and a short written brief, then passes both into the existing contact form; the service list includes an Other option. The shared section updates Services and the Australian edition too.
