@@ -318,7 +318,7 @@ export function IndustryExplorer({
     >
       <header className="industry-heading">
         <h2 id="industry-title">
-          Choose your <em>industry.</em>
+          Choose your <em>industry package.</em>
         </h2>
       </header>
       <div className="industry-browser">
@@ -346,21 +346,7 @@ export function IndustryExplorer({
               aria-label={item.name}
               aria-pressed={active === item.id}
               aria-controls="industry-focus"
-              onClick={(event) => {
-                setActive(item.id);
-                const button = event.currentTarget;
-                const list = button.parentElement;
-                list?.scrollTo({
-                  top:
-                    button.offsetTop -
-                    (list.clientHeight - button.offsetHeight) / 2,
-                  behavior: window.matchMedia(
-                    '(prefers-reduced-motion: reduce)',
-                  ).matches
-                    ? 'instant'
-                    : 'smooth',
-                });
-              }}
+              onClick={() => setActive(item.id)}
             >
               <span className="industry-tile-icon">
                 <IndustryIcon industry={item.id} />

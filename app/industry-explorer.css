@@ -614,15 +614,11 @@ fieldset.industry-selector {
   }
 }
 
-/* A compact scrollable selector and short transitions between selections. */
+/* Full industry list with short transitions between selections. */
 fieldset.industry-selector {
   position: relative;
-  max-height: 352px;
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
-  scrollbar-width: thin;
-  scrollbar-color: #75834d #202020;
-  scroll-padding-block: 6px;
+  max-height: none;
+  overflow: visible;
 }
 .industry-selector button {
   flex-shrink: 0;
@@ -638,13 +634,6 @@ fieldset.industry-selector {
 .industry-selector button[aria-pressed='true']:focus-visible {
   outline-color: #0c0c0c;
 }
-.industry-selector::-webkit-scrollbar {
-  width: 4px;
-}
-.industry-selector::-webkit-scrollbar-thumb {
-  background: #75834d;
-  border-radius: 4px;
-}
 .industry-focus {
   padding-top: 20px;
   padding-bottom: 14px;
@@ -658,7 +647,8 @@ fieldset.industry-selector {
   animation: industry-copy-enter 0.28s ease-out both;
 }
 .industry-focus-actions {
-  margin-top: 22px;
+  margin-top: auto;
+  padding-top: 24px;
 }
 .industry-object {
   animation: industry-object-enter 0.38s cubic-bezier(0.2, 0.7, 0.2, 1) both;
@@ -706,5 +696,29 @@ fieldset.industry-selector {
   .industry-focus-copy h3,
   .industry-object {
     animation: none;
+  }
+}
+
+@media (min-width: 701px) {
+  .industry-focus {
+    min-height: 450px;
+    padding-top: 28px;
+    padding-bottom: 24px;
+  }
+  .industry-selector button {
+    min-height: 48px;
+  }
+  .industry-object {
+    top: 64px;
+  }
+  .industry-heading h2 {
+    max-width: 920px;
+    font-size: clamp(34px, 4.2vw, 54px);
+  }
+}
+@media (max-width: 700px) {
+  .industry-focus-actions {
+    margin-top: 0;
+    padding-top: 20px;
   }
 }

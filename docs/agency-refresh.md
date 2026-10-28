@@ -44,3 +44,5 @@ The industry section now uses a single ink-coloured stage, a compact vertical se
 The service index now contains 12 compact, custom SVG illustrations under “What can we build for you?”, with the reference's relevant AI receptionist, automation, dashboard/portal and integration offerings linked to service pages or contextual enquiries. Industry headings describe concrete capabilities. The industry surface is solid black with white text and lime accents; decorative marquee text, stars and playback controls were removed. Existing mobile selectors and the custom enquiry flow remain available.
 
 Industry selection now uses “Choose your industry”, plain action-based descriptions, a compact scrollable desktop list and reduced-motion-aware selection transitions. The customer journey disclosure was removed as requested. The native mobile picker and contextual enquiry links are unchanged.
+
+The industry selector now shows all nine desktop options without internal scrolling. The detail panel expands to match the full list, and the heading is “Choose your industry package.” The mobile picker and selection transitions remain available.
