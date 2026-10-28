@@ -498,3 +498,118 @@ fieldset.industry-selector {
     transition: none;
   }
 }
+
+/* Black, white and lime; a clear heading instead of a decorative marquee. */
+.industry-explorer.industry-compact {
+  padding: 32px;
+  border: 1px solid #252525;
+  border-radius: 28px;
+  background: #0c0c0c;
+  color: #fff;
+}
+.industry-heading {
+  padding: 0 0 28px;
+  margin: 0 0 10px;
+  border-bottom: 1px solid #ffffff24;
+}
+.industry-heading h2 {
+  font-size: clamp(34px, 4.7vw, 60px);
+  color: #fff;
+}
+.industry-heading h2 em {
+  color: #d7ff46;
+}
+.industry-browser {
+  background: #0c0c0c;
+  border-radius: 0;
+  padding: 14px 0;
+}
+.industry-focus {
+  color: #fff;
+}
+.industry-focus-intro p,
+.industry-focus-copy li {
+  color: #fff;
+}
+.industry-focus-kicker,
+.industry-focus-number,
+.industry-journey summary {
+  color: #b4b4b4;
+}
+.industry-selector button {
+  color: #d2d2d2;
+}
+.industry-selector button[aria-pressed='true'] {
+  background: #d7ff46;
+  color: #0c0c0c;
+}
+.industry-mobile-picker {
+  color: #c8c8c8;
+}
+.industry-mobile-picker select {
+  background: #171717;
+  border-color: #555;
+  color: #fff;
+}
+.industry-other {
+  border-top: 1px solid #ffffff24;
+  border-bottom: 0;
+  margin-top: 12px;
+}
+.industry-other > summary {
+  color: #fff;
+  min-height: 64px;
+  padding-bottom: 0;
+}
+.industry-other-action svg {
+  border-color: #666;
+  color: #d7ff46;
+}
+.industry-brief label,
+.industry-brief-footer small {
+  color: #d5d5d5;
+}
+.industry-brief :is(select, textarea) {
+  border-color: #606060;
+  background: #171717;
+  color: #fff;
+}
+.industry-brief textarea::placeholder {
+  color: #aaa;
+}
+.industry-brief-footer .agency-button {
+  background: #d7ff46;
+  color: #0c0c0c;
+}
+.industry-compact :is(button, a, summary, select, textarea):focus-visible {
+  outline-color: #d7ff46;
+}
+@media (hover: hover) {
+  .industry-other summary:hover {
+    color: #d7ff46;
+  }
+}
+@media (max-width: 700px) {
+  .industry-explorer.industry-compact {
+    padding: 20px;
+    border-radius: 22px;
+  }
+  .industry-heading {
+    padding-bottom: 20px;
+    margin-bottom: 8px;
+  }
+  .industry-heading h2 {
+    font-size: 34px;
+  }
+  .industry-browser {
+    padding: 12px 0;
+  }
+  .industry-other > summary {
+    font-size: 14px;
+    gap: 8px;
+  }
+  .industry-other-action {
+    font-size: 10px;
+    gap: 6px;
+  }
+}

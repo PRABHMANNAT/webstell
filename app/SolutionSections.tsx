@@ -27,42 +27,93 @@ import {
   type IndustryId,
 } from './service-catalog';
 import IndustryIcon from './IndustryIcon';
+import CapabilityMark from './CapabilityMark';
 import './industry-explorer.css';
+import './capability-grid.css';
+
+const capabilities = [
+  {
+    label: 'Websites',
+    mark: 'website',
+    href: '/services#website-design-development',
+  },
+  {
+    label: 'Online stores',
+    mark: 'store',
+    href: enquiryHref('store', 'Online store'),
+  },
+  {
+    label: 'Software & SaaS',
+    mark: 'software',
+    href: '/services#custom-software',
+  },
+  {
+    label: 'AI tools & chatbots',
+    mark: 'ai',
+    href: '/services#ai-chatbots-automation',
+  },
+  {
+    label: 'AI receptionists',
+    mark: 'voice',
+    href: enquiryHref('AI receptionist / voice assistant', 'AI receptionist'),
+  },
+  {
+    label: 'Automations',
+    mark: 'automation',
+    href: enquiryHref('automation', 'Business automation'),
+  },
+  {
+    label: 'Dashboards & portals',
+    mark: 'dashboard',
+    href: enquiryHref('Dashboard & reporting', 'Dashboard or customer portal'),
+  },
+  {
+    label: 'Integrations',
+    mark: 'integration',
+    href: enquiryHref('CRM & system integrations', 'Connect my business tools'),
+  },
+  {
+    label: 'Portfolios',
+    mark: 'portfolio',
+    href: '/services#portfolios',
+  },
+  {
+    label: 'SEO & growth',
+    mark: 'growth',
+    href: '/services#growth-seo-optimisation',
+  },
+  { label: 'Mobile apps', mark: 'mobile', href: '/services#mobile-apps' },
+  {
+    label: 'Branding & UI/UX',
+    mark: 'design',
+    href: enquiryHref('Brand identity & UI/UX', 'Branding and product design'),
+  },
+] as const;
 
 export function CapabilityGrid() {
   return (
     <section
-      className="capability-section studio-width"
+      className="capability-section capability-visual studio-width"
       aria-labelledby="capability-title"
     >
-      <div className="agency-section-heading">
-        <span className="studio-eyebrow">
-          CREATIVE THINKING. PRACTICAL TECHNOLOGY.
-        </span>
-        <h2 id="capability-title">
-          A better presence.
-          <br />
-          <em>A more capable business.</em>
-        </h2>
-        <p>
-          One team for what customers see, the software your team uses, and the
-          systems that connect it all.
-        </p>
-      </div>
+      <header className="capability-heading">
+        <h2 id="capability-title">What can we build for you?</h2>
+        <SiteLink href="/services">
+          Explore services <ArrowUpRight size={18} aria-hidden="true" />
+        </SiteLink>
+      </header>
       <div className="capability-grid">
-        {services.map((service) => (
-          <SiteLink
-            className="capability-card"
-            key={service.id}
-            href={`/services#${service.id}`}
-          >
-            <span>
-              {service.number}
-              <ArrowUpRight aria-hidden="true" size={23} />
+        {capabilities.map(({ label, mark, href }) => (
+          <SiteLink className="capability-card" key={label} href={href}>
+            <span className="capability-icon" aria-hidden="true">
+              <CapabilityMark name={mark} />
             </span>
-            <h3>{service.short}</h3>
-            <p>{service.description}</p>
-            <small>Explore the possibilities</small>
+            <h3>{label}</h3>
+            <ArrowUpRight
+              className="capability-arrow"
+              size={17}
+              aria-hidden="true"
+            />
           </SiteLink>
         ))}
       </div>
@@ -267,7 +318,7 @@ export function IndustryExplorer({
     >
       <header className="industry-heading">
         <h2 id="industry-title">
-          Digital solutions for <em>your business.</em>
+          Solutions by <em>industry.</em>
         </h2>
       </header>
       <div className="industry-browser">
@@ -322,7 +373,7 @@ export function IndustryExplorer({
               <IndustryIcon industry={industry.id} />
             </span>
             <div>
-              <span className="industry-focus-kicker">POSSIBILITIES FOR</span>
+              <span className="industry-focus-kicker">FOR YOUR INDUSTRY</span>
               <p>{industry.name}</p>
             </div>
             <span className="industry-focus-number" aria-hidden="true">

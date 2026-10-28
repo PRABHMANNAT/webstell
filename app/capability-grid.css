@@ -1,0 +1,191 @@
+/* A quiet, illustrated service shelf beneath the landscape hero. */
+.capability-section.capability-visual {
+  padding-block: 32px 0;
+}
+.capability-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+.capability-heading h2 {
+  margin: 0;
+  font-size: clamp(26px, 2.8vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+}
+.capability-heading h2 em {
+  color: #747b6c;
+  font-style: normal;
+}
+.capability-heading > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 12px;
+  color: #444b3d;
+}
+.capability-visual .capability-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0;
+  border: 0;
+  border-top: 1px solid #d9ddd2;
+  border-bottom: 1px solid #d9ddd2;
+}
+.capability-visual .capability-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: 134px;
+  padding: 16px 12px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #252b20;
+  text-align: center;
+  transition: background 0.2s;
+}
+.capability-visual .capability-card:nth-child(n + 7) {
+  border-top: 1px solid #e7e9e2;
+}
+.capability-visual .capability-card > .capability-icon {
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  color: inherit;
+  flex-shrink: 0;
+}
+.capability-icon svg {
+  width: 62px;
+  height: 62px;
+  overflow: visible;
+  filter: drop-shadow(2px 3px 0 #c9cdbd80);
+  transition: transform 0.2s;
+}
+.capability-visual .capability-card h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+.capability-arrow {
+  position: absolute;
+  top: 14px;
+  right: 12px;
+  color: #748164;
+  width: 13px;
+  opacity: 0;
+}
+.capability-visual .capability-card:focus-visible,
+.capability-heading > a:focus-visible {
+  outline: 2px solid #788a47;
+  outline-offset: 3px;
+  z-index: 1;
+}
+.capability-visual .capability-card:focus-visible .capability-arrow {
+  opacity: 1;
+}
+@media (hover: hover) {
+  .capability-visual .capability-card:hover {
+    background: #f3f5ec;
+  }
+  .capability-card:hover .capability-icon svg {
+    transform: translateY(-4px) rotate(-5deg);
+  }
+  .capability-card:hover .capability-arrow {
+    opacity: 1;
+  }
+}
+@media (max-width: 1000px) {
+  .capability-visual .capability-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .capability-visual .capability-card:nth-child(n + 5) {
+    border-top: 1px solid #e7e9e2;
+  }
+  .capability-visual .capability-card {
+    min-height: 124px;
+    padding: 14px 10px;
+  }
+  .capability-icon svg,
+  .capability-visual .capability-card > .capability-icon {
+    width: 54px;
+    height: 54px;
+  }
+}
+@media (max-width: 600px) {
+  .capability-section.capability-visual {
+    padding-block: 24px 0;
+  }
+  .capability-heading {
+    margin-bottom: 14px;
+    gap: 12px;
+  }
+  .capability-heading h2 {
+    font-size: 27px;
+    white-space: nowrap;
+  }
+  .capability-heading > a {
+    font-size: 11px;
+    gap: 6px;
+  }
+  .capability-visual .capability-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .capability-visual .capability-card:nth-child(n + 4) {
+    border-top: 1px solid #e7e9e2;
+  }
+  .capability-visual .capability-card {
+    min-height: 119px;
+    padding: 12px 5px;
+    gap: 9px;
+    justify-content: flex-start;
+  }
+  .capability-visual .capability-card h3 {
+    font-size: 12px;
+    max-width: 110px;
+  }
+  .capability-icon svg,
+  .capability-visual .capability-card > .capability-icon {
+    width: 48px;
+    height: 48px;
+  }
+  .capability-arrow {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .capability-visual .capability-card,
+  .capability-icon svg {
+    transition: none;
+  }
+  .capability-card:hover .capability-icon svg {
+    transform: none;
+  }
+}
+
+.capability-heading h2 {
+  font-size: clamp(28px, 3.3vw, 42px);
+}
+@media (max-width: 600px) {
+  .capability-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .capability-heading h2 {
+    font-size: 29px;
+    white-space: normal;
+    max-width: 300px;
+  }
+}
