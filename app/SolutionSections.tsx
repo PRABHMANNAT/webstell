@@ -318,7 +318,7 @@ export function IndustryExplorer({
     >
       <header className="industry-heading">
         <h2 id="industry-title">
-          Solutions by <em>industry.</em>
+          Choose your <em>industry.</em>
         </h2>
       </header>
       <div className="industry-browser">
@@ -346,7 +346,21 @@ export function IndustryExplorer({
               aria-label={item.name}
               aria-pressed={active === item.id}
               aria-controls="industry-focus"
-              onClick={() => setActive(item.id)}
+              onClick={(event) => {
+                setActive(item.id);
+                const button = event.currentTarget;
+                const list = button.parentElement;
+                list?.scrollTo({
+                  top:
+                    button.offsetTop -
+                    (list.clientHeight - button.offsetHeight) / 2,
+                  behavior: window.matchMedia(
+                    '(prefers-reduced-motion: reduce)',
+                  ).matches
+                    ? 'instant'
+                    : 'smooth',
+                });
+              }}
             >
               <span className="industry-tile-icon">
                 <IndustryIcon industry={item.id} />
@@ -365,7 +379,7 @@ export function IndustryExplorer({
           id="industry-focus"
           aria-labelledby="industry-focus-title"
         >
-          <div className="industry-object" aria-hidden="true">
+          <div className="industry-object" key={industry.id} aria-hidden="true">
             <IndustryIcon industry={industry.id} />
           </div>
           <div className="industry-focus-intro">
@@ -373,7 +387,7 @@ export function IndustryExplorer({
               <IndustryIcon industry={industry.id} />
             </span>
             <div>
-              <span className="industry-focus-kicker">FOR YOUR INDUSTRY</span>
+              <span className="industry-focus-kicker">WHAT WE CAN BUILD</span>
               <p>{industry.name}</p>
             </div>
             <span className="industry-focus-number" aria-hidden="true">
@@ -386,7 +400,9 @@ export function IndustryExplorer({
             aria-live="polite"
             aria-atomic="true"
           >
-            <h3 id="industry-focus-title">{industry.tagline}</h3>
+            <h3 id="industry-focus-title" key={industry.id}>
+              {industry.tagline}
+            </h3>
             <ul>
               {industryHighlights[industry.id].map(([Icon, label]) => (
                 <li key={label}>
@@ -412,12 +428,6 @@ export function IndustryExplorer({
               View concepts <ArrowRight size={16} aria-hidden="true" />
             </SiteLink>
           </div>
-          <details className="industry-journey" key={industry.id}>
-            <summary>
-              A typical customer journey <Plus size={15} aria-hidden="true" />
-            </summary>
-            <p>{industry.workflow}</p>
-          </details>
         </article>
       </div>
       <details className="industry-other">

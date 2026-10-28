@@ -119,7 +119,7 @@ export const industries = [
   {
     id: 'cafes-restaurants',
     name: 'Cafés & Restaurants',
-    tagline: 'Menus, bookings & orders.',
+    tagline: 'Take bookings and orders online.',
     need: 'Menus, bookings and opening hours, easy to find.',
     features: [
       'Editable menus & dietary notes',
@@ -134,7 +134,7 @@ export const industries = [
   {
     id: 'sweets-beverages',
     name: 'Sweets & Beverages',
-    tagline: 'Product collections & online orders.',
+    tagline: 'Sell your sweets and drinks online.',
     need: 'Show your range and simplify gifting and custom orders.',
     features: [
       'Product & gift collections',
@@ -149,7 +149,7 @@ export const industries = [
   {
     id: 'beauty-makeup',
     name: 'Beauty & Makeup',
-    tagline: 'Service galleries & appointments.',
+    tagline: 'Show your work. Take bookings.',
     need: 'Bring services, real work and appointment requests together.',
     features: [
       'Services & real work galleries',
@@ -164,7 +164,7 @@ export const industries = [
   {
     id: 'jewellery-fashion',
     name: 'Jewellery & Fashion',
-    tagline: 'Collections, checkout & custom orders.',
+    tagline: 'Sell your latest collection.',
     need: 'Make styles, sizes, materials and checkout easy to explore.',
     features: [
       'Collections, sizes & material guides',
@@ -179,7 +179,7 @@ export const industries = [
   {
     id: 'furniture-home',
     name: 'Furniture & Home Essentials',
-    tagline: 'Product catalogues & custom enquiries.',
+    tagline: 'Show your products. Take orders.',
     need: 'Clear dimensions, materials and delivery information.',
     features: [
       'Dimensions, materials & room ranges',
@@ -194,7 +194,7 @@ export const industries = [
   {
     id: 'retail',
     name: 'Retail Stores',
-    tagline: 'Online sales & stock management.',
+    tagline: 'Sell online. Manage your stock.',
     need: 'Connect your products, payments, orders and customers.',
     features: [
       'Product catalogue & storefront',
@@ -209,7 +209,7 @@ export const industries = [
   {
     id: 'real-estate',
     name: 'Real Estate',
-    tagline: 'Property listings & viewing requests.',
+    tagline: 'List properties. Book viewings.',
     need: 'Help buyers find the right property and contact your team.',
     features: [
       'Searchable property listings',
@@ -224,7 +224,7 @@ export const industries = [
   {
     id: 'clinics',
     name: 'Clinics',
-    tagline: 'Clinic information & booking links.',
+    tagline: 'Help patients book appointments.',
     need: 'Clear services, practitioner details and booking options.',
     features: [
       'Services & practitioner profiles',
@@ -239,7 +239,7 @@ export const industries = [
   {
     id: 'australian-tradies',
     name: 'Australian Tradies',
-    tagline: 'Job enquiries & quote follow-ups.',
+    tagline: 'Get job requests. Send quotes.',
     need: 'Collect the job, suburb and photos before you quote.',
     features: [
       'Services, coverage & work galleries',

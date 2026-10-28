@@ -613,3 +613,98 @@ fieldset.industry-selector {
     gap: 6px;
   }
 }
+
+/* A compact scrollable selector and short transitions between selections. */
+fieldset.industry-selector {
+  position: relative;
+  max-height: 352px;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #75834d #202020;
+  scroll-padding-block: 6px;
+}
+.industry-selector button {
+  flex-shrink: 0;
+  min-height: 47px;
+  transition:
+    background 0.22s,
+    color 0.22s,
+    transform 0.22s;
+}
+.industry-selector button:focus-visible {
+  outline-offset: -3px;
+}
+.industry-selector button[aria-pressed='true']:focus-visible {
+  outline-color: #0c0c0c;
+}
+.industry-selector::-webkit-scrollbar {
+  width: 4px;
+}
+.industry-selector::-webkit-scrollbar-thumb {
+  background: #75834d;
+  border-radius: 4px;
+}
+.industry-focus {
+  padding-top: 20px;
+  padding-bottom: 14px;
+}
+.industry-focus-intro p {
+  color: #d7ff46;
+}
+.industry-focus-copy h3 {
+  min-height: 92px;
+  margin: 24px 0;
+  animation: industry-copy-enter 0.28s ease-out both;
+}
+.industry-focus-actions {
+  margin-top: 22px;
+}
+.industry-object {
+  animation: industry-object-enter 0.38s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.industry-focus-copy ul {
+  border-bottom: 0;
+}
+.industry-focus-copy li {
+  align-items: flex-start;
+}
+@keyframes industry-copy-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes industry-object-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) rotate(-5deg) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(-10deg) scale(1);
+  }
+}
+@media (max-width: 700px) {
+  .industry-focus {
+    padding-top: 24px;
+    padding-bottom: 0;
+  }
+  .industry-focus-copy h3 {
+    min-height: 0;
+    font-size: 30px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .industry-selector button {
+    transition: none;
+  }
+  .industry-focus-copy h3,
+  .industry-object {
+    animation: none;
+  }
+}
