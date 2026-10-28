@@ -1,91 +1,113 @@
 'use client';
-
-import { useState } from 'react';
-import {
-  ArrowDown,
-  ArrowUpRight,
-  Check,
-  Clock3,
-  Plus,
-  Sparkles,
-  SlidersHorizontal,
-} from 'lucide-react';
-import StudioNav, { HireDialog } from '../StudioNav';
+import SiteLink from '../SiteLink';
+import { useEffect, useState } from 'react';
+import { ArrowUpRight, Check, Plus, Sparkles } from 'lucide-react';
+import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
 import BriefForm from '../BriefForm';
 import FaqAccordion from '../FaqAccordion';
 import PricingSection from '../PricingSection';
+import { CurrencySwitcher, useRegion } from '../RegionProvider';
+import { formatMoney, taxNotes } from '../../lib/region';
 import { pricingFaqs } from './pricing-faqs';
-import { projectGuidance } from './project-guidance';
+import {
+  packageCategories,
+  getPackageCategory,
+  includedExtras,
+  type Tier,
+} from './packages';
 import { whatsappUrl } from '../contact-utils';
 import {
   calculateEstimate,
   getAvailableExtras,
   getProjectType,
-  money,
-  projectTypes,
+  MAX_EXTRA_UNITS,
 } from '../pricing-data';
 
 export default function PricingExperience() {
-  const [hireOpen, setHireOpen] = useState(false);
+  const { currency, ready } = useRegion();
   const [type, setType] = useState('website');
+  const [tier, setTier] = useState<Tier>('starter');
   const [selected, setSelected] = useState<string[]>([]);
   const [ownDomain, setOwnDomain] = useState(false);
+  const [extraUnits, setExtraUnits] = useState(0);
   const [goal, setGoal] = useState('');
-  const {
-    project,
-    additions,
-    total,
-    deposit,
-    delivery,
-    domainSaving,
-  } = calculateEstimate(type, selected, ownDomain, 0);
-  const availableExtras = getAvailableExtras(type);
-  const recommendedExtras = availableExtras.filter((item) =>
-    item.recommendedFor.includes(project.id),
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const params = new URLSearchParams(window.location.search);
+      const service = params.get('service');
+      if (!service) return;
+      const project = getProjectType(service);
+      const requestedTier = params.get('package');
+      const packageTier =
+        requestedTier === 'growth' || requestedTier === 'custom'
+          ? requestedTier
+          : 'starter';
+      setType(project.id);
+      setTier(packageTier);
+      setSelected(includedExtras(project.id, packageTier));
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+  const estimate = calculateEstimate(
+    type,
+    selected,
+    ownDomain,
+    extraUnits,
+    currency,
+    tier,
   );
-  const callHref = `/schedule?source=pricing&project=${encodeURIComponent(
-    project.name,
-  )}&estimate=${total}`;
+  const { project, additions, total, delivery } = estimate;
+  const category = getPackageCategory(type);
+  const availableExtras = getAvailableExtras(type);
+  const recommended = availableExtras.filter((item) =>
+    (item.recommendedFor as readonly string[]).includes(type),
+  );
+  const included = includedExtras(type, tier);
   const context = [
-    'PROJECT ESTIMATE',
+    `PROJECT SCOPE · ${tier.toUpperCase()}`,
     `Project: ${project.name}`,
+    `Currency: ${currency}`,
     `Business goal: ${goal || 'To discuss together'}`,
     `Starting scope: ${project.includedUnits} ${project.unitLabel}`,
-    `Starting price: ${money(project.price)}`,
-    ...additions.map((item) => `${item.name}: +${money(item.price)}`),
-    domainSaving
-      ? 'Client supplies eligible domain: −₹3,500'
-      : project.domainEligible
-        ? 'Standard domain allowance included: ₹3,500'
-        : 'Domain is not part of this project type.',
-    `Indicative delivery: ${delivery}`,
-    `Estimated first milestone: ${money(deposit)}`,
-    `Estimated total: ${money(total)}`,
-    'Indicative estimate only. Final scope, delivery and price are agreed in the proposal.',
+    `Additional units: ${estimate.extraUnits}`,
+    ...additions.map(
+      (item) =>
+        `${item.name}${item.included ? ' (included in selected package)' : ''}`,
+    ),
+    ownDomain
+      ? 'Client provides their domain.'
+      : 'Domain requirements to be agreed.',
+    `Planning range: ${delivery}; confirmed after discovery.`,
+    total === null
+      ? 'Price: written quote requested.'
+      : `Indicative ${category.recurring ? 'monthly' : 'one-time'} amount: ${formatMoney(total, currency)}`,
+    'Recurring services, usage, third-party costs and applicable taxes require a separate written breakdown.',
   ].join('\n');
-
-  function selectProjectType(nextType: string) {
-    const nextProject = getProjectType(nextType);
-    const nextAvailable = getAvailableExtras(nextType);
-    setType(nextType);
-    setGoal('');
-    setSelected((current) =>
-      current.filter((id) => nextAvailable.some((item) => item.id === id)),
-    );
-    if (!nextProject.domainEligible) setOwnDomain(false);
-  }
-
-  function applyPlan(nextType: string, nextExtras: string[]) {
-    const nextAvailable = getAvailableExtras(nextType);
-    setType(nextType);
-    setSelected(
-      nextExtras.filter((id) => nextAvailable.some((item) => item.id === id)),
-    );
-    setGoal('');
+  const handoff = new URLSearchParams({
+    source: 'pricing',
+    project: project.name,
+    package: tier,
+    currency,
+    detail: goal || `${category.label} ${tier} package`,
+    features: additions.map((item) => item.name).join(', '),
+    units: String(estimate.extraUnits),
+    domain: ownDomain ? 'Client supplied' : 'To discuss',
+  });
+  if (total !== null) handoff.set('estimate', String(total));
+  const callHref = `/schedule?${handoff}`;
+  function choose(
+    next: string,
+    extras: string[] = [],
+    nextTier: Tier = 'starter',
+  ) {
+    setType(getProjectType(next).id);
+    setTier(nextTier);
+    setSelected([...new Set([...includedExtras(next, nextTier), ...extras])]);
+    setExtraUnits(0);
     setOwnDomain(false);
+    setGoal('');
   }
-
   function toggle(id: string) {
     setSelected((current) =>
       current.includes(id)
@@ -93,300 +115,314 @@ export default function PricingExperience() {
         : [...current, id],
     );
   }
-
-  function addRecommended() {
-    setSelected((current) => [
-      ...new Set([...current, ...recommendedExtras.map((item) => item.id)]),
-    ]);
-  }
-
   return (
     <>
       <StudioNav current="pricing" />
-      <main className="pricing-page studio-page">
-        <section className="pricing-page-intro studio-width">
+      <main id="main-content" className="pricing-page agency-pricing">
+        <section className="agency-pricing-hero studio-width">
+          <span className="studio-eyebrow">SCOPE FIRST. CLARITY ALWAYS.</span>
           <div>
             <h1>
               Good work.
               <br />
-              <span>Clear pricing.</span>
+              <em>Clear next steps.</em>
             </h1>
-          </div>
-          <div className="pricing-intro-aside">
             <p>
-              Start with the closest fit, then shape it around the work you
-              actually need. Every number stays visible as you go.
+              From a first website to software that runs your business. Compare
+              useful starting scopes, build your brief, and get a proposal that
+              spells out the investment.
             </p>
-            <div className="pricing-intro-actions">
-              <a className="pricing-scroll-link" href="#calculator">
-                Build an estimate <ArrowDown size={18} />
-              </a>
-              <a className="pricing-call-button" href={callHref}>
-                <span>
-                  Still figuring it out?
-                  <small>Request a 30-minute call</small>
-                </span>
-                <ArrowUpRight size={20} />
-              </a>
-            </div>
+          </div>
+          <div className="pricing-region-row">
+            <CurrencySwitcher />
+            <p>
+              Choose your quote currency. Packages are scoped for each market,
+              with a written price before you commit.
+            </p>
+            <SiteLink className="agency-text-link" href={callHref}>
+              Talk it through <ArrowUpRight size={18} />
+            </SiteLink>
           </div>
         </section>
-
-        <PricingSection onChoose={applyPlan} />
-
+        <div className="studio-width">
+          <fieldset
+            className="package-tabs"
+            aria-label="Choose a pricing category"
+          >
+            {packageCategories.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                aria-pressed={type === item.id}
+                onClick={() => choose(item.id)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </fieldset>
+          <PricingSection category={type} onChoose={choose} />
+        </div>
         <section
-          className="estimate-layout studio-width"
+          className="scope-planner studio-width"
           id="calculator"
           aria-labelledby="calculator-title"
         >
-          <div className="estimate-builder">
-            <div className="calculator-heading">
-              <span>
-                <SlidersHorizontal size={18} /> YOUR PROJECT, YOUR WAY
-              </span>
-              <small>01 — 04</small>
-            </div>
-            <h2 id="calculator-title">What are we building?</h2>
-            <p className="section-subtitle">
-              Choose the nearest starting point. We’ll keep the practical
-              details in view as the estimate takes shape.
+          <div className="scope-builder">
+            <span className="studio-eyebrow">MAKE IT YOURS</span>
+            <h2 id="calculator-title">Build a useful brief.</h2>
+            <p>
+              Keep the starting package, add the capabilities you need, and tell
+              us what should change for your business.
             </p>
-            <fieldset className="project-type-options">
-              <legend className="sr-only">Project type</legend>
-              {projectTypes.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  aria-pressed={type === item.id}
-                  className={type === item.id ? 'selected' : ''}
-                  onClick={() => selectProjectType(item.id)}
+            <div className="scope-selection">
+              <label>
+                Project type
+                <select
+                  value={type}
+                  onChange={(event) => choose(event.target.value)}
                 >
-                  {item.name}
-                  {type === item.id && <Check size={16} />}
-                </button>
-              ))}
-            </fieldset>
-            <p className="type-description">{project.description}</p>
-            <div className="included-strip">
-              <Check size={16} />
-              <span>
-                {projectGuidance[project.id].included}
-              </span>
+                  {packageCategories.map((item) => (
+                    <option value={item.id} key={item.id}>
+                      {item.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Package
+                <select
+                  value={tier}
+                  onChange={(event) =>
+                    choose(
+                      type,
+                      includedExtras(type, event.target.value as Tier),
+                      event.target.value as Tier,
+                    )
+                  }
+                >
+                  <option value="starter">Starter</option>
+                  <option value="growth">Growth</option>
+                  <option value="custom">Custom</option>
+                </select>
+              </label>
             </div>
-
-            <div className="pricing-help">
-              <strong>Not sure what you need?</strong>
-              <p>Tell us about your business. We can help you choose.</p>
-              <a href={whatsappUrl(`Hi WEBSTELL! I am unsure which features I need for a ${project.name}. My current estimate is ${money(total)}. Please help me choose, or arrange a call.`)} target="_blank" rel="noreferrer">Help me choose on WhatsApp <ArrowUpRight size={16} /></a>
-              <a href={callHref}>Request a call <ArrowUpRight size={16} /></a>
-            </div>
-
-            <div className="builder-section-heading addon-heading">
-              <span>02</span>
-              <div>
-                <h3>Add what makes it useful.</h3>
-                <p>
-                  Pick the features that fit this kind of project. Every card
-                  is a one-time addition to your estimate.
-                </p>
-              </div>
-              {recommendedExtras.length > 0 && (
+            <p className="scope-included">
+              <Check size={17} />
+              {project.includedUnits} {project.unitLabel} in the starting brief.
+              Final scope is agreed together.
+            </p>
+            <div className="scope-heading">
+              <h3>What else should it do?</h3>
+              {recommended.length > 0 && (
                 <button
                   type="button"
-                  className="recommended-button"
-                  onClick={addRecommended}
-                  disabled={recommendedExtras.every((item) =>
-                    selected.includes(item.id),
-                  )}
+                  onClick={() =>
+                    setSelected((current) => [
+                      ...new Set([
+                        ...current,
+                        ...recommended.map((item) => item.id),
+                      ]),
+                    ])
+                  }
                 >
                   <Sparkles size={15} /> Add good fits
                 </button>
               )}
             </div>
-            <div className="addon-grid">
-              {availableExtras.map((item) => {
-                const isSelected = selected.includes(item.id);
-                const isRecommended = item.recommendedFor.includes(project.id);
-                return (
-                  <label
-                    className={'addon-card ' + (isSelected ? 'is-selected' : '')}
-                    key={item.id}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={isSelected}
-                      onChange={() => toggle(item.id)}
-                    />
-                    <span className="addon-card-top">
-                      <span className="addon-check" aria-hidden="true">
-                        {isSelected ? <Check size={14} /> : <Plus size={14} />}
-                      </span>
-                      {isRecommended && <em>Good fit</em>}
-                    </span>
-                    <strong>{item.name}</strong>
-                    <span className="addon-detail">{item.detail}</span>
-                    <span className="addon-price">+ {money(item.price)}</span>
-                  </label>
-                );
-              })}
-            </div>
-
-            <div className="builder-section-heading scope-heading">
-              <span>03</span>
-              <div>
-                <h3>What should this do for you?</h3>
-                <p>
-                  Choose your main goal. This helps us suggest useful features and is included in your brief.
-                </p>
-              </div>
-            </div>
-            <fieldset className="pricing-goals">
-              <legend className="sr-only">Your main business goal</legend>
-              {projectGuidance[project.id].goals.map((item) => (
-                <label key={item}><input type="radio" name="business-goal" checked={goal === item} onChange={() => setGoal(item)} />{item}</label>
-              ))}
-            </fieldset>
-            <p className="pricing-goal-note">Tell us if you need launch or marketing guidance. We’ll discuss what is included and any paid work before you commit.</p>
-
-            {project.domainEligible && (
-              <>
-                <div className="builder-section-heading domain-heading">
-                  <span>04</span>
-                  <div>
-                    <h3>Already have a domain?</h3>
-                    <p>Bring your own and we’ll take ₹3,500 off.</p>
-                  </div>
-                </div>
+            <div className="scope-extras">
+              {availableExtras.map((item) => (
                 <label
-                  className={
-                    'domain-option ' + (ownDomain ? 'is-selected' : '')
-                  }
+                  key={item.id}
+                  className={selected.includes(item.id) ? 'is-selected' : ''}
                 >
                   <input
                     type="checkbox"
-                    checked={ownDomain}
-                    onChange={(event) => setOwnDomain(event.target.checked)}
+                    checked={selected.includes(item.id)}
+                    disabled={included.includes(item.id)}
+                    onChange={() => toggle(item.id)}
                   />
                   <span>
-                    <strong>I’ll cover the domain.</strong>
-                    <small>I have one, or I’ll buy it myself.</small>
+                    <strong>{item.name}</strong>
+                    <small>{item.detail}</small>
+                    {included.includes(item.id) && (
+                      <em>Included with {tier}</em>
+                    )}
                   </span>
-                  <b>− ₹3,500</b>
                 </label>
-              </>
+              ))}
+            </div>
+            <label className="scope-units">
+              Additional {project.unitLabel}
+              <input
+                type="number"
+                min="0"
+                max={MAX_EXTRA_UNITS}
+                value={extraUnits}
+                onChange={(event) =>
+                  setExtraUnits(
+                    Math.min(
+                      MAX_EXTRA_UNITS,
+                      Math.max(0, Math.floor(Number(event.target.value) || 0)),
+                    ),
+                  )
+                }
+              />
+              <small>More scope can affect both price and delivery.</small>
+            </label>
+            {project.domainEligible && (
+              <label className="scope-domain">
+                <input
+                  type="checkbox"
+                  checked={ownDomain}
+                  onChange={(event) => setOwnDomain(event.target.checked)}
+                />
+                I already have a domain, or I will supply one.
+              </label>
             )}
+            <label className="scope-goal">
+              What would a good result look like?
+              <textarea
+                value={goal}
+                onChange={(event) => setGoal(event.target.value)}
+                rows={3}
+                maxLength={600}
+                placeholder="For example: route enquiries to the right team and reduce manual follow-up."
+              />
+            </label>
           </div>
-
-          <aside className="estimate-receipt" id="estimate-summary">
-            <div className="receipt-top">
-              <span>THE BIG PICTURE</span>
-              <Sparkles size={20} />
+          <aside className="scope-summary" id="estimate-summary">
+            <span className="studio-eyebrow">YOUR NEXT MOVE</span>
+            <h3>{project.name}</h3>
+            <div className="scope-price" aria-live="polite">
+              {!ready
+                ? 'Preparing your brief…'
+                : total === null
+                  ? 'Request a quote'
+                  : formatMoney(total, currency)}
             </div>
-            <p className="receipt-label">Your estimated investment</p>
-            <div
-              className="receipt-total"
-              aria-live="polite"
-              aria-atomic="true"
-              data-testid="estimate-total"
-            >
-              {money(total)}
-            </div>
-            <span className="receipt-currency">
-              INR · one-time project estimate
-            </span>
-            <div className="receipt-measures">
-              <div>
-                <Clock3 size={16} />
-                <span>Working timeline</span>
-                <strong>{delivery}</strong>
-              </div>
-              <div>
-                <Sparkles size={16} />
-                <span>First milestone</span>
-                <strong>from {money(deposit)}</strong>
-              </div>
-            </div>
-            <div className="receipt-rule" />
+            <p>
+              {currency} ·{' '}
+              {category.recurring
+                ? 'recurring monthly engagement'
+                : 'one-time project scope'}
+            </p>
             <dl>
               <div>
-                <dt>{project.name}</dt>
-                <dd>{money(project.price)}</dd>
+                <dt>Package</dt>
+                <dd>{tier}</dd>
               </div>
-              {additions.map((item) => (
-                <div key={item.id}>
-                  <dt>{item.name}</dt>
-                  <dd>+{money(item.price)}</dd>
-                </div>
-              ))}
-              {domainSaving > 0 && (
-                <div className="receipt-saving">
-                  <dt>You supply the domain</dt>
-                  <dd>−{money(domainSaving)}</dd>
-                </div>
-              )}
+              <div>
+                <dt>Selected capabilities</dt>
+                <dd>{additions.length}</dd>
+              </div>
+              <div>
+                <dt>
+                  {type === 'seo'
+                    ? 'Initial audit planning'
+                    : 'Indicative delivery'}
+                </dt>
+                <dd>{delivery}</dd>
+              </div>
             </dl>
-            <div className="estimate-enquiry"><h3>Send us your estimate</h3><p>Add your details and we’ll talk through the best next step.</p><BriefForm context={context} projectType={project.name} estimate={total} compact /></div>
-            <a href={callHref} className="receipt-call-link">
-              Still undecided? Request a 30-minute call <ArrowUpRight size={16} />
-            </a>
-            <p className="receipt-note">
-              This is a working estimate, not a final quote. We’ll confirm the
-              requirements, delivery and price before work begins.
+            <p className="scope-note">
+              Timelines depend on discovery, content and integrations. Your
+              proposal confirms the full scope, payment milestones, taxes and
+              ongoing costs.
             </p>
-            <div className="receipt-minimum">
-              Minimum project value: ₹15,000
-            </div>
-            <span className="receipt-stamp">
-              WEBSTELL <span>✳</span>
-            </span>
+            <SiteLink className="agency-button" href={`/contact?${handoff}`}>
+              Request my proposal <ArrowUpRight size={18} />
+            </SiteLink>
+            <SiteLink
+              className="agency-text-link"
+              href={whatsappUrl(`Hi WEBSTELL!\n${context}`)}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Share this scope on WhatsApp <ArrowUpRight size={17} />
+            </SiteLink>
+            <details className="scope-send">
+              <summary>
+                Send the full brief here <Plus size={18} />
+              </summary>
+              <BriefForm
+                context={context}
+                projectType={project.name}
+                estimate={total ?? undefined}
+                currency={currency}
+              />
+            </details>
           </aside>
         </section>
-
-        <section className="pricing-faq studio-width" aria-labelledby="pricing-faq-title">
-          <div className="pricing-faq-intro">
-            <span className="studio-eyebrow">Frequently asked questions</span>
-            <h2 id="pricing-faq-title">
-              More questions,
+        <section
+          className="pricing-boundaries studio-width"
+          aria-labelledby="cost-title"
+        >
+          <div className="agency-section-heading">
+            <span className="studio-eyebrow">THE WHOLE PICTURE</span>
+            <h2 id="cost-title">
+              Know what’s included.
               <br />
-              <em>clear answers.</em>
+              <em>Know what comes next.</em>
             </h2>
-            <p>
-              Everything else you may want to know before you begin.
-            </p>
+          </div>
+          <div className="cost-grid">
+            <article>
+              <span>01 / PROJECT</span>
+              <h3>One-time work</h3>
+              <p>
+                Discovery, design, the agreed build, testing and handover. Your
+                proposal defines scope, revision checkpoints, ownership and
+                payment milestones.
+              </p>
+            </article>
+            <article>
+              <span>02 / ONGOING</span>
+              <h3>Recurring services</h3>
+              <p>
+                Optional maintenance and optimisation, hosting, SaaS
+                subscriptions, AI model usage and messaging charges. SEO
+                programmes are monthly engagements with an agreed scope.
+              </p>
+            </article>
+            <article>
+              <span>03 / SEPARATE</span>
+              <h3>Third-party costs</h3>
+              <p>
+                Domains and renewals, premium media, content production,
+                payment-provider fees, app-store accounts and advertising spend
+                are separate unless explicitly included.
+              </p>
+            </article>
+          </div>
+          <p className="tax-note">{taxNotes[currency]}</p>
+        </section>
+        <section className="agency-faq studio-width">
+          <div className="agency-section-heading">
+            <span className="studio-eyebrow">BEFORE WE BEGIN</span>
+            <h2>
+              Good questions.
+              <br />
+              <em>Clear answers.</em>
+            </h2>
           </div>
           <FaqAccordion items={pricingFaqs} />
         </section>
-
-        <section className="pricing-custom studio-width">
+        <section className="agency-closing studio-width">
           <h2>
-            Something more
+            Not sure where
             <br />
-            <em>ambitious?</em>
+            to start?
           </h2>
-          <div>
-            <p>
-              A complex app, a new product, or a job the calculator can’t
-              describe? We’ll build a custom quote around your actual
-              requirements — not squeeze your idea into a box.
-            </p>
-            <button type="button" onClick={() => setHireOpen(true)}>
-              Talk through the bigger picture <ArrowUpRight size={18} />
-            </button>
-          </div>
+          <p>
+            Bring the problem. We’ll help you decide whether it needs a website,
+            a product, an integration—or a simpler first step.
+          </p>
+          <SiteLink className="agency-button" href={callHref}>
+            Request a discovery call <ArrowUpRight size={19} />
+          </SiteLink>
         </section>
-
-        <div className="mobile-estimate-bar">
-          <div>
-            <span>Your estimate</span>
-            <strong aria-live="polite">{money(total)}</strong>
-          </div>
-          <a href="#estimate-summary">
-            View breakdown <ArrowUpRight size={18} />
-          </a>
-        </div>
       </main>
       <SiteFooter />
-      <HireDialog open={hireOpen} onOpenChange={setHireOpen} />
     </>
   );
 }

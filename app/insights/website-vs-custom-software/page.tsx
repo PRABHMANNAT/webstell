@@ -37,8 +37,8 @@ export default function WebsiteVsSoftwarePage() {
     <p>If the audience is primarily employees and the goal is to reduce spreadsheets, organise customer information or control approvals, start by mapping the workflow. A marketing website will not solve that operational problem; focused custom software might.</p>
 
     <h2>How costs differ</h2>
-    <p>Websites are often estimated by pages, content and common features. Webstell’s current starting point is ₹20,000 for a five-page business website and ₹50,900 for a starter online store. Custom software starts at ₹65,000 for a focused four-screen scope, then changes with workflows, user roles, integrations and data requirements.</p>
-    <p>These starting estimates are visible in the <Link href="/pricing">Webstell pricing calculator</Link>. The cheapest initial option is not always the lowest long-term cost: unnecessary custom software creates maintenance work, while forcing a complex operation into generic tools can consume staff time every day.</p>
+    <p>Custom software is scoped around workflows, roles, data and integrations. A focused first release and an expanding SaaS platform require different levels of discovery and engineering. Compare scope and recurring costs with your team before choosing a route.</p>
+    <p>Compare starting scopes in the <Link href="/pricing">Webstell package and scope builder</Link>, then request a written quote. The cheapest initial option is not always the lowest long-term cost: unnecessary custom software creates maintenance work, while forcing a complex operation into generic tools can consume staff time every day.</p>
 
     <h2>Maintenance is different too</h2>
     <p>A content website needs hosting, security updates, content care and occasional design or feature improvements. Custom software also needs monitoring, dependency updates, data protection, user support and continued testing as connected services change.</p>

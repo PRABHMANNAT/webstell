@@ -21,7 +21,7 @@ export default function AboutPage() {
     <>
       <StructuredData data={createPageSchema({ path: '/about', name: 'About Webstell | Software & Digital Product Agency', breadcrumbName: 'About' })} />
       <StudioNav current="about" />
-      <main className="about-page">
+      <main id="main-content" className="about-page">
         <section className="about-hero studio-width" aria-labelledby="about-page-title">
           <h1 id="about-page-title">Made to be noticed.<br/><em>Built to be trusted.</em></h1>
           <div className="about-hero-copy">

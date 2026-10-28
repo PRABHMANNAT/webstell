@@ -17,7 +17,7 @@ export default function InsightsPage() {
     <>
       <StructuredData data={createPageSchema({ path: '/insights', name: 'Web Design, Software & AI Insights | Webstell', breadcrumbName: 'Insights' })} />
       <StudioNav current="insights" />
-      <main className="insights-page">
+      <main id="main-content" className="insights-page">
         <header className="insights-hub-hero studio-width">
           <p className="insight-kicker">WEBSTELL NOTES</p>
           <h1>Insights</h1>

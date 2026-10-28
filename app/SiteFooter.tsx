@@ -1,4 +1,5 @@
 'use client';
+import { RegionLinks } from './RegionProvider';
 
 import { useState, type MouseEvent, type SyntheticEvent } from 'react';
 import Image from 'next/image';
@@ -59,7 +60,7 @@ export default function SiteFooter() {
       <div className="footer-panel wrap">
         <div className="footer-brand">
           <Link className="footer-logo" href="/" onClick={navigateWithDocument}>WEBSTELL</Link>
-          <p>We create distinctive websites, brands and digital products for ambitious businesses.</p>
+          <p>Creative technology for ambitious businesses. Websites, software, AI and growth—with design at the centre.</p>
           <form className={`subscribe-form is-${subscribeState}`} onSubmit={submitSubscription}>
             <label className="sr-only" htmlFor="footer-email">Email address</label>
             <input className="studio-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
@@ -69,11 +70,11 @@ export default function SiteFooter() {
               {subscribeState === 'loading' ? 'Sending…' : subscribeState === 'success' ? 'Subscribed' : 'Subscribe'}
             </button>
           </form>
-          <p className="subscribe-status" id="subscribe-status" aria-live="polite">{subscribeMessage}</p>
+          <RegionLinks/><p className="subscribe-status" id="subscribe-status" aria-live="polite">{subscribeMessage}</p>
         </div>
         <nav className="footer-links" aria-label="Footer navigation">
           <div className="footer-link-group"><span className="footer-nav-label">Explore</span><Link href="/" onClick={navigateWithDocument}>Home</Link><Link href="/services" onClick={navigateWithDocument}>Services</Link><Link href="/projects" onClick={navigateWithDocument}>Work</Link><Link href="/pricing" onClick={navigateWithDocument}>Pricing</Link></div>
-          <div className="footer-link-group"><span className="footer-nav-label">Company</span><Link href="/#insights" onClick={navigateWithDocument}>Why WEBSTELL</Link><Link href="/insights" onClick={navigateWithDocument}>Insights</Link><Link href="/#team" onClick={navigateWithDocument}>Our team</Link><Link href="/#faq" onClick={navigateWithDocument}>FAQs</Link><Link href="/contact" onClick={navigateWithDocument}>Contact</Link></div>
+          <div className="footer-link-group"><span className="footer-nav-label">Company</span><Link href="/about" onClick={navigateWithDocument}>Why WEBSTELL</Link><Link href="/insights" onClick={navigateWithDocument}>Insights</Link><Link href="/about#team" onClick={navigateWithDocument}>Our team</Link><Link href="/#faq" onClick={navigateWithDocument}>FAQs</Link><Link href="/contact" onClick={navigateWithDocument}>Contact</Link></div>
           <div className="footer-link-group footer-policies"><span className="footer-nav-label">Policies</span><div className="footer-policy-links"><Link href="/privacy" onClick={navigateWithDocument}>Privacy Policy</Link><Link href="/terms" onClick={navigateWithDocument}>Terms &amp; Conditions</Link><Link href="/cookies" onClick={navigateWithDocument}>Cookies</Link><Link href="/refunds" onClick={navigateWithDocument}>Refunds</Link><Link href="/accessibility" onClick={navigateWithDocument}>Accessibility</Link><button type="button" className="cookie-settings-button" onClick={openCookieSettings}>Cookie settings</button></div></div>
         </nav>
       </div>

@@ -4,11 +4,11 @@ import StructuredData from '../StructuredData';
 import { createPageSchema } from '../structured-data';
 import './pricing-refresh.css';
 export const metadata = createPageMetadata({
-  title: 'Website & Software Development Pricing | Webstell',
+  title: 'Website, Software & AI Packages | Webstell',
   description:
-    'Estimate pricing for a website, portfolio, ecommerce store, custom software or mobile app by selecting the scope and features your project needs.',
+    'Compare website, e-commerce, software, AI, automation, SEO and mobile packages. Build a project brief and request a regional quote in INR, AUD or USD.',
   path: '/pricing',
 });
 export default function PricingPage() {
-  return <><StructuredData data={createPageSchema({ path: '/pricing', name: 'Website & Software Development Pricing | Webstell', breadcrumbName: 'Pricing' })} /><PricingExperience /></>;
+  return <><StructuredData data={createPageSchema({ path: '/pricing', name: 'Website, Software & AI Packages | Webstell', breadcrumbName: 'Pricing' })} /><PricingExperience /></>;
 }

@@ -15,7 +15,7 @@ export default function ContactPage() {
     <>
       <StructuredData data={createPageSchema({ path: '/contact', name: 'Contact Webstell | Start Your Project', breadcrumbName: 'Contact' })} />
       <StudioNav current="contact" />
-      <main className="studio-page contact-page contact-page-refresh">
+      <main id="main-content" className="studio-page contact-page contact-page-refresh">
         <ContactPageSection />
       </main>
       <SiteFooter />

@@ -46,3 +46,6 @@ next-env.d.ts
 /tmp/
 /dev-*.stdout.log
 /dev-*.stderr.log
+
+# Internal, unapproved commercial research
+/docs/reference-and-pricing-research.md

@@ -38,6 +38,10 @@ const sections: LegalSection[] = [
     ],
   },
   {
+    title: 'Regional content',
+    paragraphs: ['Our hosting provider supplies a country code derived from the incoming connection. We use it to select the Australian homepage and a default quote currency. We do not request device location or make a separate third-party IP lookup for this feature. A manual preference takes priority.'],
+  },
+  {
     title: 'How information is shared',
     paragraphs: [
       'Form submissions are sent to WEBSTELL through our email delivery provider, Resend, and are accessible to the WEBSTELL team handling your request. Service providers only receive information needed to operate their service for us.',

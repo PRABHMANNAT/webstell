@@ -1,223 +1,99 @@
-export const projectTypes = [
-  {
-    id: 'website',
-    name: 'Business website',
-    price: 20000,
-    description: 'A confident home for your business, with room for your story and next customer.',
-    includedUnits: 5,
-    unitLabel: 'pages',
-    extraUnitLabel: 'extra page',
-    extraUnitPrice: 1500,
-    delivery: [2, 3] as const,
-    domainEligible: true,
-  },
-  {
-    id: 'portfolio',
-    name: 'Personal portfolio',
-    price: 20000,
-    description: 'A considered place for your work, point of view and next opportunity.',
-    includedUnits: 5,
-    unitLabel: 'pages',
-    extraUnitLabel: 'extra page',
-    extraUnitPrice: 1500,
-    delivery: [2, 3] as const,
-    domainEligible: true,
-  },
-  {
-    id: 'store',
-    name: 'Online store',
-    price: 50900,
-    description: 'A shopping experience that makes browsing, paying and ordering feel simple.',
-    includedUnits: 6,
-    unitLabel: 'pages',
-    extraUnitLabel: 'extra page',
-    extraUnitPrice: 2000,
-    delivery: [3, 4] as const,
-    domainEligible: true,
-  },
-  {
-    id: 'software',
-    name: 'Custom software',
-    price: 65000,
-    description: 'A focused estimate for a dashboard, portal or web app with a clear first job.',
-    includedUnits: 4,
-    unitLabel: 'core screens',
-    extraUnitLabel: 'extra screen',
-    extraUnitPrice: 3000,
-    delivery: [4, 6] as const,
-    domainEligible: false,
-  },
-  {
-    id: 'mobile',
-    name: 'Mobile app',
-    price: 60000,
-    description: 'A focused mobile product estimate, shaped around one useful customer journey.',
-    includedUnits: 5,
-    unitLabel: 'core screens',
-    extraUnitLabel: 'extra screen',
-    extraUnitPrice: 3500,
-    delivery: [5, 7] as const,
-    domainEligible: false,
-  },
-] as const;
-
-export type ProjectTypeId = (typeof projectTypes)[number]['id'];
-
-export const extras = [
-  { id: 'menu', name: 'Digital restaurant menu', detail: 'Show dishes, prices and dietary notes from a QR link.', price: 3000, effort: 1, availableFor: ['website'] as ProjectTypeId[], recommendedFor: [] as ProjectTypeId[] },
-  { id: 'reviews', name: 'Customer reviews', detail: 'Display testimonials you approve to help new customers decide.', price: 2000, effort: 1, availableFor: ['website', 'portfolio'] as ProjectTypeId[], recommendedFor: [] as ProjectTypeId[] },
-  { id: 'case-studies', name: 'Detailed work stories', detail: 'Show your process, project photos and results in a reusable layout.', price: 3500, effort: 1, availableFor: ['portfolio'] as ProjectTypeId[], recommendedFor: ['portfolio'] as ProjectTypeId[] },
-  { id: 'discounts', name: 'Discount codes', detail: 'Create offers customers can apply at checkout.', price: 3000, effort: 1, availableFor: ['store'] as ProjectTypeId[], recommendedFor: [] as ProjectTypeId[] },
-  { id: 'shipping', name: 'Shipping updates', detail: 'Connect one supported delivery provider for order tracking.', price: 5000, effort: 1, availableFor: ['store'] as ProjectTypeId[], recommendedFor: ['store'] as ProjectTypeId[] },
-  { id: 'reports', name: 'Business reports', detail: 'See agreed totals and trends and download a spreadsheet.', price: 6000, effort: 1, availableFor: ['software'] as ProjectTypeId[], recommendedFor: ['software'] as ProjectTypeId[] },
-  { id: 'roles', name: 'Team access levels', detail: 'Choose which information each team role can view or edit.', price: 5000, effort: 1, availableFor: ['software'] as ProjectTypeId[], recommendedFor: [] as ProjectTypeId[] },
-  { id: 'notifications', name: 'App notifications', detail: 'Send useful reminders to users who allow notifications.', price: 5000, effort: 1, availableFor: ['mobile'] as ProjectTypeId[], recommendedFor: ['mobile'] as ProjectTypeId[] },
-  { id: 'offline', name: 'Use key information offline', detail: 'Save agreed content on the device for use without internet.', price: 7000, effort: 2, availableFor: ['mobile'] as ProjectTypeId[], recommendedFor: [] as ProjectTypeId[] },
-  {
-    id: 'chatbot',
-    name: 'A chatbot for visitors',
-    detail: 'Answer common questions and collect useful enquiries.',
-    price: 5000,
-    effort: 1,
-    availableFor: ['website', 'portfolio', 'store', 'software'] as ProjectTypeId[],
-    recommendedFor: ['website', 'store'] as ProjectTypeId[],
-  },
-  {
-    id: 'payments',
-    name: 'Accept online payments',
-    detail: 'Connect a payment gateway for checkout or payment links.',
-    price: 4000,
-    effort: 1,
-    availableFor: ['website', 'portfolio', 'store', 'software', 'mobile'] as ProjectTypeId[],
-    recommendedFor: ['store', 'mobile'] as ProjectTypeId[],
-  },
-  {
-    id: 'cms',
-    name: 'Update the website myself',
-    detail: 'A custom editing space for your text, images and pages.',
-    price: 7000,
-    effort: 1,
-    availableFor: ['website', 'portfolio', 'store'] as ProjectTypeId[],
-    recommendedFor: ['website', 'portfolio'] as ProjectTypeId[],
-  },
-  {
-    id: 'booking',
-    name: 'Bookings & appointments',
-    detail: 'Let customers choose a date and time that works for them.',
-    price: 4000,
-    effort: 1,
-    availableFor: ['website', 'portfolio', 'store', 'software', 'mobile'] as ProjectTypeId[],
-    recommendedFor: ['website'] as ProjectTypeId[],
-  },
-  {
-    id: 'blog',
-    name: 'A blog or journal',
-    detail: 'Publish stories, news and useful articles without a developer.',
-    price: 3000,
-    effort: 1,
-    availableFor: ['website', 'portfolio', 'store'] as ProjectTypeId[],
-    recommendedFor: ['website', 'portfolio'] as ProjectTypeId[],
-  },
-  {
-    id: 'accounts',
-    name: 'Customer accounts',
-    detail: 'Secure sign-in and a personal space for your customers.',
-    price: 5000,
-    effort: 1,
-    availableFor: ['store', 'software', 'mobile'] as ProjectTypeId[],
-    recommendedFor: ['store', 'software'] as ProjectTypeId[],
-  },
-  {
-    id: 'languages',
-    name: 'Another language',
-    detail: 'Reach more people with a second language and clear structure.',
-    price: 5000,
-    effort: 1,
-    availableFor: ['website', 'portfolio', 'store', 'software', 'mobile'] as ProjectTypeId[],
-    recommendedFor: ['website', 'store'] as ProjectTypeId[],
-  },
-  {
-    id: 'automation',
-    name: 'Connect my business tools',
-    detail: 'Send leads to your CRM or automate a routine business task.',
-    price: 6000,
-    effort: 1,
-    availableFor: ['website', 'store', 'software', 'mobile'] as ProjectTypeId[],
-    recommendedFor: ['software', 'mobile'] as ProjectTypeId[],
-  },
-  {
-    id: 'content',
-    name: 'Help with the words',
-    detail: 'Clear, useful website copy shaped around your business.',
-    price: 3500,
-    effort: 1,
-    availableFor: ['website', 'portfolio', 'store'] as ProjectTypeId[],
-    recommendedFor: ['website', 'portfolio'] as ProjectTypeId[],
-  },
-] as const;
-
-export const money = (value: number) => '₹' + value.toLocaleString('en-IN');
-
+import { projectTypes, extras } from './pricing-scope';
+import {
+  approvedAmount,
+  regionalPrices,
+  type Pricebook,
+} from './pricing/approved-rates';
+import { includedExtras, type Tier } from './pricing/packages';
+import { formatMoney, type Currency } from '../lib/region';
+export { projectTypes, extras } from './pricing-scope';
+export type { ProjectTypeId } from './pricing-scope';
+export const money = (value: number, currency: Currency = 'USD') =>
+  formatMoney(value, currency);
 export const MAX_EXTRA_UNITS = 24;
-
 export function getProjectType(id: string) {
-  return projectTypes.find((item) => item.id === id) || projectTypes[0];
+  return projectTypes.find((item) => item.id === id) ?? projectTypes[0];
 }
-
 export function getAvailableExtras(type: string) {
-  const project = getProjectType(type);
-  return extras.filter((item) => item.availableFor.includes(project.id));
+  const id = getProjectType(type).id;
+  return extras.filter((item) =>
+    (item.availableFor as readonly string[]).includes(id),
+  );
 }
-
+export function normalizeUnits(value: number) {
+  return Number.isFinite(value)
+    ? Math.min(MAX_EXTRA_UNITS, Math.max(0, Math.floor(value)))
+    : 0;
+}
 export function estimateDelivery(
   type: string,
   selected: string[],
   extraUnits: number,
 ) {
   const project = getProjectType(type);
-  const additions = getAvailableExtras(project.id).filter((item) =>
-    selected.includes(item.id),
-  );
-  const featureWeeks = Math.ceil(
-    additions.reduce((sum, item) => sum + item.effort, 0) / 3,
-  );
-  const unitWeeks = Math.ceil(Math.max(0, extraUnits) / 6);
-  const [min, max] = project.delivery;
-  return `${min + featureWeeks + unitWeeks}–${max + featureWeeks + unitWeeks} weeks`;
+  const effort = getAvailableExtras(type)
+    .filter((item) => selected.includes(item.id))
+    .reduce((sum, item) => sum + item.effort, 0);
+  const weeks =
+    Math.ceil(effort / 3) + Math.ceil(normalizeUnits(extraUnits) / 6);
+  return `${project.delivery[0] + weeks}–${project.delivery[1] + weeks} weeks`;
 }
-
 export function calculateEstimate(
   type: string,
   selected: string[],
   ownDomain: boolean,
   extraUnits: number,
+  currency: Currency = 'USD',
+  tier: Tier = 'starter',
+  pricebook: Pricebook = regionalPrices,
 ) {
   const project = getProjectType(type);
-  const additions = getAvailableExtras(project.id).filter((item) =>
-    selected.includes(item.id),
-  );
-  const normalizedUnits = Math.min(
-    MAX_EXTRA_UNITS,
-    Math.max(0, Math.floor(extraUnits || 0)),
-  );
-  const unitCost = normalizedUnits * project.extraUnitPrice;
-  const domainSaving = ownDomain && project.domainEligible ? 3500 : 0;
-  const subtotal =
-    project.price +
-    additions.reduce((sum, item) => sum + item.price, 0) +
-    unitCost -
-    domainSaving;
-  const total = Math.max(15000, subtotal);
-  const deposit = Math.round((total * 0.5) / 500) * 500;
-
+  const market = pricebook[currency];
+  const included = includedExtras(project.id, tier);
+  const additions = getAvailableExtras(type)
+    .filter((item) => selected.includes(item.id))
+    .map((item) => ({
+      ...item,
+      included: included.includes(item.id),
+      price: included.includes(item.id)
+        ? 0
+        : approvedAmount(market.extras[item.id]),
+    }));
+  const units = normalizeUnits(extraUnits);
+  const basePrice =
+    tier === 'custom'
+      ? null
+      : approvedAmount(market.packages[`${project.id}:${tier}`]);
+  const unitRate = approvedAmount(market.extraUnits[project.id]);
+  const unitCost =
+    units === 0 ? 0 : unitRate === null ? null : unitRate * units;
+  const domainSaving =
+    ownDomain && project.domainEligible
+      ? approvedAmount(market.domainCredit)
+      : 0;
+  const complete =
+    basePrice !== null &&
+    unitCost !== null &&
+    domainSaving !== null &&
+    additions.every((item) => item.price !== null);
+  const total = complete
+    ? Math.max(
+        0,
+        basePrice! +
+          unitCost! +
+          additions.reduce((sum, item) => sum + (item.price ?? 0), 0) -
+          domainSaving!,
+      )
+    : null;
   return {
     project,
     additions,
+    basePrice,
     unitCost,
-    extraUnits: normalizedUnits,
+    extraUnits: units,
     domainSaving,
     total,
-    deposit,
-    delivery: estimateDelivery(project.id, selected, normalizedUnits),
+    deposit: null,
+    delivery: estimateDelivery(type, selected, units),
   };
 }

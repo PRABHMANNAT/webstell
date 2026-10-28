@@ -223,11 +223,11 @@
     grid-column: 1 / -1;
     width: 100%;
     justify-content: center;
-    font-size: 0;
+    font-size: 14px;
   }
 
   .site-header .hire-pill::after {
-    content: 'Discuss your project';
+    content: none;
     font-size: 14px;
     font-weight: 700;
   }
@@ -253,13 +253,13 @@
   }
 
   .site-header .header .menu-button {
-    width: 42px;
+    width: auto;
     padding: 8px;
   }
 
   .site-header .hire-pill {
     padding-inline: 9px;
-    font-size: 10px;
+    font-size: 14px;
   }
 }
 

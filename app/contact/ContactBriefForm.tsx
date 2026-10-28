@@ -1,9 +1,18 @@
 'use client';
 
-import { useRef, useState, type ChangeEvent, type SyntheticEvent } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type SyntheticEvent,
+} from 'react';
 import { ArrowUpRight, Check, LoaderCircle, MessageCircle } from 'lucide-react';
 import { trackAnalyticsEvent } from '../../lib/analytics';
 import { whatsappUrl } from '../contact-utils';
+import { useRegion, CurrencySwitcher } from '../RegionProvider';
+import { readEnquiryContext } from '../../lib/enquiry-context';
+import { projectTypes } from '../pricing-scope';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 type FieldErrors = Record<string, string>;
@@ -23,7 +32,11 @@ function validPhone(input: string) {
 }
 
 function FieldError({ id, message }: { id: string; message?: string }) {
-  return message ? <span className="studio-field-error" id={id}>{message}</span> : null;
+  return message ? (
+    <span className="studio-field-error" id={id}>
+      {message}
+    </span>
+  ) : null;
 }
 
 function validate(form: FormData) {
@@ -36,14 +49,21 @@ function validate(form: FormData) {
   const referenceLinks = value(form, 'referenceLinks');
 
   if (name.length < 2) errors.name = 'Please enter your name.';
-  if (!email && !whatsapp) errors.contact = 'Add an email address or WhatsApp number so we can reply.';
-  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Enter a valid email address.';
-  if (whatsapp && !validPhone(whatsapp)) errors.whatsapp = 'Enter a valid phone or WhatsApp number, including the country code.';
-  if (projectGoal.length < 12) errors.projectGoal = 'Tell us a little more about the result you need.';
-  if (targetDate && targetDate < new Date().toISOString().slice(0, 10)) errors.targetDate = 'Choose today or a future date.';
+  if (!email && !whatsapp)
+    errors.contact = 'Add an email address or WhatsApp number so we can reply.';
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    errors.email = 'Enter a valid email address.';
+  if (whatsapp && !validPhone(whatsapp))
+    errors.whatsapp =
+      'Enter a valid phone or WhatsApp number, including the country code.';
+  if (projectGoal.length < 12)
+    errors.projectGoal = 'Tell us a little more about the result you need.';
+  if (targetDate && targetDate < new Date().toISOString().slice(0, 10))
+    errors.targetDate = 'Choose today or a future date.';
   if (referenceLinks) {
     const links = referenceLinks.split(/[\s,]+/).filter(Boolean);
-    if (links.some((link) => !/^https?:\/\//i.test(link))) errors.referenceLinks = 'Start each link with http:// or https://.';
+    if (links.some((link) => !/^https?:\/\//i.test(link)))
+      errors.referenceLinks = 'Start each link with http:// or https://.';
   }
   return errors;
 }
@@ -57,12 +77,26 @@ function fileToBase64(file: File) {
       if (!content) reject(new Error('The attachment could not be read.'));
       else resolve(content);
     };
-    reader.onerror = () => reject(new Error('The attachment could not be read.'));
+    reader.onerror = () =>
+      reject(new Error('The attachment could not be read.'));
     reader.readAsDataURL(file);
   });
 }
 
 export default function ContactBriefForm() {
+  const { currency } = useRegion();
+  const [handoff, setHandoff] = useState<ReturnType<
+    typeof readEnquiryContext
+  > | null>(null);
+  const [project, setProject] = useState('');
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const next = readEnquiryContext(window.location.search, currency);
+      setHandoff(next);
+      setProject((current) => current || next.project);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [currency]);
   const [state, setState] = useState<FormState>('idle');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -78,13 +112,19 @@ export default function ContactBriefForm() {
     }
     if (file.size > maxAttachmentBytes) {
       setAttachment(null);
-      setErrors((current) => ({ ...current, attachment: 'Choose a file smaller than 2.4 MB.' }));
+      setErrors((current) => ({
+        ...current,
+        attachment: 'Choose a file smaller than 2.4 MB.',
+      }));
       event.target.value = '';
       return;
     }
     if (!allowedFileExtensions.test(file.name)) {
       setAttachment(null);
-      setErrors((current) => ({ ...current, attachment: 'Upload a PDF, document, text file or image.' }));
+      setErrors((current) => ({
+        ...current,
+        attachment: 'Upload a PDF, document, text file or image.',
+      }));
       event.target.value = '';
       return;
     }
@@ -102,6 +142,12 @@ export default function ContactBriefForm() {
     if (Object.keys(nextErrors).length) {
       setState('error');
       setMessage('Please check the highlighted details and try again.');
+      const formElement = event.currentTarget;
+      requestAnimationFrame(() =>
+        formElement
+          .querySelector<HTMLElement>('[aria-invalid="true"]')
+          ?.focus(),
+      );
       return;
     }
 
@@ -123,21 +169,34 @@ export default function ContactBriefForm() {
           email: value(form, 'email'),
           whatsapp: value(form, 'whatsapp'),
           businessName: value(form, 'businessName'),
-          projectType: 'Contact page project brief',
+          projectType: project || 'Contact page project brief',
           projectGoal: value(form, 'projectGoal'),
-          budgetRange: value(form, 'budgetRange'),
+          budgetRange: `${currency} ${value(form, 'budgetRange') || 'To discuss'}`,
           targetDate: value(form, 'targetDate'),
           referenceLinks: value(form, 'referenceLinks'),
           attachment: attachmentPayload,
-          context: 'Sent from the dedicated WEBSTELL contact page.',
+          context: [
+            'Sent from the dedicated WEBSTELL contact page.',
+            handoff?.context,
+            `Current quote currency: ${currency}`,
+          ]
+            .filter(Boolean)
+            .join('\n'),
           website: value(form, 'website'),
         }),
       });
-      const result = (await response.json()) as { ok?: boolean; message?: string; errors?: FieldErrors };
+      const result = (await response.json()) as {
+        ok?: boolean;
+        message?: string;
+        errors?: FieldErrors;
+      };
       if (!response.ok || !result.ok) {
         setErrors(result.errors || {});
         setState('error');
-        setMessage(result.message || 'We could not send this right now. Please try again or use WhatsApp.');
+        setMessage(
+          result.message ||
+            'We could not send this right now. Please try again or use WhatsApp.',
+        );
         return;
       }
       setErrors({});
@@ -148,27 +207,55 @@ export default function ContactBriefForm() {
       });
     } catch {
       setState('error');
-      setMessage(attachment ? 'We could not prepare that file. Please try another one or use WhatsApp.' : 'We could not reach the studio. Please try again or use WhatsApp.');
+      setMessage(
+        attachment
+          ? 'We could not prepare that file. Please try another one or use WhatsApp.'
+          : 'We could not reach the studio. Please try again or use WhatsApp.',
+      );
     }
   }
 
   return (
-    <form className="studio-form contact-brief-form" onSubmit={submit} noValidate>
+    <form
+      className="studio-form contact-brief-form"
+      onSubmit={submit}
+      noValidate
+    >
       {state === 'success' ? (
         <div className="contact-success-confetti" aria-hidden="true">
-          {confettiPieces.map((piece) => <span key={piece} />)}
+          {confettiPieces.map((piece) => (
+            <span key={piece} />
+          ))}
         </div>
       ) : null}
-      <input className="studio-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+      <input
+        className="studio-honeypot"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
       <div className="studio-form-row">
         <label>
           Name
-          <input name="name" autoComplete="name" placeholder="What should we call you?" maxLength={100} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'contact-name-error' : undefined} />
+          <input
+            name="name"
+            autoComplete="name"
+            placeholder="What should we call you?"
+            maxLength={100}
+            aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? 'contact-name-error' : undefined}
+          />
           <FieldError id="contact-name-error" message={errors.name} />
         </label>
         <label>
           Business name
-          <input name="businessName" autoComplete="organization" placeholder="Your company or brand" maxLength={150} />
+          <input
+            name="businessName"
+            autoComplete="organization"
+            placeholder="Your company or brand"
+            maxLength={150}
+          />
         </label>
       </div>
 
@@ -177,23 +264,88 @@ export default function ContactBriefForm() {
         <div className="studio-form-row">
           <label>
             Email
-            <input name="email" type="email" autoComplete="email" placeholder="you@company.com" maxLength={200} aria-invalid={Boolean(errors.email || errors.contact)} aria-describedby={errors.email ? 'contact-email-error' : errors.contact ? 'contact-details-error' : undefined} />
+            <input
+              name="email"
+              type="email"
+              autoComplete="email"
+              placeholder="you@company.com"
+              maxLength={200}
+              aria-invalid={Boolean(errors.email || errors.contact)}
+              aria-describedby={
+                errors.email
+                  ? 'contact-email-error'
+                  : errors.contact
+                    ? 'contact-details-error'
+                    : undefined
+              }
+            />
             <FieldError id="contact-email-error" message={errors.email} />
           </label>
-          <span className="contact-method-or" aria-hidden="true">or</span>
+          <span className="contact-method-or" aria-hidden="true">
+            or
+          </span>
           <label>
             Phone / WhatsApp
-            <input name="whatsapp" type="tel" autoComplete="tel" placeholder="+91 98765 43210" maxLength={30} aria-invalid={Boolean(errors.whatsapp || errors.contact)} aria-describedby={errors.whatsapp ? 'contact-phone-error' : errors.contact ? 'contact-details-error' : undefined} />
+            <input
+              name="whatsapp"
+              type="tel"
+              autoComplete="tel"
+              placeholder="Include your country code"
+              maxLength={30}
+              aria-invalid={Boolean(errors.whatsapp || errors.contact)}
+              aria-describedby={
+                errors.whatsapp
+                  ? 'contact-phone-error'
+                  : errors.contact
+                    ? 'contact-details-error'
+                    : undefined
+              }
+            />
             <FieldError id="contact-phone-error" message={errors.whatsapp} />
           </label>
         </div>
         <FieldError id="contact-details-error" message={errors.contact} />
       </fieldset>
 
+      {handoff?.hasContext && (
+        <p className="contact-context">{handoff.context}</p>
+      )}
+      <CurrencySwitcher />
+      <label>
+        What are we building?
+        <select
+          className="contact-service-select"
+          value={project}
+          onChange={(event) => setProject(event.target.value)}
+        >
+          <option value="">Help me choose</option>
+          {project && !projectTypes.some((item) => item.name === project) && (
+            <option>{project}</option>
+          )}
+          {projectTypes.map((item) => (
+            <option value={item.name} key={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+      </label>
       <label>
         Project description
-        <textarea name="projectGoal" rows={5} maxLength={4000} placeholder="What are you trying to achieve, and what would a strong outcome look like?" aria-invalid={Boolean(errors.projectGoal)} aria-describedby={errors.projectGoal ? 'contact-project-goal-error' : undefined} />
-        <FieldError id="contact-project-goal-error" message={errors.projectGoal} />
+        <textarea
+          name="projectGoal"
+          defaultValue={handoff?.detail || ''}
+          rows={5}
+          maxLength={4000}
+          placeholder="What are you trying to achieve, and what would a strong outcome look like?"
+          aria-invalid={Boolean(errors.projectGoal)}
+          aria-describedby={
+            errors.projectGoal ? 'contact-project-goal-error' : undefined
+          }
+        />
+        <FieldError
+          id="contact-project-goal-error"
+          message={errors.projectGoal}
+        />
       </label>
 
       <details className="contact-optional-details">
@@ -205,54 +357,116 @@ export default function ContactBriefForm() {
           <div className="studio-form-row">
             <label>
               Budget
-              <select name="budgetRange" defaultValue="">
-                <option value="">Not sure yet</option>
-                <option>₹15,000 to ₹25,000</option>
-                <option>₹25,000 to ₹50,000</option>
-                <option>₹50,000 to ₹1,00,000</option>
-                <option>₹1,00,000+</option>
-                <option>I would like your advice</option>
-              </select>
+              <input
+                name="budgetRange"
+                maxLength={100}
+                placeholder={`Your planned budget in ${currency}`}
+                aria-label={`Budget in ${currency}`}
+              />
             </label>
             <label>
               Target delivery date
-              <input name="targetDate" type="date" aria-invalid={Boolean(errors.targetDate)} aria-describedby={errors.targetDate ? 'contact-target-date-error' : undefined} />
-              <FieldError id="contact-target-date-error" message={errors.targetDate} />
+              <input
+                name="targetDate"
+                type="date"
+                aria-invalid={Boolean(errors.targetDate)}
+                aria-describedby={
+                  errors.targetDate ? 'contact-target-date-error' : undefined
+                }
+              />
+              <FieldError
+                id="contact-target-date-error"
+                message={errors.targetDate}
+              />
             </label>
           </div>
           <label className="contact-file-field">
-            <span>Requirement file, PRD or brief <em>PDF, document or image · max 2.4 MB</em></span>
-            <input name="projectFile" type="file" accept=".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg,.webp" onChange={chooseAttachment} aria-invalid={Boolean(errors.attachment)} aria-describedby={errors.attachment ? 'contact-attachment-error' : undefined} />
+            <span>
+              Requirement file, PRD or brief{' '}
+              <em>PDF, document or image · max 2.4 MB</em>
+            </span>
+            <input
+              name="projectFile"
+              type="file"
+              accept=".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg,.webp"
+              onChange={chooseAttachment}
+              aria-invalid={Boolean(errors.attachment)}
+              aria-describedby={
+                errors.attachment ? 'contact-attachment-error' : undefined
+              }
+            />
             <strong>{attachment ? attachment.name : 'Choose a file'}</strong>
-            <FieldError id="contact-attachment-error" message={errors.attachment} />
+            <FieldError
+              id="contact-attachment-error"
+              message={errors.attachment}
+            />
           </label>
           <label>
             Reference link
-            <input name="referenceLinks" type="url" inputMode="url" placeholder="A website, doc, Figma file or examples you like" maxLength={2000} aria-invalid={Boolean(errors.referenceLinks)} aria-describedby={errors.referenceLinks ? 'contact-reference-links-error' : undefined} />
-            <FieldError id="contact-reference-links-error" message={errors.referenceLinks} />
+            <input
+              name="referenceLinks"
+              type="url"
+              inputMode="url"
+              placeholder="A website, doc, Figma file or examples you like"
+              maxLength={2000}
+              aria-invalid={Boolean(errors.referenceLinks)}
+              aria-describedby={
+                errors.referenceLinks
+                  ? 'contact-reference-links-error'
+                  : undefined
+              }
+            />
+            <FieldError
+              id="contact-reference-links-error"
+              message={errors.referenceLinks}
+            />
           </label>
         </div>
       </details>
 
-      <button className={`studio-button dark-button form-submit ${state === 'loading' ? 'is-loading' : ''}`} type="submit" disabled={state === 'loading' || state === 'success'}>
-        <span>{state === 'loading' ? 'Sending securely…' : state === 'success' ? 'Brief sent' : 'Send my project brief'}</span>
-        {state === 'loading' ? <LoaderCircle className="studio-submit-spinner" size={20} /> : state === 'success' ? <Check size={20} /> : <ArrowUpRight size={20} />}
+      <button
+        className={`studio-button dark-button form-submit ${state === 'loading' ? 'is-loading' : ''}`}
+        type="submit"
+        disabled={state === 'loading' || state === 'success'}
+      >
+        <span>
+          {state === 'loading'
+            ? 'Sending securely…'
+            : state === 'success'
+              ? 'Brief sent'
+              : 'Send my project brief'}
+        </span>
+        {state === 'loading' ? (
+          <LoaderCircle className="studio-submit-spinner" size={20} />
+        ) : state === 'success' ? (
+          <Check size={20} />
+        ) : (
+          <ArrowUpRight size={20} />
+        )}
       </button>
 
       {state === 'error' && (
         <div className="studio-form-message is-error" role="alert">
           <p>{message}</p>
-          <a href={whatsappUrl()} target="_blank" rel="noreferrer"><MessageCircle size={16} /> Message on WhatsApp</a>
+          <a href={whatsappUrl()} target="_blank" rel="noreferrer">
+            <MessageCircle size={16} /> Message on WhatsApp
+          </a>
         </div>
       )}
 
       {state === 'success' && (
         <output className="studio-form-message is-success" aria-live="polite">
-          <span className="studio-success-icon" aria-hidden="true"><Check size={21} strokeWidth={2.4} /></span>
+          <span className="studio-success-icon" aria-hidden="true">
+            <Check size={21} strokeWidth={2.4} />
+          </span>
           <div className="studio-success-content">
-            <span className="studio-success-kicker">Project brief received</span>
+            <span className="studio-success-kicker">
+              Project brief received
+            </span>
             <h3>Thank you—we have your brief.</h3>
-            <p>Our team will read the details and reply within one business day.</p>
+            <p>
+              Our team will read the details and reply within one business day.
+            </p>
           </div>
         </output>
       )}

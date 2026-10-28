@@ -1,5 +1,6 @@
 'use client';
 
+import SiteLink from './SiteLink';
 import { useEffect, useRef, useState } from 'react';
 import {
   OPEN_COOKIE_SETTINGS_EVENT,
@@ -13,15 +14,18 @@ export default function CookieConsent() {
   const [ready, setReady] = useState(false);
   const [open, setOpen] = useState(false);
   const [choice, setChoice] = useState<ConsentChoice | null>(null);
-  const panelRef = useRef<HTMLElement>(null);
+  const panelRef = useRef<HTMLDialogElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const focusOnOpenRef = useRef(false);
 
   useEffect(() => {
-    const storedChoice = readConsentChoice();
-    setChoice(storedChoice);
-    setOpen(storedChoice === null);
-    setReady(true);
+    const frame = requestAnimationFrame(() => {
+      const storedChoice = readConsentChoice();
+      setChoice(storedChoice);
+      setOpen(storedChoice === null);
+      setReady(true);
+    });
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
@@ -36,7 +40,10 @@ export default function CookieConsent() {
 
     window.addEventListener(OPEN_COOKIE_SETTINGS_EVENT, handleOpenSettings);
     return () =>
-      window.removeEventListener(OPEN_COOKIE_SETTINGS_EVENT, handleOpenSettings);
+      window.removeEventListener(
+        OPEN_COOKIE_SETTINGS_EVENT,
+        handleOpenSettings,
+      );
   }, []);
 
   useEffect(() => {
@@ -75,9 +82,9 @@ export default function CookieConsent() {
   if (!ready || !open) return null;
 
   return (
-    <section
+    <dialog
+      open
       className="cookie-consent"
-      role="dialog"
       aria-modal="false"
       aria-labelledby="cookie-consent-title"
       aria-describedby="cookie-consent-description"
@@ -93,8 +100,8 @@ export default function CookieConsent() {
           reject analytics cookies.
         </p>
         <p className="cookie-consent-links">
-          <a href="/cookies">Cookie policy</a>
-          <a href="/privacy">Privacy policy</a>
+          <SiteLink href="/cookies">Cookie policy</SiteLink>
+          <SiteLink href="/privacy">Privacy policy</SiteLink>
         </p>
       </div>
       <div className="cookie-consent-actions">
@@ -125,6 +132,6 @@ export default function CookieConsent() {
           ×
         </button>
       ) : null}
-    </section>
+    </dialog>
   );
 }

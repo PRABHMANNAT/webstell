@@ -4,12 +4,7 @@ import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import Link from './SiteLink';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import {
-  ArrowUpRight,
-  Mail,
-  PhoneCall,
-  X,
-} from 'lucide-react';
+import { ArrowUpRight, Mail, PhoneCall, X } from 'lucide-react';
 import {
   Dialog,
   DialogClose,
@@ -22,13 +17,22 @@ import { whatsappUrl } from './contact-utils';
 const navigationLinks = [
   ['Work', '/projects'],
   ['Services', '/services'],
+  ['Industries', '/services#industries'],
   ['About', '/about'],
   ['Pricing', '/pricing'],
   ['Contact', '/contact'],
 ] as const;
 
 function navigateWithDocument(event: MouseEvent<HTMLAnchorElement>) {
-  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  if (
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey
+  )
+    return;
   event.preventDefault();
   window.location.assign(event.currentTarget.href);
 }
@@ -63,7 +67,7 @@ export function HireDialog({
           clear, high-impact digital experience.
         </DialogDescription>
         <div className="hire-options">
-          <a
+          <Link
             className="hire-option whatsapp-option"
             href={whatsappUrl()}
             target="_blank"
@@ -80,11 +84,13 @@ export function HireDialog({
             </span>
             <div>
               <strong>Chat with us on WhatsApp</strong>
-              <p>Tell us your goal—we’ll help you find the fastest way forward.</p>
+              <p>
+                Tell us your goal—we’ll help you find the fastest way forward.
+              </p>
             </div>
             <ArrowUpRight />
-          </a>
-          <a className="hire-option hire-option-dark" href="/contact">
+          </Link>
+          <Link className="hire-option hire-option-dark" href="/contact">
             <span className="option-icon">
               <Mail strokeWidth={1.8} />
             </span>
@@ -93,8 +99,8 @@ export function HireDialog({
               <p>Share the brief and we’ll come back with clear next steps.</p>
             </div>
             <ArrowUpRight />
-          </a>
-          <a className="hire-option hire-option-dark" href="/schedule">
+          </Link>
+          <Link className="hire-option hire-option-dark" href="/schedule">
             <span className="option-icon">
               <PhoneCall strokeWidth={1.8} />
             </span>
@@ -103,11 +109,9 @@ export function HireDialog({
               <p>Choose a time and leave with a clearer way forward.</p>
             </div>
             <ArrowUpRight />
-          </a>
+          </Link>
         </div>
-        <p className="hire-footnote">
-          Good things start with a hello.
-        </p>
+        <p className="hire-footnote">Good things start with a hello.</p>
       </DialogContent>
     </Dialog>
   );
@@ -120,9 +124,10 @@ export default function StudioNav({ current = '' }: { current?: string }) {
   const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
-  const visibleNavigationLinks = pathname === '/'
-    ? navigationLinks
-    : ([['Home', '/'], ...navigationLinks] as const);
+  const visibleNavigationLinks =
+    pathname === '/' || pathname === '/au'
+      ? navigationLinks
+      : ([['Home', '/'], ...navigationLinks] as const);
 
   useEffect(() => {
     const updateHeader = () => setScrolled(window.scrollY > 24);
@@ -136,7 +141,9 @@ export default function StudioNav({ current = '' }: { current?: string }) {
 
   useEffect(() => {
     if (!menu) return;
-    const focusFrame = window.requestAnimationFrame(() => firstLinkRef.current?.focus());
+    const focusFrame = window.requestAnimationFrame(() =>
+      firstLinkRef.current?.focus(),
+    );
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
       setMenu(false);
@@ -156,7 +163,12 @@ export default function StudioNav({ current = '' }: { current?: string }) {
       <header className={scrolled ? 'site-header is-scrolled' : 'site-header'}>
         <div className="header wrap">
           <div className="nav-capsule">
-            <Link className="nav-mark" href="/" aria-label="WEBSTELL home" onClick={navigateWithDocument}>
+            <Link
+              className="nav-mark"
+              href="/"
+              aria-label="WEBSTELL home"
+              onClick={navigateWithDocument}
+            >
               <Image
                 src="/assets/brand/webstell-retro-mac.png"
                 alt=""
@@ -179,7 +191,9 @@ export default function StudioNav({ current = '' }: { current?: string }) {
                   href={href}
                   ref={index === 0 ? firstLinkRef : undefined}
                   aria-current={
-                    pathname === href || current === label.toLowerCase() ? 'page' : undefined
+                    pathname === href || current === label.toLowerCase()
+                      ? 'page'
+                      : undefined
                   }
                   onClick={(event) => {
                     closeMenu();
@@ -197,7 +211,9 @@ export default function StudioNav({ current = '' }: { current?: string }) {
               onClick={toggleMenu}
               aria-expanded={menu}
               aria-controls="navigation"
-              aria-label={menu ? 'Close main navigation' : 'Open main navigation'}
+              aria-label={
+                menu ? 'Close main navigation' : 'Open main navigation'
+              }
             >
               {menu ? 'Close' : 'Menu'}{' '}
               <span aria-hidden="true">{menu ? '−' : '☰'}</span>

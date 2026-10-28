@@ -19,7 +19,7 @@ export default function InsightArticle({ article, children }: InsightArticleProp
     <>
       <StructuredData data={createArticleSchema({ path, headline: article.title, description: article.description })} />
       <StudioNav />
-      <main className="insight-article-page">
+      <main id="main-content" className="insight-article-page">
         <header className="insight-article-hero studio-width">
           <Link className="insight-back-link" href="/insights">← All insights</Link>
           <div className="insight-article-meta"><span>{article.category}</span><span>{article.readingTime}</span></div>

@@ -8,7 +8,7 @@ export const homepageFaqs: FaqItem[] = [
   {
     question: 'How much does a website cost?',
     answer:
-      'A custom business website currently starts at ₹25,000. The final price depends on the number of pages, content, integrations and features such as payments, bookings or a CMS.',
+      'Start with a package scope and request a written quote in INR, AUD or USD. Price depends on content, design, integrations, delivery and ongoing needs. We agree the full amount before work begins.',
     cta: { href: '/pricing', label: 'See pricing for your project' },
   },
   {
@@ -88,10 +88,67 @@ export const fullFaqs: FaqItem[] = [
 ];
 
 // Include the additional questions explicitly selected for the homepage.
-export const selectedHomepageFaqs = fullFaqs.filter((item) =>
-  homepageFaqs.includes(item) || [
-    'Can you redesign my existing website?',
-    'Are a domain and hosting included?',
-    'Can customers pay or book through my website?',
-  ].includes(item.question),
+export const selectedHomepageFaqs = fullFaqs.filter(
+  (item) =>
+    homepageFaqs.includes(item) ||
+    [
+      'Can you redesign my existing website?',
+      'Are a domain and hosting included?',
+      'Can customers pay or book through my website?',
+    ].includes(item.question),
 );
+
+export const agencyFaqs: FaqItem[] = [
+  {
+    question: 'Do you build software and SaaS as well as websites?',
+    answer:
+      'Yes. We scope customer portals, internal tools, SaaS products and mobile apps alongside websites and e-commerce. Discovery defines users, workflows, integrations, access and the smallest useful release.',
+    cta: {
+      href: '/services#custom-software',
+      label: 'Explore software & SaaS',
+    },
+  },
+  {
+    question: 'How do you make AI useful and reliable?',
+    answer:
+      'We begin with a bounded task and approved information. We agree evaluation examples, human handoff, access controls and operating costs. AI can make mistakes, so consequential decisions stay with people.',
+  },
+  {
+    question: 'Can you connect the tools our team already uses?',
+    answer:
+      'We review available APIs, permissions, data quality and provider limits before recommending an integration. Where a connection is not supported, we explain the constraints and alternatives.',
+  },
+  {
+    question: 'Can you help with SEO after launch?',
+    answer:
+      'Yes. We can agree a programme of technical improvements, content priorities and conversion reviews. We measure useful signals and qualified enquiries; we do not guarantee rankings or revenue.',
+  },
+];
+export const australiaFaqs: FaqItem[] = [
+  {
+    question: 'Where is Webstell based?',
+    answer:
+      'Webstell is a remote studio based in India, working with Australian and international businesses. We agree communication, meeting times and delivery milestones across time zones.',
+  },
+  {
+    question: 'Can I receive a proposal in Australian dollars?',
+    answer:
+      'Yes. Australian visitors default to AUD, and you can change the quote currency on pricing or contact pages. The proposal separates project fees, ongoing services, third-party charges and any applicable taxes.',
+  },
+  {
+    question: 'Do you build websites and workflows for tradies?',
+    answer:
+      'We can scope service-area websites, quote forms, job enquiries and automation for trade businesses. Your team supplies accurate licences, service coverage, job photographs and business details.',
+  },
+  {
+    question: 'How do meetings work across Australian time zones?',
+    answer:
+      'Choose a preferred call time or send your availability. The schedule shows the studio time zone explicitly; meeting times are requests until our team confirms a time that works for both sides.',
+  },
+  ...agencyFaqs,
+  {
+    question: 'Will we own the finished work?',
+    answer:
+      'Your proposal defines ownership, handover and access after final payment. Third-party services, fonts and software remain subject to their own licences.',
+  },
+];

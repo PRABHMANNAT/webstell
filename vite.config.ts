@@ -1,8 +1,9 @@
 import { sites } from '@openai/sites-vite-plugin';
 import tailwindcss from '@tailwindcss/postcss';
 import vinext from 'vinext';
-import { defineConfig } from 'vite';
+import { defineConfig, type ViteDevServer } from 'vite';
 import hostingConfig from './.openai/hosting.json';
+import { regionalHome, resolveRegion } from './lib/region';
 
 const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   '00000000-0000-4000-8000-000000000000';
@@ -61,6 +62,50 @@ export default defineConfig(async () => {
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,
     plugins: [
+      {
+        name: 'webstell-regional-home',
+        configureServer(server: ViteDevServer) {
+          server.middlewares.use((request, response, next) => {
+            const url = new URL(request.url || '/', 'http://localhost');
+            const headers = new Headers();
+            for (const [key, value] of Object.entries(request.headers))
+              if (value)
+                headers.set(
+                  key,
+                  Array.isArray(value) ? value.join(';') : value,
+                );
+            if (
+              url.pathname === '/api/region' &&
+              (request.method === 'GET' || request.method === 'HEAD')
+            ) {
+              response.writeHead(200, {
+                'Content-Type': 'application/json',
+                'Cache-Control': 'private, no-store',
+                Vary: 'Cookie, X-Vercel-IP-Country',
+              });
+              response.end(
+                request.method === 'HEAD'
+                  ? undefined
+                  : JSON.stringify(resolveRegion(headers)),
+              );
+              return;
+            }
+            const target = regionalHome(url, headers);
+            if (
+              target &&
+              (request.method === 'GET' || request.method === 'HEAD')
+            ) {
+              response.writeHead(307, {
+                Location: target,
+                'Cache-Control': 'private, no-store',
+              });
+              response.end();
+              return;
+            }
+            next();
+          });
+        },
+      },
       vinext(),
       ...cloudflarePlugins,
     ],

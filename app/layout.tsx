@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import CookieConsent from './CookieConsent';
-import CopyGuard from './CopyGuard';
+import RegionProvider from './RegionProvider';
 import GoogleAnalytics from './GoogleAnalytics';
 import StructuredData from './StructuredData';
 import { createPageMetadata, metadataBase } from './seo-metadata';
@@ -34,12 +34,13 @@ import './legal-pages.css';
 import './legal-hero-variants.css';
 import './cookie-consent.css';
 import './insight-pages.css';
+import './agency.css';
 export const metadata: Metadata = {
   metadataBase,
   ...createPageMetadata({
-    title: 'Webstell — Website & Software Development Agency',
+    title: 'Webstell — Creative Technology, Software & AI Studio',
     description:
-      'Webstell is a website and software development agency building websites, ecommerce platforms, custom software, mobile apps and AI automation for businesses.',
+      'Webstell is a creative technology studio building distinctive websites, custom software, SaaS, AI automation, SEO and mobile apps for businesses worldwide.',
     path: '/',
   }),
   icons: { icon: '/assets/brand/webstell-retro-mac.png' },
@@ -47,4 +48,20 @@ export const metadata: Metadata = {
 const analyticsEnabled =
   process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV !== 'preview';
 
-export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body><StructuredData data={organizationSchema} /><CopyGuard />{children}<CookieConsent />{analyticsEnabled ? <GoogleAnalytics /> : null}</body></html>}
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="en">
+      <body>
+        <StructuredData data={organizationSchema} />
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
+        <RegionProvider>{children}</RegionProvider>
+        <CookieConsent />
+        {analyticsEnabled ? <GoogleAnalytics /> : null}
+      </body>
+    </html>
+  );
+}

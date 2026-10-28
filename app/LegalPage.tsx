@@ -26,7 +26,7 @@ export default function LegalPage({
   return (
     <>
       <StudioNav />
-      <main className="legal-page">
+      <main id="main-content" className="legal-page">
         <section className={`legal-hero${heroVariant ? ` legal-hero--${heroVariant}` : ''}`} aria-labelledby="legal-page-title">
           <div className="studio-width">
             <span className="legal-eyebrow">{eyebrow}</span>

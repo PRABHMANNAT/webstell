@@ -5,7 +5,7 @@ import { createPageSchema } from '../structured-data';
 export const metadata = createPageMetadata({
   title: 'Website & Software Development Projects | Webstell',
   description:
-    'Explore Webstell website directions and digital product projects across ecommerce, hospitality, technology, travel, health and growing businesses.',
+    'Explore Webstell studio design concepts, illustrative software workflows and credited international project contributions across business sectors.',
   path: '/projects',
 });
 

@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
+import { readEnquiryContext } from '../../lib/enquiry-context';
 
 const slots = ['10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00'];
 const customSlots = Array.from({ length: 96 }, (_, index) => {
@@ -56,9 +57,12 @@ function validPhone(input: string) {
 }
 
 export default function ScheduleExperience() {
+  const [visitorZone, setVisitorZone] = useState('Australia/Sydney');
   const [today, setToday] = useState('');
   const [month, setMonth] = useState<Date | null>(null);
-  const [monthTransition, setMonthTransition] = useState<'previous' | 'next'>('next');
+  const [monthTransition, setMonthTransition] = useState<'previous' | 'next'>(
+    'next',
+  );
   const [chosen, setChosen] = useState('');
   const [slot, setSlot] = useState('');
   const [customTimeOpen, setCustomTimeOpen] = useState(false);
@@ -72,9 +76,11 @@ export default function ScheduleExperience() {
   const [pricingHandoff, setPricingHandoff] = useState<{
     project: string;
     estimate: string;
+    context: string;
   } | null>(null);
   useEffect(() => {
     const frameId = window.requestAnimationFrame(() => {
+      setVisitorZone(Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC');
       const now = indiaToday();
       setToday(now);
       const date = new Date(now + 'T12:00:00');
@@ -84,16 +90,13 @@ export default function ScheduleExperience() {
   }, []);
   useEffect(() => {
     const frameId = window.requestAnimationFrame(() => {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('source') !== 'pricing') return;
-      const project = (params.get('project') || '').trim().slice(0, 100);
-      const estimate = Number(params.get('estimate'));
-      if (!project || !Number.isFinite(estimate) || estimate < 0 || estimate > 10000000) {
-        return;
-      }
+      const handoff = readEnquiryContext(window.location.search);
+      if (!handoff.hasContext) return;
       setPricingHandoff({
-        project,
-        estimate: `₹${Math.round(estimate).toLocaleString('en-IN')}`,
+        project: handoff.project,
+        estimate:
+          handoff.estimateLabel || `${handoff.currency} · quote requested`,
+        context: handoff.context,
       });
     });
     return () => window.cancelAnimationFrame(frameId);
@@ -126,7 +129,9 @@ export default function ScheduleExperience() {
     : '';
   function isPastSlot(value: string) {
     return (
-      !chosen || (currentTime !== null && new Date(`${chosen}T${value}:00+05:30`).getTime() <= currentTime)
+      !chosen ||
+      (currentTime !== null &&
+        new Date(`${chosen}T${value}:00+05:30`).getTime() <= currentTime)
     );
   }
   function clearBookingFeedback() {
@@ -151,7 +156,9 @@ export default function ScheduleExperience() {
     if (bookingState === 'loading' || bookingState === 'success') return;
     if (!validateBooking()) {
       setBookingState('error');
-      setBookingMessage('Please complete the highlighted details before sending your request.');
+      setBookingMessage(
+        'Please complete the highlighted details before sending your request.',
+      );
       return;
     }
 
@@ -160,9 +167,7 @@ export default function ScheduleExperience() {
     setBookingMessage('');
     const scheduleContext = `CALL REQUEST\nPreferred date: ${selectedLabel}\nPreferred time: ${slotLabel(slot, chosen, bookingTimeZone)} · ${bookingTimeZoneLabel}\nDuration: 30 minutes\nSubject to confirmation. No booking has been made.`;
     const context = [
-      pricingHandoff
-        ? `PRICING HANDOFF\nProject: ${pricingHandoff.project}\nIndicative estimate: ${pricingHandoff.estimate}`
-        : '',
+      pricingHandoff ? pricingHandoff.context : '',
       scheduleContext,
     ]
       .filter(Boolean)
@@ -178,7 +183,8 @@ export default function ScheduleExperience() {
           name: name.trim(),
           phone: phone.trim(),
           projectType: '30-minute project call',
-          projectGoal: 'I would like to discuss this project in a 30-minute call.',
+          projectGoal:
+            'I would like to discuss this project in a 30-minute call.',
           context,
         }),
       });
@@ -190,16 +196,24 @@ export default function ScheduleExperience() {
       if (!response.ok || !result.ok) {
         setBookingErrors({
           name: result.errors?.name,
-          phone: result.errors?.phone || result.errors?.whatsapp || result.errors?.contact,
+          phone:
+            result.errors?.phone ||
+            result.errors?.whatsapp ||
+            result.errors?.contact,
           date: result.errors?.form,
         });
         setBookingState('error');
-        setBookingMessage(result.message || 'We could not send this right now. Please try again.');
+        setBookingMessage(
+          result.message ||
+            'We could not send this right now. Please try again.',
+        );
         return;
       }
       setBookingErrors({});
       setBookingState('success');
-      setBookingMessage('Your call request is scheduled successfully. We’ll confirm the preferred time shortly.');
+      setBookingMessage(
+        'Your call request is scheduled successfully. We’ll confirm the preferred time shortly.',
+      );
     } catch {
       setBookingState('error');
       setBookingMessage('We could not send this right now. Please try again.');
@@ -208,13 +222,17 @@ export default function ScheduleExperience() {
   return (
     <>
       <StudioNav />
-      <main className="studio-page schedule-page">
+      <main id="main-content" className="studio-page schedule-page">
         <section className="schedule-intro studio-width">
           <h1>
             Let’s find a time
-            <br /><span>for your project.</span>
+            <br />
+            <span>for your project.</span>
           </h1>
-          <p>Choose a time that works for you. We’ll confirm your call once we’ve checked the team’s availability.</p>
+          <p>
+            Choose a time that works for you. We’ll confirm your call once we’ve
+            checked the team’s availability.
+          </p>
         </section>
         <section className="schedule-card studio-width">
           <aside className="call-intro">
@@ -248,9 +266,14 @@ export default function ScheduleExperience() {
               <span>01 / YOUR DETAILS & TIME</span>
             </div>
             <p className="section-subtitle">
-              Start with your name and number, then choose a preferred date and time.
+              Start with your name and number, then choose a preferred date and
+              time.
             </p>
-            <form className="schedule-booking-form" onSubmit={submitBooking} noValidate>
+            <form
+              className="schedule-booking-form"
+              onSubmit={submitBooking}
+              noValidate
+            >
               <div className="schedule-contact-fields">
                 <label>
                   Your name
@@ -261,14 +284,26 @@ export default function ScheduleExperience() {
                     value={name}
                     maxLength={100}
                     aria-invalid={Boolean(bookingErrors.name)}
-                    aria-describedby={bookingErrors.name ? 'schedule-name-error' : undefined}
+                    aria-describedby={
+                      bookingErrors.name ? 'schedule-name-error' : undefined
+                    }
                     onChange={(event) => {
                       clearBookingFeedback();
                       setName(event.target.value);
-                      setBookingErrors((current) => ({ ...current, name: undefined }));
+                      setBookingErrors((current) => ({
+                        ...current,
+                        name: undefined,
+                      }));
                     }}
                   />
-                  {bookingErrors.name && <span className="schedule-field-error" id="schedule-name-error">{bookingErrors.name}</span>}
+                  {bookingErrors.name && (
+                    <span
+                      className="schedule-field-error"
+                      id="schedule-name-error"
+                    >
+                      {bookingErrors.name}
+                    </span>
+                  )}
                 </label>
                 <label>
                   Phone number
@@ -276,18 +311,30 @@ export default function ScheduleExperience() {
                     type="tel"
                     autoComplete="tel"
                     inputMode="tel"
-                    placeholder="+91 98765 43210"
+                    placeholder="Include your country code"
                     value={phone}
                     maxLength={30}
                     aria-invalid={Boolean(bookingErrors.phone)}
-                    aria-describedby={bookingErrors.phone ? 'schedule-phone-error' : undefined}
+                    aria-describedby={
+                      bookingErrors.phone ? 'schedule-phone-error' : undefined
+                    }
                     onChange={(event) => {
                       clearBookingFeedback();
                       setPhone(event.target.value);
-                      setBookingErrors((current) => ({ ...current, phone: undefined }));
+                      setBookingErrors((current) => ({
+                        ...current,
+                        phone: undefined,
+                      }));
                     }}
                   />
-                  {bookingErrors.phone && <span className="schedule-field-error" id="schedule-phone-error">{bookingErrors.phone}</span>}
+                  {bookingErrors.phone && (
+                    <span
+                      className="schedule-field-error"
+                      id="schedule-phone-error"
+                    >
+                      {bookingErrors.phone}
+                    </span>
+                  )}
                 </label>
               </div>
               {month && lowerBound && upperBound && (
@@ -399,7 +446,11 @@ export default function ScheduleExperience() {
                             }
                             onClick={() => {
                               clearBookingFeedback();
-                              setBookingErrors((current) => ({ ...current, date: undefined, time: undefined }));
+                              setBookingErrors((current) => ({
+                                ...current,
+                                date: undefined,
+                                time: undefined,
+                              }));
                               setChosen(key);
                               if (chosen !== key) setSlot('');
                             }}
@@ -410,15 +461,19 @@ export default function ScheduleExperience() {
                       },
                     )}
                   </fieldset>
-                  {bookingErrors.date && <p className="schedule-selection-error" role="alert">{bookingErrors.date}</p>}
+                  {bookingErrors.date && (
+                    <p className="schedule-selection-error" role="alert">
+                      {bookingErrors.date}
+                    </p>
+                  )}
                   <div className="time-heading">
                     <h3>
-                      {chosen ? 'Now choose a time.' : 'Choose a date to see times.'}
+                      {chosen
+                        ? 'Now choose a time.'
+                        : 'Choose a date to see times.'}
                     </h3>
                   </div>
-                  <fieldset
-                    className="time-slots"
-                  >
+                  <fieldset className="time-slots">
                     <legend className="sr-only">Preferred time</legend>
                     {slots.map((time) => (
                       <button
@@ -428,8 +483,11 @@ export default function ScheduleExperience() {
                         aria-pressed={slot === time}
                         onClick={() => {
                           clearBookingFeedback();
-                          setBookingErrors((current) => ({ ...current, time: undefined }));
-                          setSlot((current) => current === time ? '' : time);
+                          setBookingErrors((current) => ({
+                            ...current,
+                            time: undefined,
+                          }));
+                          setSlot((current) => (current === time ? '' : time));
                         }}
                       >
                         {slotLabel(time, chosen || today, bookingTimeZone)}
@@ -449,39 +507,115 @@ export default function ScheduleExperience() {
                         : 'Custom time'}
                     </button>
                     {customTimeOpen && (
-                      <label className="custom-time-picker" id="custom-time-picker">
+                      <label
+                        className="custom-time-picker"
+                        id="custom-time-picker"
+                      >
                         <span>Choose any time</span>
                         <select
                           aria-label="Choose a custom time"
                           value={!slots.includes(slot) ? slot : ''}
                           onChange={(event) => {
                             clearBookingFeedback();
-                            setBookingErrors((current) => ({ ...current, time: undefined }));
+                            setBookingErrors((current) => ({
+                              ...current,
+                              time: undefined,
+                            }));
                             setSlot(event.target.value);
                             if (event.target.value) setCustomTimeOpen(false);
                           }}
                         >
                           <option value="">Select a time</option>
                           {customSlots.map((time) => (
-                            <option key={time} value={time} disabled={isPastSlot(time)}>
-                              {slotLabel(time, chosen || today, bookingTimeZone)}
+                            <option
+                              key={time}
+                              value={time}
+                              disabled={isPastSlot(time)}
+                            >
+                              {slotLabel(
+                                time,
+                                chosen || today,
+                                bookingTimeZone,
+                              )}
                             </option>
                           ))}
                         </select>
                       </label>
                     )}
                   </fieldset>
-                  {bookingErrors.time && <p className="schedule-selection-error" role="alert">{bookingErrors.time}</p>}
+                  {bookingErrors.time && (
+                    <p className="schedule-selection-error" role="alert">
+                      {bookingErrors.time}
+                    </p>
+                  )}
+                  <div className="schedule-zone">
+                    <label>
+                      Also show the selected time in
+                      <select
+                        value={visitorZone}
+                        onChange={(event) => setVisitorZone(event.target.value)}
+                      >
+                        {[
+                          ...new Set([
+                            visitorZone,
+                            'Asia/Kolkata',
+                            'Australia/Sydney',
+                            'Australia/Brisbane',
+                            'Australia/Adelaide',
+                            'Australia/Perth',
+                            'UTC',
+                          ]),
+                        ].map((zone) => (
+                          <option key={zone}>{zone}</option>
+                        ))}
+                      </select>
+                    </label>
+                    <p aria-live="polite">
+                      {chosen && slot
+                        ? new Intl.DateTimeFormat('en-AU', {
+                            timeZone: visitorZone,
+                            dateStyle: 'medium',
+                            timeStyle: 'short',
+                          }).format(
+                            new Date(chosen + 'T' + slot + ':00+05:30'),
+                          ) +
+                          ' · ' +
+                          visitorZone
+                        : 'Choose a date and time to see the equivalent in your time zone.'}
+                    </p>
+                    <small>
+                      Calendar dates and slot buttons use India Standard Time.
+                      The equivalent above includes any change of day.
+                    </small>
+                  </div>
                   <p className="calendar-note">
-                    We’ll check the team’s availability, then confirm your call by phone.
+                    We’ll check the team’s availability, then confirm your call
+                    by phone.
                   </p>
                   <button
                     className={`schedule-submit ${bookingState === 'loading' ? 'is-loading' : ''} ${bookingState === 'success' ? 'is-success' : ''}`}
                     type="submit"
-                    disabled={bookingState === 'loading' || bookingState === 'success'}
+                    disabled={
+                      bookingState === 'loading' || bookingState === 'success'
+                    }
                   >
-                    <span>{bookingState === 'loading' ? 'Sending your request…' : bookingState === 'success' ? 'Call scheduled' : 'Request your call'}</span>
-                    {bookingState === 'loading' ? <LoaderCircle className="schedule-submit-spinner" size={19} /> : bookingState === 'success' ? <Check size={19} /> : <ArrowUpRight size={19} />}
+                    <span>
+                      {bookingState === 'loading'
+                        ? 'Sending your request…'
+                        : bookingState === 'success'
+                          ? 'Call requested'
+                          : 'Request your call'}
+                    </span>
+                    {bookingState === 'loading' ? (
+                      <LoaderCircle
+                        className="schedule-submit-spinner"
+                        size={19}
+                      />
+                    ) : bookingState === 'success' ? (
+                      <Check size={19} />
+                    ) : (
+                      <ArrowUpRight size={19} />
+                    )}
                   </button>
                   {bookingState === 'success' && (
                     <div className="schedule-confetti" aria-hidden="true">
@@ -490,8 +624,22 @@ export default function ScheduleExperience() {
                       ))}
                     </div>
                   )}
-                  {bookingState === 'error' && <p className="schedule-submit-message is-error" role="alert">{bookingMessage}</p>}
-                  {bookingState === 'success' && <p className="schedule-submit-message is-success" aria-live="polite"><Check size={17} /> {bookingMessage}</p>}
+                  {bookingState === 'error' && (
+                    <p
+                      className="schedule-submit-message is-error"
+                      role="alert"
+                    >
+                      {bookingMessage}
+                    </p>
+                  )}
+                  {bookingState === 'success' && (
+                    <p
+                      className="schedule-submit-message is-success"
+                      aria-live="polite"
+                    >
+                      <Check size={17} /> {bookingMessage}
+                    </p>
+                  )}
                 </>
               )}
             </form>

@@ -1,3 +1,4 @@
+import { services } from './service-catalog';
 const siteUrl = 'https://webstell-studio.com';
 
 export const organizationId = `${siteUrl}/#organization`;
@@ -12,6 +13,18 @@ export const organizationSchema = {
   logo: `${siteUrl}/assets/brand/webstell-logo-512.png`,
   email: 'contact@webstell-studio.com',
   telephone: '+91 7889136989',
+  description:
+    'Creative technology studio for websites, custom software, SaaS, AI automation, SEO and mobile applications.',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Webstell services',
+    itemListElement: services.map((service) => ({
+      '@type': 'Service',
+      name: service.label,
+      description: service.description,
+      url: siteUrl + '/services#' + service.id,
+    })),
+  },
 };
 
 export const homepageSchema = {
@@ -29,7 +42,7 @@ export const homepageSchema = {
       '@type': 'WebPage',
       '@id': `${siteUrl}/#webpage`,
       url: `${siteUrl}/`,
-      name: 'Webstell — Website & Software Development Agency',
+      name: 'Webstell — Creative Technology, Software & AI Studio',
       isPartOf: { '@id': websiteId },
       about: { '@id': organizationId },
     },
@@ -42,7 +55,11 @@ type PageSchemaOptions = {
   breadcrumbName: string;
 };
 
-export function createPageSchema({ path, name, breadcrumbName }: PageSchemaOptions) {
+export function createPageSchema({
+  path,
+  name,
+  breadcrumbName,
+}: PageSchemaOptions) {
   const url = `${siteUrl}${path}`;
 
   return {
@@ -61,7 +78,12 @@ export function createPageSchema({ path, name, breadcrumbName }: PageSchemaOptio
         '@type': 'BreadcrumbList',
         '@id': `${url}#breadcrumb`,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: `${siteUrl}/`,
+          },
           { '@type': 'ListItem', position: 2, name: breadcrumbName, item: url },
         ],
       },
@@ -75,7 +97,11 @@ type ArticleSchemaOptions = {
   description: string;
 };
 
-export function createArticleSchema({ path, headline, description }: ArticleSchemaOptions) {
+export function createArticleSchema({
+  path,
+  headline,
+  description,
+}: ArticleSchemaOptions) {
   const url = `${siteUrl}${path}`;
   const breadcrumbId = `${url}#breadcrumb`;
   const webpageId = `${url}#webpage`;
@@ -106,8 +132,18 @@ export function createArticleSchema({ path, headline, description }: ArticleSche
         '@type': 'BreadcrumbList',
         '@id': breadcrumbId,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
-          { '@type': 'ListItem', position: 2, name: 'Insights', item: `${siteUrl}/insights` },
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: `${siteUrl}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Insights',
+            item: `${siteUrl}/insights`,
+          },
           { '@type': 'ListItem', position: 3, name: headline, item: url },
         ],
       },

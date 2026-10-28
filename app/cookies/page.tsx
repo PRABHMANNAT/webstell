@@ -26,6 +26,10 @@ const sections: LegalSection[] = [
     ],
   },
   {
+    title: 'Regional preferences',
+    paragraphs: ['When you choose a quote currency or regional homepage, webstell_currency and webstell_region remember that choice for up to one year. These first-party preference cookies contain only the selected currency or region, not form details. You can change the currency in pricing/contact or choose another homepage in the footer. Clearing site cookies resets your choice.'],
+  },
+  {
     title: 'Optional analytics',
     paragraphs: [
       'If you accept analytics, WEBSTELL uses Google Analytics 4 to understand broad patterns such as which pages are visited and which website actions are useful. Google Analytics may then use cookies such as _ga and _ga_* to distinguish visits and produce aggregated reports.',

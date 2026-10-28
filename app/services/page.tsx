@@ -1,62 +1,15 @@
 'use client';
 
+import SiteLink from '../SiteLink';
 import { useState } from 'react';
 import StudioNav, { HireDialog } from '../StudioNav';
 import SiteFooter from '../SiteFooter';
 import ServiceShowcase from '../ServiceShowcase';
 import SocialWorkGallery from '../SocialWorkGallery';
 import './services.css';
-
-const serviceList = [
-  {
-    id: 'website-design-development',
-    title: 'Website design & development',
-    intro: 'A modern website built from the ground up—or a complete redesign that brings an outdated site up to the level of your business.',
-    details: ['Business and customer research', 'Page planning and content structure', 'Custom design for desktop and mobile', 'Website redesigns and content refreshes', 'Search-ready setup, testing and launch support'],
-  },
-  {
-    id: 'ecommerce-online-stores',
-    title: 'Ecommerce & online stores',
-    intro: 'An online store that makes it easy for customers to find the right product, trust the purchase and check out with confidence.',
-    details: ['Product catalogue and collection setup', 'Product pages that explain and persuade', 'Cart, checkout and payment setup', 'Shipping, stock and order management', 'Store training for your team'],
-  },
-  {
-    id: 'custom-software',
-    title: 'Custom software',
-    intro: 'A focused digital tool built around the way your team already works, so less time is spent chasing information or repeating tasks.',
-    details: ['Dashboards, portals and internal tools', 'Simple product planning and user flows', 'Useful integrations with your existing tools', 'Clear interface design and development', 'Testing, launch and team handover'],
-  },
-  {
-    id: 'mobile-apps',
-    title: 'Mobile apps',
-    intro: 'A practical mobile app that feels simple from the first tap, whether it helps customers buy, book, learn or stay connected.',
-    details: ['App idea, user journey and feature planning', 'Interface design for iOS and Android', 'Mobile app development', 'Real-device testing and quality checks', 'App-store launch support'],
-  },
-  {
-    id: 'ai-chatbots-automation',
-    title: 'AI chatbots & automation',
-    intro: 'Helpful AI tools that answer routine questions, guide potential customers and take repetitive work off your team without losing the human touch.',
-    details: ['Website and WhatsApp chat assistants', 'Lead capture and qualification', 'Knowledge bases your team can update', 'Automated follow-ups and workflows', 'Connections to the tools you already use'],
-  },
-  {
-    id: 'brand-identity-ui-ux',
-    title: 'Brand identity & UI/UX',
-    intro: 'A clear, recognisable brand and digital design system that helps customers understand who you are and why they should choose you.',
-    details: ['Brand direction, colours and typography', 'Logo and visual identity guidance', 'Website and app interface design', 'Clickable prototypes before development', 'Simple design system for future updates'],
-  },
-  {
-    id: 'growth-seo-optimisation',
-    title: 'Growth, SEO & optimisation',
-    intro: 'A stronger foundation for showing up in search, understanding visitor behaviour and steadily improving the parts of your website that drive enquiries.',
-    details: ['Technical SEO setup and fixes', 'Analytics and conversion tracking', 'Clearer calls to action and enquiry paths', 'Content priorities for search visibility', 'Ongoing performance improvements'],
-  },
-  {
-    id: 'ongoing-support-evolution',
-    title: 'Ongoing support & evolution',
-    intro: 'Reliable support after launch, so your website or product stays secure, current and ready to keep up with your business.',
-    details: ['Regular maintenance and security checks', 'Fast fixes when something needs attention', 'Content, feature and design updates', 'Performance monitoring', 'A practical roadmap for the next improvements'],
-  },
-];
+import { services, enquiryHref } from '../service-catalog';
+import { IndustryExplorer, DeliveryProcess } from '../SolutionSections';
+import ViewportVideo from '../ViewportVideo';
 
 export default function ServicesPage() {
   const [contactOpen, setContactOpen] = useState(false);
@@ -64,41 +17,151 @@ export default function ServicesPage() {
   return (
     <>
       <StudioNav current="services" />
-      <main className="services-page">
-        <section className="services-page-hero studio-width" aria-labelledby="services-page-title">
-          <h1 id="services-page-title" className="sr-only">WEBSTELL services</h1>
-          <video className="services-page-hero-video" autoPlay loop muted playsInline preload="metadata" poster="/assets/services/optimized/services-hero.webp" aria-hidden="true">
-            <source src="/assets/services/optimized/services-hero.web.mp4" type="video/mp4" />
-          </video>
+      <main className="services-page" id="main-content">
+        <section className="services-intro studio-width">
+          <span className="studio-eyebrow">THE WEBSTELL OFFER</span>
+          <h1>
+            Design the experience.
+            <br />
+            <em>Build the capability.</em>
+          </h1>
+          <p>
+            Six connected disciplines. From the way customers find you to the
+            software that keeps your business moving.
+          </p>
+          <nav className="services-jump-links" aria-label="Service categories">
+            {services.map((service) => (
+              <SiteLink href={`#${service.id}`} key={service.id}>
+                {service.label}
+              </SiteLink>
+            ))}
+          </nav>
+        </section>
+        <section
+          className="services-page-hero studio-width"
+          aria-labelledby="services-page-title"
+        >
+          <h2 id="services-page-title" className="sr-only">
+            Creative technology in motion
+          </h2>
+          <ViewportVideo
+            className="services-page-hero-video"
+            loop
+            muted
+            playsInline
+            preload="none"
+            poster="/assets/services/optimized/services-hero.webp"
+            aria-hidden="true"
+          >
+            <source
+              src="/assets/services/optimized/services-hero.web.mp4"
+              type="video/mp4"
+            />
+          </ViewportVideo>
         </section>
 
         <ServiceShowcase />
         <SocialWorkGallery />
 
-        <section className="services-explorer" aria-labelledby="services-explorer-title">
+        <section
+          className="services-explorer"
+          aria-labelledby="services-explorer-title"
+        >
           <div className="services-explorer-content studio-width">
             <header className="services-explorer-intro">
               <span className="studio-eyebrow">THE WEBSTELL OFFER</span>
-              <h2 id="services-explorer-title">Eight ways to make your next move matter.</h2>
-              <p>Start with one focused need or combine the right pieces into a digital experience that earns attention, works harder and grows with your business.</p>
+              <h2 id="services-explorer-title">
+                Six disciplines. One connected approach.
+              </h2>
+              <p>
+                Start with one focused need or combine the right pieces into a
+                digital experience that earns attention, works harder and grows
+                with your business.
+              </p>
             </header>
 
             <div className="services-page-list" aria-label="WEBSTELL services">
-              {serviceList.map((service) => (
-                <article className="services-page-card" id={service.id} key={service.id}>
-                  <h3>{service.title}</h3>
-                  <p>{service.intro}</p>
+              {services.map((service) => (
+                <article
+                  className="services-page-card"
+                  id={service.id}
+                  key={service.id}
+                >
+                  <small>{service.number}</small>
+                  <h3>{service.label}</h3>
+                  <p>{service.description}</p>
                   <ul>
-                    {service.details.map((detail) => <li key={detail}>{detail}</li>)}
+                    {service.details.map((detail) => (
+                      <li key={detail}>{detail}</li>
+                    ))}
                   </ul>
-                  <button type="button" className="services-card-cta" onClick={() => setContactOpen(true)}>
-                    Discuss this service
-                  </button>
+                  <p className="service-example">{service.example}</p>
+                  <div className="service-card-links">
+                    <SiteLink
+                      className="services-card-cta"
+                      href={enquiryHref(service.project, service.label)}
+                    >
+                      Discuss this service ↗
+                    </SiteLink>
+                    <SiteLink
+                      className="agency-text-link"
+                      href={`/pricing?service=${service.project}`}
+                    >
+                      Explore packages ↗
+                    </SiteLink>
+                  </div>
                 </article>
               ))}
             </div>
           </div>
         </section>
+        <IndustryExplorer />
+        <section className="support-services studio-width">
+          <article id="ecommerce-online-stores">
+            <h3>E-commerce, connected.</h3>
+            <p>
+              Storefronts, catalogue management, checkout and fulfilment sit
+              within Websites &amp; E-commerce. We scope the platform,
+              integrations and operating costs with you.
+            </p>
+            <SiteLink
+              className="agency-text-link"
+              href={enquiryHref('store', 'E-commerce')}
+            >
+              Discuss a store ↗
+            </SiteLink>
+          </article>
+          <article id="brand-identity-ui-ux">
+            <h3>Brand identity &amp; UI/UX.</h3>
+            <p>
+              Positioning, visual identity, interfaces and prototypes remain
+              part of our studio offering—on their own or alongside your product
+              build.
+            </p>
+            <button
+              type="button"
+              className="agency-button"
+              onClick={() => setContactOpen(true)}
+            >
+              Discuss design support ↗
+            </button>
+          </article>
+          <article id="ongoing-support-evolution">
+            <h3>Support beyond launch.</h3>
+            <p>
+              Maintenance, fixes, content updates and performance reviews are
+              scoped around what you need. Agree a care plan, response
+              expectations and responsibilities in writing.
+            </p>
+            <SiteLink
+              className="agency-text-link"
+              href={enquiryHref('software', 'Ongoing support')}
+            >
+              Plan ongoing care ↗
+            </SiteLink>
+          </article>
+        </section>
+        <DeliveryProcess />
       </main>
       <SiteFooter />
       <HireDialog open={contactOpen} onOpenChange={setContactOpen} />

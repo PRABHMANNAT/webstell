@@ -1,5 +1,6 @@
 'use client';
 
+import SiteLink from './SiteLink';
 import { useState } from 'react';
 import { Check, Copy } from 'lucide-react';
 import Image from 'next/image';
@@ -8,7 +9,7 @@ import { HireDialog } from './StudioNav';
 const whyWebstellCards = [
   {
     title: 'Why choose WEBSTELL',
-    text: 'Most agencies deliver a polished page. WEBSTELL brings strategy, state-of-the-art design and production-grade engineering together—so your business is easier to trust, harder to ignore and ready to perform long after launch.',
+    text: 'WEBSTELL connects creative direction, product thinking and engineering. We help customers understand your offer and give your team better tools to deliver it.',
   },
   {
     eyebrow: 'WHAT WE PROVIDE',
@@ -82,13 +83,13 @@ export default function WhyWebstellSection({
               out, earn trust and turn attention into action.
             </p>
             <button type="button" className="all-articles" onClick={openDiscussDialog}>
-              <span aria-hidden="true" data-hover-label="Get your website today">↗</span>
-              Get your website today
+              <span aria-hidden="true" data-hover-label="Discuss your next project">↗</span>
+              Discuss your next project
             </button>
             <div className="studio-email-row">
-              <a className="studio-email" href="mailto:contact@webstell-studio.com">
+              <SiteLink className="studio-email" href="mailto:contact@webstell-studio.com">
                 contact@webstell-studio.com
-              </a>
+              </SiteLink>
               <button
                 type="button"
                 className="copy-email"
@@ -116,10 +117,10 @@ export default function WhyWebstellSection({
               <h3>{whyWebstellCards[0].title}</h3>
               <p>{whyWebstellCards[0].text}</p>
               <footer>
-                <a className="insight-about-link" href="/about">
+                <SiteLink className="insight-about-link" href="/about">
                   <span>Read more about us</span>
                   <i aria-hidden="true">↗</i>
-                </a>
+                </SiteLink>
               </footer>
             </article>
             <article className="insight-card">
