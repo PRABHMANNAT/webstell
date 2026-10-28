@@ -15,6 +15,8 @@ The Australian homepage adds a small Natural Earth Australia outline, regional u
 - Problem selector recommends an appropriate first conversation.
 - The problem selector remains on the Australian edition. It was removed from the main India/international homepage at the owner's request.
 - Industry panels carry the industry and service into an enquiry.
+- The industry explorer uses nine original SVG illustrations, a compact highlighted selector and a focused feature panel. Small screens use a labelled industry picker to conserve space. The optional customer journey remains available in an expandable row.
+- The process section was removed from the main homepage and services page, and the supplementary services block was removed from services at the owner's request. Service enquiry buttons use specific labels, proper alignment and consistent padding.
 - Eight pricing categories have Starter, Growth and Custom scope cards and an editable brief builder. Unapproved rates are absent from public pages and source data.
 - Proposal, call and WhatsApp actions carry selected scope, package and currency. Contact forms prefill the project and goal, preserve attachments and focus invalid fields.
 - Project filters support shared industry/search URLs, clear filters and useful empty states. Studio concepts and illustrative workflows are explicitly identified.

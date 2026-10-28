@@ -1,19 +1,17 @@
 'use client';
 
 import SiteLink from '../SiteLink';
-import { useState } from 'react';
-import StudioNav, { HireDialog } from '../StudioNav';
+import { ArrowUpRight } from 'lucide-react';
+import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
 import ServiceShowcase from '../ServiceShowcase';
 import SocialWorkGallery from '../SocialWorkGallery';
 import './services.css';
 import { services, enquiryHref } from '../service-catalog';
-import { IndustryExplorer, DeliveryProcess } from '../SolutionSections';
+import { IndustryExplorer } from '../SolutionSections';
 import ViewportVideo from '../ViewportVideo';
 
 export default function ServicesPage() {
-  const [contactOpen, setContactOpen] = useState(false);
-
   return (
     <>
       <StudioNav current="services" />
@@ -101,7 +99,8 @@ export default function ServicesPage() {
                       className="services-card-cta"
                       href={enquiryHref(service.project, service.label)}
                     >
-                      Discuss this service ↗
+                      <span>{service.cta}</span>
+                      <ArrowUpRight size={19} aria-hidden="true" />
                     </SiteLink>
                     <SiteLink
                       className="agency-text-link"
@@ -116,55 +115,8 @@ export default function ServicesPage() {
           </div>
         </section>
         <IndustryExplorer />
-        <section className="support-services studio-width">
-          <article id="ecommerce-online-stores">
-            <h3>E-commerce, connected.</h3>
-            <p>
-              Storefronts, catalogue management, checkout and fulfilment sit
-              within Websites &amp; E-commerce. We scope the platform,
-              integrations and operating costs with you.
-            </p>
-            <SiteLink
-              className="agency-text-link"
-              href={enquiryHref('store', 'E-commerce')}
-            >
-              Discuss a store ↗
-            </SiteLink>
-          </article>
-          <article id="brand-identity-ui-ux">
-            <h3>Brand identity &amp; UI/UX.</h3>
-            <p>
-              Positioning, visual identity, interfaces and prototypes remain
-              part of our studio offering—on their own or alongside your product
-              build.
-            </p>
-            <button
-              type="button"
-              className="agency-button"
-              onClick={() => setContactOpen(true)}
-            >
-              Discuss design support ↗
-            </button>
-          </article>
-          <article id="ongoing-support-evolution">
-            <h3>Support beyond launch.</h3>
-            <p>
-              Maintenance, fixes, content updates and performance reviews are
-              scoped around what you need. Agree a care plan, response
-              expectations and responsibilities in writing.
-            </p>
-            <SiteLink
-              className="agency-text-link"
-              href={enquiryHref('software', 'Ongoing support')}
-            >
-              Plan ongoing care ↗
-            </SiteLink>
-          </article>
-        </section>
-        <DeliveryProcess />
       </main>
       <SiteFooter />
-      <HireDialog open={contactOpen} onOpenChange={setContactOpen} />
     </>
   );
 }

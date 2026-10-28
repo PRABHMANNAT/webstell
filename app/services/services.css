@@ -42,8 +42,8 @@
   margin: 24px 0 0;
   font-size: clamp(48px, 7vw, 94px);
   font-weight: 500;
-  line-height: .91;
-  letter-spacing: -.07em;
+  line-height: 0.91;
+  letter-spacing: -0.07em;
 }
 
 .services-explorer-intro p {
@@ -52,7 +52,7 @@
   color: #494949;
   font-size: clamp(18px, 2vw, 24px);
   line-height: 1.4;
-  letter-spacing: -.026em;
+  letter-spacing: -0.026em;
 }
 
 .services-page-list {
@@ -97,8 +97,8 @@
   color: #fff;
   font-size: clamp(34px, 3.45vw, 52px);
   font-weight: 500;
-  line-height: .94;
-  letter-spacing: -.06em;
+  line-height: 0.94;
+  letter-spacing: -0.06em;
 }
 
 .services-page-card p {
@@ -131,13 +131,18 @@
 
 .services-page-card li::before {
   position: absolute;
-  top: .04em;
+  top: 0.04em;
   left: 0;
   color: #fff;
   content: '•';
 }
 
 .services-card-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 17px 20px;
   width: 100%;
   min-height: 66px;
   margin-top: auto;
@@ -146,14 +151,44 @@
   background: #fff;
   color: #101010;
   cursor: pointer;
-  font: 600 16px/1.1 inherit;
-  letter-spacing: -.02em;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: -0.02em;
+}
+
+.services-card-cta svg {
+  flex-shrink: 0;
+}
+.services-page-card .service-card-links {
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 24px;
+}
+.services-page-card .service-card-links .services-card-cta {
+  min-height: 56px;
+  margin: 0;
+}
+.services-page-card .service-card-links .agency-text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  align-self: flex-start;
+  color: #d7ff82;
+  font-size: 13px;
 }
 
 @media (hover: hover) {
   .services-page-card,
   .services-card-cta {
-    transition: background 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+    transition:
+      background 220ms ease,
+      box-shadow 220ms ease,
+      transform 220ms ease;
   }
 
   .services-page-card:hover {
@@ -191,10 +226,14 @@
     margin-bottom: 64px;
   }
 
-  .services-explorer-content { padding-top: 84px; padding-bottom: 84px; }
+  .services-explorer-content {
+    padding-top: 84px;
+    padding-bottom: 84px;
+  }
 
-  .services-page-list { grid-template-columns: 1fr; }
-
+  .services-page-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 600px) {
@@ -208,25 +247,51 @@
     padding: 27px 23px;
   }
 
-  .services-explorer { margin-top: 52px; }
+  .services-explorer {
+    margin-top: 52px;
+  }
 
-  .services-explorer-content { padding-top: 68px; padding-bottom: 68px; }
+  .services-explorer-content {
+    padding-top: 68px;
+    padding-bottom: 68px;
+  }
 
-  .services-explorer-intro h2 { font-size: clamp(46px, 13vw, 66px); }
+  .services-explorer-intro h2 {
+    font-size: clamp(46px, 13vw, 66px);
+  }
 
-  .services-explorer-intro p { margin-top: 30px; font-size: 18px; }
+  .services-explorer-intro p {
+    margin-top: 30px;
+    font-size: 18px;
+  }
 
-  .services-page-list { gap: 11px; margin-top: 54px; }
+  .services-page-list {
+    gap: 11px;
+    margin-top: 54px;
+  }
 
-  .services-page-card h3 { font-size: 39px; }
+  .services-page-card h3 {
+    font-size: 39px;
+  }
 
-  .services-page-card p { margin-top: 22px; font-size: 16px; }
+  .services-page-card p {
+    margin-top: 22px;
+    font-size: 16px;
+  }
 
-  .services-page-card ul { gap: 8px; margin-top: 24px; }
+  .services-page-card ul {
+    gap: 8px;
+    margin-top: 24px;
+  }
 
-  .services-page-card li { font-size: 13px; }
+  .services-page-card li {
+    font-size: 13px;
+  }
 
-  .services-card-cta { min-height: 60px; margin-top: 32px; }
+  .services-card-cta {
+    min-height: 60px;
+    margin-top: 32px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

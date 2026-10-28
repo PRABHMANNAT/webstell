@@ -1,8 +1,15 @@
 'use client';
 import SiteLink from './SiteLink';
 import { useState } from 'react';
-import { ArrowUpRight, ArrowRight, Check } from 'lucide-react';
-import { services, industries, enquiryHref } from './service-catalog';
+import { ArrowUpRight, ArrowRight, Check, Plus } from 'lucide-react';
+import {
+  services,
+  industries,
+  enquiryHref,
+  type IndustryId,
+} from './service-catalog';
+import IndustryIcon from './IndustryIcon';
+import './industry-explorer.css';
 
 export function CapabilityGrid() {
   return (
@@ -161,86 +168,145 @@ export function SolutionFinder() {
   );
 }
 
+const industryLabels: Record<IndustryId, string> = {
+  'cafes-restaurants': 'Cafés & dining',
+  'sweets-beverages': 'Sweets & drinks',
+  'beauty-makeup': 'Beauty & makeup',
+  'jewellery-fashion': 'Jewellery & fashion',
+  'furniture-home': 'Furniture & home',
+  retail: 'Retail stores',
+  'real-estate': 'Real estate',
+  clinics: 'Clinics & care',
+  'australian-tradies': 'Australian tradies',
+};
+
 export function IndustryExplorer({
   australia = false,
 }: {
   australia?: boolean;
 }) {
-  const [active, setActive] = useState(
+  const [active, setActive] = useState<IndustryId>(
     australia ? 'australian-tradies' : 'cafes-restaurants',
   );
   const industry =
     industries.find((item) => item.id === active) ?? industries[0];
   return (
     <section
-      className="industry-explorer studio-width"
+      className="industry-explorer industry-compact studio-width"
       id="industries"
       aria-labelledby="industry-title"
     >
-      <div className="agency-section-heading">
-        <span className="studio-eyebrow">BUILT AROUND YOUR BUSINESS</span>
-        <h2 id="industry-title">
-          Your industry.
+      <header className="industry-heading">
+        <div>
+          <span className="studio-eyebrow">
+            A WEBSITE THAT KNOWS YOUR WORLD
+          </span>
+          <h2 id="industry-title">
+            Made for <em>your business.</em>
+          </h2>
+          <p>
+            Choose your industry. Explore what we can build.
+          </p>
+        </div>
+        <span className="industry-heading-note">
+          <span aria-hidden="true">✳</span> DIFFERENT BUSINESSES.
           <br />
-          <em>Its own possibilities.</em>
-        </h2>
-        <p>
-          Practical use cases to shape a brief. These describe what we can
-          build, rather than claimed client results.
-        </p>
-      </div>
-      <fieldset className="industry-options" aria-label="Explore an industry">
-        {industries.map((item) => (
-          <button
-            type="button"
-            key={item.id}
-            onClick={() => setActive(item.id)}
-            aria-pressed={active === item.id}
-            aria-controls="industry-detail"
+          THEIR OWN POSSIBILITIES.
+        </span>
+      </header>
+      <div className="industry-browser">
+        <label className="industry-mobile-picker">
+          Your industry
+          <select
+            value={active}
+            onChange={(event) => setActive(event.target.value as IndustryId)}
           >
-            {item.name}
-          </button>
-        ))}
-      </fieldset>
-      <article
-        className="industry-detail"
-        id="industry-detail"
-        aria-live="polite"
-      >
-        <div>
-          <span className="studio-eyebrow">{industry.name}</span>
-          <h3>{industry.tagline}</h3>
-          <p>{industry.need}</p>
-          <SiteLink
-            className="agency-button"
-            href={enquiryHref(industry.project, industry.name, {
-              industry: industry.id,
-            })}
-          >
-            Plan something for my business <ArrowUpRight size={19} />
-          </SiteLink>
-        </div>
-        <div>
-          <ul>
-            {industry.features.map((feature) => (
-              <li key={feature}>
-                <Check size={17} />
-                {feature}
-              </li>
+            {industries.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.name}
+              </option>
             ))}
-          </ul>
-          <div className="industry-workflow">
-            <small>A POSSIBLE CUSTOMER JOURNEY</small>
-            <p>{industry.workflow}</p>
+          </select>
+        </label>
+        <fieldset
+          className="industry-selector"
+          aria-label="Explore an industry"
+        >
+          {industries.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              aria-label={item.name}
+              aria-pressed={active === item.id}
+              aria-controls="industry-focus"
+              onClick={() => setActive(item.id)}
+            >
+              <span className="industry-tile-icon">
+                <IndustryIcon industry={item.id} />
+              </span>
+              <span>{industryLabels[item.id]}</span>
+              <span className="industry-selected-dot" aria-hidden="true" />
+            </button>
+          ))}
+        </fieldset>
+        <article
+          className="industry-focus"
+          id="industry-focus"
+          aria-labelledby="industry-focus-title"
+        >
+          <div className="industry-focus-intro">
+            <span className="industry-focus-icon">
+              <IndustryIcon industry={industry.id} />
+            </span>
+            <div>
+              <span className="industry-focus-kicker">BUILT AROUND</span>
+              <p>{industry.name}</p>
+            </div>
+            <span className="industry-focus-number" aria-hidden="true">
+              0{industries.findIndex((item) => item.id === industry.id) + 1} /
+              09
+            </span>
           </div>
-          <SiteLink
-            className="agency-text-link"
-            href={`/projects?industry=${industry.filter}`}
+          <div
+            className="industry-focus-copy"
+            aria-live="polite"
+            aria-atomic="true"
           >
-            Explore related design directions <ArrowRight size={18} />
-          </SiteLink>
-        </div>
-      </article>
+            <h3 id="industry-focus-title">{industry.tagline}</h3>
+            <p>{industry.need}</p>
+            <ul>
+              {industry.features.map((feature) => (
+                <li key={feature}>
+                  <Check size={16} aria-hidden="true" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="industry-focus-actions">
+            <SiteLink
+              className="agency-button"
+              href={enquiryHref(industry.project, industry.name, {
+                industry: industry.id,
+              })}
+            >
+              Plan my project <ArrowUpRight size={18} aria-hidden="true" />
+            </SiteLink>
+            <SiteLink
+              className="industry-work-link"
+              href={'/projects?industry=' + industry.filter}
+            >
+              View concepts <ArrowRight size={16} aria-hidden="true" />
+            </SiteLink>
+          </div>
+          <details className="industry-journey" key={industry.id}>
+            <summary>
+              A typical customer journey <Plus size={15} aria-hidden="true" />
+            </summary>
+            <p>{industry.workflow}</p>
+          </details>
+        </article>
+      </div>
     </section>
   );
 }

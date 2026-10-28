@@ -5,6 +5,7 @@ export const services = [
     short: 'Websites & stores',
     number: '01',
     project: 'website',
+    cta: 'Plan my website',
     intro: 'A distinctive front door. A confident next step.',
     description:
       'Business websites and online stores that make your offer clear, feel effortless to use and connect interest to an enquiry or order.',
@@ -23,6 +24,7 @@ export const services = [
     short: 'Software & SaaS',
     number: '02',
     project: 'software',
+    cta: 'Discuss my software',
     intro: 'Make your way of working work better.',
     description:
       'Customer portals, internal systems and SaaS products shaped around the people, permissions and workflows that matter to your business.',
@@ -41,6 +43,7 @@ export const services = [
     short: 'AI & automation',
     number: '03',
     project: 'ai',
+    cta: 'Explore AI for my team',
     intro: 'Give repetitive work a better system.',
     description:
       'Useful assistants and connected workflows with clear boundaries, reliable handoffs and a person in control of important decisions.',
@@ -59,6 +62,7 @@ export const services = [
     short: 'Personal & brand portfolios',
     number: '04',
     project: 'portfolio',
+    cta: 'Create my portfolio',
     intro: 'Make your best work easier to choose.',
     description:
       'An authored home for founders, professionals, creatives and brands, built around your point of view and the opportunities you want next.',
@@ -77,6 +81,7 @@ export const services = [
     short: 'SEO & growth',
     number: '05',
     project: 'seo',
+    cta: 'Plan my SEO',
     intro: 'Be easier to find. Give people a reason to act.',
     description:
       'Search strategy, technical improvements and measured conversion work that connect your content with the questions customers already ask.',
@@ -95,6 +100,7 @@ export const services = [
     short: 'Mobile apps',
     number: '06',
     project: 'mobile',
+    cta: 'Discuss my app',
     intro: 'Useful in the moments that matter.',
     description:
       'Mobile products for customers and teams, from the first prototype to the everyday journeys people return to.',
@@ -113,12 +119,12 @@ export const industries = [
   {
     id: 'cafes-restaurants',
     name: 'Cafés & Restaurants',
-    tagline: 'From “what’s on the menu?” to a table booked.',
-    need: 'Keep menus, hours and booking information clear on a phone.',
+    tagline: 'From menu to table.',
+    need: 'Menus, bookings and opening hours, easy to find.',
     features: [
-      'Editable menus and dietary notes',
-      'Reservations or ordering integrations',
-      'Location, opening hours and enquiry routes',
+      'Editable menus & dietary notes',
+      'Table bookings or online ordering',
+      'Hours, location & quick enquiries',
     ],
     workflow:
       'Guest finds the menu → chooses a visit or order → your team receives the details.',
@@ -128,12 +134,12 @@ export const industries = [
   {
     id: 'sweets-beverages',
     name: 'Sweets & Beverages',
-    tagline: 'Make every collection easier to order.',
-    need: 'Explain gifting, seasonal products and custom orders without a long message thread.',
+    tagline: 'Made to tempt. Easy to order.',
+    need: 'Show your range and simplify gifting and custom orders.',
     features: [
-      'Product and gifting collections',
-      'Custom-order enquiry with quantities',
-      'Pickup, delivery and seasonal availability',
+      'Product & gift collections',
+      'Custom orders with quantities',
+      'Pickup & delivery information',
     ],
     workflow:
       'Customer browses → selects a collection → orders or requests a custom quote.',
@@ -143,12 +149,12 @@ export const industries = [
   {
     id: 'beauty-makeup',
     name: 'Beauty & Makeup',
-    tagline: 'Let your work start the conversation.',
-    need: 'Connect services, genuine work galleries and appointment requests.',
+    tagline: 'Turn great work into bookings.',
+    need: 'Bring services, real work and appointment requests together.',
     features: [
-      'Service menus and real before/after work',
-      'Booking-provider integration',
-      'Bridal and event enquiry flows',
+      'Services & real work galleries',
+      'Booking-provider connections',
+      'Bridal & event enquiries',
     ],
     workflow:
       'Client explores a service → checks your work → requests an appointment.',
@@ -158,12 +164,12 @@ export const industries = [
   {
     id: 'jewellery-fashion',
     name: 'Jewellery & Fashion',
-    tagline: 'Give the details room to sell.',
-    need: 'Make collections, variants and product care easy to understand.',
+    tagline: 'Let your collection shine.',
+    need: 'Make styles, sizes, materials and checkout easy to explore.',
     features: [
-      'Collections, size and material guides',
-      'Variants, payments and stock integrations',
-      'Custom-design and styling enquiries',
+      'Collections, sizes & material guides',
+      'Payments & inventory connections',
+      'Styling & custom-design enquiries',
     ],
     workflow:
       'Shopper discovers a collection → compares details → checks out confidently.',
@@ -173,12 +179,12 @@ export const industries = [
   {
     id: 'furniture-home',
     name: 'Furniture & Home Essentials',
-    tagline: 'Help people picture the right fit.',
-    need: 'Show dimensions, materials, availability and delivery expectations.',
+    tagline: 'Help customers find the right fit.',
+    need: 'Clear dimensions, materials and delivery information.',
     features: [
-      'Detailed product and room collections',
-      'Delivery-area and lead-time information',
-      'Custom-size and trade enquiries',
+      'Dimensions, materials & room ranges',
+      'Delivery areas & lead times',
+      'Custom-size & trade enquiries',
     ],
     workflow:
       'Buyer compares products → checks fit and delivery → orders or requests advice.',
@@ -188,12 +194,12 @@ export const industries = [
   {
     id: 'retail',
     name: 'Retail Stores',
-    tagline: 'Connect the counter and the catalogue.',
-    need: 'Bring products, orders and customer questions into a manageable workflow.',
+    tagline: 'Take your store beyond the counter.',
+    need: 'Connect your products, payments, orders and customers.',
     features: [
-      'Storefront and product catalogue',
-      'Payment, inventory and delivery integrations',
-      'Repeat-order and customer-support flows',
+      'Product catalogue & storefront',
+      'Payments, stock & delivery tools',
+      'Repeat orders & customer support',
     ],
     workflow:
       'Order arrives → stock and fulfilment update → customer receives useful information.',
@@ -203,12 +209,12 @@ export const industries = [
   {
     id: 'real-estate',
     name: 'Real Estate',
-    tagline: 'Turn property interest into useful enquiries.',
-    need: 'Help buyers find relevant listings and give agents meaningful context.',
+    tagline: 'Turn listings into viewings.',
+    need: 'Help buyers find the right property and contact your team.',
     features: [
       'Searchable property listings',
-      'Inspection and callback requests',
-      'CRM routing and lead qualification',
+      'Viewing & callback requests',
+      'Enquiries routed to your CRM',
     ],
     workflow:
       'Buyer filters properties → requests a viewing → the right agent receives the brief.',
@@ -218,12 +224,12 @@ export const industries = [
   {
     id: 'clinics',
     name: 'Clinics',
-    tagline: 'Clear information. A calmer booking journey.',
-    need: 'Explain services and appointment options without collecting unnecessary health details.',
+    tagline: 'Make the next appointment easier.',
+    need: 'Clear services, practitioner details and booking options.',
     features: [
-      'Practitioner and service information',
-      'Booking links and general enquiries',
-      'Accessible layouts and privacy-conscious forms',
+      'Services & practitioner profiles',
+      'Booking links & general enquiries',
+      'Accessible, privacy-conscious forms',
     ],
     workflow:
       'Visitor finds the right service → books through an approved provider → receives next steps.',
@@ -233,12 +239,12 @@ export const industries = [
   {
     id: 'australian-tradies',
     name: 'Australian Tradies',
-    tagline: 'Less chasing leads. More clarity before the job.',
-    need: 'Help customers understand your services, coverage and what to include in a quote request.',
+    tagline: 'Better enquiries. Less chasing.',
+    need: 'Collect the job, suburb and photos before you quote.',
     features: [
-      'Service-area and project galleries',
-      'Job-type, suburb and photo enquiries',
-      'Quote follow-ups and CRM automation',
+      'Services, coverage & work galleries',
+      'Job details, suburb & photo forms',
+      'Quote follow-ups & CRM connections',
     ],
     workflow:
       'Customer describes the job → you review the scope → quote and follow-up stay organised.',
@@ -246,6 +252,8 @@ export const industries = [
     filter: 'places',
   },
 ] as const;
+
+export type IndustryId = (typeof industries)[number]['id'];
 
 export function enquiryHref(
   project: string,

@@ -20,11 +20,7 @@ import InternationalProjectsSection from './InternationalProjectsSection';
 import WhyWebstellSection from './WhyWebstellSection';
 import StructuredData from './StructuredData';
 import { homepageSchema } from './structured-data';
-import {
-  CapabilityGrid,
-  IndustryExplorer,
-  DeliveryProcess,
-} from './SolutionSections';
+import { CapabilityGrid, IndustryExplorer } from './SolutionSections';
 import { services } from './service-catalog';
 export default function Home() {
   const [selected, setSelected] = useState<Project | null>(null);
@@ -135,7 +131,6 @@ export default function Home() {
         <SocialWorkGallery />
         <CurvedTicker />
         <IndustryExplorer />
-        <DeliveryProcess />
         <InternationalProjectsSection />
         <WhyWebstellSection id="insights" onDiscuss={() => setContact(true)} />
         <TeamSection />
