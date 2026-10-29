@@ -1,6 +1,8 @@
 'use client';
 import SiteLink from './SiteLink';
-import { useState } from 'react';
+import { useId, useState } from 'react';
+import { LayoutGroup, motion, useReducedMotion } from 'motion/react';
+import { whatsappUrl } from './contact-utils';
 import {
   ArrowUpRight,
   ArrowRight,
@@ -267,46 +269,73 @@ const industryHighlights: Record<
     [Layers, 'Digital menus'],
     [CalendarDays, 'Table bookings'],
     [MapPin, 'Find & visit'],
+    [ShoppingBag, 'Takeaway orders'],
+    [MessageCircle, 'Catering enquiries'],
+    [Workflow, 'Booking reminders'],
   ],
   'sweets-beverages': [
     [ShoppingBag, 'Gift collections'],
     [MessageCircle, 'Custom orders'],
     [Truck, 'Pickup & delivery'],
+    [CreditCard, 'Online payments'],
+    [Layers, 'Bulk orders'],
+    [Workflow, 'Order updates'],
   ],
   'beauty-makeup': [
     [Images, 'Work galleries'],
     [CalendarDays, 'Appointments'],
     [Heart, 'Bridal enquiries'],
+    [CreditCard, 'Booking deposits'],
+    [Layers, 'Service menus'],
+    [Workflow, 'Appointment reminders'],
   ],
   'jewellery-fashion': [
     [Layers, 'Shop collections'],
     [CreditCard, 'Easy checkout'],
     [MessageCircle, 'Custom designs'],
+    [Ruler, 'Size guides'],
+    [ShoppingBag, 'Stock management'],
+    [Truck, 'Order tracking'],
   ],
   'furniture-home': [
     [Ruler, 'Sizes & materials'],
     [Truck, 'Delivery details'],
     [MessageCircle, 'Trade enquiries'],
+    [Images, 'Room galleries'],
+    [ShoppingBag, 'Online orders'],
+    [Layers, 'Custom quotes'],
   ],
   retail: [
     [ShoppingBag, 'Online storefront'],
     [CreditCard, 'Stock & payments'],
     [MessageCircle, 'Customer support'],
+    [Truck, 'Delivery tracking'],
+    [Layers, 'Click & collect'],
+    [Workflow, 'Order updates'],
   ],
   'real-estate': [
     [Search, 'Property search'],
     [CalendarDays, 'Viewing requests'],
     [Workflow, 'CRM connections'],
+    [Images, 'Property galleries'],
+    [MapPin, 'Location maps'],
+    [MessageCircle, 'Agent enquiries'],
   ],
   clinics: [
     [Heart, 'Care & specialists'],
     [CalendarDays, 'Booking links'],
-    [MessageCircle, 'Private enquiries'],
+    [MessageCircle, 'General enquiries'],
+    [MapPin, 'Clinic locations'],
+    [Workflow, 'Appointment reminders'],
+    [Layers, 'Service information'],
   ],
   'australian-tradies': [
     [MapPin, 'Service areas'],
     [Images, 'Job & photo briefs'],
     [Workflow, 'Quote follow-ups'],
+    [CalendarDays, 'Job scheduling'],
+    [Images, 'Project galleries'],
+    [MessageCircle, 'Customer enquiries'],
   ],
 };
 
@@ -315,6 +344,8 @@ export function IndustryExplorer({
 }: {
   australia?: boolean;
 }) {
+  const selectionGroup = useId();
+  const reduceMotion = useReducedMotion();
   const [active, setActive] = useState<IndustryId>(
     australia ? 'australian-tradies' : 'cafes-restaurants',
   );
@@ -347,89 +378,154 @@ export function IndustryExplorer({
               ))}
             </select>
           </label>
-          <fieldset
-            className="industry-selector"
-            aria-label="Explore an industry"
-          >
-            {industries.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                aria-label={item.name}
-                aria-pressed={active === item.id}
-                aria-controls="industry-focus"
-                onClick={() => setActive(item.id)}
-              >
-                <span className="industry-tile-icon">
-                  <IndustryIcon industry={item.id} />
-                </span>
-                <span>{industryLabels[item.id]}</span>
-                <ArrowUpRight
-                  className="industry-row-arrow"
-                  size={16}
-                  aria-hidden="true"
-                />
-              </button>
-            ))}
-          </fieldset>
+          <LayoutGroup id={selectionGroup}>
+            <fieldset
+              className="industry-selector"
+              aria-label="Explore an industry"
+            >
+              {industries.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  aria-label={item.name}
+                  aria-pressed={active === item.id}
+                  aria-controls="industry-focus"
+                  onClick={() => setActive(item.id)}
+                >
+                  {active === item.id && (
+                    <motion.span
+                      className="industry-selection"
+                      aria-hidden="true"
+                      layoutId={reduceMotion ? undefined : 'industrySelection'}
+                      transition={
+                        reduceMotion
+                          ? { duration: 0 }
+                          : { type: 'spring', stiffness: 420, damping: 36 }
+                      }
+                    />
+                  )}
+                  <span className="industry-tile-icon">
+                    <IndustryIcon industry={item.id} />
+                  </span>
+                  <span>{industryLabels[item.id]}</span>
+                  <ArrowUpRight
+                    className="industry-row-arrow"
+                    size={16}
+                    aria-hidden="true"
+                  />
+                </button>
+              ))}
+            </fieldset>
+          </LayoutGroup>
           <article
             className="industry-focus"
             id="industry-focus"
             aria-labelledby="industry-focus-title"
           >
-            <div
-              className="industry-object"
+            <motion.div
+              className="industry-focus-body"
               key={industry.id}
-              aria-hidden="true"
+              initial={reduceMotion ? false : { opacity: 0, x: 14 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{
+                duration: reduceMotion ? 0 : 0.28,
+                ease: [0.2, 0.7, 0.2, 1],
+              }}
             >
-              <IndustryIcon industry={industry.id} />
-            </div>
-            <div className="industry-focus-intro">
-              <span className="industry-focus-icon">
+              <div
+                className="industry-object"
+                key={industry.id}
+                aria-hidden="true"
+              >
                 <IndustryIcon industry={industry.id} />
-              </span>
-              <div>
-                <span className="industry-focus-kicker">WHAT WE CAN BUILD</span>
-                <p>{industry.name}</p>
               </div>
-              <span className="industry-focus-number" aria-hidden="true">
-                0{industries.findIndex((item) => item.id === industry.id) + 1} /
-                09
-              </span>
-            </div>
-            <div
-              className="industry-focus-copy"
-              aria-live="polite"
-              aria-atomic="true"
-            >
-              <h3 id="industry-focus-title" key={industry.id}>
-                {industry.tagline}
-              </h3>
-              <ul>
-                {industryHighlights[industry.id].map(([Icon, label]) => (
-                  <li key={label}>
-                    <Icon size={23} strokeWidth={1.5} aria-hidden="true" />
-                    <span>{label}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="industry-focus-actions">
-              <SiteLink
-                className="agency-button"
-                href={enquiryHref(industry.project, industry.name, {
-                  industry: industry.id,
-                })}
+              <div className="industry-focus-intro">
+                <span className="industry-focus-icon">
+                  <IndustryIcon industry={industry.id} />
+                </span>
+                <div>
+                  <span className="industry-focus-kicker">
+                    WHAT WE CAN BUILD
+                  </span>
+                  <p>{industry.name}</p>
+                </div>
+                <span className="industry-focus-number" aria-hidden="true">
+                  0{industries.findIndex((item) => item.id === industry.id) + 1}{' '}
+                  / 09
+                </span>
+              </div>
+              <div
+                className="industry-focus-copy"
+                aria-live="polite"
+                aria-atomic="true"
               >
-                Plan my project <ArrowUpRight size={18} aria-hidden="true" />
-              </SiteLink>
-              <SiteLink
-                className="industry-work-link"
-                href={'/projects?industry=' + industry.filter}
-              >
-                View concepts <ArrowRight size={16} aria-hidden="true" />
-              </SiteLink>
-            </div>
+                <h3 id="industry-focus-title" key={industry.id}>
+                  {industry.tagline}
+                </h3>
+                <ul key={industry.id}>
+                  {industryHighlights[industry.id].map(
+                    ([Icon, label], index) => (
+                      <li
+                        key={label}
+                        style={{ animationDelay: `${index * 35}ms` }}
+                      >
+                        <Icon size={23} strokeWidth={1.5} aria-hidden="true" />
+                        <span>{label}</span>
+                      </li>
+                    ),
+                  )}
+                </ul>
+              </div>
+              <div className="industry-focus-actions">
+                <div className="industry-main-actions">
+                  <a
+                    className="agency-button"
+                    href={whatsappUrl(
+                      'Hi WEBSTELL, I would like to discuss a project for ' +
+                        industry.name +
+                        '. ' +
+                        industry.tagline,
+                    )}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <MessageCircle size={18} aria-hidden="true" /> Discuss
+                    project <ArrowUpRight size={17} aria-hidden="true" />
+                  </a>
+                  <SiteLink
+                    className="industry-call-button"
+                    href={
+                      '/schedule?' +
+                      new URLSearchParams({
+                        source: 'industries',
+                        project: industry.project,
+                        detail: industry.name,
+                        industry: industry.id,
+                      }).toString()
+                    }
+                  >
+                    <CalendarDays size={17} aria-hidden="true" /> Book a call
+                  </SiteLink>
+                </div>
+                <div className="industry-extra-actions">
+                  <SiteLink
+                    className="industry-work-link"
+                    href={enquiryHref(industry.project, industry.name, {
+                      industry: industry.id,
+                    })}
+                  >
+                    Plan my project{' '}
+                    <ArrowUpRight size={15} aria-hidden="true" />
+                  </SiteLink>
+                  <SiteLink
+                    className="industry-work-link"
+                    href={'/projects?industry=' + industry.filter}
+                  >
+                    View concepts <ArrowRight size={15} aria-hidden="true" />
+                  </SiteLink>
+                </div>
+              </div>
+            </motion.div>
           </article>
         </div>
         <details className="industry-other">

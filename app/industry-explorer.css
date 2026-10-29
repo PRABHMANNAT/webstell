@@ -722,3 +722,115 @@ fieldset.industry-selector {
     padding-top: 20px;
   }
 }
+
+/* Sliding selection, six concise capabilities, and direct enquiry actions. */
+.industry-selector button {
+  isolation: isolate;
+}
+.industry-selector button[aria-pressed='true'] {
+  background: transparent;
+}
+.industry-selection {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 9px;
+  background: #d7ff46;
+  pointer-events: none;
+}
+.industry-focus-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.industry-focus-body .industry-object {
+  right: 4px;
+  top: 24px;
+}
+.industry-focus-copy ul {
+  row-gap: 20px;
+  padding-bottom: 22px;
+}
+.industry-focus-copy li {
+  animation: industry-copy-enter 0.3s ease-out both;
+}
+.industry-focus-actions {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 16px;
+}
+.industry-main-actions,
+.industry-extra-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+.industry-call-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  min-height: 46px;
+  border: 1px solid #666;
+  border-radius: 9px;
+  color: #fff;
+  font-size: 13px;
+}
+.industry-extra-actions .industry-work-link {
+  min-height: 34px;
+  color: #b9b9b9;
+  font-size: 11px;
+}
+.industry-main-actions .agency-button {
+  gap: 12px;
+}
+@media (hover: hover) {
+  .industry-call-button:hover {
+    border-color: #d7ff46;
+    color: #d7ff46;
+  }
+  .industry-extra-actions a:hover {
+    color: #fff;
+  }
+}
+@media (max-width: 700px) {
+  .industry-focus-copy ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 16px;
+  }
+  .industry-focus-copy li {
+    flex-direction: row;
+    align-items: flex-start;
+    font-size: 12px;
+    gap: 9px;
+  }
+  .industry-focus-copy li span {
+    max-width: none;
+  }
+  .industry-focus-body .industry-object {
+    top: 4px;
+  }
+  .industry-main-actions {
+    width: 100%;
+    gap: 10px;
+  }
+  .industry-main-actions .agency-button,
+  .industry-call-button {
+    justify-content: center;
+    width: 100%;
+  }
+  .industry-extra-actions {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .industry-focus-copy li {
+    animation: none;
+  }
+}

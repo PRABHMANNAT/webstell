@@ -92,3 +92,49 @@
     display: none;
   }
 }
+
+/* A sharper ink-and-lime ribbon with softly faded edges. */
+.industry-service-strip {
+  background: #111;
+  border-color: #333;
+}
+.industry-strip-control {
+  color: #fff;
+  padding-block: 28px;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 4%,
+    #000 96%,
+    transparent
+  );
+}
+.industry-strip-word {
+  font-size: clamp(32px, 4vw, 58px);
+  gap: 34px;
+  padding-right: 34px;
+}
+.industry-strip-word.is-outline {
+  -webkit-text-stroke-color: #a7ad9f;
+}
+.industry-strip-word i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d7ff46;
+  box-shadow: 0 0 0 5px #d7ff4612;
+}
+.industry-service-strip:focus-within {
+  outline: 2px solid #a5bf46;
+  outline-offset: 3px;
+}
+@media (max-width: 700px) {
+  .industry-strip-control {
+    padding-block: 22px;
+  }
+  .industry-strip-word {
+    font-size: 32px;
+    gap: 24px;
+    padding-right: 24px;
+  }
+}
