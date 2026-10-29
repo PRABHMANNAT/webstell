@@ -5,7 +5,6 @@ import { LayoutGroup, motion, useReducedMotion } from 'motion/react';
 import { whatsappUrl } from './contact-utils';
 import {
   ArrowUpRight,
-  ArrowRight,
   Plus,
   Search,
   CalendarDays,
@@ -507,32 +506,15 @@ export function IndustryExplorer({
                     <CalendarDays size={17} aria-hidden="true" /> Book a call
                   </SiteLink>
                 </div>
-                <div className="industry-extra-actions">
-                  <SiteLink
-                    className="industry-work-link"
-                    href={enquiryHref(industry.project, industry.name, {
-                      industry: industry.id,
-                    })}
-                  >
-                    Plan my project{' '}
-                    <ArrowUpRight size={15} aria-hidden="true" />
-                  </SiteLink>
-                  <SiteLink
-                    className="industry-work-link"
-                    href={'/projects?industry=' + industry.filter}
-                  >
-                    View concepts <ArrowRight size={15} aria-hidden="true" />
-                  </SiteLink>
-                </div>
               </div>
             </motion.div>
           </article>
         </div>
         <details className="industry-other">
           <summary>
-            <span>Need something else?</span>
+            <span>Something else in mind? Tell us about it.</span>
             <span className="industry-other-action">
-              Tell us your idea <Plus size={18} aria-hidden="true" />
+              <Plus size={18} aria-hidden="true" />
             </span>
           </summary>
           <form
