@@ -5,6 +5,7 @@
   scroll-margin-top: 110px;
 }
 .industry-heading {
+  display: block;
   margin-bottom: 28px;
 }
 .industry-heading h2 {
@@ -712,8 +713,9 @@ fieldset.industry-selector {
     top: 64px;
   }
   .industry-heading h2 {
-    max-width: 920px;
-    font-size: clamp(34px, 4.2vw, 54px);
+    max-width: none;
+    white-space: nowrap;
+    font-size: clamp(30px, 4.2vw, 54px);
   }
 }
 @media (max-width: 700px) {
