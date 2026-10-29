@@ -6,35 +6,9 @@
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/",
-      "has": [
-        {
-          "type": "cookie",
-          "key": "webstell_region",
-          "value": "au"
-        }
-      ],
-      "destination": "/au",
-      "permanent": false
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "header",
-          "key": "x-vercel-ip-country",
-          "value": "AU"
-        }
-      ],
-      "missing": [
-        {
-          "type": "cookie",
-          "key": "webstell_region",
-          "value": "global"
-        }
-      ],
-      "destination": "/au",
-      "permanent": false
+      "source": "/au",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }

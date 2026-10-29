@@ -1,7 +1,6 @@
 export const currencies = ['INR', 'AUD', 'USD'] as const;
 export type Currency = (typeof currencies)[number];
 export const currencyCookie = 'webstell_currency';
-export const regionCookie = 'webstell_region';
 
 export function isCurrency(value: unknown): value is Currency {
   return typeof value === 'string' && currencies.includes(value as Currency);
@@ -47,13 +46,11 @@ export function resolveRegion(headers: Headers) {
   };
 }
 
-export function regionalHome(url: URL, headers: Headers): string | null {
-  if (url.pathname !== '/') return null;
-  const preference = readCookie(headers.get('cookie') || '', regionCookie);
-  if (preference === 'global') return null;
-  if (preference === 'au' || resolveRegion(headers).country === 'AU')
-    return `/au${url.search}`;
-  return null;
+// Keep old Australian landing-page links working. Every country uses the same homepage.
+export function legacyHomeRedirect(url: URL): string | null {
+  return url.pathname === '/au' || url.pathname === '/au/'
+    ? '/' + url.search
+    : null;
 }
 
 export function regionResponse(request: Request) {

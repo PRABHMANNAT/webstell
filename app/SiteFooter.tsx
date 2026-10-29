@@ -1,5 +1,4 @@
 'use client';
-import { RegionLinks } from './RegionProvider';
 
 import { useState, type MouseEvent, type SyntheticEvent } from 'react';
 import Image from 'next/image';
@@ -7,8 +6,12 @@ import Link from './SiteLink';
 import { openCookieSettings } from '../lib/consent';
 
 export default function SiteFooter() {
-  const [subscribeState, setSubscribeState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [subscribeMessage, setSubscribeMessage] = useState('Get website maintenance, development updates and customer insights—straight to your inbox.');
+  const [subscribeState, setSubscribeState] = useState<
+    'idle' | 'loading' | 'success' | 'error'
+  >('idle');
+  const [subscribeMessage, setSubscribeMessage] = useState(
+    'Get website maintenance, development updates and customer insights—straight to your inbox.',
+  );
 
   const submitSubscription = async (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -30,16 +33,23 @@ export default function SiteFooter() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, website }),
       });
-      const result = await response.json() as { ok?: boolean; message?: string };
+      const result = (await response.json()) as {
+        ok?: boolean;
+        message?: string;
+      };
 
       if (!response.ok || !result.ok) {
         setSubscribeState('error');
-        setSubscribeMessage(result.message || 'Subscription could not be sent. Please try again.');
+        setSubscribeMessage(
+          result.message || 'Subscription could not be sent. Please try again.',
+        );
         return;
       }
 
       setSubscribeState('success');
-      setSubscribeMessage('Thanks — your subscription has been sent to WEBSTELL.');
+      setSubscribeMessage(
+        'Thanks — your subscription has been sent to WEBSTELL.',
+      );
       formElement.reset();
     } catch {
       setSubscribeState('error');
@@ -48,37 +58,156 @@ export default function SiteFooter() {
   };
 
   const navigateWithDocument = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    )
+      return;
     event.preventDefault();
     window.location.assign(event.currentTarget.href);
   };
 
   return (
     <footer className="site-footer">
-      <Image className="site-footer-bg" src="/assets/footer/webstell-footer.avif" alt="Luminous cube in a landscaped garden" fill sizes="100vw" />
+      <Image
+        className="site-footer-bg"
+        src="/assets/footer/webstell-footer.avif"
+        alt="Luminous cube in a landscaped garden"
+        fill
+        sizes="100vw"
+      />
       <div className="site-footer-shade" aria-hidden="true" />
       <div className="footer-panel wrap">
         <div className="footer-brand">
-          <Link className="footer-logo" href="/" onClick={navigateWithDocument}>WEBSTELL</Link>
-          <p>Creative technology for ambitious businesses. Websites, software, AI and growth—with design at the centre.</p>
-          <form className={`subscribe-form is-${subscribeState}`} onSubmit={submitSubscription}>
-            <label className="sr-only" htmlFor="footer-email">Email address</label>
-            <input className="studio-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-            <input id="footer-email" name="email" type="email" required placeholder="you@company.com" aria-describedby="subscribe-status" disabled={subscribeState === 'loading' || subscribeState === 'success'} />
-            <button type="submit" aria-busy={subscribeState === 'loading'} disabled={subscribeState === 'loading' || subscribeState === 'success'}>
-              <span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4 18-7Z" /></svg></span>
-              {subscribeState === 'loading' ? 'Sending…' : subscribeState === 'success' ? 'Subscribed' : 'Subscribe'}
+          <Link className="footer-logo" href="/" onClick={navigateWithDocument}>
+            WEBSTELL
+          </Link>
+          <p>
+            Creative technology for ambitious businesses. Websites, software, AI
+            and growth—with design at the centre.
+          </p>
+          <form
+            className={`subscribe-form is-${subscribeState}`}
+            onSubmit={submitSubscription}
+          >
+            <label className="sr-only" htmlFor="footer-email">
+              Email address
+            </label>
+            <input
+              className="studio-honeypot"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+            <input
+              id="footer-email"
+              name="email"
+              type="email"
+              required
+              placeholder="you@company.com"
+              aria-describedby="subscribe-status"
+              disabled={
+                subscribeState === 'loading' || subscribeState === 'success'
+              }
+            />
+            <button
+              type="submit"
+              aria-busy={subscribeState === 'loading'}
+              disabled={
+                subscribeState === 'loading' || subscribeState === 'success'
+              }
+            >
+              <span aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M21 3 10 14M21 3l-7 18-4-7-7-4 18-7Z" />
+                </svg>
+              </span>
+              {subscribeState === 'loading'
+                ? 'Sending…'
+                : subscribeState === 'success'
+                  ? 'Subscribed'
+                  : 'Subscribe'}
             </button>
           </form>
-          <RegionLinks/><p className="subscribe-status" id="subscribe-status" aria-live="polite">{subscribeMessage}</p>
+          <p
+            className="subscribe-status"
+            id="subscribe-status"
+            aria-live="polite"
+          >
+            {subscribeMessage}
+          </p>
         </div>
         <nav className="footer-links" aria-label="Footer navigation">
-          <div className="footer-link-group"><span className="footer-nav-label">Explore</span><Link href="/" onClick={navigateWithDocument}>Home</Link><Link href="/services" onClick={navigateWithDocument}>Services</Link><Link href="/projects" onClick={navigateWithDocument}>Work</Link><Link href="/pricing" onClick={navigateWithDocument}>Pricing</Link></div>
-          <div className="footer-link-group"><span className="footer-nav-label">Company</span><Link href="/about" onClick={navigateWithDocument}>Why WEBSTELL</Link><Link href="/insights" onClick={navigateWithDocument}>Insights</Link><Link href="/about#team" onClick={navigateWithDocument}>Our team</Link><Link href="/#faq" onClick={navigateWithDocument}>FAQs</Link><Link href="/contact" onClick={navigateWithDocument}>Contact</Link></div>
-          <div className="footer-link-group footer-policies"><span className="footer-nav-label">Policies</span><div className="footer-policy-links"><Link href="/privacy" onClick={navigateWithDocument}>Privacy Policy</Link><Link href="/terms" onClick={navigateWithDocument}>Terms &amp; Conditions</Link><Link href="/cookies" onClick={navigateWithDocument}>Cookies</Link><Link href="/refunds" onClick={navigateWithDocument}>Refunds</Link><Link href="/accessibility" onClick={navigateWithDocument}>Accessibility</Link><button type="button" className="cookie-settings-button" onClick={openCookieSettings}>Cookie settings</button></div></div>
+          <div className="footer-link-group">
+            <span className="footer-nav-label">Explore</span>
+            <Link href="/" onClick={navigateWithDocument}>
+              Home
+            </Link>
+            <Link href="/services" onClick={navigateWithDocument}>
+              Services
+            </Link>
+            <Link href="/projects" onClick={navigateWithDocument}>
+              Work
+            </Link>
+            <Link href="/pricing" onClick={navigateWithDocument}>
+              Pricing
+            </Link>
+          </div>
+          <div className="footer-link-group">
+            <span className="footer-nav-label">Company</span>
+            <Link href="/about" onClick={navigateWithDocument}>
+              Why WEBSTELL
+            </Link>
+            <Link href="/insights" onClick={navigateWithDocument}>
+              Insights
+            </Link>
+            <Link href="/about#team" onClick={navigateWithDocument}>
+              Our team
+            </Link>
+            <Link href="/#faq" onClick={navigateWithDocument}>
+              FAQs
+            </Link>
+            <Link href="/contact" onClick={navigateWithDocument}>
+              Contact
+            </Link>
+          </div>
+          <div className="footer-link-group footer-policies">
+            <span className="footer-nav-label">Policies</span>
+            <div className="footer-policy-links">
+              <Link href="/privacy" onClick={navigateWithDocument}>
+                Privacy Policy
+              </Link>
+              <Link href="/terms" onClick={navigateWithDocument}>
+                Terms &amp; Conditions
+              </Link>
+              <Link href="/cookies" onClick={navigateWithDocument}>
+                Cookies
+              </Link>
+              <Link href="/refunds" onClick={navigateWithDocument}>
+                Refunds
+              </Link>
+              <Link href="/accessibility" onClick={navigateWithDocument}>
+                Accessibility
+              </Link>
+              <button
+                type="button"
+                className="cookie-settings-button"
+                onClick={openCookieSettings}
+              >
+                Cookie settings
+              </button>
+            </div>
+          </div>
         </nav>
       </div>
-      <div className="footer-wordmark" aria-hidden="true">WEBSTELL</div>
+      <div className="footer-wordmark" aria-hidden="true">
+        WEBSTELL
+      </div>
     </footer>
   );
 }

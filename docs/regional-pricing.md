@@ -1,15 +1,15 @@
 # Regional homepage and pricing configuration
 
-Webstell keeps its existing Vinext static export on Vercel. `/` is the India/international homepage; `/au` is the Australian edition. Both remain directly accessible and indexable, with canonical URLs, language-region alternates and sitemap entries.
+Webstell keeps its existing Vinext static export on Vercel. Every country uses the normal homepage at `/`. The Australian homepage has been deleted. Legacy `/au` links permanently redirect to `/`, preserving query parameters.
 
 ## Country defaults and visitor choices
 
-- Vercel conditional redirects in `vercel.json` send an Australian root-page request to `/au` before rendering. Existing query parameters are preserved. Other paths are not redirected.
+- Homepage content does not depend on country headers or saved homepage preferences. `vercel.json` only redirects the retired `/au` path to `/`.
 - `GET /api/region` resolves Vercel's `x-vercel-ip-country` header on the server: `IN` → INR, `AU` → AUD, everything else or no header → USD.
 - The `webstell_currency` cookie preserves a manual currency choice for one year. It overrides country defaults. The endpoint is private and non-cacheable.
-- Footer edition links set a separate `webstell_region` preference. Choosing India & international prevents the Australian redirect; choosing Australia opts into it. Homepage edition and quote currency are independent choices.
+- Homepage edition links and the old `webstell_region` preference have been retired. Existing cookies with that name are ignored. Quote currency remains independently configurable.
 - No browser location permission, IP lookup service, language inference or foreign-exchange conversion is used. Outside Vercel, a trusted hosting integration must supply its country header or visitors receive the safe USD default. Do not trust a client-supplied country header on an exposed origin.
-- The local Vite middleware mirrors country routing and serves the region endpoint ahead of Vite's source-file resolution. Vercel production uses `api/region.ts`.
+- The local Vite middleware mirrors the legacy `/au` redirect and serves the region endpoint ahead of Vite's source-file resolution. Vercel production uses `api/region.ts`.
 
 ## Approving a rate
 

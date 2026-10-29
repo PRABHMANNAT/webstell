@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { existsSync, readFileSync } from 'node:fs';
 import {
   resolveRegion,
-  regionalHome,
+  legacyHomeRedirect,
   regionResponse,
   readCookie,
   formatMoney,
@@ -46,26 +47,38 @@ test('manual currency preference wins, malformed cookies fail safely', () => {
     undefined,
   );
 });
-test('only the root entry routes Australians, with query and explicit homepage preference preserved', () => {
-  const au = new Headers({ 'x-vercel-ip-country': 'AU' });
+test('every country uses the normal homepage and only the retired Australian URL redirects', () => {
+  assert.equal(legacyHomeRedirect(new URL('https://example.com/')), null);
   assert.equal(
-    regionalHome(new URL('https://example.com/?campaign=local'), au),
-    '/au?campaign=local',
-  );
-  assert.equal(regionalHome(new URL('https://example.com/pricing'), au), null);
-  assert.equal(regionalHome(new URL('https://example.com/au'), au), null);
-  au.set('cookie', 'webstell_region=global');
-  assert.equal(regionalHome(new URL('https://example.com/'), au), null);
-  assert.equal(
-    regionalHome(
-      new URL('https://example.com/'),
-      new Headers({ cookie: 'webstell_region=au' }),
-    ),
-    '/au',
-  );
-  assert.equal(
-    regionalHome(new URL('https://example.com/'), new Headers()),
+    legacyHomeRedirect(new URL('https://example.com/?campaign=local')),
     null,
+  );
+  assert.equal(
+    legacyHomeRedirect(new URL('https://example.com/pricing')),
+    null,
+  );
+  assert.equal(
+    legacyHomeRedirect(new URL('https://example.com/au?campaign=local')),
+    '/?campaign=local',
+  );
+  assert.equal(legacyHomeRedirect(new URL('https://example.com/au/')), '/');
+  const config = JSON.parse(
+    readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'),
+  );
+  assert.deepEqual(config.redirects, [
+    { source: '/au', destination: '/', permanent: true },
+  ]);
+  for (const file of ['page.tsx', 'AustralianHome.tsx', 'AustraliaMap.tsx']) {
+    assert.equal(
+      existsSync(new URL('../app/au/' + file, import.meta.url)),
+      false,
+    );
+  }
+  assert(
+    !readFileSync(
+      new URL('../public/sitemap.xml', import.meta.url),
+      'utf8',
+    ).includes('webstell-studio.com/au'),
   );
 });
 test('region endpoint never caches personalised decisions', async () => {

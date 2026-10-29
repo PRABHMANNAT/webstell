@@ -37,7 +37,6 @@ body {
 }
 .agency-section-heading h2 em,
 .agency-pricing-hero h1 em,
-.au-hero h1 em,
 .services-intro h1 em {
   font-style: normal;
   color: #737a67;
@@ -316,25 +315,6 @@ body {
 .process-footnote p {
   max-width: 620px;
   line-height: 1.6;
-}
-.region-links {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 18px;
-  padding-top: 24px;
-  font-size: 12px;
-  color: #d6dcca;
-}
-.region-links span {
-  color: #aab09f;
-}
-.region-links a {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  min-height: 32px;
-  display: inline-flex;
-  align-items: center;
 }
 .currency-switcher {
   display: flex;
@@ -828,109 +808,6 @@ body {
   line-height: 1.7;
   margin-bottom: 20px;
 }
-.au-hero {
-  padding: 80px 0 70px;
-  background: var(--agency-paper);
-}
-.au-hero-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 45px;
-  align-items: center;
-}
-.au-hero h1 {
-  font-size: clamp(55px, 6.5vw, 94px);
-  line-height: 0.99;
-  letter-spacing: -0.065em;
-  margin: 26px 0;
-}
-.au-hero-copy > p {
-  max-width: 620px;
-  font-size: 19px;
-  line-height: 1.65;
-  color: #545d49;
-}
-.au-actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 30px;
-}
-.au-map-panel {
-  position: relative;
-  border: 1px solid #d2d9c5;
-  border-radius: 28px;
-  padding: 30px;
-  background: #e9efdb;
-  overflow: hidden;
-}
-.au-map-panel svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.au-map-panel > span {
-  display: block;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: #545e45;
-}
-.au-map-panel > p {
-  font-size: 13px;
-  line-height: 1.5;
-  color: #59634b;
-  max-width: 320px;
-  margin-top: 18px;
-}
-.au-map-panel path {
-  fill: #cbdba8;
-  stroke: #758955;
-  stroke-width: 1;
-}
-.au-map-panel circle {
-  fill: #344820;
-  stroke: var(--agency-lime);
-  stroke-width: 4;
-}
-.au-map-panel text {
-  font:
-    13px Suisse,
-    Arial;
-  fill: #344820;
-}
-.au-map-labels {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-}
-.au-map-labels span {
-  font-size: 11px;
-  padding: 7px 10px;
-  border: 1px solid #bfcfa8;
-  border-radius: 99px;
-}
-.au-proof-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  margin-top: 65px;
-  border-top: 1px solid #c5cdb7;
-  padding-top: 28px;
-}
-.au-proof-strip span {
-  font-size: 12px;
-  color: #667255;
-  letter-spacing: 0.06em;
-}
-.au-proof-strip p {
-  margin-top: 10px;
-  font-size: 16px;
-  line-height: 1.5;
-}
-.au-page .agency-closing {
-  margin-bottom: 90px;
-}
 .project-search {
   display: flex;
   flex-wrap: wrap;
@@ -1031,12 +908,6 @@ body {
     gap: 30px;
     padding: 35px;
   }
-  .au-hero-grid {
-    gap: 30px;
-  }
-  .au-map-panel {
-    padding: 20px;
-  }
 }
 @media (max-width: 760px) {
   .capability-section,
@@ -1065,8 +936,7 @@ body {
   .solution-layout,
   .industry-detail,
   .scope-planner,
-  .agency-pricing-hero > div:first-of-type,
-  .au-hero-grid {
+  .agency-pricing-hero > div:first-of-type {
     grid-template-columns: 1fr;
   }
   .solution-layout {
@@ -1163,20 +1033,6 @@ body {
   }
   .services-intro p {
     font-size: 17px;
-  }
-  .au-hero {
-    padding-top: 56px;
-  }
-  .au-hero-copy > p {
-    font-size: 17px;
-  }
-  .au-map-panel {
-    max-width: 550px;
-  }
-  .au-proof-strip {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    margin-top: 35px;
   }
   .agency-home .launch-capabilities > div {
     flex-wrap: wrap;

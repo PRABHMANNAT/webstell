@@ -1,5 +1,4 @@
 'use client';
-import SiteLink from './SiteLink';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import {
   currencies,
@@ -93,22 +92,5 @@ export function CurrencySwitcher() {
         ))}
       </select>
     </label>
-  );
-}
-
-export function RegionLinks() {
-  function choose(region: string) {
-    document.cookie = `webstell_region=${region}; Path=/; Max-Age=31536000; SameSite=Lax${location.protocol === 'https:' ? '; Secure' : ''}`;
-  }
-  return (
-    <div className="region-links">
-      <span>Explore Webstell</span>
-      <SiteLink href="/au" onClick={() => choose('au')}>
-        Australia
-      </SiteLink>
-      <SiteLink href="/" onClick={() => choose('global')}>
-        India & international
-      </SiteLink>
-    </div>
   );
 }

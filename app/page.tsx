@@ -10,7 +10,7 @@ export const metadata = {
   alternates: {
     canonical: 'https://webstell-studio.com/',
     languages: {
-      'en-AU': 'https://webstell-studio.com/au',
+      'en-AU': 'https://webstell-studio.com/',
       'en-IN': 'https://webstell-studio.com/',
       'x-default': 'https://webstell-studio.com/',
     },

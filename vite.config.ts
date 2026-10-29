@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/postcss';
 import vinext from 'vinext';
 import { defineConfig, type ViteDevServer } from 'vite';
 import hostingConfig from './.openai/hosting.json';
-import { regionalHome, resolveRegion } from './lib/region';
+import { legacyHomeRedirect, resolveRegion } from './lib/region';
 
 const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   '00000000-0000-4000-8000-000000000000';
@@ -63,7 +63,7 @@ export default defineConfig(async () => {
       : undefined,
     plugins: [
       {
-        name: 'webstell-regional-home',
+        name: 'webstell-region-endpoint',
         configureServer(server: ViteDevServer) {
           server.middlewares.use((request, response, next) => {
             const url = new URL(request.url || '/', 'http://localhost');
@@ -90,12 +90,12 @@ export default defineConfig(async () => {
               );
               return;
             }
-            const target = regionalHome(url, headers);
+            const target = legacyHomeRedirect(url);
             if (
               target &&
               (request.method === 'GET' || request.method === 'HEAD')
             ) {
-              response.writeHead(307, {
+              response.writeHead(308, {
                 Location: target,
                 'Cache-Control': 'private, no-store',
               });

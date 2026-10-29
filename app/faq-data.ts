@@ -124,31 +124,3 @@ export const agencyFaqs: FaqItem[] = [
       'Yes. We can agree a programme of technical improvements, content priorities and conversion reviews. We measure useful signals and qualified enquiries; we do not guarantee rankings or revenue.',
   },
 ];
-export const australiaFaqs: FaqItem[] = [
-  {
-    question: 'Where is Webstell based?',
-    answer:
-      'Webstell is a remote studio based in India, working with Australian and international businesses. We agree communication, meeting times and delivery milestones across time zones.',
-  },
-  {
-    question: 'Can I receive a proposal in Australian dollars?',
-    answer:
-      'Yes. Australian visitors default to AUD, and you can change the quote currency on pricing or contact pages. The proposal separates project fees, ongoing services, third-party charges and any applicable taxes.',
-  },
-  {
-    question: 'Do you build websites and workflows for tradies?',
-    answer:
-      'We can scope service-area websites, quote forms, job enquiries and automation for trade businesses. Your team supplies accurate licences, service coverage, job photographs and business details.',
-  },
-  {
-    question: 'How do meetings work across Australian time zones?',
-    answer:
-      'Choose a preferred call time or send your availability. The schedule shows the studio time zone explicitly; meeting times are requests until our team confirms a time that works for both sides.',
-  },
-  ...agencyFaqs,
-  {
-    question: 'Will we own the finished work?',
-    answer:
-      'Your proposal defines ownership, handover and access after final payment. Third-party services, fonts and software remain subject to their own licences.',
-  },
-];

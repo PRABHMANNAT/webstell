@@ -26,8 +26,10 @@ const sections: LegalSection[] = [
     ],
   },
   {
-    title: 'Regional preferences',
-    paragraphs: ['When you choose a quote currency or regional homepage, webstell_currency and webstell_region remember that choice for up to one year. These first-party preference cookies contain only the selected currency or region, not form details. You can change the currency in pricing/contact or choose another homepage in the footer. Clearing site cookies resets your choice.'],
+    title: 'Quote currency preference',
+    paragraphs: [
+      'When you choose a quote currency, webstell_currency remembers that choice for up to one year. This first-party preference cookie contains only the selected currency, not form details. You can change the currency on the pricing or contact page. Clearing site cookies resets your choice.',
+    ],
   },
   {
     title: 'Optional analytics',
@@ -60,5 +62,22 @@ const sections: LegalSection[] = [
 ];
 
 export default function CookiePolicyPage() {
-  return <><StructuredData data={createPageSchema({ path: '/cookies', name: 'Cookie Policy | Webstell', breadcrumbName: 'Cookie Policy' })} /><LegalPage eyebrow="A SMALL EXPLANATION" title="Cookie Policy" intro="How this website uses essential preferences and optional analytics cookies." sections={sections} heroVariant="cookies" /></>;
+  return (
+    <>
+      <StructuredData
+        data={createPageSchema({
+          path: '/cookies',
+          name: 'Cookie Policy | Webstell',
+          breadcrumbName: 'Cookie Policy',
+        })}
+      />
+      <LegalPage
+        eyebrow="A SMALL EXPLANATION"
+        title="Cookie Policy"
+        intro="How this website uses essential preferences and optional analytics cookies."
+        sections={sections}
+        heroVariant="cookies"
+      />
+    </>
+  );
 }

@@ -1,3 +1,7 @@
+# Current homepage behavior
+
+The normal homepage at `/` is now used in every country. The separate Australian page, map, country redirect and footer edition links have been removed. `/au` is a permanent redirect to `/`; regional quote currencies remain supported. The notes below describe earlier implementation stages.
+
 # Webstell agency refresh
 
 Implemented in the existing React/Vinext project on 28 October 2026. This document records the implementation and local verification; live deployment checks are listed below.

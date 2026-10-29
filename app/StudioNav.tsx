@@ -124,7 +124,7 @@ export default function StudioNav({ current = '' }: { current?: string }) {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const visibleNavigationLinks =
-    pathname === '/' || pathname === '/au'
+    pathname === '/'
       ? navigationLinks
       : ([['Home', '/'], ...navigationLinks] as const);
 
