@@ -96,9 +96,6 @@
   opacity: 1;
 }
 @media (hover: hover) {
-  .capability-visual .capability-card:hover {
-    background: #f3f5ec;
-  }
   .capability-card:hover .capability-icon svg {
     transform: translateY(-4px) rotate(-5deg);
   }
@@ -188,4 +185,14 @@
     white-space: normal;
     max-width: 300px;
   }
+}
+
+/* Keep the shared Motion background beneath the existing tile content. */
+.capability-visual .capability-card > .capability-icon,
+.capability-visual .capability-card > h3 {
+  position: relative;
+  z-index: 1;
+}
+.capability-visual .capability-card > .capability-arrow {
+  z-index: 1;
 }

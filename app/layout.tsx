@@ -5,6 +5,7 @@ import GoogleAnalytics from './GoogleAnalytics';
 import StructuredData from './StructuredData';
 import { createPageMetadata, metadataBase } from './seo-metadata';
 import { organizationSchema } from './structured-data';
+import './ui-utilities.css';
 import './globals.css';
 import './hero.css';
 import './hero-motion.css';

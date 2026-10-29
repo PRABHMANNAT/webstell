@@ -28,6 +28,7 @@ import {
 } from './service-catalog';
 import IndustryIcon from './IndustryIcon';
 import CapabilityMark from './CapabilityMark';
+import { HoverEffect } from '@/components/ui/card-hover-effect';
 import './industry-explorer.css';
 import './capability-grid.css';
 
@@ -102,21 +103,29 @@ export function CapabilityGrid() {
           Explore services <ArrowUpRight size={18} aria-hidden="true" />
         </SiteLink>
       </header>
-      <div className="capability-grid">
-        {capabilities.map(({ label, mark, href }) => (
-          <SiteLink className="capability-card" key={label} href={href}>
-            <span className="capability-icon" aria-hidden="true">
-              <CapabilityMark name={mark} />
-            </span>
-            <h3>{label}</h3>
-            <ArrowUpRight
-              className="capability-arrow"
-              size={17}
-              aria-hidden="true"
-            />
-          </SiteLink>
-        ))}
-      </div>
+      <HoverEffect
+        className="capability-grid py-0"
+        itemClassName="capability-card"
+        hoverClassName="pointer-events-none bg-[#f3f5ec] dark:bg-[#f3f5ec] rounded-2xl"
+        items={capabilities.map(({ label, mark, href }) => ({
+          title: label,
+          description: '',
+          link: href,
+          content: (
+            <>
+              <span className="capability-icon" aria-hidden="true">
+                <CapabilityMark name={mark} />
+              </span>
+              <h3>{label}</h3>
+              <ArrowUpRight
+                className="capability-arrow"
+                size={17}
+                aria-hidden="true"
+              />
+            </>
+          ),
+        }))}
+      />
     </section>
   );
 }
