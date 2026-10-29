@@ -20,7 +20,7 @@ import {
   Images,
   type LucideIcon,
 } from 'lucide-react';
-import { enquiryServices } from './enquiry-services';
+import IndustryBriefFields from './IndustryBriefFields';
 import {
   services,
   industries,
@@ -536,30 +536,7 @@ export function IndustryExplorer({
             }}
           >
             <input type="hidden" name="source" value="industries-other" />
-            <label>
-              What would you like to build?
-              <select name="project" defaultValue="" required>
-                <option value="" disabled>
-                  Choose a service
-                </option>
-                {enquiryServices.map((service) => (
-                  <option key={service} value={service}>
-                    {service}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Tell us your idea
-              <textarea
-                name="detail"
-                rows={3}
-                required
-                minLength={12}
-                maxLength={600}
-                placeholder="What should it do, and who is it for?"
-              />
-            </label>
+            <IndustryBriefFields />
             <div className="industry-brief-footer">
               <small>Add your contact details on the next step.</small>
               <button className="agency-button" type="submit">
