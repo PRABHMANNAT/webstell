@@ -459,10 +459,10 @@ export function IndustryExplorer({
                 aria-live="polite"
                 aria-atomic="true"
               >
-                <h3 id="industry-focus-title" key={industry.id}>
+                <h3 id="industry-focus-title" key={`title-${industry.id}`}>
                   {industry.tagline}
                 </h3>
-                <ul key={industry.id}>
+                <ul key={`features-${industry.id}`}>
                   {industryHighlights[industry.id].map(
                     ([Icon, label], index) => (
                       <li
