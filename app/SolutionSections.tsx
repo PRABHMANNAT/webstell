@@ -27,6 +27,7 @@ import {
   type IndustryId,
 } from './service-catalog';
 import IndustryIcon from './IndustryIcon';
+import IndustryServiceStrip from './IndustryServiceStrip';
 import CapabilityMark from './CapabilityMark';
 import { HoverEffect } from '@/components/ui/card-hover-effect';
 import './industry-explorer.css';
@@ -320,170 +321,178 @@ export function IndustryExplorer({
   const industry =
     industries.find((item) => item.id === active) ?? industries[0];
   return (
-    <section
-      className="industry-explorer industry-compact studio-width"
-      id="industries"
-      aria-labelledby="industry-title"
-    >
-      <header className="industry-heading">
-        <h2 id="industry-title">
-          Choose your <em>industry package.</em>
-        </h2>
-      </header>
-      <div className="industry-browser">
-        <label className="industry-mobile-picker">
-          Your industry
-          <select
-            value={active}
-            onChange={(event) => setActive(event.target.value as IndustryId)}
-          >
-            {industries.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <fieldset
-          className="industry-selector"
-          aria-label="Explore an industry"
-        >
-          {industries.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              aria-label={item.name}
-              aria-pressed={active === item.id}
-              aria-controls="industry-focus"
-              onClick={() => setActive(item.id)}
+    <>
+      <IndustryServiceStrip />
+      <section
+        className="industry-explorer industry-compact studio-width"
+        id="industries"
+        aria-labelledby="industry-title"
+      >
+        <header className="industry-heading">
+          <h2 id="industry-title">
+            Choose your <em>industry package.</em>
+          </h2>
+        </header>
+        <div className="industry-browser">
+          <label className="industry-mobile-picker">
+            Your industry
+            <select
+              value={active}
+              onChange={(event) => setActive(event.target.value as IndustryId)}
             >
-              <span className="industry-tile-icon">
-                <IndustryIcon industry={item.id} />
-              </span>
-              <span>{industryLabels[item.id]}</span>
-              <ArrowUpRight
-                className="industry-row-arrow"
-                size={16}
-                aria-hidden="true"
-              />
-            </button>
-          ))}
-        </fieldset>
-        <article
-          className="industry-focus"
-          id="industry-focus"
-          aria-labelledby="industry-focus-title"
-        >
-          <div className="industry-object" key={industry.id} aria-hidden="true">
-            <IndustryIcon industry={industry.id} />
-          </div>
-          <div className="industry-focus-intro">
-            <span className="industry-focus-icon">
-              <IndustryIcon industry={industry.id} />
-            </span>
-            <div>
-              <span className="industry-focus-kicker">WHAT WE CAN BUILD</span>
-              <p>{industry.name}</p>
-            </div>
-            <span className="industry-focus-number" aria-hidden="true">
-              0{industries.findIndex((item) => item.id === industry.id) + 1} /
-              09
-            </span>
-          </div>
-          <div
-            className="industry-focus-copy"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            <h3 id="industry-focus-title" key={industry.id}>
-              {industry.tagline}
-            </h3>
-            <ul>
-              {industryHighlights[industry.id].map(([Icon, label]) => (
-                <li key={label}>
-                  <Icon size={23} strokeWidth={1.5} aria-hidden="true" />
-                  <span>{label}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="industry-focus-actions">
-            <SiteLink
-              className="agency-button"
-              href={enquiryHref(industry.project, industry.name, {
-                industry: industry.id,
-              })}
-            >
-              Plan my project <ArrowUpRight size={18} aria-hidden="true" />
-            </SiteLink>
-            <SiteLink
-              className="industry-work-link"
-              href={'/projects?industry=' + industry.filter}
-            >
-              View concepts <ArrowRight size={16} aria-hidden="true" />
-            </SiteLink>
-          </div>
-        </article>
-      </div>
-      <details className="industry-other">
-        <summary>
-          <span>Need something else?</span>
-          <span className="industry-other-action">
-            Tell us your idea <Plus size={18} aria-hidden="true" />
-          </span>
-        </summary>
-        <form
-          action="/contact"
-          method="get"
-          className="industry-brief"
-          onSubmit={(event) => {
-            event.preventDefault();
-            const brief = new FormData(event.currentTarget);
-            const project = brief.get('project');
-            const detail = brief.get('detail');
-            window.location.assign(
-              enquiryHref(
-                typeof project === 'string' ? project : '',
-                typeof detail === 'string' ? detail : '',
-                { source: 'industries-other' },
-              ),
-            );
-          }}
-        >
-          <input type="hidden" name="source" value="industries-other" />
-          <label>
-            What would you like to build?
-            <select name="project" defaultValue="" required>
-              <option value="" disabled>
-                Choose a service
-              </option>
-              {enquiryServices.map((service) => (
-                <option key={service} value={service}>
-                  {service}
+              {industries.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.name}
                 </option>
               ))}
             </select>
           </label>
-          <label>
-            Tell us your idea
-            <textarea
-              name="detail"
-              rows={3}
-              required
-              minLength={12}
-              maxLength={600}
-              placeholder="What should it do, and who is it for?"
-            />
-          </label>
-          <div className="industry-brief-footer">
-            <small>Add your contact details on the next step.</small>
-            <button className="agency-button" type="submit">
-              Continue my enquiry <ArrowUpRight size={18} aria-hidden="true" />
-            </button>
-          </div>
-        </form>
-      </details>
-    </section>
+          <fieldset
+            className="industry-selector"
+            aria-label="Explore an industry"
+          >
+            {industries.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                aria-label={item.name}
+                aria-pressed={active === item.id}
+                aria-controls="industry-focus"
+                onClick={() => setActive(item.id)}
+              >
+                <span className="industry-tile-icon">
+                  <IndustryIcon industry={item.id} />
+                </span>
+                <span>{industryLabels[item.id]}</span>
+                <ArrowUpRight
+                  className="industry-row-arrow"
+                  size={16}
+                  aria-hidden="true"
+                />
+              </button>
+            ))}
+          </fieldset>
+          <article
+            className="industry-focus"
+            id="industry-focus"
+            aria-labelledby="industry-focus-title"
+          >
+            <div
+              className="industry-object"
+              key={industry.id}
+              aria-hidden="true"
+            >
+              <IndustryIcon industry={industry.id} />
+            </div>
+            <div className="industry-focus-intro">
+              <span className="industry-focus-icon">
+                <IndustryIcon industry={industry.id} />
+              </span>
+              <div>
+                <span className="industry-focus-kicker">WHAT WE CAN BUILD</span>
+                <p>{industry.name}</p>
+              </div>
+              <span className="industry-focus-number" aria-hidden="true">
+                0{industries.findIndex((item) => item.id === industry.id) + 1} /
+                09
+              </span>
+            </div>
+            <div
+              className="industry-focus-copy"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <h3 id="industry-focus-title" key={industry.id}>
+                {industry.tagline}
+              </h3>
+              <ul>
+                {industryHighlights[industry.id].map(([Icon, label]) => (
+                  <li key={label}>
+                    <Icon size={23} strokeWidth={1.5} aria-hidden="true" />
+                    <span>{label}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="industry-focus-actions">
+              <SiteLink
+                className="agency-button"
+                href={enquiryHref(industry.project, industry.name, {
+                  industry: industry.id,
+                })}
+              >
+                Plan my project <ArrowUpRight size={18} aria-hidden="true" />
+              </SiteLink>
+              <SiteLink
+                className="industry-work-link"
+                href={'/projects?industry=' + industry.filter}
+              >
+                View concepts <ArrowRight size={16} aria-hidden="true" />
+              </SiteLink>
+            </div>
+          </article>
+        </div>
+        <details className="industry-other">
+          <summary>
+            <span>Need something else?</span>
+            <span className="industry-other-action">
+              Tell us your idea <Plus size={18} aria-hidden="true" />
+            </span>
+          </summary>
+          <form
+            action="/contact"
+            method="get"
+            className="industry-brief"
+            onSubmit={(event) => {
+              event.preventDefault();
+              const brief = new FormData(event.currentTarget);
+              const project = brief.get('project');
+              const detail = brief.get('detail');
+              window.location.assign(
+                enquiryHref(
+                  typeof project === 'string' ? project : '',
+                  typeof detail === 'string' ? detail : '',
+                  { source: 'industries-other' },
+                ),
+              );
+            }}
+          >
+            <input type="hidden" name="source" value="industries-other" />
+            <label>
+              What would you like to build?
+              <select name="project" defaultValue="" required>
+                <option value="" disabled>
+                  Choose a service
+                </option>
+                {enquiryServices.map((service) => (
+                  <option key={service} value={service}>
+                    {service}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Tell us your idea
+              <textarea
+                name="detail"
+                rows={3}
+                required
+                minLength={12}
+                maxLength={600}
+                placeholder="What should it do, and who is it for?"
+              />
+            </label>
+            <div className="industry-brief-footer">
+              <small>Add your contact details on the next step.</small>
+              <button className="agency-button" type="submit">
+                Continue my enquiry{' '}
+                <ArrowUpRight size={18} aria-hidden="true" />
+              </button>
+            </div>
+          </form>
+        </details>
+      </section>
+    </>
   );
 }
 

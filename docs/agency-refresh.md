@@ -46,3 +46,5 @@ The service index now contains 12 compact, custom SVG illustrations under “Wha
 Industry selection now uses “Choose your industry”, plain action-based descriptions, a compact scrollable desktop list and reduced-motion-aware selection transitions. The customer journey disclosure was removed as requested. The native mobile picker and contextual enquiry links are unchanged.
 
 The industry selector now shows all nine desktop options without internal scrolling. The detail panel expands to match the full list, and the heading is “Choose your industry package.” The mobile picker and selection transitions remain available.
+
+A Webstell-styled scrolling service/industry strip now sits immediately before the shared industry package section. It contains sixteen relevant service and business labels, uses solid/outlined typography with lime separators, and supports hover, focus, click-to-pause and reduced-motion manual scrolling. Duplicate visual content is hidden from assistive technology.
