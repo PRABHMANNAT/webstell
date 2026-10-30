@@ -32,20 +32,20 @@ export default function AboutHero() {
         <motion.h1
           {...fadeUp(0.24)}
           id="about-page-title"
-          className="m-0 text-[clamp(46px,8.5vw,112px)] leading-[0.98] font-medium tracking-[-0.065em] text-balance text-[#111]"
+          className="m-0 text-[clamp(46px,8.5vw,112px)] leading-[0.98] font-medium tracking-[-0.065em] text-balance text-[#0b0d0b]"
         >
-          Good people.
+          Your vision.
           <br />
-          <em className="font-[Georgia,serif] font-normal tracking-[-0.055em] text-[#56634f]">
-            Great digital work.
+          <em className="font-[Georgia,serif] font-normal tracking-[-0.055em] text-[#2d4827]">
+            Built together.
           </em>
         </motion.h1>
         <motion.p
           {...fadeUp(0.7)}
           className="mt-8 max-w-[540px] text-[clamp(17px,1.5vw,19px)] leading-[1.6] text-pretty text-neutral-600"
         >
-          Designers, developers and problem solvers. One hands-on team building
-          websites, software and AI tools around your business.
+          Work directly with the designers and developers bringing your ideas to
+          life. Websites, software and AI tools, built for your business.
         </motion.p>
         <motion.div
           {...fadeUp(0.8)}
