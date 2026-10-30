@@ -9,6 +9,37 @@ import {
   formatMoney,
 } from '../lib/region.ts';
 import { readEnquiryContext } from '../lib/enquiry-context.ts';
+import { GET as deployedRegion } from '../api/region.ts';
+
+test('deployed currency function matches the application for country and cookie choices', async () => {
+  for (const [country, cookie] of [
+    ['IN', ''],
+    ['AU', ''],
+    ['US', ''],
+    ['', ''],
+    ['invalid', ''],
+    ['IN', 'webstell_currency=AUD'],
+    ['AU', 'webstell_currency=USD'],
+    ['US', 'webstell_currency=INR'],
+    ['IN', 'webstell_currency=BAD'],
+    ['AU', 'webstell_currency=%zz'],
+    [' in ', 'other=1; webstell_currency=%55%53%44'],
+  ]) {
+    const request = new Request('https://example.com/api/region', {
+      headers: { 'x-vercel-ip-country': country, cookie },
+    });
+    const actual = deployedRegion(request);
+    const expected = regionResponse(request);
+    assert.equal(actual.status, 200);
+    assert.deepEqual(await actual.json(), await expected.json());
+    assert.equal(
+      actual.headers.get('cache-control'),
+      expected.headers.get('cache-control'),
+    );
+    assert.equal(actual.headers.get('vercel-cdn-cache-control'), 'no-store');
+    assert.match(actual.headers.get('vary'), /Cookie/);
+  }
+});
 test('server country resolution handles India, Australia, all other countries and missing headers', () => {
   for (const [country, currency] of [
     ['IN', 'INR'],
