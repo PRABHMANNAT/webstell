@@ -4,6 +4,7 @@ import TeamSection from '../TeamSection';
 import InternationalProjectsSection from '../InternationalProjectsSection';
 import WhyWebstellSection from '../WhyWebstellSection';
 import AboutCallToAction from './AboutCallToAction';
+import AboutHero from './AboutHero';
 import { createPageMetadata } from '../seo-metadata';
 import StructuredData from '../StructuredData';
 import { createPageSchema } from '../structured-data';
@@ -22,13 +23,7 @@ export default function AboutPage() {
       <StructuredData data={createPageSchema({ path: '/about', name: 'About Webstell | Software & Digital Product Agency', breadcrumbName: 'About' })} />
       <StudioNav current="about" />
       <main id="main-content" className="about-page">
-        <section className="about-hero studio-width" aria-labelledby="about-page-title">
-          <h1 id="about-page-title">Made to be noticed.<br/><em>Built to be trusted.</em></h1>
-          <div className="about-hero-copy">
-            <p>WEBSTELL combines <strong>clear strategy, distinctive design and dependable engineering</strong> to give ambitious businesses a presence people <strong>notice, trust and choose.</strong></p>
-            <p>We are a hands-on team of designers and developers working across <strong>multiple countries</strong>—with direct access, honest collaboration and care for the details that make digital work feel real.</p>
-          </div>
-        </section>
+        <AboutHero />
 
         <WhyWebstellSection id="about-why-webstell" />
 
