@@ -460,3 +460,193 @@
     transition: none !important;
   }
 }
+/* Postcard composition: one scene, with the composer resting over the Earth. */
+.ambitious-enquiry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px 38px;
+  background: radial-gradient(
+    ellipse at 50% 36%,
+    #29372e 0,
+    #151d18 47%,
+    #111713 85%
+  );
+}
+.ambitious-globe-stage {
+  width: min(100%, 580px);
+  height: 350px;
+  min-height: 350px;
+  overflow: visible;
+  background: none;
+  perspective: 800px;
+}
+.ambitious-globe-control {
+  inset: 20px 0 -10px;
+}
+.enquiry-earth {
+  position: relative;
+  width: min(100%, 440px);
+  aspect-ratio: 1;
+}
+.enquiry-earth canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.enquiry-earth-fallback {
+  position: absolute;
+  inset: 14%;
+  border-radius: 50%;
+  background: url('/assets/earth-daymap.jpg') 60% center / auto 100%;
+  box-shadow:
+    inset -30px -10px 45px #000c,
+    0 0 24px #8ac9df20;
+}
+.enquiry-earth[data-ready='true'] .enquiry-earth-fallback {
+  display: none;
+}
+.ambitious-letter {
+  width: 214px;
+  height: 258px;
+  min-height: 0;
+  left: calc(50% - 107px);
+  top: 48px;
+  padding: 22px;
+  background: #fafbf5;
+}
+.ambitious-letter-lines {
+  font-size: 12px;
+  margin-top: 28px;
+}
+.ambitious-postmark {
+  top: 0;
+  font-size: 9px;
+}
+.ambitious-rotation-hint {
+  top: 20px;
+  font-size: 9px;
+}
+.ambitious-destination {
+  bottom: 45px;
+}
+.ambitious-composer {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 490px);
+  margin-top: -48px;
+  padding: 20px;
+  border: 1px solid #ffffff20;
+  border-radius: 20px;
+  background: #202923f5;
+  box-shadow:
+    0 18px 65px #0005,
+    inset 0 1px 0 #ffffff08;
+}
+.pricing-page .ambitious-composer .ambitious-composer-heading h3,
+.pricing-page .ambitious-composer .ambitious-composer-heading p {
+  display: none;
+}
+.ambitious-to {
+  margin-bottom: 18px;
+  padding: 7px 10px;
+  border: 1px solid #ffffff12;
+  border-radius: 20px;
+  background: #ffffff06;
+}
+.ambitious-fields {
+  gap: 12px;
+}
+.ambitious-composer label input,
+.ambitious-composer label textarea {
+  background: #121b15;
+  border-color: #ffffff20;
+  font-size: 14px;
+  padding: 10px 12px;
+}
+.ambitious-composer label textarea {
+  min-height: 70px;
+}
+.ambitious-composer .ambitious-note-label {
+  margin-top: 14px;
+}
+.ambitious-send-row {
+  margin-top: 14px;
+}
+.ambitious-send-row > span {
+  max-width: 200px;
+}
+.ambitious-success {
+  min-height: 235px;
+  align-items: center;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .ambitious-enquiry {
+    padding: 24px 12px;
+  }
+  .ambitious-globe-stage {
+    min-height: 330px;
+    height: 330px;
+  }
+  .ambitious-letter {
+    width: 176px;
+    height: 220px;
+    left: calc(50% - 88px);
+    top: 46px;
+    padding: 18px;
+  }
+  .ambitious-letter-lines {
+    font-size: 10px;
+    margin-top: 20px;
+  }
+  .ambitious-globe-control {
+    inset: 28px -8px 0;
+  }
+  .enquiry-earth {
+    width: min(calc(100% + 44px), 360px);
+  }
+  .ambitious-composer {
+    margin-top: -20px;
+    padding: 16px;
+  }
+  .ambitious-destination {
+    bottom: 28px;
+  }
+  .ambitious-composer label input,
+  .ambitious-composer label textarea {
+    font-size: 16px;
+  }
+}
+@media (max-width: 360px) {
+  .ambitious-fields {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .ambitious-send-row > span {
+    max-width: 105px;
+  }
+}
+.enquiry-earth-arrival {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 25%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 8px 13px;
+  border: 1px solid #d7ff4655;
+  border-radius: 20px;
+  background: #18241c;
+  color: #e9ffc4;
+  font: 11px/1.4 monospace;
+  box-shadow: 0 8px 24px #0005;
+}
+.enquiry-earth[data-arrived='true'] .enquiry-earth-arrival {
+  display: block;
+}
+.ambitious-success:focus {
+  outline: none;
+}
