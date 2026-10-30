@@ -60,7 +60,7 @@ export default function AboutHero() {
           </SiteLink>
           <SiteLink
             href="#team"
-            className="inline-flex h-12 items-center gap-3 rounded-full px-6 text-[15px] font-medium text-[#111] transition-colors hover:bg-black/[0.04] motion-reduce:transition-none"
+            className="inline-flex h-12 items-center gap-3 rounded-full border border-[#2d4827] bg-white/70 px-6 text-[15px] font-medium text-[#111] transition-colors hover:bg-white motion-reduce:transition-none"
           >
             Meet the team
             <ArrowDown size={16} aria-hidden="true" />
