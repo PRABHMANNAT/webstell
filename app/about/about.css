@@ -59,3 +59,7 @@
   border-radius: clamp(24px, 3vw, 40px) clamp(24px, 3vw, 40px) 0 0;
   background: #ececec;
 }
+/* Keep the hero gap above the global paragraph margin reset. */
+.about-page #about-page-title + p {
+  margin-top: clamp(24px, 3vw, 40px);
+}
