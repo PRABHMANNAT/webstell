@@ -35,3 +35,12 @@
 @media(prefers-reduced-motion:reduce){.about-next-actions>a,.about-next-actions>button,.about-next-actions>a::before,.about-next-actions>button::before,.about-next-actions>a>i,.about-next-actions>button>i{transition:none}.about-next-actions>a:hover,.about-next-actions>a:focus-visible,.about-next-actions>button:hover,.about-next-actions>button:focus-visible{transform:none}}
 
 .about-page .about-hero-primary{color:#fff}
+
+/* About page: keep the moving wordmark on a clean white band. */
+#about-why-webstell .insights-marquee {
+  background: #fff;
+  padding: clamp(32px, 5vw, 64px) 0;
+}
+#about-why-webstell .insights-track i {
+  color: #2d4827;
+}
