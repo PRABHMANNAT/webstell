@@ -11,6 +11,19 @@ import {
 import { readEnquiryContext } from '../lib/enquiry-context.ts';
 import { GET as deployedRegion } from '../api/region.ts';
 
+test('pricing is temporarily redirected at the deployment edge, including exported URLs', () => {
+  const { redirects } = JSON.parse(
+    readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'),
+  );
+  for (const source of ['/pricing/:path*', '/pricing.html']) {
+    assert.deepEqual(redirects.find((rule) => rule.source === source), {
+      source,
+      destination: '/contact',
+      permanent: false,
+    });
+  }
+});
+
 test('deployed currency function matches the application for country and cookie choices', async () => {
   for (const [country, cookie] of [
     ['IN', ''],
@@ -96,7 +109,7 @@ test('every country uses the normal homepage and only the retired Australian URL
   const config = JSON.parse(
     readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'),
   );
-  assert.deepEqual(config.redirects, [
+  assert.deepEqual(config.redirects.filter((rule) => rule.source === '/au'), [
     { source: '/au', destination: '/', permanent: true },
   ]);
   for (const file of ['page.tsx', 'AustralianHome.tsx', 'AustraliaMap.tsx']) {

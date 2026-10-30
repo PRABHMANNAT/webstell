@@ -18,7 +18,6 @@ const navigationLinks = [
   ['Work', '/projects'],
   ['Services', '/services'],
   ['About', '/about'],
-  ['Pricing', '/pricing'],
   ['Contact', '/contact'],
 ] as const;
 
@@ -268,7 +267,6 @@ export function StudioFooter() {
           </div>
           <div>
             <span>START HERE</span>
-            <Link href="/pricing">Pricing</Link>
             <Link href="/contact">Discuss your project</Link>
             <Link href="/schedule">Request a call</Link>
           </div>

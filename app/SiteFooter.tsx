@@ -151,9 +151,6 @@ export default function SiteFooter() {
             <Link href="/projects" onClick={navigateWithDocument}>
               Work
             </Link>
-            <Link href="/pricing" onClick={navigateWithDocument}>
-              Pricing
-            </Link>
           </div>
           <div className="footer-link-group">
             <span className="footer-nav-label">Company</span>

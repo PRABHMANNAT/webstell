@@ -9,6 +9,16 @@
       "source": "/au",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/pricing/:path*",
+      "destination": "/contact",
+      "permanent": false
+    },
+    {
+      "source": "/pricing.html",
+      "destination": "/contact",
+      "permanent": false
     }
   ]
 }

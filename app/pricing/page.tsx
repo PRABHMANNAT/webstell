@@ -1,26 +1,6 @@
-import PricingExperience from './PricingExperience';
-import { createPageMetadata } from '../seo-metadata';
-import StructuredData from '../StructuredData';
-import { createPageSchema } from '../structured-data';
-import './pricing-refresh.css';
-import './pricing-simplified.css';
-export const metadata = createPageMetadata({
-  title: 'Website, Software & AI Packages | Webstell',
-  description:
-    'Compare website, e-commerce, software, AI, automation, SEO and mobile packages. Build a project brief and request a regional quote in INR, AUD or USD.',
-  path: '/pricing',
-});
+import { redirect } from 'next/navigation';
+
+// Temporarily unavailable. The complete page is retained in PreservedPricingPage.tsx.
 export default function PricingPage() {
-  return (
-    <>
-      <StructuredData
-        data={createPageSchema({
-          path: '/pricing',
-          name: 'Website, Software & AI Packages | Webstell',
-          breadcrumbName: 'Pricing',
-        })}
-      />
-      <PricingExperience />
-    </>
-  );
+  redirect('/contact');
 }
