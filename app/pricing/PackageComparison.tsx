@@ -236,11 +236,6 @@ export default function PackageComparison({
           </article>
         ))}
       </div>
-      <p className="comparison-footnote">
-        Your proposal confirms the scope, deliverables, review checkpoints and
-        ownership. Hosting, licences, usage fees and ongoing care are itemised
-        separately.
-      </p>
     </div>
   );
 }

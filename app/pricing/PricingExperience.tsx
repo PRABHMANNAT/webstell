@@ -1,7 +1,15 @@
 'use client';
 import SiteLink from '../SiteLink';
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, Check, ChevronDown, Clock3, Layers } from 'lucide-react';
+import {
+  ArrowUpRight,
+  Check,
+  ChevronDown,
+  Clock3,
+  FileCheck2,
+  Layers,
+  ReceiptText,
+} from 'lucide-react';
 import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
 import FaqAccordion from '../FaqAccordion';
@@ -216,32 +224,52 @@ export default function PricingExperience() {
             selectedTier={tier}
             onChoose={(nextTier) => choose(type, [], nextTier)}
           />
-          <ol
-            className="pricing-path"
-            aria-label="How your project takes shape"
-          >
-            <li>
-              <span>1</span>
-              <div>
-                <strong>Agree the scope</strong>
-                <p>A clear brief and written quote.</p>
-              </div>
-            </li>
-            <li>
-              <span>2</span>
-              <div>
-                <strong>Build, review, refine</strong>
-                <p>Checkpoints you’re part of.</p>
-              </div>
-            </li>
-            <li>
-              <span>3</span>
-              <div>
-                <strong>Launch with a plan</strong>
-                <p>Handover and agreed next steps.</p>
-              </div>
-            </li>
-          </ol>
+          <div className="pricing-next" aria-labelledby="pricing-next-title">
+            <header className="pricing-next-heading">
+              <span className="simple-kicker">WHAT HAPPENS NEXT</span>
+              <h3 id="pricing-next-title">A clear path to launch.</h3>
+            </header>
+            <ol className="pricing-path">
+              <li>
+                <span aria-hidden="true">01</span>
+                <div>
+                  <h4>Agree the scope</h4>
+                  <p>A clear brief, a written quote and an agreed plan.</p>
+                </div>
+              </li>
+              <li>
+                <span aria-hidden="true">02</span>
+                <div>
+                  <h4>Build it together</h4>
+                  <p>See progress and share feedback at review checkpoints.</p>
+                </div>
+              </li>
+              <li>
+                <span aria-hidden="true">03</span>
+                <div>
+                  <h4>Launch with a plan</h4>
+                  <p>Your handover, ownership and next steps, made clear.</p>
+                </div>
+              </li>
+            </ol>
+            <div className="pricing-clarity">
+              <p>
+                <FileCheck2 size={19} aria-hidden="true" />
+                <span>
+                  <strong>In writing before we start</strong>
+                  Scope, deliverables, review points and ownership.
+                </span>
+              </p>
+              <p>
+                <ReceiptText size={19} aria-hidden="true" />
+                <span>
+                  <strong>Ongoing costs, itemised</strong>
+                  Hosting, licences, usage fees and ongoing care are quoted
+                  separately.
+                </span>
+              </p>
+            </div>
+          </div>
         </section>
         <section
           className="simple-scope studio-width"
