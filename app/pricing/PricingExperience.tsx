@@ -229,7 +229,12 @@ export default function PricingExperience() {
               <span className="simple-kicker">WHAT HAPPENS NEXT</span>
               <h3 id="pricing-next-title">A clear path to launch.</h3>
             </header>
-            <ol className="pricing-path">
+            <ol
+              className="pricing-path"
+              // oxlint-disable-next-line jsx-a11y/no-redundant-roles -- Safari needs an explicit list role when CSS hides list markers.
+              role="list"
+              aria-label="How your project takes shape"
+            >
               <li>
                 <span aria-hidden="true">01</span>
                 <div>
