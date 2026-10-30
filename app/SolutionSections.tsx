@@ -8,6 +8,7 @@ import {
   Plus,
   Search,
   CalendarDays,
+  Mail,
   Workflow,
   ShoppingBag,
   MapPin,
@@ -504,6 +505,16 @@ export function IndustryExplorer({
                     }
                   >
                     <CalendarDays size={17} aria-hidden="true" /> Book a call
+                  </SiteLink>
+                  <SiteLink
+                    className="industry-call-button"
+                    href={enquiryHref(
+                      industry.project,
+                      `${industry.name}: ${industry.tagline}`,
+                      { source: 'industries', industry: industry.name },
+                    )}
+                  >
+                    <Mail size={17} aria-hidden="true" /> Send us details
                   </SiteLink>
                 </div>
               </div>
