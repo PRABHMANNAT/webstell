@@ -22,13 +22,6 @@ export default function AboutHero() {
     >
       <BackgroundCubesGrid className="-z-10" />
       <div className="pointer-events-none mx-auto flex max-w-[1080px] flex-col items-center text-center antialiased">
-        <motion.span
-          {...fadeUp(0.15)}
-          className="mb-8 inline-flex items-center gap-2.5 rounded-full bg-white px-4 py-2 font-mono text-[11px] tracking-[0.14em] text-[#111] shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.06)]"
-        >
-          <span className="size-1.5 rounded-full bg-[#66705e]" aria-hidden="true" />
-          THE PEOPLE BEHIND WEBSTELL
-        </motion.span>
         <motion.h1
           {...fadeUp(0.24)}
           id="about-page-title"
