@@ -15,7 +15,7 @@ test('pricing is temporarily redirected at the deployment edge, including export
   const { redirects } = JSON.parse(
     readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'),
   );
-  for (const source of ['/pricing/:path*', '/pricing.html']) {
+  for (const source of ['/pricing/', '/pricing/:path*', '/pricing.html']) {
     assert.deepEqual(redirects.find((rule) => rule.source === source), {
       source,
       destination: '/contact',

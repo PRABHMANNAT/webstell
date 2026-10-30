@@ -11,6 +11,11 @@
       "permanent": true
     },
     {
+      "source": "/pricing/",
+      "destination": "/contact",
+      "permanent": false
+    },
+    {
       "source": "/pricing/:path*",
       "destination": "/contact",
       "permanent": false
