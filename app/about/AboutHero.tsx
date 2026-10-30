@@ -59,9 +59,6 @@ export default function AboutHero() {
             <ArrowDown size={16} aria-hidden="true" />
           </SiteLink>
         </motion.div>
-        <motion.p {...fadeUp(0.9)} className="mt-5 text-[13px] text-neutral-500">
-          Direct collaboration. From the first idea to what’s next.
-        </motion.p>
       </div>
     </section>
   );

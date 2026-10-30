@@ -12,7 +12,6 @@ import InternationalProjectsSection from '../InternationalProjectsSection';
 import { useInViewport } from '../useInViewport';
 import './projects.css';
 import ViewportVideo from '../ViewportVideo';
-import { enquiryHref } from '../service-catalog';
 
 type ProjectFilter = {
   value: string;
@@ -362,51 +361,7 @@ export default function ProjectsPage() {
             ))}
           </div>
         </section>
-        <section className="agency-section studio-width">
-          <div className="agency-section-heading">
-            <span className="studio-eyebrow">BEYOND THE INTERFACE</span>
-            <h2>
-              Imagine the system
-              <br />
-              <em>behind your business.</em>
-            </h2>
-            <p>
-              Illustrative workflows to help scope a conversation. These are
-              possible applications, not client case studies.
-            </p>
-          </div>
-          <div className="cost-grid">
-            {[
-              {
-                name: 'A customer portal',
-                project: 'software',
-                text: 'Customers track requests, staff manage approvals, and everyone sees the same status.',
-              },
-              {
-                name: 'A helpful knowledge assistant',
-                project: 'ai',
-                text: 'A chatbot finds answers in approved material and hands off uncertain or sensitive questions to your team.',
-              },
-              {
-                name: 'A connected enquiry flow',
-                project: 'automation',
-                text: 'Website enquiries reach your CRM, the right person is notified, and follow-ups are tracked.',
-              },
-            ].map((item) => (
-              <article key={item.project}>
-                <span>ILLUSTRATIVE WORKFLOW</span>
-                <h3>{item.name}</h3>
-                <p>{item.text}</p>
-                <SiteLink
-                  className="agency-text-link"
-                  href={enquiryHref(item.project, item.text)}
-                >
-                  Explore this scope ↗
-                </SiteLink>
-              </article>
-            ))}
-          </div>
-        </section>
+
         <div
           className="international-projects-anchor"
           ref={internationalProjectsRef}

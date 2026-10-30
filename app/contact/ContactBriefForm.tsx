@@ -10,7 +10,8 @@ import {
 import { ArrowUpRight, Check, LoaderCircle, MessageCircle } from 'lucide-react';
 import { trackAnalyticsEvent } from '../../lib/analytics';
 import { whatsappUrl } from '../contact-utils';
-import { useRegion, CurrencySwitcher } from '../RegionProvider';
+import { CurrencySwitcher } from '../RegionProvider';
+import { isCurrency, type Currency } from '../../lib/region';
 import { readEnquiryContext } from '../../lib/enquiry-context';
 import { enquiryServices } from '../enquiry-services';
 
@@ -84,7 +85,15 @@ function fileToBase64(file: File) {
 }
 
 export default function ContactBriefForm() {
-  const { currency } = useRegion();
+  const [currency, setCurrency] = useState<Currency>('INR');
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get(
+      'currency',
+    );
+    if (!isCurrency(requested)) return;
+    const frame = requestAnimationFrame(() => setCurrency(requested));
+    return () => cancelAnimationFrame(frame);
+  }, []);
   const [handoff, setHandoff] = useState<ReturnType<
     typeof readEnquiryContext
   > | null>(null);
@@ -310,7 +319,7 @@ export default function ContactBriefForm() {
       {handoff?.hasContext && (
         <p className="contact-context">{handoff.context}</p>
       )}
-      <CurrencySwitcher />
+      <CurrencySwitcher value={currency} onChange={setCurrency} />
       <label>
         What are we building?
         <select

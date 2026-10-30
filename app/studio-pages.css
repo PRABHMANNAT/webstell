@@ -497,6 +497,8 @@
   z-index: 80;
 }
 .hire-dialog-overlay[data-slot='dialog-overlay'] {
+  /* Keep the modal above the non-modal cookie banner. */
+  z-index: 400;
   background: #111311a8;
   opacity: 1;
   backdrop-filter: blur(12px);
@@ -513,11 +515,9 @@
 .hire-dialog[data-slot='dialog-content'] {
   display: block;
   position: fixed;
-  z-index: 81;
+  z-index: 401;
   left: 50%;
   top: 50%;
-  /* The shared Dialog also sets Tailwind's individual translate property. */
-  translate: none;
   transform: translate(-50%, -50%);
   width: min(590px, calc(100vw - 32px));
   max-width: 590px;

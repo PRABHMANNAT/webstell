@@ -3,6 +3,7 @@ import { createPageMetadata } from '../seo-metadata';
 import StructuredData from '../StructuredData';
 import { createPageSchema } from '../structured-data';
 import './pricing-refresh.css';
+import './pricing-simplified.css';
 export const metadata = createPageMetadata({
   title: 'Website, Software & AI Packages | Webstell',
   description:
@@ -10,5 +11,16 @@ export const metadata = createPageMetadata({
   path: '/pricing',
 });
 export default function PricingPage() {
-  return <><StructuredData data={createPageSchema({ path: '/pricing', name: 'Website, Software & AI Packages | Webstell', breadcrumbName: 'Pricing' })} /><PricingExperience /></>;
+  return (
+    <>
+      <StructuredData
+        data={createPageSchema({
+          path: '/pricing',
+          name: 'Website, Software & AI Packages | Webstell',
+          breadcrumbName: 'Pricing',
+        })}
+      />
+      <PricingExperience />
+    </>
+  );
 }

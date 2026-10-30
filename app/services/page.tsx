@@ -16,6 +16,7 @@ export default function ServicesPage() {
     <>
       <StudioNav current="services" />
       <main className="services-page" id="main-content">
+        <h1 className="sr-only">Webstell services and industry packages</h1>
         <section
           className="services-page-hero studio-width"
           aria-labelledby="services-page-title"
@@ -38,26 +39,8 @@ export default function ServicesPage() {
             />
           </ViewportVideo>
         </section>
-        <section className="services-intro studio-width">
-          <span className="studio-eyebrow">THE WEBSTELL OFFER</span>
-          <h1>
-            Design the experience.
-            <br />
-            <em>Build the capability.</em>
-          </h1>
-          <p>
-            Six connected disciplines. From the way customers find you to the
-            software that keeps your business moving.
-          </p>
-          <nav className="services-jump-links" aria-label="Service categories">
-            {services.map((service) => (
-              <SiteLink href={`#${service.id}`} key={service.id}>
-                {service.label}
-              </SiteLink>
-            ))}
-          </nav>
-        </section>
 
+        <IndustryExplorer />
         <ServiceShowcase />
         <SocialWorkGallery />
 
@@ -114,7 +97,6 @@ export default function ServicesPage() {
             </div>
           </div>
         </section>
-        <IndustryExplorer />
       </main>
       <SiteFooter />
     </>

@@ -58,3 +58,19 @@ Each industry now lists six relevant capabilities. A shared lime selection highl
 The industry section now has only the WhatsApp and call-booking actions. The separate Plan my project / View concepts row was removed, and the custom-brief disclosure uses one sentence: “Something else in mind? Tell us about it.” Its existing form and handoff remain unchanged.
 
 The custom industry brief now uses the installed Base UI Select primitive with grouped service options, keyboard controls, selection indicators and a styled dark popup. The writing field has a larger editor surface, lime focus state, a short hint and a character count. Required fields and the existing service/brief handoff remain intact. Browser checks verified the grouped eighteen-option menu, keyboard dismissal, mobile sizing, Other selection and prefilled contact-page handoff.
+
+## Page cleanup — 29 October 2026
+- Removed industry panel counters and the illustrative workflows section from Projects; shortened footer copy.
+- Services starts with the service ribbon and industry packages, replacing the text-heavy intro. Existing service content remains below.
+- About has a clearer team-focused hero; its studio summary uses the full content width with justified text, and the redundant kicker is removed.
+- Contact starts in INR unless an explicit pricing handoff supplies a currency. The contact choice remains local to the enquiry; regional pricing defaults and saved preferences are preserved elsewhere. Currency controls now use accessible Base UI menus.
+- Restored the original pricing hero, underlined typography, bordered builder and image-backed custom-project closing, retaining new categories, tier scopes, currency choice, cost notes and quote-only safeguards.
+- Validated lint, TypeScript, all 19 tests, production prerender and route audit, plus mobile layouts, currency selection and AI Growth brief selection in-browser.
+
+## Production dialog and pricing release — 30 October 2026
+
+The conversation chooser owns its centering through `DialogContent positioning="custom"`. Generic dialogs retain their default centering utilities. Do not combine Tailwind's individual translate utilities with the chooser's CSS transform: production minification removes an ordinary `translate: none` reset and reintroduces a double translation. The chooser's overlay and panel also sit above the non-modal cookie banner.
+
+The pricing page now uses a scope comparison table, indicative delivery-range bars, responsive package cards and a brief builder with optional details. The custom-project section adds an original draggable globe, live postcard and confirmation-only paper-plane animation. It reuses the existing enquiry endpoint; live email requires the configured Resend sender and key. Automated email checks use a mocked provider.
+
+Release checks: lint, TypeScript, 19 tests, 17 prerendered routes, and browser measurements against the minified production build at 320×568, 390×844, 844×390, 768×1024, 1366×768 and 1920×1080. All tested popup bounds stay within the viewport with no horizontal overflow.

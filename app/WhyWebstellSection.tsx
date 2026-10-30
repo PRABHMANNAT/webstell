@@ -70,24 +70,33 @@ export default function WhyWebstellSection({
         </div>
         <div className="insights-inner wrap">
           <div className="insights-lead">
-            <p className="insights-kicker">
-              Built for businesses that refuse to blend in.
-            </p>
             <h2 id={titleId}>About WEBSTELL</h2>
             <p className="insights-summary">
               Founded in 2026, WEBSTELL is a new-generation design and
               technology studio for businesses ready to lead in an AI-shaped
-              world. We combine original creative direction, AI-ready
-              technology and production-grade engineering—backed by experience
-              on international projects—to build digital experiences that stand
+              world. We combine original creative direction, AI-ready technology
+              and production-grade engineering—backed by experience on
+              international projects—to build digital experiences that stand
               out, earn trust and turn attention into action.
             </p>
-            <button type="button" className="all-articles" onClick={openDiscussDialog}>
-              <span aria-hidden="true" data-hover-label="Discuss your next project">↗</span>
+            <button
+              type="button"
+              className="all-articles"
+              onClick={openDiscussDialog}
+            >
+              <span
+                aria-hidden="true"
+                data-hover-label="Discuss your next project"
+              >
+                ↗
+              </span>
               Discuss your next project
             </button>
             <div className="studio-email-row">
-              <SiteLink className="studio-email" href="mailto:contact@webstell-studio.com">
+              <SiteLink
+                className="studio-email"
+                href="mailto:contact@webstell-studio.com"
+              >
                 contact@webstell-studio.com
               </SiteLink>
               <button

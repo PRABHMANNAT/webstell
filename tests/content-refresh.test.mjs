@@ -68,7 +68,7 @@ test('project and testimonial provenance remains explicit', () => {
     'utf8',
   );
   assert.match(page, /Studio concept/);
-  assert.match(page, /not client case studies/);
+  assert.match(page, /rather than commissioned client outcomes/);
   const testimonials = readFileSync(
     new URL('../app/Testimonials.tsx', import.meta.url),
     'utf8',

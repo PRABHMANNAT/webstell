@@ -86,10 +86,7 @@ export default function SiteFooter() {
           <Link className="footer-logo" href="/" onClick={navigateWithDocument}>
             WEBSTELL
           </Link>
-          <p>
-            Creative technology for ambitious businesses. Websites, software, AI
-            and growth—with design at the centre.
-          </p>
+          <p>Websites, software and AI for your business.</p>
           <form
             className={`subscribe-form is-${subscribeState}`}
             onSubmit={submitSubscription}

@@ -48,6 +48,7 @@ export function HireDialog({
       <DialogContent
         className="hire-dialog"
         overlayClassName="hire-dialog-overlay"
+        positioning="custom"
         showCloseButton={false}
       >
         <DialogClose

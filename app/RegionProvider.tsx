@@ -1,5 +1,8 @@
 'use client';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { Select } from '@base-ui/react/select';
+import { Check, ChevronDown } from 'lucide-react';
+import './currency-switcher.css';
+import { useId, useEffect, useRef, useState, type ReactNode } from 'react';
 import {
   currencies,
   currencyCookie,
@@ -71,26 +74,63 @@ export default function RegionProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function CurrencySwitcher() {
-  const { currency, chooseCurrency } = useRegion();
+const currencyItems = currencies.map((value) => ({
+  value,
+  label:
+    value === 'INR'
+      ? '₹ INR · India'
+      : value === 'AUD'
+        ? 'A$ AUD · Australia'
+        : '$ USD · International',
+}));
+export function CurrencySwitcher({
+  value,
+  onChange,
+}: { value?: Currency; onChange?: (currency: Currency) => void } = {}) {
+  const region = useRegion();
+  const id = useId();
   return (
-    <label className="currency-switcher">
-      <span>Quote currency</span>
-      <select
-        aria-label="Quote currency"
-        value={currency}
-        onChange={(event) => chooseCurrency(event.target.value as Currency)}
+    <div className="currency-switcher">
+      <label id={id} htmlFor={`${id}-control`}>Quote currency</label>
+      <Select.Root
+        items={currencyItems}
+        value={value ?? region.currency}
+        onValueChange={(next) => {
+          if (isCurrency(next)) (onChange ?? region.chooseCurrency)(next);
+        }}
       >
-        {currencies.map((value) => (
-          <option key={value} value={value}>
-            {value === 'INR'
-              ? '₹ INR · India'
-              : value === 'AUD'
-                ? 'A$ AUD · Australia'
-                : '$ USD · International'}
-          </option>
-        ))}
-      </select>
-    </label>
+        <Select.Trigger aria-labelledby={id} className="currency-trigger">
+          <Select.Value />
+          <Select.Icon>
+            <ChevronDown size={18} aria-hidden="true" />
+          </Select.Icon>
+        </Select.Trigger>
+        <Select.Portal>
+          <Select.Positioner
+            sideOffset={8}
+            align="start"
+            alignItemWithTrigger={false}
+            className="currency-positioner"
+          >
+            <Select.Popup className="currency-popup">
+              <Select.List>
+                {currencyItems.map((item) => (
+                  <Select.Item
+                    key={item.value}
+                    value={item.value}
+                    className="currency-option"
+                  >
+                    <Select.ItemText>{item.label}</Select.ItemText>
+                    <Select.ItemIndicator>
+                      <Check size={17} aria-hidden="true" />
+                    </Select.ItemIndicator>
+                  </Select.Item>
+                ))}
+              </Select.List>
+            </Select.Popup>
+          </Select.Positioner>
+        </Select.Portal>
+      </Select.Root>
+    </div>
   );
 }

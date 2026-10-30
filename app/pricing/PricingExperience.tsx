@@ -1,12 +1,12 @@
 'use client';
 import SiteLink from '../SiteLink';
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, Check, Plus, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Check, ChevronDown, Clock3, Layers } from 'lucide-react';
 import StudioNav from '../StudioNav';
 import SiteFooter from '../SiteFooter';
-import BriefForm from '../BriefForm';
 import FaqAccordion from '../FaqAccordion';
-import PricingSection from '../PricingSection';
+import PackageComparison from './PackageComparison';
+import AmbitiousEnquiry from './AmbitiousEnquiry';
 import { CurrencySwitcher, useRegion } from '../RegionProvider';
 import { formatMoney, taxNotes } from '../../lib/region';
 import { pricingFaqs } from './pricing-faqs';
@@ -60,16 +60,15 @@ export default function PricingExperience() {
   const { project, additions, total, delivery } = estimate;
   const category = getPackageCategory(type);
   const availableExtras = getAvailableExtras(type);
-  const recommended = availableExtras.filter((item) =>
-    (item.recommendedFor as readonly string[]).includes(type),
-  );
   const included = includedExtras(type, tier);
   const context = [
     `PROJECT SCOPE · ${tier.toUpperCase()}`,
     `Project: ${project.name}`,
     `Currency: ${currency}`,
     `Business goal: ${goal || 'To discuss together'}`,
-    `Starting scope: ${project.includedUnits} ${project.unitLabel}`,
+    tier === 'custom'
+      ? 'Scope: tailored after discovery.'
+      : `Starting scope: ${project.includedUnits} ${project.unitLabel}`,
     `Additional units: ${estimate.extraUnits}`,
     ...additions.map(
       (item) =>
@@ -78,7 +77,9 @@ export default function PricingExperience() {
     ownDomain
       ? 'Client provides their domain.'
       : 'Domain requirements to be agreed.',
-    `Planning range: ${delivery}; confirmed after discovery.`,
+    tier === 'custom'
+      ? 'Delivery: agreed after discovery.'
+      : `Planning range: ${delivery}; confirmed after discovery.`,
     total === null
       ? 'Price: written quote requested.'
       : `Indicative ${category.recurring ? 'monthly' : 'one-time'} amount: ${formatMoney(total, currency)}`,
@@ -101,12 +102,20 @@ export default function PricingExperience() {
     extras: string[] = [],
     nextTier: Tier = 'starter',
   ) {
-    setType(getProjectType(next).id);
+    const nextId = getProjectType(next).id;
+    const retained =
+      nextId === type
+        ? selected.filter((id) => !includedExtras(type, tier).includes(id))
+        : [];
+    setType(nextId);
     setTier(nextTier);
-    setSelected([...new Set([...includedExtras(next, nextTier), ...extras])]);
-    setExtraUnits(0);
-    setOwnDomain(false);
-    setGoal('');
+    setSelected([
+      ...new Set([...includedExtras(nextId, nextTier), ...retained, ...extras]),
+    ]);
+    if (nextId !== type) {
+      setExtraUnits(0);
+      setOwnDomain(false);
+    }
   }
   function toggle(id: string) {
     setSelected((current) =>
@@ -118,35 +127,62 @@ export default function PricingExperience() {
   return (
     <>
       <StudioNav current="pricing" />
-      <main id="main-content" className="pricing-page agency-pricing">
-        <section className="agency-pricing-hero studio-width">
-          <span className="studio-eyebrow">SCOPE FIRST. CLARITY ALWAYS.</span>
+      <main
+        id="main-content"
+        className="pricing-page studio-page agency-pricing"
+      >
+        <section className="pricing-page-intro studio-width">
           <div>
             <h1>
               Good work.
               <br />
-              <em>Clear next steps.</em>
+              <span>Clear pricing.</span>
             </h1>
-            <p>
-              From a first website to software that runs your business. Compare
-              useful starting scopes, build your brief, and get a proposal that
-              spells out the investment.
-            </p>
           </div>
-          <div className="pricing-region-row">
-            <CurrencySwitcher />
+          <div className="pricing-intro-aside">
             <p>
-              Choose your quote currency. Packages are scoped for each market,
-              with a written price before you commit.
+              Choose a package, add what you need, and get a written quote for
+              your project.
             </p>
-            <SiteLink className="agency-text-link" href={callHref}>
-              Talk it through <ArrowUpRight size={18} />
-            </SiteLink>
+            <div className="pricing-intro-actions">
+              <SiteLink className="pricing-scroll-link" href="#calculator">
+                Build your brief <ArrowUpRight size={18} />
+              </SiteLink>
+              <SiteLink className="pricing-call-button" href={callHref}>
+                Book a call <ArrowUpRight size={18} />
+              </SiteLink>
+            </div>
           </div>
         </section>
-        <div className="studio-width">
+        <nav
+          className="pricing-wayfinding studio-width"
+          aria-label="Pricing guide"
+        >
+          <a href="#packages">
+            <span>01</span> Compare packages
+          </a>
+          <a href="#calculator">
+            <span>02</span> Shape your brief
+          </a>
+          <a href="#ambitious">
+            <span>03</span> Talk to our team
+          </a>
+        </nav>
+        <section
+          className="pricing-compare studio-width"
+          id="packages"
+          aria-labelledby="comparison-title"
+        >
+          <header className="simple-section-heading">
+            <div>
+              <span className="simple-kicker">01 / FIND YOUR FIT</span>
+              <h2 id="comparison-title">The right starting point.</h2>
+              <p>Choose what you need. Compare what’s included.</p>
+            </div>
+            <CurrencySwitcher />
+          </header>
           <fieldset
-            className="package-tabs"
+            className="simple-category-grid"
             aria-label="Choose a pricing category"
           >
             {packageCategories.map((item) => (
@@ -154,249 +190,293 @@ export default function PricingExperience() {
                 key={item.id}
                 type="button"
                 aria-pressed={type === item.id}
-                onClick={() => choose(item.id)}
+                onClick={() => {
+                  if (type !== item.id) choose(item.id);
+                }}
               >
                 {item.label}
               </button>
             ))}
           </fieldset>
-          <PricingSection category={type} onChoose={choose} />
-        </div>
+          <label className="simple-category-mobile">
+            What would you like to build?
+            <select
+              value={type}
+              onChange={(event) => choose(event.target.value)}
+            >
+              {packageCategories.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <PackageComparison
+            category={type}
+            selectedTier={tier}
+            onChoose={(nextTier) => choose(type, [], nextTier)}
+          />
+          <ol
+            className="pricing-path"
+            aria-label="How your project takes shape"
+          >
+            <li>
+              <span>1</span>
+              <div>
+                <strong>Agree the scope</strong>
+                <p>A clear brief and written quote.</p>
+              </div>
+            </li>
+            <li>
+              <span>2</span>
+              <div>
+                <strong>Build, review, refine</strong>
+                <p>Checkpoints you’re part of.</p>
+              </div>
+            </li>
+            <li>
+              <span>3</span>
+              <div>
+                <strong>Launch with a plan</strong>
+                <p>Handover and agreed next steps.</p>
+              </div>
+            </li>
+          </ol>
+        </section>
         <section
-          className="scope-planner studio-width"
+          className="simple-scope studio-width"
           id="calculator"
           aria-labelledby="calculator-title"
         >
-          <div className="scope-builder">
-            <span className="studio-eyebrow">MAKE IT YOURS</span>
-            <h2 id="calculator-title">Build a useful brief.</h2>
-            <p>
-              Keep the starting package, add the capabilities you need, and tell
-              us what should change for your business.
-            </p>
-            <div className="scope-selection">
-              <label>
-                Project type
-                <select
-                  value={type}
-                  onChange={(event) => choose(event.target.value)}
-                >
-                  {packageCategories.map((item) => (
-                    <option value={item.id} key={item.id}>
-                      {item.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Package
-                <select
-                  value={tier}
-                  onChange={(event) =>
-                    choose(
-                      type,
-                      includedExtras(type, event.target.value as Tier),
-                      event.target.value as Tier,
-                    )
-                  }
-                >
-                  <option value="starter">Starter</option>
-                  <option value="growth">Growth</option>
-                  <option value="custom">Custom</option>
-                </select>
-              </label>
+          <header className="simple-section-heading">
+            <div>
+              <span className="simple-kicker">02 / MAKE IT YOURS</span>
+              <h2 id="calculator-title">A little about your project.</h2>
+              <p>Tell us the goal. Add any extras you already have in mind.</p>
             </div>
-            <p className="scope-included">
-              <Check size={17} />
-              {project.includedUnits} {project.unitLabel} in the starting brief.
-              Final scope is agreed together.
-            </p>
-            <div className="scope-heading">
-              <h3>What else should it do?</h3>
-              {recommended.length > 0 && (
-                <button
-                  type="button"
-                  onClick={() =>
-                    setSelected((current) => [
-                      ...new Set([
-                        ...current,
-                        ...recommended.map((item) => item.id),
-                      ]),
-                    ])
-                  }
-                >
-                  <Sparkles size={15} /> Add good fits
-                </button>
-              )}
-            </div>
-            <div className="scope-extras">
-              {availableExtras.map((item) => (
-                <label
-                  key={item.id}
-                  className={selected.includes(item.id) ? 'is-selected' : ''}
-                >
-                  <input
-                    type="checkbox"
-                    checked={selected.includes(item.id)}
-                    disabled={included.includes(item.id)}
-                    onChange={() => toggle(item.id)}
-                  />
-                  <span>
-                    <strong>{item.name}</strong>
-                    <small>{item.detail}</small>
-                    {included.includes(item.id) && (
-                      <em>Included with {tier}</em>
-                    )}
-                  </span>
-                </label>
-              ))}
-            </div>
-            <label className="scope-units">
-              Additional {project.unitLabel}
-              <input
-                type="number"
-                min="0"
-                max={MAX_EXTRA_UNITS}
-                value={extraUnits}
-                onChange={(event) =>
-                  setExtraUnits(
-                    Math.min(
-                      MAX_EXTRA_UNITS,
-                      Math.max(0, Math.floor(Number(event.target.value) || 0)),
-                    ),
-                  )
-                }
-              />
-              <small>More scope can affect both price and delivery.</small>
-            </label>
-            {project.domainEligible && (
-              <label className="scope-domain">
-                <input
-                  type="checkbox"
-                  checked={ownDomain}
-                  onChange={(event) => setOwnDomain(event.target.checked)}
+          </header>
+          <div className="simple-scope-grid">
+            <div className="simple-scope-fields">
+              <div className="scope-current">
+                <Layers size={19} aria-hidden="true" />
+                <span>
+                  {category.label}{' '}
+                  <b> / {tier[0].toUpperCase() + tier.slice(1)}</b>
+                </span>
+                <SiteLink href="#packages">Change</SiteLink>
+              </div>
+              <label className="planner-goal">
+                What would you like to achieve?
+                <textarea
+                  value={goal}
+                  onChange={(event) => setGoal(event.target.value)}
+                  rows={4}
+                  maxLength={600}
+                  placeholder="For example: a website that makes it easy for customers to find us and book a visit."
                 />
-                I already have a domain, or I will supply one.
+                <small>
+                  Not sure about the details? A sentence is enough to start.
+                </small>
               </label>
-            )}
-            <label className="scope-goal">
-              What would a good result look like?
-              <textarea
-                value={goal}
-                onChange={(event) => setGoal(event.target.value)}
-                rows={3}
-                maxLength={600}
-                placeholder="For example: route enquiries to the right team and reduce manual follow-up."
-              />
-            </label>
-          </div>
-          <aside className="scope-summary" id="estimate-summary">
-            <span className="studio-eyebrow">YOUR NEXT MOVE</span>
-            <h3>{project.name}</h3>
-            <div className="scope-price" aria-live="polite">
-              {!ready
-                ? 'Preparing your brief…'
-                : total === null
-                  ? 'Request a quote'
-                  : formatMoney(total, currency)}
+              <details className="planner-details">
+                <summary>
+                  <div>
+                    <strong>Choose extra capabilities</strong>
+                    <span>
+                      Optional ·{' '}
+                      {additions.filter((item) => !item.included).length} added
+                    </span>
+                  </div>
+                  <ChevronDown size={19} aria-hidden="true" />
+                </summary>
+                <div className="planner-additions">
+                  {availableExtras.map((item) => (
+                    <label
+                      key={item.id}
+                      className={
+                        selected.includes(item.id) ? 'is-selected' : ''
+                      }
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selected.includes(item.id)}
+                        disabled={included.includes(item.id)}
+                        onChange={() => toggle(item.id)}
+                      />
+                      <span>
+                        <strong>{item.name}</strong>
+                        <small>{item.detail}</small>
+                        {included.includes(item.id) && (
+                          <em>Included in {tier}</em>
+                        )}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </details>
+              <details className="planner-details">
+                <summary>
+                  <div>
+                    <strong>More project details</strong>
+                    <span>
+                      Optional · scope
+                      {project.domainEligible ? ' and domain' : ''}
+                    </span>
+                  </div>
+                  <ChevronDown size={19} aria-hidden="true" />
+                </summary>
+                <div className="planner-project-details">
+                  <p>
+                    <Check size={16} aria-hidden="true" />
+                    {tier === 'custom'
+                      ? 'Your scope is tailored after discovery.'
+                      : `${project.includedUnits} ${project.unitLabel} in the starting brief. Final scope is agreed together.`}
+                  </p>
+                  <label>
+                    Additional {project.unitLabel}
+                    <input
+                      type="number"
+                      min="0"
+                      max={MAX_EXTRA_UNITS}
+                      value={extraUnits}
+                      onChange={(event) =>
+                        setExtraUnits(
+                          Math.min(
+                            MAX_EXTRA_UNITS,
+                            Math.max(
+                              0,
+                              Math.floor(Number(event.target.value) || 0),
+                            ),
+                          ),
+                        )
+                      }
+                    />
+                    <small>
+                      Additional scope can affect the quote and delivery.
+                    </small>
+                  </label>
+                  {project.domainEligible && (
+                    <label className="planner-domain">
+                      <input
+                        type="checkbox"
+                        checked={ownDomain}
+                        onChange={(event) => setOwnDomain(event.target.checked)}
+                      />
+                      I have a domain, or I’ll supply one.
+                    </label>
+                  )}
+                </div>
+              </details>
             </div>
-            <p>
-              {currency} ·{' '}
-              {category.recurring
-                ? 'recurring monthly engagement'
-                : 'one-time project scope'}
-            </p>
-            <dl>
-              <div>
-                <dt>Package</dt>
-                <dd>{tier}</dd>
-              </div>
-              <div>
-                <dt>Selected capabilities</dt>
-                <dd>{additions.length}</dd>
-              </div>
-              <div>
-                <dt>
-                  {type === 'seo'
-                    ? 'Initial audit planning'
-                    : 'Indicative delivery'}
-                </dt>
-                <dd>{delivery}</dd>
-              </div>
-            </dl>
-            <p className="scope-note">
-              Timelines depend on discovery, content and integrations. Your
-              proposal confirms the full scope, payment milestones, taxes and
-              ongoing costs.
-            </p>
-            <SiteLink className="agency-button" href={`/contact?${handoff}`}>
-              Request my proposal <ArrowUpRight size={18} />
-            </SiteLink>
-            <SiteLink
-              className="agency-text-link"
-              href={whatsappUrl(`Hi WEBSTELL!\n${context}`)}
-              target="_blank"
-              rel="noreferrer"
+            <aside
+              className="simple-quote"
+              aria-labelledby="quote-summary-title"
             >
-              Share this scope on WhatsApp <ArrowUpRight size={17} />
-            </SiteLink>
-            <details className="scope-send">
-              <summary>
-                Send the full brief here <Plus size={18} />
-              </summary>
-              <BriefForm
-                context={context}
-                projectType={project.name}
-                estimate={total ?? undefined}
-                currency={currency}
-              />
-            </details>
-          </aside>
-        </section>
-        <section
-          className="pricing-boundaries studio-width"
-          aria-labelledby="cost-title"
-        >
-          <div className="agency-section-heading">
-            <span className="studio-eyebrow">THE WHOLE PICTURE</span>
-            <h2 id="cost-title">
-              Know what’s included.
-              <br />
-              <em>Know what comes next.</em>
-            </h2>
+              <span className="simple-kicker">YOUR PROJECT, AT A GLANCE</span>
+              <h3 id="quote-summary-title">{project.name}</h3>
+              <div className="simple-quote-price" aria-live="polite">
+                {!ready
+                  ? 'Preparing your brief…'
+                  : total === null
+                    ? 'Let’s price your idea.'
+                    : formatMoney(total, currency)}
+              </div>
+              <p>
+                {currency} ·{' '}
+                {category.recurring ? 'monthly engagement' : 'one-time project'}
+              </p>
+              <dl>
+                <div>
+                  <dt>Package</dt>
+                  <dd>{tier[0].toUpperCase() + tier.slice(1)}</dd>
+                </div>
+                <div>
+                  <dt>Extra capabilities</dt>
+                  <dd>
+                    {additions.filter((item) => !item.included).length ||
+                      'None added'}
+                  </dd>
+                </div>
+                <div>
+                  <dt>
+                    <Clock3 size={14} aria-hidden="true" />
+                    {type === 'seo'
+                      ? 'Initial audit planning'
+                      : 'Indicative delivery'}
+                  </dt>
+                  <dd>{tier === 'custom' ? 'After discovery' : delivery}</dd>
+                </div>
+              </dl>
+              {additions.length > 0 && (
+                <ul className="simple-quote-features">
+                  {additions.map((item) => (
+                    <li key={item.id}>
+                      <Check size={14} aria-hidden="true" />
+                      {item.name}
+                      {item.included && <span>Included</span>}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <SiteLink
+                className="simple-quote-primary"
+                href={`/contact?${handoff}`}
+              >
+                Request my quote <ArrowUpRight size={18} aria-hidden="true" />
+              </SiteLink>
+              <SiteLink
+                className="simple-quote-secondary"
+                href={whatsappUrl(`Hi WEBSTELL!\n${context}`)}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Talk it through on WhatsApp{' '}
+                <ArrowUpRight size={15} aria-hidden="true" />
+              </SiteLink>
+              <p className="simple-quote-note">
+                No payment now. Your proposal confirms scope, delivery, taxes
+                and ongoing costs before you commit.
+              </p>
+            </aside>
           </div>
-          <div className="cost-grid">
+        </section>
+        <details className="simple-costs studio-width">
+          <summary>
+            <div>
+              <span className="simple-kicker">NO SURPRISES</span>
+              <h2>What does the quote cover?</h2>
+            </div>
+            <ChevronDown size={22} aria-hidden="true" />
+          </summary>
+          <div className="simple-cost-grid">
             <article>
               <span>01 / PROJECT</span>
-              <h3>One-time work</h3>
+              <h3>The agreed work</h3>
               <p>
-                Discovery, design, the agreed build, testing and handover. Your
-                proposal defines scope, revision checkpoints, ownership and
-                payment milestones.
+                Discovery, design, development, testing and handover, with
+                review checkpoints and payment milestones in your proposal.
               </p>
             </article>
             <article>
               <span>02 / ONGOING</span>
-              <h3>Recurring services</h3>
+              <h3>Care after launch</h3>
               <p>
-                Optional maintenance and optimisation, hosting, SaaS
-                subscriptions, AI model usage and messaging charges. SEO
-                programmes are monthly engagements with an agreed scope.
+                Optional maintenance, SEO and support are agreed separately.
+                Hosting, licences and AI usage may have recurring costs.
               </p>
             </article>
             <article>
-              <span>03 / SEPARATE</span>
-              <h3>Third-party costs</h3>
+              <span>03 / THIRD PARTIES</span>
+              <h3>External services</h3>
               <p>
-                Domains and renewals, premium media, content production,
-                payment-provider fees, app-store accounts and advertising spend
-                are separate unless explicitly included.
+                Domains, paid tools, payment fees, app-store accounts and
+                advertising are separate unless explicitly included.
               </p>
             </article>
           </div>
-          <p className="tax-note">{taxNotes[currency]}</p>
-        </section>
-        <section className="agency-faq studio-width">
+          <p className="simple-tax-note">{taxNotes[currency]}</p>
+        </details>
+        <section className="agency-faq pricing-faq studio-width">
           <div className="agency-section-heading">
             <span className="studio-eyebrow">BEFORE WE BEGIN</span>
             <h2>
@@ -407,19 +487,26 @@ export default function PricingExperience() {
           </div>
           <FaqAccordion items={pricingFaqs} />
         </section>
-        <section className="agency-closing studio-width">
+        <section className="pricing-custom studio-width" id="ambitious">
           <h2>
-            Not sure where
+            Something more
             <br />
-            to start?
+            <em>ambitious?</em>
           </h2>
-          <p>
-            Bring the problem. We’ll help you decide whether it needs a website,
-            a product, an integration—or a simpler first step.
-          </p>
-          <SiteLink className="agency-button" href={callHref}>
-            Request a discovery call <ArrowUpRight size={19} />
-          </SiteLink>
+          <div>
+            <p>
+              A custom app, a new product or a project that needs a different
+              approach? Let’s work out the scope together.
+            </p>
+            <SiteLink className="agency-button" href={callHref}>
+              Discuss your project <ArrowUpRight size={19} />
+            </SiteLink>
+          </div>
+          <AmbitiousEnquiry
+            context={`Current pricing selection, for reference:\n${context}`}
+            projectType="Custom project"
+            currency={currency}
+          />
         </section>
       </main>
       <SiteFooter />

@@ -1,4 +1,5 @@
 .about-page{background:#f4f6f1;color:#111;padding-top:0}
+.about-page .about-hero-primary{color:#fff}
 .about-hero{padding:clamp(1.5rem,3vw,3rem) 0 clamp(5rem,10vw,9rem)}
 .about-hero h1{font-size:clamp(3.5rem,8.6vw,8.6rem);font-weight:500;letter-spacing:-.075em;line-height:.84;margin:0 0 clamp(3rem,7vw,6.5rem)}
 .about-hero h1 em{display:block;margin-top:.11em;padding-left:clamp(1rem,5vw,4.5rem);font-family:Georgia,serif;font-weight:400}
@@ -34,7 +35,7 @@
 @media(max-width:767px){.about-page{padding-top:0}.about-hero h1{font-size:clamp(2.65rem,11vw,3.6rem);letter-spacing:-.065em;line-height:.93;margin:0 0 2.75rem}.about-hero h1 em{margin-top:.16em;padding-left:clamp(.25rem,4vw,1rem)}.about-hero-copy{grid-template-columns:1fr;gap:1.25rem}.about-next{margin-top:1rem;margin-bottom:2rem;border-radius:1.5rem}.about-next-actions>a,.about-next-actions>button{width:min(100%,22rem)}}
 @media(prefers-reduced-motion:reduce){.about-next-actions>a,.about-next-actions>button,.about-next-actions>a::before,.about-next-actions>button::before,.about-next-actions>a>i,.about-next-actions>button>i{transition:none}.about-next-actions>a:hover,.about-next-actions>a:focus-visible,.about-next-actions>button:hover,.about-next-actions>button:focus-visible{transform:none}}
 
-.about-page .about-hero-primary{color:#fff}
+.about-hero>.studio-eyebrow{display:block;margin-bottom:32px}.about-hero h1{font-size:clamp(2.6rem,7vw,7rem);line-height:1;margin-bottom:44px}.about-hero h1 em{padding-left:0;color:#66705e}.about-hero-copy{max-width:none;border-top:1px solid #cbd0c6;padding-top:28px}.about-page .insights-lead{max-width:none}.about-page .insights-summary{max-width:none;text-align:justify;text-align-last:left}.about-page .insights-inner{padding-top:48px}
 
 /* About page: keep the moving wordmark on a clean white band. */
 #about-why-webstell .insights-marquee {

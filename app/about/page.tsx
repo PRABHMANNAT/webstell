@@ -20,7 +20,13 @@ export const metadata = createPageMetadata({
 export default function AboutPage() {
   return (
     <>
-      <StructuredData data={createPageSchema({ path: '/about', name: 'About Webstell | Software & Digital Product Agency', breadcrumbName: 'About' })} />
+      <StructuredData
+        data={createPageSchema({
+          path: '/about',
+          name: 'About Webstell | Software & Digital Product Agency',
+          breadcrumbName: 'About',
+        })}
+      />
       <StudioNav current="about" />
       <main id="main-content" className="about-page">
         <AboutHero />

@@ -1,4 +1,5 @@
 "use client";
+/* oxlint-disable jsx-a11y/anchor-is-valid -- Retained upstream registry example; routed Webstell heroes use real links. */
 
 import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";

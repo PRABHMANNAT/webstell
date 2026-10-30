@@ -449,10 +449,6 @@ export function IndustryExplorer({
                   </span>
                   <p>{industry.name}</p>
                 </div>
-                <span className="industry-focus-number" aria-hidden="true">
-                  0{industries.findIndex((item) => item.id === industry.id) + 1}{' '}
-                  / 09
-                </span>
               </div>
               <div
                 className="industry-focus-copy"
