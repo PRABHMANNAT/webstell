@@ -16,25 +16,6 @@ export default function ServicesPage() {
     <>
       <StudioNav current="services" />
       <main className="services-page" id="main-content">
-        <section className="services-intro studio-width">
-          <span className="studio-eyebrow">THE WEBSTELL OFFER</span>
-          <h1>
-            Design the experience.
-            <br />
-            <em>Build the capability.</em>
-          </h1>
-          <p>
-            Six connected disciplines. From the way customers find you to the
-            software that keeps your business moving.
-          </p>
-          <nav className="services-jump-links" aria-label="Service categories">
-            {services.map((service) => (
-              <SiteLink href={`#${service.id}`} key={service.id}>
-                {service.label}
-              </SiteLink>
-            ))}
-          </nav>
-        </section>
         <section
           className="services-page-hero studio-width"
           aria-labelledby="services-page-title"
@@ -56,6 +37,25 @@ export default function ServicesPage() {
               type="video/mp4"
             />
           </ViewportVideo>
+        </section>
+        <section className="services-intro studio-width">
+          <span className="studio-eyebrow">THE WEBSTELL OFFER</span>
+          <h1>
+            Design the experience.
+            <br />
+            <em>Build the capability.</em>
+          </h1>
+          <p>
+            Six connected disciplines. From the way customers find you to the
+            software that keeps your business moving.
+          </p>
+          <nav className="services-jump-links" aria-label="Service categories">
+            {services.map((service) => (
+              <SiteLink href={`#${service.id}`} key={service.id}>
+                {service.label}
+              </SiteLink>
+            ))}
+          </nav>
         </section>
 
         <ServiceShowcase />
