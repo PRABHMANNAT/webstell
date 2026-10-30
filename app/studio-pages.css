@@ -516,11 +516,14 @@
   z-index: 81;
   left: 50%;
   top: 50%;
+  /* The shared Dialog also sets Tailwind's individual translate property. */
+  translate: none;
   transform: translate(-50%, -50%);
   width: min(590px, calc(100vw - 32px));
   max-width: 590px;
-  max-height: 90dvh;
+  max-height: min(90dvh, calc(100dvh - 32px));
   overflow: auto;
+  overscroll-behavior: contain;
   padding: 40px;
   border-radius: 25px;
   background: #f8f9f3;
@@ -603,6 +606,7 @@
   outline-offset: 3px;
 }
 .hire-title[data-slot='dialog-title'] {
+  padding-right: 32px;
   font-size: 40px;
   line-height: 1.08;
   letter-spacing: -0.045em;
@@ -674,6 +678,7 @@
 }
 .hire-option > div {
   flex: 1;
+  min-width: 0;
 }
 .hire-option strong {
   font-size: 17px;
